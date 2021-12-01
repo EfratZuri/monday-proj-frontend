@@ -17,7 +17,7 @@ export const boardStore = {
         activeBoard: (state) => state.activeBoard,
         boardToEdit: (state) => state.boardToEdit,
         groupToEdit: (state) => state.groupToEdit,
-        boardName: (state) => state.boards[0].title,
+        boardName: (state) => state.activeBoard
     },
     mutations: {
         setBoardName(state, { boardName }) {
@@ -37,15 +37,12 @@ export const boardStore = {
             state.activeBoard = activeBoard;
         },
         saveGroup(state, { group }) {
-            const idx = state.activeBoard.groups.findIndex(
-                ({ _id }) => _id === group._id
-            );
+            const idx = state.activeBoard.groups.findIndex(({ _id }) => _id === group._id);
             // Add a new Group
             if (idx === -1) {
                 state.activeBoard.groups.push(group);
                 state.groupClrs.curClrIdx++;
-                if (state.groupClrs.curClrIdx >= state.groupClrs.clrs.length)
-                    state.groupClrs.curClrIdx = 0;
+                if (state.groupClrs.curClrIdx >= state.groupClrs.clrs.length) state.groupClrs.curClrIdx = 0;
 
                 state.groupToEdit = boardService.getEmptyGroup(
                     state.groupClrs.clrs[state.groupClrs.curClrIdx]
@@ -56,21 +53,25 @@ export const boardStore = {
         },
     },
     actions: {
-        async loadBoards({ commit }) {
-            commit({ type: 'setLoading', isLoading: true });
+        async loadBoards(context) {
+            context.commit({ type: 'setLoading', isLoading: true });
             try {
                 const boards = await boardService.query();
-                commit({ type: 'setBoards', boards });
+                if (!context.state.activeBoard)
+                    context.commit({ type: 'setActiveBoard', board: boards[0] });
+
+                context.commit({ type: 'setBoards', boards });
             } catch (err) {
                 return err;
             } finally {
-                commit({ type: 'setLoading', isLoading: false });
+                context.commit({ type: 'setLoading', isLoading: false });
             }
         },
         async addTask(context, { task }) {
             console.log(context, task);
             try {
                 const newTask = await boardService.saveTask(task);
+
                 context.commit({ type: 'addTask', newTask });
                 return newTask;
             } catch (err) {
@@ -79,10 +80,7 @@ export const boardStore = {
         },
         async saveGroup(context, { group }) {
             try {
-                const addedGroup = await boardService.saveGroup(
-                    group,
-                    context.activeBoard._id
-                );
+                const addedGroup = await boardService.saveGroup(group, context.activeBoard._id);
                 context.commit({ type: 'saveGroup', addedGroup });
                 return addedGroup;
             } catch (err) {

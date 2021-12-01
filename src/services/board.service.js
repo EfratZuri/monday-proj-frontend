@@ -74,12 +74,12 @@ async function query(filterBy = {}) {
     // let queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`;
     // return httpService.get(`board${queryStr}`)
     let boards = await storageService.query(STORAGE_KEY_BOARDS);
+    console.log(boards);
     if (!boards.length) {
-        boards.push(_createBoard());
-        saveBoard(boards);
+        const board = _createBoard();
+        boards.push(board);
+        saveBoard(board);
     }
-    console.log('boards', boards);
-
     return boards;
 }
 async function saveBoard(board) {
