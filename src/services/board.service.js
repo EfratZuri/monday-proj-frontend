@@ -83,8 +83,8 @@ async function saveBoard(board) {
     // const addedBoard = await httpService.post(`board`, board)
     console.log('board', board);
     let savedBoard
-    if (board._id) savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
-    else savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
+    if (board._id) savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
+    else savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
     return savedBoard;
 }
 
