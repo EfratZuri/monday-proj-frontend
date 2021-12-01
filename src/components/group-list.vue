@@ -5,7 +5,7 @@
       class="group-list clean-list flex column"
     >
       <li class="group" v-for="(group, idx) in groups" :key="idx">
-        <group-header :group="group" @saveGroup="saveGroup"/>
+        <group-header :group="group" @saveGroup="saveGroup" />
         <taskList :group="group" @saveTask="saveTask" />
       </li>
     </ul>
@@ -46,8 +46,8 @@ export default {
     addGroup() {
       this.$emit('addGroup', this.groupToEdit);
     },
-    saveTask(task) {
-      this.$store.dispatch({ type: 'addTask', task });
+    saveTask(task, _id) {
+      this.$store.dispatch({ type: 'addTask', details: { task, _id } });
     },
     saveGroup(group) {
       this.$store.dispatch({ type: 'saveGroup', group });

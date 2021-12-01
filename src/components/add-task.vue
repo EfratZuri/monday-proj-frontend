@@ -6,14 +6,21 @@
       @focus="showAddBtn"
       placeholder="Add task"
     />
-    <button v-if="addBtn" class="btn" @click="addNewTask">+Add task</button>
+    <button v-if="addBtn" class="btn" @click="addNewTask(group._id)">
+      +Add task
+    </button>
   </section>
 </template>
 
 <script>
 export default {
   name: 'addTask',
-  props: {},
+  props: {
+    group: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       task: null,
@@ -24,9 +31,9 @@ export default {
     this.task = JSON.parse(JSON.stringify(this.$store.getters.taskToEdit));
   },
   methods: {
-    addNewTask() {
+    addNewTask(id) {
       const task = this.task;
-      this.$emit('addTask', task);
+      this.$emit('addTask', task, id);
       this.addBtn = !this.addBtn;
     },
     showAddBtn() {

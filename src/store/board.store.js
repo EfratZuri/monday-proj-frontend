@@ -58,6 +58,10 @@ export const boardStore = {
       // Update Group
       else state.activeBoard.groups.splice(idx, 1, group);
     },
+
+    addTask(board) {
+      console.log(board);
+    },
   },
   actions: {
     async loadBoards(context) {
@@ -74,9 +78,15 @@ export const boardStore = {
         context.commit({ type: 'setLoading', isLoading: false });
       }
     },
-    async addTask(context, { task }) {
+    async addTask(context, { details }) {
       try {
-        const newTask = await boardService.saveTask(task);
+        console.log(context, details);
+        const newTask = await boardService.saveTask(
+          context.state.activeBoard._id,
+          details.task,
+          details._id,
+          'add new task'
+        );
 
         context.commit({ type: 'addTask', newTask });
         return newTask;
