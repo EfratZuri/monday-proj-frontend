@@ -4,9 +4,9 @@
       <li v-for="task in tasks" :key="task._id">
         <task-preview :task="task" />
         <div class="">
-          <div class="user"><span>userIcon</span></div>
+          <!-- <div class="user"><span>userIcon</span></div> -->
           <button class="btn" @click="toggleDialogNode">
-            <span>status</span>
+            <!-- <span>status</span> -->
           </button>
         </div>
       </li>
@@ -49,7 +49,6 @@ export default {
       this.showDialogNode = !this.showDialogNode;
     },
     saveTask(task, id) {
-      console.log(id);
       this.$emit('saveTask', task, id);
     },
   },

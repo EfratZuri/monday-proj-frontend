@@ -34,7 +34,6 @@ export const boardService = {
   },
   async saveTask(boardId, task, groupId, activity) {
     const board = await getById(boardId);
-    console.log(board);
     const group = board.groups.find(({ _id }) => _id == groupId);
     if (!task._id) {
       task._id = utilService.makeId();
@@ -45,6 +44,7 @@ export const boardService = {
     }
     board.activities.unshift(activity);
     saveBoard(board);
+    console.log(board);
     return board;
   },
   // updateTask(cmpType, data) {
@@ -82,11 +82,10 @@ async function query(filterBy = {}) {
 }
 async function saveBoard(board) {
   // const addedBoard = await httpService.post(`board`, board)
-  console.log('board', board);
   let savedBoard;
   if (board._id)
-    savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
-  else savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
+    savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
+  else savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
   return savedBoard;
 }
 

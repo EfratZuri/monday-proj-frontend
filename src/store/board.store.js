@@ -59,8 +59,10 @@ export const boardStore = {
       else state.activeBoard.groups.splice(idx, 1, group);
     },
 
-    addTask(board) {
-      console.log(board);
+    addTask(state, { newBoard }) {
+      console.log(state, { newBoard });
+      const idx = state.boards.findIndex(({ _id }) => _id === newBoard._id);
+      state.boards.splice(idx, 1, newBoard);
     },
   },
   actions: {
@@ -80,16 +82,15 @@ export const boardStore = {
     },
     async addTask(context, { details }) {
       try {
-        console.log(context, details);
-        const newTask = await boardService.saveTask(
+        const newBoard = await boardService.saveTask(
           context.state.activeBoard._id,
           details.task,
           details._id,
           'add new task'
         );
 
-        context.commit({ type: 'addTask', newTask });
-        return newTask;
+        context.commit({ type: 'addTask', newBoard });
+        return newBoard;
       } catch (err) {
         return err;
       }
