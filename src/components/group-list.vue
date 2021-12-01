@@ -48,8 +48,7 @@ export default {
 			this.showRename = !this.showRename;
 		},
 		addGroup() {
-			console.log('addGroup');
-			this.$emit('addGroup');
+			this.$emit('addGroup', this.groupToEdit);
 		},
 	},
 	computed: {},

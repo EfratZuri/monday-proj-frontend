@@ -34,10 +34,9 @@ export default {
 			console.log('Add item');
 		},
 		addGroup(group) {
-			console.log('add group');
-			// Setting
 			group.boardId = this.$store.getters.activeBoard._id;
-			// this.$store.commit({ type: 'addGroup', group });
+
+			this.$store.dispatch({ type: 'saveGroup', group });
 		},
 	},
 	components: {

@@ -30,6 +30,13 @@ export const boardStore = {
 		setActiveBoard(state, { activeBoard }) {
 			state.activeBoard = activeBoard;
 		},
+		saveGroup(state, { group }) {
+			const idx = state.activeBoard.groups.findIndex(({ _id }) => _id === group._id);
+			// Add a new Group
+			if (idx === -1) state.activeBoard.groups.push(group);
+			// Update Group
+			else state.activeBoard.groups.splice(idx, 1, group);
+		},
 	},
 	actions: {
 		async loadBoards({ commit }) {
@@ -58,16 +65,14 @@ export const boardStore = {
 				return e;
 			}
 		},
-		// async addGroup(context, { group }) {
-		// 	try {
-		// 		const addedGroup = await boardService.addGroup(group);
-		// 		context.commit({ type: 'addGroup', addedGroup });
-
-		// 		return addedGroup;
-		// 	} catch (e) {
-		// 		return e;
-		// 	}
-		// },
+		async saveGroup(context, { group }) {
+			try {
+				const addedGroup = await boardService.saveGroup(group);
+				context.commit({ type: 'saveGroup', addedGroup });
+				return addedGroup;
+			} catch (err) {
+				return err;
+			}
+		},
 	},
-	modules: {},
 };

@@ -16,7 +16,6 @@ export default new Vuex.Store({
 			state.isLoading = isLoading;
 		},
 	},
-	actions: {},
 	modules: {
 		groupStore,
 		boardStore,

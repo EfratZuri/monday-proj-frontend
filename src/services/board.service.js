@@ -34,11 +34,18 @@ export const boardService = {
 		return { txt: '', _id: '', cratedAt: '', byMember: {}, task: {} };
 	},
 	saveGroup(group, boardId) {
-		console.log(group);
-		const board = getById(boardId);
-		board.groups.push(group);
+		const board = getById(group);
+		// If the group is new
+		if (!group._id) {
+			group._id = utilService.makeId();
+			board.groups.push(group);
+			// Update group
+		} else {
+			const idx = board.groups.findIndex(({ _id }) => _id === group._id);
+			board.groups.splice(idx, 1, group);
+		}
 		saveBoard(board);
-		return board;
+		return group;
 	},
 	saveTask(boardId, groupId, task, activity) {
 		const board = getById(boardId);

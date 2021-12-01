@@ -8,7 +8,7 @@ export const groupService = {
 	update,
 	remove,
 	getEmptyGroup(color = '#111') {
-		return { name: 'New Group', color, items: [], boardId: '', _id: '' };
+		return { name: 'New Group', color, tasks: [], boardId: '', _id: '' };
 	},
 };
 
