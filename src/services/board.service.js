@@ -20,7 +20,6 @@ export const boardService = {
     },
     async saveGroup(group, activeBoardId) {
         const board = await getById(activeBoardId);
-        console.log('board', board);
         // If the group is new
         if (!group._id) {
             group._id = utilService.makeId();
@@ -82,8 +81,11 @@ async function query(filterBy = {}) {
 }
 async function saveBoard(board) {
     // const addedBoard = await httpService.post(`board`, board)
-    const addedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
-    return addedBoard;
+    console.log('board', board);
+    let savedBoard
+    if (board._id) savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
+    else savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
+    return savedBoard;
 }
 
 async function getById(boardId) {
