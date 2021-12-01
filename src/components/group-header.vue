@@ -5,11 +5,11 @@
 		<div class="group-header-title">
 			<!-- TODO: on click-an input should apper -->
 			<!-- MY_TOTO : STYLE : :style="{'color' : group.style.color}" -->
-			<span v-if="!isEdit" :style="{'color' : 'red'}" @click="editTitle">{{ group.title }}</span>
+			<span v-if="!isEdit" :style="{'color' : 'red'}" @click="editTitle">{{ groupToEdit.title }}</span>
 			<!-- TODO: show this input to edit the group title  -->
 			<!-- MY_TOTO :add text-align:center to style -->
 			<!-- MY_TOTO : STYLE : :style="{'color' : group.style.color}" -->
-			<input v-else :style="{'color' : 'red'}" type="text" value="group.title" ref="titleInput" v-model="group.title" @blur="editTitle"/>
+			<input v-else :style="{'color' : 'red'}" type="text" value="groupToEdit.title" ref="titleInput" v-model="groupToEdit.title"  @keyup.enter="$event.target.blur()" @blur="editTitle"/>
 			<!-- <input type="text" /> -->
 		</div>
 		<div class="flex-def">
@@ -39,25 +39,21 @@ export default {
 		},
 	},
 		created() {
-			console.log('group',this.group);
-			console.log('group header');
 		},
 		data() {
 			return {
 				isEdit : false,
+				groupToEdit : {...this.group}
 			}
 		},
 	methods: {
-		editTitle() {
-			this.isEdit = !this.isEdit
-			console.log('this.isEdit',this.isEdit);
-			// console.log('this.$refs.titleInput',this.$refs.titleInput);
-			// setTimeout(() => {
+		async editTitle() {
+				await (this.isEdit = !this.isEdit)
 				if(this.$refs.titleInput) this.$refs.titleInput.focus();
-			// }, 300);
+				if(this.group.title !== this.groupToEdit.title) {
+					this.$emit('saveGroup', this.groupToEdit)
+				}			
 		},
-		changed() {
-		}
 	},
 };
 </script>
