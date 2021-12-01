@@ -17,7 +17,7 @@ export const boardStore = {
         activeBoard: (state) => state.activeBoard,
         boardToEdit: (state) => state.boardToEdit,
         groupToEdit: (state) => state.groupToEdit,
-        boardName: (state) => state.activeBoard
+        boardName: (state) => state.activeBoard.title,
     },
     mutations: {
         setBoardName(state, { boardName }) {
