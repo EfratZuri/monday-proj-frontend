@@ -21,6 +21,7 @@ export default {
 	},
 	created() {
 		if (!this.info) {
+			console.log('e');
 		} else {
 			const keys = Object.keys(this.info);
 			const { optionKey, selectedKey } = keys.reduce((acc, key) => {

@@ -35,6 +35,7 @@ export default {
 			return this.task.cmps?.[cmp] || this.getDefault(cmp);
 		},
 		getDefault(cmp) {
+			console.log(cmp);
 			return {};
 		},
 	},
