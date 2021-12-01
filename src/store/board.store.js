@@ -11,7 +11,7 @@ export const boardStore = {
       curClrIdx: 0,
     },
     groupToEdit: boardService.getEmptyGroup('#579bfc'),
-    taskToAdd: boardService.getEmptyTask(),
+    taskToEdit: boardService.getEmptyTask(),
   },
   getters: {
     boards: (state) => state.boards,
@@ -19,7 +19,7 @@ export const boardStore = {
     boardToEdit: (state) => state.boardToEdit,
     groupToEdit: (state) => state.groupToEdit,
     boardName: (state) => state.activeBoard?.title,
-    taskToAdd: (state) => state.taskToAdd,
+    taskToEdit: (state) => state.taskToEdit,
   },
   mutations: {
     setBoardName(state, { boardName }) {
@@ -80,7 +80,7 @@ export const boardStore = {
       try {
         const newTask = await boardService.saveTask(task);
 
-        context.commit({ type: 'addTask', newTask });
+        context.commit({ type: 'saveTask', newTask });
         return newTask;
       } catch (err) {
         return err;
