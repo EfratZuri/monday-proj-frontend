@@ -1,4 +1,4 @@
-# trello-proj
+# monday-proj
 
 ## Project setup
 ```

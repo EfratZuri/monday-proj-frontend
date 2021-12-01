@@ -1,0 +1,160 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-family: Montserrat;
+	color: $clr2;
+	line-height: 1.1;
+}
+
+body {
+	// background-image: url(~@/assets/images/seamless-cute-cats-pattern-with-2206818.jpg);
+	background-size: 400px;
+	line-height: 1.5;
+	overflow: hidden;
+	height: 100vh;
+	// background-attachment: fixed;
+}
+#app {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 500;
+}
+
+h1 {
+	font-size: rem(60px);
+}
+
+img {
+	width: 100%;
+}
+
+p {
+	margin: 0 0 1rem;
+	max-width: 60ch;
+}
+
+.btn,
+input,
+a {
+	color: inherit;
+	font-family: inherit;
+}
+
+a {
+	text-decoration: none;
+}
+
+input {
+	padding: 5px 10px;
+}
+
+.btn {
+	display: inline-block;
+	color: inherit;
+	font-family: inherit;
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-size: 13.333px;
+	outline: none;
+	white-space: nowrap;
+	&:active {
+		transform: scale(0.92);
+	}
+	&-black {
+		background-color: #111;
+		color: #fff;
+		padding: 10px 20px;
+		border-radius: 3px;
+		font-weight: 500;
+		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+		&:hover {
+			background-color: #333;
+		}
+	}
+	&-white {
+		background-color: #fff;
+		padding: 10px 20px;
+		color: #111;
+		font-weight: 500;
+		border: 1px solid rgba(0, 0, 0, 0.3);
+	}
+	&-underline {
+		color: #0073e6;
+		border-bottom: 1px solid currentColor;
+	}
+	&-icon {
+		display: flex;
+		align-items: center;
+		background-color: transparent;
+	}
+	&-blue {
+		background-color: #0073ea;
+		color: #fff;
+		border-radius: 4px;
+	}
+	&-size-small {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		font-family: Roboto, sans-serif;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 22px;
+		padding: 4px 8px;
+		height: 32px;
+		line-height: 24px;
+	}
+	&-blue-round {
+		background-color: #4353ff;
+		color: #fff;
+		padding: 16px 32px;
+		font-size: 18px;
+		border-radius: 40px;
+		border: none;
+		font-weight: 400;
+		text-align: center;
+		cursor: pointer;
+		&:hover {
+			background-color: #4353ff;
+		}
+	}
+}
+
+.editable-input--wrapper {
+	width: 100%;
+	background-color: #fff;
+	display: inline-block;
+	min-width: 0;
+	max-height: 100%;
+	margin: auto 0;
+	padding: 0 4px;
+	outline: none;
+	border-radius: 4px;
+	border: 1px solid #0085ff;
+	border-color: #0073ea;
+	text-align: left;
+	vertical-align: top;
+}
+
+.element-type-h1 {
+	-webkit-font-smoothing: antialiased;
+	font-family: Roboto, sans-serif;
+	font-weight: 500;
+	font-size: 32px;
+	letter-spacing: -1px;
+	line-height: 52px;
+	color: #323338;
+}
