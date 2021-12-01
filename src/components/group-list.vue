@@ -1,27 +1,19 @@
 <template>
-	<div class="group-list-container">
+	<section class="group-list-container">
 		<ul v-if="groups && groups.length" class="group-list clean-list">
 			<li class="group" v-for="(group, idx) in groups" :key="idx">
-				<div class="group-header">
-					<!-- This Span eill include the icons when a user hover over the header -->
-					<span></span>
-					<div class="group-name">
-						<!-- TODO: on click-an input should apper -->
-						<span>{{ group.name }}</span>
-						<!-- TODO: show this input to edit the group name  -->
-						<!-- <input type="text" /> -->
-					</div>
-				</div>
+				<group-header :group="group" />
 				<taskList :group="group" />
 			</li>
 		</ul>
 		<!-- <button class="btn" :style="{ color: groupToEdit?.color || '#fff' }" @click="addGroup"> -->
 		<button class="btn" :style="styleObj" @click="addGroup">+ Add new group</button>
-	</div>
+	</section>
 </template>
 
 <script>
-import taskList from '@/components/task-list.vue';
+import taskList from '@/components/task-list';
+import groupHeader from '@/components/group-header';
 export default {
 	name: 'groupList',
 	props: {
@@ -40,7 +32,7 @@ export default {
 	},
 	created() {
 		this.groupToEdit = this.$store.getters.groupToEdit;
-		this.styleObj = { color: this.groupToEdit?.color || '#000' };
+		this.styleObj = { color: this.groupToEdit?.style.clr || '#000' };
 		this.groups = this.boards[0].groups;
 	},
 	methods: {
@@ -51,7 +43,6 @@ export default {
 			this.$emit('addGroup', this.groupToEdit);
 		},
 	},
-	computed: {},
-	components: { taskList },
+	components: { taskList, groupHeader },
 };
 </script>

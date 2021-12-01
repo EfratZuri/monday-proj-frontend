@@ -9,6 +9,7 @@
 				</div>
 			</li>
 		</ul>
+		<button class="btn" @click="addTask">+Add task</button>
 		<!-- <dialogNode v-if="showDialogNode" @change="changeStatus" /> -->
 	</section>
 </template>
@@ -42,6 +43,9 @@ export default {
 		},
 		toggleDialogNode() {
 			this.showDialogNode = !this.showDialogNode;
+		},
+		addTask() {
+			console.log('Add task not ready yet');
 		},
 	},
 	components: {

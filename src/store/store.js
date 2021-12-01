@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { groupStore } from './group.store.js';
 import { boardStore } from './board.store.js';
 Vue.use(Vuex);
 
@@ -17,7 +16,6 @@ export default new Vuex.Store({
 		},
 	},
 	modules: {
-		groupStore,
 		boardStore,
 	},
 });

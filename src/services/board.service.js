@@ -6,7 +6,6 @@ const STORAGE_KEY_BOARDS = 'boards';
 
 export const boardService = {
 	query,
-
 	async remove(boardId) {
 		// return httpService.delete(`board/${boardId}`)
 		return await storageService.delete('board', boardId);
@@ -27,14 +26,14 @@ export const boardService = {
 	getEmptyTask() {
 		return { title: '', _id: '' };
 	},
-	getEmptyGroup() {
-		return { title: '', _id: '', tasks: [], style: {} };
+	getEmptyGroup(clr) {
+		return { title: '', _id: '', tasks: [], style: { clr } };
 	},
 	getEmptyActivity() {
 		return { txt: '', _id: '', cratedAt: '', byMember: {}, task: {} };
 	},
-	saveGroup(group, boardId) {
-		const board = getById(group);
+	saveGroup(group, activeBoardId) {
+		const board = getById(activeBoardId);
 		// If the group is new
 		if (!group._id) {
 			group._id = utilService.makeId();
