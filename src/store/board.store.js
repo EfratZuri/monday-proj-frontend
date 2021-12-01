@@ -53,20 +53,16 @@ export const boardStore = {
 		},
 	},
 	actions: {
-		async loadBoards({ commit }) {
-			commit({ type: 'setLoading', isLoading: true });
+		async loadBoards(context) {
+			context.commit({ type: 'setLoading', isLoading: true });
 			try {
 				const boards = await boardService.query();
-				console.log(boards);
-				if (!boards.length) {
-					const board = await boardService.saveBoard(boardService.getEmptyBoard());
-					boards.push(board);
-				}
-				commit({ type: 'setBoards', boards });
+
+				context.commit({ type: 'setBoards', boards });
 			} catch (err) {
 				return err;
 			} finally {
-				commit({ type: 'setLoading', isLoading: false });
+				context.commit({ type: 'setLoading', isLoading: false });
 			}
 		},
 		async addTask(context, { task }) {
