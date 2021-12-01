@@ -1,8 +1,8 @@
 <template>
-  <section class="task-add">
+  <section class="task-add" v-if="task">
     <input
       type="text"
-      v-model="title"
+      v-model="task.title"
       @focus="showAddBtn"
       placeholder="Add task"
     />
@@ -11,26 +11,23 @@
 </template>
 
 <script>
-import utilService from '@/services/util.service.js';
-
 export default {
-  name: 'taskAdd',
+  name: 'addTask',
   props: {},
   data() {
     return {
-      title: '',
+      task: null,
       addBtn: false,
     };
   },
-  created() {},
+  created() {
+    this.task = JSON.parse(JSON.stringify(this.$store.getters.taskToEdit));
+  },
   methods: {
     addNewTask() {
-      console.log(this.title);
-      const taskId = utilService.makeId;
-      const title = this.title;
-      this.$emit('addTask', { title, taskId });
+      const task = this.task;
+      this.$emit('addTask', task);
       this.addBtn = !this.addBtn;
-      this.title = '';
     },
     showAddBtn() {
       this.addBtn = true;
