@@ -10,25 +10,13 @@ export const boardService = {
 		// return httpService.delete(`board/${boardId}`)
 		return await storageService.delete('board', boardId);
 	},
-	getEmptyBoard() {
-		return {
-			title: '',
-			createdAt: '',
-			_id: '',
-			createdBy: {},
-			members: [],
-			groups: [],
-			activities: [],
-			cmpsOrder: [],
-		};
-	},
+	getEmptyBoard,
+	getEmptyGroup,
 
 	getEmptyTask() {
 		return { title: '', _id: '' };
 	},
-	getEmptyGroup(clr) {
-		return { title: '', _id: '', tasks: [], style: { clr } };
-	},
+
 	getEmptyActivity() {
 		return { txt: '', _id: '', cratedAt: '', byMember: {}, task: {} };
 	},
@@ -68,11 +56,28 @@ export const boardService = {
 	},
 	saveBoard,
 };
+function getEmptyBoard() {
+	return {
+		title: '',
+		createdAt: '',
+		_id: '',
+		createdBy: {},
+		members: [],
+		groups: [],
+		activities: [],
+		cmpsOrder: [],
+	};
+}
 async function query(filterBy = {}) {
 	console.log('', filterBy);
 	// let queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`;
 	// return httpService.get(`board${queryStr}`)
-	return await storageService.query(STORAGE_KEY_BOARDS);
+	let boards = await storageService.query(STORAGE_KEY_BOARDS);
+	if (!boards.length) {
+		boards.push(_createBoard());
+		saveBoard(boards);
+	}
+	return boards;
 }
 async function saveBoard(board) {
 	// const addedBoard = await httpService.post(`board`, board)
@@ -89,7 +94,6 @@ function getById(boardId) {
 // More ways to send query params:
 // return axios.get('api/toy/?id=1223&balance=13')
 // return axios.get('api/toy/?', {params: {id: 1223, balance:13}})
-
 // This IIFE functions for Dev purposes
 // It allows testing of real time updates (such as sockets) by listening to storage events
 (async () => {
@@ -106,3 +110,13 @@ function getById(boardId) {
 		boards = freshBoards;
 	});
 })();
+
+function getEmptyGroup(clr) {
+	return { title: 'New Group', _id: '', tasks: [], style: { clr } };
+}
+
+function _createBoard() {
+	const board = getEmptyBoard();
+	board.groups.push(getEmptyGroup());
+	return board;
+}
