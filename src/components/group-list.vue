@@ -2,7 +2,7 @@
 	<section class="group-list-container">
 		<ul v-if="groups && groups.length" class="group-list clean-list flex column">
 			<li class="group" v-for="(group, idx) in groups" :key="idx">
-				<group-header :group="group" />
+				<group-header :group="group" @saveGroup="saveGroup"/>
 				<taskList :group="group" />
 			</li>
 		</ul>
@@ -46,6 +46,10 @@ export default {
 		saveTask(task) {
 			this.$store.dispatch({ type: 'addTask', task });
 		},
+		saveGroup(group) {
+			this.$store.dispatch({ type: 'saveGroup', group });
+
+		}
 	},
 	components: { taskList, groupHeader, addTask },
 };

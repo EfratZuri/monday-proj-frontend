@@ -80,7 +80,7 @@ export const boardStore = {
         },
         async saveGroup(context, { group }) {
             try {
-                const addedGroup = await boardService.saveGroup(group, context.activeBoard._id);
+                const addedGroup = await boardService.saveGroup(group, context.state.activeBoard._id);
                 context.commit({ type: 'saveGroup', addedGroup });
                 return addedGroup;
             } catch (err) {
