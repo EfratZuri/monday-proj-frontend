@@ -61,12 +61,6 @@ export const boardStore = {
       try {
         const boards = await boardService.query();
         console.log(boards);
-        if (!boards.length) {
-          const board = await boardService.saveBoard(
-            boardService.getEmptyBoard()
-          );
-          boards.push(board);
-        }
         commit({ type: 'setBoards', boards });
       } catch (err) {
         return err;
