@@ -18,8 +18,8 @@ export const boardService = {
 	getEmptyActivity() {
 		return { txt: '', _id: '', cratedAt: '', byMember: {}, task: {} };
 	},
-	async saveGroup(group, activeBoardId) {
-		const board = await getById(activeBoardId);
+	saveGroup(group, activeBoardId) {
+		const board = getById(activeBoardId);
 		// If the group is new
 		if (!group._id) {
 			group._id = utilService.makeId();
@@ -32,27 +32,33 @@ export const boardService = {
 		saveBoard(board);
 		return group;
 	},
-	saveTask(boardId, groupId, task, activity) {
-		const board = getById(boardId);
+	async saveTask(boardId, task, groupId, activity) {
+		const board = await getById(boardId);
+		console.log(board);
 		const group = board.groups.find(({ _id }) => _id == groupId);
 		if (!task._id) {
 			task._id = utilService.makeId();
-			group.push(task);
+			group.tasks.push(task);
 		} else {
 			const idx = group.findIndex(({ _id }) => _id === task._id);
-			group.splice(idx, 1, task);
+			group.tasks.splice(idx, 1, task);
 		}
 		board.activities.unshift(activity);
 		saveBoard(board);
 		return board;
 	},
+	// updateTask(cmpType, data) {
+	// 	console.log(cmpType, data);
+	// 	// Switch
+	// 	// task.members = data;
+	// 	// task.status = data;
+	// },
 	saveBoard,
 };
 
 function getEmptyBoard() {
 	return {
 		title: '',
-		description: '',
 		createdAt: '',
 		_id: '',
 		createdBy: {},
