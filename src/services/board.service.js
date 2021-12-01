@@ -12,11 +12,9 @@ export const boardService = {
   },
   getEmptyBoard,
   getEmptyGroup,
-
   getEmptyTask() {
-    return { title: '', _id: '' };
+    return { title: '', _id: '', cmps: {} };
   },
-
   getEmptyActivity() {
     return { txt: '', _id: '', cratedAt: '', byMember: {}, task: {} };
   },
@@ -36,7 +34,6 @@ export const boardService = {
   },
   saveTask(boardId, groupId, task, activity) {
     const board = getById(boardId);
-    console.log(task);
     const group = board.groups.find(({ _id }) => _id == groupId);
     if (!task._id) {
       task._id = utilService.makeId();
@@ -47,7 +44,7 @@ export const boardService = {
     }
     board.activities.unshift(activity);
     saveBoard(board);
-    return task;
+    return board;
   },
   updateTask(cmpType, data) {
     console.log(cmpType, data);
@@ -67,7 +64,7 @@ function getEmptyBoard() {
     members: [],
     groups: [],
     activities: [],
-    cmpsOrder: [],
+    cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
   };
 }
 async function query(filterBy = {}) {
