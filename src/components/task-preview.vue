@@ -1,11 +1,11 @@
 <template>
-	<div class="task-preview">
+	<section class="task-preview">
 		<ul v-if="cmps && cmps.length" class="cmps-list clean-list">
 			<li v-for="(cmp, idx) in cmps" :key="idx">
 				<component :is="cmp" :info="getCmpInfo('cmp')" @update="updateTask" />
 			</li>
 		</ul>
-	</div>
+	</section>
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
 	data() {
 		return { cmps: null };
 	},
-	create() {
+	created() {
 		console.log('eee');
 		this.cmps = this.$store.getters.cmps;
 		console.log('!!!!!!!', this.cmps);
