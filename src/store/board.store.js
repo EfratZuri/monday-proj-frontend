@@ -58,10 +58,6 @@ export const boardStore = {
       // Update Group
       else state.activeBoard.groups.splice(idx, 1, group);
     },
-
-    addTask(state, task) {
-      console.log(state, task);
-    },
   },
   actions: {
     async loadBoards(context) {
@@ -80,7 +76,6 @@ export const boardStore = {
     },
     async addTask(context, { task }) {
       try {
-        // context.state.board[0].id,
         const newTask = await boardService.saveTask(task);
 
         context.commit({ type: 'addTask', newTask });
