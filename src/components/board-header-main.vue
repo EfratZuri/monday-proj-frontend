@@ -32,7 +32,6 @@ export default {
 		};
 	},
 	created() {
-		console.log(this.$store.getters.boards);
 		this.boardName = this.$store.getters.boardName || 'Efrat';
 	},
 	watch: {
