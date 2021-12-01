@@ -18,6 +18,18 @@
 				/>
 			</div>
 			<button class="btn btn-icon" @click="starred">Star</button>
+			<div class="board-header-description" @click="toggleEditDescription">
+				<div v-if="!showDescription" class="description-line">
+					<span class="text-content">{{ descriptionToDisplay }}</span>
+				</div>
+				<textarea
+					v-else
+					type="text"
+					v-model="boardCopy.description"
+					ref="boardDescription"
+					@keyup.enter="saveDescription"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -29,16 +41,16 @@ export default {
 		return {
 			showEditInput: false,
 			boardName: '',
+			boardCopy: null,
+			showDescription: false,
 		};
 	},
 	created() {
+		this.boardCopy = JSON.parse(JSON.stringify(this.$store.getters.activeBoard));
+		console.log(this.boardCopy);
 		this.boardName = this.$store.getters.boardName || 'Efrat';
 	},
-	watch: {
-		showEditInput() {
-			// this.$ref.boardNameInput.focus();
-		},
-	},
+	watch: {},
 	methods: {
 		toggleEditInput() {
 			this.showEditInput = !this.showEditInput;
@@ -50,8 +62,20 @@ export default {
 		starred() {
 			console.log('Make this board starred');
 		},
+		async toggleEditDescription() {
+			await (this.showDescription = !this.showDescription);
+			if (this.showDescription) this.$refs.boardDescription.focus();
+		},
+		saveDescription() {
+			this.$emit('saveDescription', this.boardCopy);
+			this.toggleEditDescription();
+		},
 	},
-	computed: {},
+	computed: {
+		descriptionToDisplay() {
+			return this.boardCopy.description || 'Add board description';
+		},
+	},
 	components: {},
 };
 </script>
