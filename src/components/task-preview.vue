@@ -1,7 +1,7 @@
 <template>
 	<section class="task-preview">
 		<ul v-if="cmps && cmps.length" class="cmps-list clean-list">
-			<li v-for="(cmp, idx) in cmps" :key="idx">
+			<li v-for="(cmp, idx) in cmps" :key="idx" class="cell">
 				<component :is="cmp" :info="getCmpInfo('cmp')" @update="updateTask" />
 			</li>
 		</ul>
@@ -32,7 +32,10 @@ export default {
 		},
 		getCmpInfo(cmp) {
 			console.log(cmp);
-			return this.task.cmps?.[cmp];
+			return this.task.cmps?.[cmp] || this.getDefault(cmp);
+		},
+		getDefault(cmp) {
+			return {};
 		},
 	},
 	computed: {
