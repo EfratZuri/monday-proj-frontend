@@ -19,9 +19,8 @@ export default {
 	data() {
 		return { options: null, selected: null, styleObj: {} };
 	},
-	create() {
+	created() {
 		const keys = Object.keys(this.info);
-
 		const { optionKey, selectedKey } = keys.reduce((acc, key) => {
 			acc[`${key.includes('selected') ? 'selected' : 'option'}Key`] = key;
 			return acc;
