@@ -15,7 +15,6 @@ export default {
 	name: 'workspace',
 	created() {
 		this.$store.dispatch({ type: 'loadBoards' });
-		console.log(this.$store.getters.activeBoard);
 	},
 	computed: {
 		isLoading() {
@@ -25,7 +24,6 @@ export default {
 			return this.$store.getters.boards;
 		},
 		activeBoard() {
-			console.log(this.$store.getters.activeBoard);
 			return this.$store.getters.activeBoard;
 		},
 	},

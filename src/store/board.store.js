@@ -16,7 +16,8 @@ export const boardStore = {
   getters: {
     boards: (state) => state.boards,
     activeBoard: (state) => state.activeBoard,
-    cmps: (state) => state.activeBoard?.cmp,
+    cmps: (state) => state.activeBoard,
+    // cmps: (state) => state.activeBoard ? .cmp,
     boardToEdit: (state) => state.boardToEdit,
     groupToEdit: (state) => state.groupToEdit,
     taskToEdit: (state) => state.taskToEdit,
@@ -74,7 +75,6 @@ export const boardStore = {
       }
     },
     async addTask(context, { task }) {
-      console.log(context, task);
       try {
         const newTask = await boardService.saveTask(task);
 
