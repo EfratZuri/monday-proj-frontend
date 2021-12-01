@@ -46,12 +46,12 @@ export const boardService = {
         saveBoard(board);
         return board;
     },
-    updateTask(cmpType, data) {
-        console.log(cmpType, data);
-        // Switch
-        // task.members = data;
-        // task.status = data;
-    },
+    // updateTask(cmpType, data) {
+    // 	console.log(cmpType, data);
+    // 	// Switch
+    // 	// task.members = data;
+    // 	// task.status = data;
+    // },
     saveBoard,
 };
 
@@ -85,8 +85,8 @@ async function saveBoard(board) {
     return addedBoard;
 }
 
-function getById(boardId) {
-    const boards = query();
+async function getById(boardId) {
+    const boards = await query();
     const board = boards.find(({ _id }) => _id === boardId);
     return board;
 }
@@ -105,7 +105,10 @@ function getById(boardId) {
         const freshBoards = await storageService.query('board');
         if (freshBoards.length === boards.length + 1) {
             console.log('Board Added - localStorage updated from another browser');
-            socketService.emit(SOCKET_EVENT_REVIEW_ADDED, freshBoards[freshBoards.length - 1]);
+            socketService.emit(
+                SOCKET_EVENT_REVIEW_ADDED,
+                freshBoards[freshBoards.length - 1]
+            );
         }
         boards = freshBoards;
     });

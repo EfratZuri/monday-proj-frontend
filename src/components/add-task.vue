@@ -22,7 +22,6 @@ export default {
   },
   created() {
     this.task = JSON.parse(JSON.stringify(this.$store.getters.taskToEdit));
-    console.log(this.task);
   },
   methods: {
     addNewTask() {
