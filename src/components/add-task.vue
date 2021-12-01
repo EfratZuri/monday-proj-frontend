@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import utilService from '@/services/util.service.js';
+import { utilService } from '../services/util.service.js';
 
 export default {
-  name: 'taskAdd',
+  name: 'addTask',
   props: {},
   data() {
     return {
@@ -26,7 +26,8 @@ export default {
   methods: {
     addNewTask() {
       console.log(this.title);
-      const taskId = utilService.makeId;
+      const taskId = utilService.makeId();
+      console.log(taskId);
       const title = this.title;
       this.$emit('addTask', { title, taskId });
       this.addBtn = !this.addBtn;
