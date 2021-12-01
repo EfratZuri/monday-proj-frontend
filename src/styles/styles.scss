@@ -3,12 +3,10 @@
 @import 'setup/variables';
 @import 'setup/mixins';
 @import 'setup/functions';
-
 // BASICS
 @import 'basics/helpers';
 @import 'basics/base';
 @import 'basics/layout';
-
 // COMPONENTS
 @import 'components/main-header';
 @import 'components/workspace';
@@ -20,3 +18,4 @@
 @import 'components/cat-card';
 @import 'components/toy-details';
 @import 'components/loading-animation';
+@import 'components/group-header';
