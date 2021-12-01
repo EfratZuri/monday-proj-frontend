@@ -1,7 +1,15 @@
+.board-header-main {
+    flex-direction: column;
+}
+
+.board-header-main button {
+    width: 100px;
+}
+
 .description-line {
-	border: 1px solid transparent;
-	transition: all 0.2s ease;
-	&:hover {
-		border: 1px dashed currentColor;
-	}
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    &:hover {
+        border: 1px dashed currentColor;
+    }
 }

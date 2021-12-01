@@ -1,6 +1,6 @@
 <template>
 	<div class="board-header-container">
-		<boardHeaderMain @saveName="saveBoaedName" />
+		<boardHeaderMain :activeBoard="activeBoard" @saveBoard="saveBoard"/>
 		<boardHeaderSubsetToolbar />
 		<boardHeaderViewBar @addItem="addItem" />
 	</div>
@@ -12,8 +12,11 @@ import boardHeaderSubsetToolbar from '@/components/board-header-subset-toolbar.v
 import boardHeaderMain from '@/components/board-header-main.vue';
 export default {
 	name: 'boardHeader',
-	data() {
-		return {};
+	props: {
+		activeBoard: {
+			type:Object,
+			required: true
+		}
 	},
 	created() {},
 	methods: {
@@ -21,9 +24,8 @@ export default {
 			this.$emit('addItem');
 			console.log('Add item from board header,this method is NOT READY');
 		},
-		saveBoaedName(newName) {
-			console.log('Save new Boaed name from board header the new name is:', newName);
-			console.log('This method dont work yet');
+		saveBoard(board) {
+			this.$emit('saveBoard', board)
 		},
 	},
 	components: {

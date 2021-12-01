@@ -1,81 +1,54 @@
 <template>
-	<div class="board-header-main flex-def">
-		<div class="board-name">
-			<div
-				class="editable-heading--wrapper"
-				@click="toggleEditInput"
-				@keydown.enter="saveEditName"
-				aria-label="Click To edit"
-				role="button"
-			>
-				<h1 v-if="!showEditInput" class="element-type-h1">{{ boardName }}</h1>
-				<input
-					v-else
-					ref="boardNameInput"
-					type="text"
-					v-model="boardName"
-					class="editable-input--wrapper element-type-h1"
-				/>
-			</div>
-			<button class="btn btn-icon" @click="starred">Star</button>
-			<div class="board-header-description" @click="toggleEditDescription">
-				<div v-if="!showDescription" class="description-line">
-					<span class="text-content">{{ descriptionToDisplay }}</span>
-				</div>
-				<textarea
-					v-else
-					type="text"
-					v-model="boardCopy.description"
-					ref="boardDescription"
-					@keyup.enter="saveDescription"
-				/>
-			</div>
+	<section class="board-header-main flex">
+		<div class="board-title">
+			<h1 v-if="!isEditName" @click="editName">{{ boardToEdit.title }}</h1>
+			<input v-else type="text" value="boardToEdit.title" ref="titleInput" v-model="boardToEdit.title"  @keyup.enter="$event.target.blur()" @blur="editName"/>
 		</div>
-	</div>
+		<button class="btn" @click="isShowDescription = !isShowDescription">toggle desc</button>
+		<div v-if="isShowDescription" class="board-description">
+			<p v-if="!isEditDesctiption" @click="editDescription">{{ boardToEdit.description }}</p>
+			<textarea cols="30" rows="10" v-else type="text" value="boardToEdit.description" ref="descInput" v-model="boardToEdit.description"  @keyup.enter="$event.target.blur()" @blur="editDescription"/>
+		</div>
+	</section>
 </template>
 
 <script>
 export default {
 	name: 'boardHeaderMain',
+	props: {
+		activeBoard: {
+			type:Object,
+			required: true
+		}
+	},
 	data() {
 		return {
-			showEditInput: false,
-			boardName: '',
-			boardCopy: null,
-			showDescription: false,
+			isEditName: false,
+			isEditDesctiption: false,
+			isShowDescription: true,
+			boardToEdit: {...this.activeBoard},
 		};
 	},
-	created() {
-		this.boardCopy = JSON.parse(JSON.stringify(this.$store.getters.activeBoard));
-		console.log(this.boardCopy);
-		this.boardName = this.$store.getters.boardName || 'Efrat';
-	},
-	watch: {},
 	methods: {
-		toggleEditInput() {
-			this.showEditInput = !this.showEditInput;
+		async editName() {
+				await (this.isEditName = !this.isEditName)
+				if(this.$refs.titleInput) this.$refs.titleInput.focus();
+				if(this.boardToEdit.title !== this.activeBoard.title) {
+					this.$emit('saveBoard', this.boardToEdit)	
+				}	
 		},
-		saveEditName() {
-			this.toggleEditInput();
-			this.$emit('saveName', this.boardName);
+		async editDescription() {
+			await (this.isEditDesctiption = !this.isEditDesctiption)
+			if(this.$refs.descInput) this.$refs.descInput.focus();
+			if(this.boardToEdit.description !== this.activeBoard.description) {
+				this.$emit('saveBoard', this.boardToEdit)	
+			}	
 		},
-		starred() {
-			console.log('Make this board starred');
-		},
-		async toggleEditDescription() {
-			await (this.showDescription = !this.showDescription);
-			if (this.showDescription) this.$refs.boardDescription.focus();
-		},
-		saveDescription() {
-			this.$emit('saveDescription', this.boardCopy);
-			this.toggleEditDescription();
-		},
-	},
+			},
 	computed: {
 		descriptionToDisplay() {
-			return this.boardCopy.description || 'Add board description';
+			return this.boardToEdit.description || 'Add board description';
 		},
 	},
-	components: {},
 };
 </script>

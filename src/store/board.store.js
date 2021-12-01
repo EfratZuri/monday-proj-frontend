@@ -107,5 +107,14 @@ export const boardStore = {
                 return err;
             }
         },
+        async saveBoard(context, { board }) {
+            console.log('board', board);
+            try {
+                const addedBoard = await boardService.saveBoard(board);
+                return addedBoard;
+            } catch (err) {
+                return err;
+            }
+        },
     },
 };

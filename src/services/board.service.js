@@ -58,7 +58,7 @@ export const boardService = {
 
 function getEmptyBoard() {
     return {
-        title: '',
+        title: 'Board',
         createdAt: '',
         _id: '',
         createdBy: {},
@@ -66,6 +66,7 @@ function getEmptyBoard() {
         groups: [],
         activities: [],
         cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices lectus vitae lectus accumsan, ac convallis sem ultricies. Aliquam sagittis cursus sollicitudin. Etiam feugiat diam turpis, sit amet finibus ligula malesuada sed. '
     };
 }
 async function query(filterBy = {}) {
@@ -83,8 +84,12 @@ async function query(filterBy = {}) {
 async function saveBoard(board) {
     // const addedBoard = await httpService.post(`board`, board)
     let savedBoard
-    if (board._id) savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
-    else savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
+    try {
+        if (board._id) savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
+        else savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
+    } catch (error) {
+        console.log('error', error);
+    }
     return savedBoard;
 }
 

@@ -2,7 +2,7 @@
 	<div class="workspace">
 		<div v-if="isLoading"><p>Loading</p></div>
 		<div v-else>
-			<boardHeader @addItem="addItem" />
+			<boardHeader :activeBoard="activeBoard" @addItem="addItem" @saveBoard="saveBoard" />
 			<groupList :board="activeBoard" @addGroup="addGroup" />
 		</div>
 	</div>
@@ -13,7 +13,7 @@ import boardHeader from '@/components/board-header.vue';
 import groupList from '@/components/group-list.vue';
 export default {
 	name: 'workspace',
-	created() {
+	async created() {
 		this.$store.dispatch({ type: 'loadBoards' });
 	},
 	computed: {
@@ -33,9 +33,11 @@ export default {
 		},
 		addGroup(group) {
 			group.boardId = this.$store.getters.activeBoard._id;
-
 			this.$store.dispatch({ type: 'saveGroup', group });
 		},
+		saveBoard(board) {
+			this.$store.dispatch({ type: 'saveBoard', board });
+		}
 	},
 	components: {
 		groupList,
