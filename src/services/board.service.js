@@ -12,11 +12,9 @@ export const boardService = {
 	},
 	getEmptyBoard,
 	getEmptyGroup,
-
 	getEmptyTask() {
-		return { title: '', _id: '' };
+		return { title: '', _id: '', cmps: {} };
 	},
-
 	getEmptyActivity() {
 		return { txt: '', _id: '', cratedAt: '', byMember: {}, task: {} };
 	},
@@ -66,7 +64,7 @@ function getEmptyBoard() {
 		members: [],
 		groups: [],
 		activities: [],
-		cmpsOrder: [],
+		cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
 	};
 }
 async function query(filterBy = {}) {
