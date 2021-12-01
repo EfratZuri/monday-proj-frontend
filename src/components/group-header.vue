@@ -1,5 +1,5 @@
 <template>
-	<section class="group-header">
+	<section class="group-header flex align-center space-between">
 		<!-- This Span eill include the icons when a user hover over the header -->
 		<span></span>
 		<div class="group-header-title">
@@ -8,17 +8,19 @@
 			<!-- TODO: show this input to edit the group title  -->
 			<!-- <input type="text" /> -->
 		</div>
-		<div class="group-header-status">
-			<!-- TODO: on click-an input should apper -->
-			<span>Status</span>
-			<!-- TODO: show this input to edit the group name  -->
-			<!-- <input type="text" /> -->
-		</div>
-		<div class="group-header-date">
-			<!-- TODO: on click-an input should apper -->
-			<span>Date</span>
-			<!-- TODO: show this input to edit the group name  -->
-			<!-- <input type="text" /> -->
+		<div class="flex-def">
+			<div class="group-header-status">
+				<!-- TODO: on click-an input should apper -->
+				<span>Status</span>
+				<!-- TODO: show this input to edit the group name  -->
+				<!-- <input type="text" /> -->
+			</div>
+			<div class="group-header-date">
+				<!-- TODO: on click-an input should apper -->
+				<span>Date</span>
+				<!-- TODO: show this input to edit the group name  -->
+				<!-- <input type="text" /> -->
+			</div>
 		</div>
 	</section>
 </template>
@@ -35,7 +37,7 @@ export default {
 	methods: {
 		editTitle() {
 			console.log('editTitle');
-		}
-	}
+		},
+	},
 };
 </script>
