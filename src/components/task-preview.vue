@@ -22,13 +22,16 @@ export default {
 		return { cmps: null };
 	},
 	create() {
+		console.log('eee');
 		this.cmps = this.$store.getters.cmps;
+		console.log('!!!!!!!', this.cmps);
 	},
 	methods: {
 		updateTask(curType, e) {
 			console.log(e, curType);
 		},
 		getCmpInfo(cmp) {
+			console.log(cmp);
 			return this.task.cmps?.[cmp];
 		},
 	},
