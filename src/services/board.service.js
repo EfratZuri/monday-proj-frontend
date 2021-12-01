@@ -82,8 +82,12 @@ async function query(filterBy = {}) {
 }
 async function saveBoard(board) {
   // const addedBoard = await httpService.post(`board`, board)
-  const addedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
-  return addedBoard;
+  console.log('board', board);
+  let savedBoard;
+  if (board._id)
+    savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
+  else savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
+  return savedBoard;
 }
 
 async function getById(boardId) {
@@ -122,9 +126,9 @@ function getEmptyGroup(clr) {
 function _createBoard() {
   const board = getEmptyBoard();
 
-  board.groups.push(getEmptyGroup());
-  board.groups.push(getEmptyGroup());
-  board.groups.push(getEmptyGroup());
+  board.groups.push(getEmptyGroup('red'));
+  board.groups.push(getEmptyGroup('blue'));
+  board.groups.push(getEmptyGroup('green'));
   board.groups.forEach((group) => (group._id = utilService.makeId()));
   return board;
 }
