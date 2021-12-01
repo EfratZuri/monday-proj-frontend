@@ -46,7 +46,6 @@ export default {
 				if(this.$refs.titleInput) this.$refs.titleInput.focus();
 				if(this.group.title !== this.groupToEdit.title) {
 					this.$emit('saveGroup', this.groupToEdit)
-					console.log('this.color',this.color);
 				}			
 		},
 	},
