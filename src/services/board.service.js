@@ -78,6 +78,8 @@ async function query(filterBy = {}) {
         boards.push(_createBoard());
         saveBoard(boards);
     }
+    console.log('boards', boards);
+
     return boards;
 }
 async function saveBoard(board) {

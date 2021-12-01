@@ -1,5 +1,5 @@
 <template>
-	<section class="group-header">
+	<section class="group-header flex align-center">
 		<!-- This Span eill include the icons when a user hover over the header -->
 		<span></span>
 		<div class="group-header-title">
