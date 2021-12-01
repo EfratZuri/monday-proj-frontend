@@ -106,12 +106,3 @@ function getById(boardId) {
 		boards = freshBoards;
 	});
 })();
-// const cmps = ['status-picker', 'date-picker'];
-// // const tasks = [{ id: '12fd', title: 'Something', cmps: _create() }];
-// // {
-// // cmps[0]:'status',
-// // cmps[1]:'12/06/98',
-// // }
-// function _create() {
-// 	return cmps.reduce((acc, cur) => (acc[cur] = ''), {});
-// }
