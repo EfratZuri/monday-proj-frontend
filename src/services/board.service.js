@@ -119,5 +119,7 @@ function getEmptyGroup(clr) {
 function _createBoard() {
     const board = getEmptyBoard();
     board.groups.push(getEmptyGroup());
+    board.groups.push(getEmptyGroup());
+    board.groups.push(getEmptyGroup());
     return board;
 }
