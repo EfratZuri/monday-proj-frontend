@@ -58,7 +58,7 @@ export const boardStore = {
             try {
                 const boards = await boardService.query();
                 if (!boards.length) {
-                    const board = await boardService.addBoard(boardService.getEmptyBoard());
+                    const board = await boardService.saveBoard(boardService.getEmptyBoard());
                     boards.push(board);
                 }
                 commit({ type: 'setBoards', boards });
