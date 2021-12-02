@@ -131,10 +131,10 @@ function getEmptyBoard() {
 		members: [],
 		groups: [],
 		activities: [],
+		cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
 		cmps: {
-			cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
-			info: {
-				'status-picker': {
+			'status-picker': {
+				options: {
 					default: {
 						display: '',
 						style: {
@@ -152,12 +152,16 @@ function getEmptyBoard() {
 						},
 					},
 				},
-				'member-picker': {
+			},
+			'member-picker': {
+				options: {
 					default: {
 						display: '',
 					},
 				},
-				'date-picker': {
+			},
+			'date-picker': {
+				options: {
 					default: {
 						display: '',
 					},

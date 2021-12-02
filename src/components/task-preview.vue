@@ -40,18 +40,14 @@ export default {
     };
   },
   created() {
+    this.cmpsOrder = this.$store.getters.cmpsOrder;
     this.cmps = this.$store.getters.cmps;
-    this.cmpsOrder = this.cmps.cmpsOrder;
-    this.info = this.cmps.info;
   },
   methods: {
     updateTask(curType, e) {
       console.log(e, curType);
     },
-    getCmpInfo(cmp) {
-      return this.task.cmps?.[cmp];
-      // || this.getDefault(cmp);
-    },
+
     toggleEdit() {
       this.showEditTask = !this.showEditTask;
     },
@@ -61,17 +57,17 @@ export default {
     },
     saveTitle() {
       this.toggleEdit();
-      console.log(this.taskToEdit);
       if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
       this.$emit('saveTitle', this.taskToEdit);
     },
-    // getDefault(cmp) {
-    // return { selected: null };
-    // },
-  },
-  computed: {
-    createObj(type, info) {
-      return { type, info };
+    getCmpInfo(cmp) {
+      return this.task?.[cmp] || this.getDefault(cmp);
+    },
+    getDefaultCmp(cmp) {
+      return {
+        selected: this.cmps.options[cmp].default,
+        options: this.cmps[cmp].options,
+      };
     },
   },
 };
