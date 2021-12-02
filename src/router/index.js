@@ -15,12 +15,12 @@ const routes = [
   {
     path: '/boards',
     component: workspace,
-    // children: [
-    //   {
-    //     path: '/boards/:boardId/:groupId/:taskId',
-    //     component: taskUpdate,
-    //   },
-    // ],
+    children: [
+      {
+        path: ':taskId',
+        component: taskUpdate,
+      },
+    ],
   },
   {
     path: '/login',

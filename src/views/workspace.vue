@@ -1,15 +1,9 @@
 <template>
 	<div class="workspace">
 		<div v-if="isLoading"><p>Loading</p></div>
-		<!-- <router-link> to: </router-link> -->
 		<div v-else>
-			<boardHeader
-				:activeBoard="activeBoard"
-				@addItem="addItem"
-				@saveBoard="saveBoard"
-				@addGroup="addGroup"
-			/>
-			<groupList :board="activeBoard" @addGroup="addGroup" />
+			<boardHeader :activeBoard="activeBoard" @addItem="addItem" @saveBoard="saveBoard" @addGroup="addGroup"/>
+			<groupList :board="activeBoard" @addGroup="addGroup"  @removeGroup="removeGroup"  />
 		</div>
 	</div>
 </template>
@@ -40,6 +34,9 @@ export default {
 		addGroup(group) {
 			// group.boardId = this.$store.getters.activeBoard._id;
 			this.$store.dispatch({ type: 'saveGroup', group });
+		},
+		removeGroup(group) {
+			this.$store.dispatch({type: 'removeGroup', group})
 		},
 		saveBoard(board) {
 			this.$store.dispatch({ type: 'saveBoard', board });

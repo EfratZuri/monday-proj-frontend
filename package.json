@@ -48,7 +48,7 @@
         "last 2 versions",
         "not dead"
     ],
-    "description": "## Project setup ``` npm install ```",
+    "description": "## Project setup  npm install ",
     "main": "babel.config.js",
     "author": "",
     "license": "ISC"
