@@ -4,10 +4,7 @@
       <li v-for="task in tasks" :key="task._id">
         <task-preview :task="task" />
         <div class="">
-          <!-- <div class="user"><span>userIcon</span></div> -->
-          <button class="btn" @click="toggleDialogNode">
-            <!-- <span>status</span> -->
-          </button>
+          {{ task.title }}
         </div>
       </li>
     </ul>
