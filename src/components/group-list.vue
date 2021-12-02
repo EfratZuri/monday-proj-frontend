@@ -78,8 +78,6 @@ export default {
         );
         this.currGroupIds.splice(foundIdx, 1);
       } else this.currGroupIds.push(id);
-      // this.currGroupIdx = this.board.groups.findIndex(currGroup => currGroup._id === group._id)
-      // this.isTasks = !this.isTasks
     },
     isIncludesGroupIds(id) {
       return this.currGroupIds.includes(id);
