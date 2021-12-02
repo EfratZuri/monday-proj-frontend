@@ -80,11 +80,12 @@ export const boardStore = {
             }
         },
         async addTask(context, { details }) {
+            console.log('details', details);
             try {
                 const newBoard = await boardService.saveTask(
                     context.state.activeBoard._id,
                     details.task,
-                    details._id,
+                    details.groupId,
                     'add new task'
                 );
 
