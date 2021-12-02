@@ -16,6 +16,7 @@ export const boardStore = {
 	getters: {
 		boards: (state) => state.boards,
 		activeBoard: (state) => state.activeBoard,
+		cmpsOrder: (state) => state.activeBoard.cmpsOrder,
 		cmps: (state) => state.activeBoard.cmps,
 		// cmps: (state) => state.activeBoard ? .cmp,
 		boardToEdit: (state) => state.boardToEdit,
