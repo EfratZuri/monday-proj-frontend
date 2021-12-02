@@ -108,6 +108,9 @@ input {
 		background-color: #0073ea;
 		color: #fff;
 		border-radius: 4px;
+		&:hover {
+			background-color: $primary-hover-clr;
+		}
 	}
 	&-size-small {
 		-webkit-font-smoothing: antialiased;
