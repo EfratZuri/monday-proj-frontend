@@ -6,7 +6,12 @@
 		display: block;
 		height: 82px;
 		width: 100%;
-	}
-	.task-row > * {
+		background-color: #f5f6f8;
+		border-bottom: 1px solid;
+		border-bottom-color: $primary-background-clr;
+
+		&:hover {
+			background-color: $primary-background-hover-color;
+		}
 	}
 }

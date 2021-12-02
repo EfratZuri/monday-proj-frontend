@@ -1,6 +1,8 @@
 <template>
-	<div class="col-cell">
-		<span>{{ infoForDisplay }} </span>
+	<div class="grid-cell-component-wrapper">
+		<div class="col-cell">
+			<span>{{ infoForDisplay }} </span>
+		</div>
 	</div>
 </template>
 

@@ -15,6 +15,7 @@ export const boardService = {
   saveTask,
   deleteTask,
   saveBoard,
+  removeGroup,
 };
 
 async function query(filterBy = {}) {
@@ -135,6 +136,18 @@ function getEmptyTask() {
 
 function getEmptyActivity() {
   return { txt: '', _id: '', cratedAt: '', byMember: {}, task: {} };
+}
+
+function removeGroup(group, activeBoard) {
+  try {
+    const idx = activeBoard.groups.findIndex(
+      (currGroup) => currGroup._id === group._id
+    );
+    activeBoard.groups.splice(idx, 1);
+    saveBoard(activeBoard);
+  } catch (error) {
+    console.log('error', error);
+  }
 }
 
 function getEmptyBoard() {

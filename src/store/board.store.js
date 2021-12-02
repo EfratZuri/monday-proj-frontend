@@ -142,5 +142,13 @@ export const boardStore = {
         return err;
       }
     },
+    removeGroup(context, { group }) {
+      const activeBoard = context.getters.activeBoard;
+      try {
+        boardService.removeGroup(group, activeBoard);
+      } catch (error) {
+        console.log('error', error);
+      }
+    },
   },
 };
