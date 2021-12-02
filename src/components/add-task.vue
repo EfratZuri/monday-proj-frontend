@@ -1,46 +1,45 @@
 <template>
-  <section class="task-add" v-if="task">
-    <input
-      type="text"
-      v-model="task.title"
-      @focus="showAddBtn"
-      placeholder="Add task"
-    />
-    <button v-if="addBtn" class="btn" @click="addNewTask(group._id)">
-      +Add task
-    </button>
-  </section>
+	<section v-if="task" class="add-task-row">
+		<input
+			type="text"
+			v-model="task.title"
+			@focus="toggleAddBtn"
+			placeholder="+Add"
+			@keyup.enter="addNewTask"
+		/>
+		<button v-if="showAddBtn" class="btn btn-blue" @click="addNewTask">+Add</button>
+	</section>
 </template>
 
 <script>
 export default {
-  name: 'addTask',
-  props: {
-    group: {
-      type: Object,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      task: null,
-      addBtn: false,
-    };
-  },
-  created() {
-    this.task = JSON.parse(JSON.stringify(this.$store.getters.taskToEdit));
-  },
-  methods: {
-    addNewTask(id) {
-      const task = this.task;
-      if (!task) return;
-      this.$emit('addTask', task, id);
-      this.addBtn = !this.addBtn;
-    },
-    showAddBtn() {
-      this.addBtn = true;
-    },
-  },
-  components: {},
+	name: 'addTask',
+	props: {
+		group: {
+			type: Object,
+			required: true,
+		},
+	},
+	data() {
+		return {
+			task: null,
+			showAddBtn: false,
+		};
+	},
+	created() {
+		this.task = JSON.parse(JSON.stringify(this.$store.getters.taskToEdit));
+	},
+	methods: {
+		addNewTask() {
+			console.log('th');
+			if (!this.task.title) return;
+			this.$emit('addTask', this.task);
+			this.toggleAddBtn();
+			this.task.title = '';
+		},
+		toggleAddBtn() {
+			this.showAddBtn = !this.showAddBtn;
+		},
+	},
 };
 </script>

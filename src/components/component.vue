@@ -20,6 +20,7 @@ export default {
 		return { options: null, selected: null, styleObj: {} };
 	},
 	created() {
+		console.log('e');
 		if (!this.info) {
 			const hey = '';
 			console.log(hey);
@@ -43,6 +44,7 @@ export default {
 	computed: {
 		selectedToDisplay() {
 			// return `${}`
+			if (typeof this.selected === 'Array') return 'Preson';
 			return this.selected || '';
 		},
 	},
