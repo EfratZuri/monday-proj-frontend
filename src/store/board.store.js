@@ -70,7 +70,6 @@ export const boardStore = {
                 const boards = await boardService.query();
                 if (!context.state.activeBoard)
                     context.commit({ type: 'setActiveBoard', board: boards[0] });
-
                 context.commit({ type: 'setBoards', boards });
             } catch (err) {
                 return err;
