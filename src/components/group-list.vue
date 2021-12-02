@@ -4,7 +4,7 @@
       v-if="groups && groups.length"
       class="group-list clean-list flex column"
     >
-      <li class="group" v-for="(group, idx) in groups" :key="idx">
+      <li class="group" v-for="group in groups" :key="group._id">
         <group-header
           :group="group"
           @saveGroup="saveGroup"
@@ -12,7 +12,7 @@
           @toggleTasks="toggleTasks"
         />
         <taskList
-          v-if="isTasks"
+          v-if="isIncludesGroupIds(group._id)"
           :group="group"
           @saveTask="saveTask"
           @deleteTask="deleteTask"
@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import taskList from '@/components/task-list';
-import groupHeader from '@/components/group-header';
+import taskList from "@/components/task-list";
+import groupHeader from "@/components/group-header";
 // import addTask from './add-task.vue';
 export default {
-  name: 'groupList',
+  name: "groupList",
   props: {
     board: {
       type: Object,
@@ -41,13 +41,15 @@ export default {
       groupToEdit: {},
       groups: [],
       styleObj: {},
-      isTasks: true,
+      currGroupIds: [],
       showRename: false,
+      currGroupIdx: null,
+      idx: null,
     };
   },
   created() {
     this.groupToEdit = this.$store.getters.groupToEdit;
-    this.styleObj = { color: this.groupToEdit?.style.clr || '#000' };
+    this.styleObj = { color: this.groupToEdit?.style.clr || "#000" };
     this.groups = this.board.groups;
   },
   methods: {
@@ -55,22 +57,32 @@ export default {
       this.showRename = !this.showRename;
     },
     addGroup() {
-      this.$emit('addGroup', this.groupToEdit);
+      this.$emit("addGroup", this.groupToEdit);
     },
     saveGroup(group) {
-      this.$store.dispatch({ type: 'saveGroup', group });
+      this.$store.dispatch({ type: "saveGroup", group });
     },
     removeGroup(group) {
-      this.$emit('removeGroup', group);
+      this.$emit("removeGroup", group);
     },
     saveTask(task, groupId) {
-      this.$store.dispatch({ type: 'addTask', details: { task, groupId } });
+      this.$store.dispatch({ type: "addTask", details: { task, groupId } });
     },
     deleteTask(task, groupId) {
-      this.$store.dispatch({ type: 'deleteTask', details: { task, groupId } });
+      this.$store.dispatch({ type: "deleteTask", details: { task, groupId } });
     },
-    toggleTasks() {
-      this.isTasks = !this.isTasks;
+    toggleTasks(id) {
+      if (this.currGroupIds.includes(id)) {
+        const foundIdx = this.currGroupIds.findIndex(
+          (group) => group._id === id
+        );
+        this.currGroupIds.splice(foundIdx, 1);
+      } else this.currGroupIds.push(id);
+      // this.currGroupIdx = this.board.groups.findIndex(currGroup => currGroup._id === group._id)
+      // this.isTasks = !this.isTasks
+    },
+    isIncludesGroupIds(id) {
+      return this.currGroupIds.includes(id);
     },
   },
   components: { taskList, groupHeader },
