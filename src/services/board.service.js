@@ -131,11 +131,43 @@ function getEmptyBoard() {
 		members: [],
 		groups: [],
 		activities: [],
-		cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
+		cmps: {
+			cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
+			info: {
+				'status-picker': {
+					default: {
+						display: '',
+						style: {
+							backgroundColor: 'rgb(196, 196, 196)',
+						},
+					},
+					stuck: {
+						style: {
+							backgroundColor: 'rgb(226, 68, 92)',
+						},
+					},
+					done: {
+						style: {
+							backgroundColor: 'rgb(0, 200, 117)',
+						},
+					},
+				},
+				'member-picker': {
+					default: {
+						display: '',
+					},
+				},
+			},
+		},
+
 		description:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices lectus vitae lectus accumsan, ac convallis sem ultricies. Aliquam sagittis cursus sollicitudin. Etiam feugiat diam turpis, sit amet finibus ligula malesuada sed. ',
 	};
 }
+
+// function getEmptyCmp() {
+// 	return {};
+// }
 
 // Auxiliary functions
 

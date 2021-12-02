@@ -43,6 +43,7 @@ export default {
 	computed: {
 		selectedToDisplay() {
 			// return `${}`
+			if (typeof this.selected === 'Array') return 'Preson';
 			return this.selected || '';
 		},
 	},
