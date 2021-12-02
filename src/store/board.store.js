@@ -57,7 +57,6 @@ export const boardStore = {
 		},
 
 		addTask(state, { newBoard }) {
-			console.log(state, { newBoard });
 			const idx = state.boards.findIndex(({ _id }) => _id === newBoard._id);
 			state.boards.splice(idx, 1, newBoard);
 		},
@@ -79,10 +78,11 @@ export const boardStore = {
 		},
 		async addTask(context, { details }) {
 			try {
+				const copyTask = JSON.parse(JSON.stringify(details.task));
 				const newBoard = await boardService.saveTask(
 					context.state.activeBoard._id,
-					details.task,
-					details._id,
+					copyTask,
+					details.groupId,
 					'add new task'
 				);
 

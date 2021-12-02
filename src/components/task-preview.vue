@@ -1,5 +1,18 @@
 <template>
 	<section class="task-preview">
+		<div class="task-title" @click="getTaskToEdit">
+			<span v-if="!showEditTask">
+				{{ task.title }}
+			</span>
+			<input
+				v-else
+				type="text"
+				ref="taskTitle"
+				v-model="taskToEdit.title"
+				@keyup.enter="$event.target.blur()"
+				@blur="saveTitle"
+			/>
+		</div>
 		<ul v-if="cmps && cmps.length" class="cmps-list clean-list">
 			<li v-for="(cmp, idx) in cmpsOrder" :key="idx" class="cell">
 				<component :is="cmp" :info="getCmpInfo('cmp')" @update="updateTask" />
@@ -18,7 +31,13 @@ export default {
 		},
 	},
 	data() {
-		return { cmps: null, cmpsOrder: null, info: null };
+		return {
+			cmps: null,
+			cmpsOrder: null,
+			info: null,
+			taskToEdit: null,
+			showEditTask: false,
+		};
 	},
 	created() {
 		this.cmps = this.$store.getters.cmps;
@@ -33,34 +52,26 @@ export default {
 			return this.task.cmps?.[cmp];
 			// || this.getDefault(cmp);
 		},
+		toggleEdit() {
+			this.showEditTask = !this.showEditTask;
+		},
+		getTaskToEdit() {
+			this.toggleEdit();
+			this.taskToEdit = JSON.parse(JSON.stringify(this.task));
+		},
+		saveTitle() {
+			this.toggleEdit();
+			if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
+			this.$emit('saveTitle', this.taskToEdit);
+		},
 		// getDefault(cmp) {
 		// return { selected: null };
 		// },
 	},
 	computed: {
-		// cmps() {
-		// 	return [
-		// 		{
-		// 			type: 'status-picker',
-		// 			info: {
-		// 				selectedStatus: 'pending',
-		// 				stauses: [{ name: 'pending', clr: '#f7f9f9' }],
-		// 			},
-		// 		},
-		// 		{
-		// 			type: 'member-picker',
-		// 			info: {
-		// 				selectedMembers: ['m1', 'm2'],
-		// 				members: ['m1', 'm2', 'm3'],
-		// 			},
-		// 		},
-		// 	];
-		// 	// return this.$store.getters.cmps;
-		// },
 		createObj(type, info) {
 			return { type, info };
 		},
 	},
-	components: {},
 };
 </script>
