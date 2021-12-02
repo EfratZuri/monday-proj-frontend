@@ -17,7 +17,7 @@ export const boardStore = {
 		boards: (state) => state.boards,
 		activeBoard: (state) => state.activeBoard,
 		cmpsOrder: (state) => state.activeBoard.cmpsOrder,
-		cmps: (state) => state.activeBoard.cmps,
+		cols: (state) => state.activeBoard.cols,
 		// cmps: (state) => state.activeBoard ? .cmp,
 		boardToEdit: (state) => state.boardToEdit,
 		groupToEdit: (state) => state.groupToEdit,
@@ -58,6 +58,7 @@ export const boardStore = {
 		},
 
 		addTask(state, { newBoard }) {
+			state.activeBoard = newBoard;
 			const idx = state.boards.findIndex(({ _id }) => _id === newBoard._id);
 			state.boards.splice(idx, 1, newBoard);
 		},

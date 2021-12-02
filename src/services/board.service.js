@@ -132,42 +132,11 @@ function getEmptyBoard() {
 		groups: [],
 		activities: [],
 		cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
-		cmps: {
-			'status-picker': {
-				options: {
-					default: {
-						display: '',
-						style: {
-							backgroundColor: 'rgb(196, 196, 196)',
-						},
-					},
-					stuck: {
-						style: {
-							backgroundColor: 'rgb(226, 68, 92)',
-						},
-					},
-					done: {
-						style: {
-							backgroundColor: 'rgb(0, 200, 117)',
-						},
-					},
-				},
-			},
-			'member-picker': {
-				options: {
-					default: {
-						display: '',
-					},
-				},
-			},
-			'date-picker': {
-				options: {
-					default: {
-						display: '',
-					},
-				},
-			},
-		},
+		cols: [
+			{ type: 'statusPicker', data: { opts: _getStatusOptions() } },
+			{ type: 'memberPicker', data: { opts: [{ name: 'default', display: '', style: {} }] } },
+			{ type: 'datePicker', data: { opts: [{ name: 'default', display: '', style: {} }] } },
+		],
 
 		description:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices lectus vitae lectus accumsan, ac convallis sem ultricies. Aliquam sagittis cursus sollicitudin. Etiam feugiat diam turpis, sit amet finibus ligula malesuada sed. ',
@@ -189,3 +158,46 @@ function _createBoard() {
 	board.groups.forEach((group) => (group._id = utilService.makeId()));
 	return board;
 }
+function _getStatusOptions() {
+	return [
+		{
+			name: 'default',
+			display: '',
+			style: {
+				backgroundColor: 'rgb(196, 196, 196)',
+			},
+		},
+		{
+			name: 'stuck',
+			display: 'Stuck',
+			style: {
+				backgroundColor: 'rgb(226, 68, 92)',
+			},
+		},
+		{
+			name: 'done',
+			display: 'Done',
+			style: {
+				backgroundColor: 'rgb(0, 200, 117)',
+			},
+		},
+	];
+}
+/*
+'status-picker': {
+
+},
+'member-picker': {
+	options: {
+		default: {
+			display: '',
+		},
+	},
+},
+'date-picker': {
+	options: {
+		default: {
+			display: '',
+		},
+	},
+},*/

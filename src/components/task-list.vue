@@ -1,7 +1,7 @@
 <template>
 	<section class="task-list-container">
 		<ul v-if="tasks && tasks.length" class="task-list clean-list">
-			<li v-for="task in tasks" :key="task._id">
+			<li v-for="task in tasks" :key="task._id" class="task-row flex-def">
 				<task-preview :task="task" @saveTitle="saveTask" />
 			</li>
 		</ul>
