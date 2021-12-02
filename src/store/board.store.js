@@ -79,11 +79,10 @@ export const boardStore = {
 		},
 		async addTask(context, { details }) {
 			try {
-				const copyTask = JSON.parse(JSON.stringify(details.task));
 				const newBoard = await boardService.saveTask(
 					context.state.activeBoard._id,
-					copyTask,
-					details.groupId,
+					details.task,
+					details._id,
 					'add new task'
 				);
 
@@ -94,9 +93,11 @@ export const boardStore = {
 			}
 		},
 		async saveGroup(context, { group }) {
+			if (!group) group = boardService.getEmptyGroup();
 			try {
 				const addedGroup = await boardService.saveGroup(group, context.state.activeBoard._id);
-				context.commit({ type: 'saveGroup', addedGroup });
+				console.log('addedGroup', addedGroup);
+				context.commit({ type: 'saveGroup', group: addedGroup });
 				return addedGroup;
 			} catch (err) {
 				return err;
