@@ -1,5 +1,6 @@
 <template>
   <section v-if="taskToEdit" class="task-update">
+    <h2>{{ task.title }}</h2>
     <button>X</button>
     <textarea
       name=""
