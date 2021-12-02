@@ -9,15 +9,13 @@
 					@toggleTasks="toggleTasks"
 				/>
 				<taskList
-					v-if="isIncludesGroupIds(group._id)"
+					v-if="!isIncludesGroupIds(group._id)"
 					:group="group"
 					@saveTask="saveTask"
 					@deleteTask="deleteTask"
 				/>
 			</li>
 		</ul>
-		<!-- <button class="btn" :style="{ color: groupToEdit?.color || '#fff' }" @click="addGroup"> -->
-		<!-- <add-task @addTask="saveTask" /> -->
 	</section>
 </template>
 
@@ -39,9 +37,6 @@ export default {
 			groups: [],
 			styleObj: {},
 			currGroupIds: [],
-			showRename: false,
-			currGroupIdx: null,
-			idx: null,
 		};
 	},
 	created() {
@@ -50,9 +45,6 @@ export default {
 		this.groups = this.board.groups;
 	},
 	methods: {
-		renameGroup() {
-			this.showRename = !this.showRename;
-		},
 		addGroup() {
 			this.$emit('addGroup', this.groupToEdit);
 		},
@@ -73,8 +65,6 @@ export default {
 				const foundIdx = this.currGroupIds.findIndex((group) => group._id === id);
 				this.currGroupIds.splice(foundIdx, 1);
 			} else this.currGroupIds.push(id);
-			// this.currGroupIdx = this.board.groups.findIndex(currGroup => currGroup._id === group._id)
-			// this.isTasks = !this.isTasks
 		},
 		isIncludesGroupIds(id) {
 			return this.currGroupIds.includes(id);
