@@ -4,29 +4,40 @@ import homePage from '../views/home.vue';
 import workspace from '../views/workspace.vue';
 import login from '../views/login.vue';
 import signup from '../views/signup.vue';
+import taskUpdate from '../components/task-update.vue';
 Vue.use(VueRouter);
 
 const routes = [
-	{
-		path: '/',
-		component: homePage,
-	},
-	{
-		path: '/boards',
-		component: workspace,
-	},
-	{
-		path: '/login',
-		component: login,
-	},
-	{
-		path: '/signup',
-		component: signup,
-	},
+  {
+    path: '/',
+    component: homePage,
+  },
+  {
+    path: '/boards',
+    component: workspace,
+    // children: [
+    //   {
+    //     path: '/boards/:boardId/:groupId/:taskId',
+    //     component: taskUpdate,
+    //   },
+    // ],
+  },
+  {
+    path: '/login',
+    component: login,
+  },
+  {
+    path: '/signup',
+    component: signup,
+  },
+  {
+    path: '/taskUpdate',
+    component: taskUpdate,
+  },
 ];
 
 const router = new VueRouter({
-	routes,
+  routes,
 });
 
 export default router;
