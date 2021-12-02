@@ -59,7 +59,7 @@ export default {
 			this.$emit('removeGroup', this.group)
 		},
 		showTaskToggle() {
-			this.$emit('toggleTasks');
+			this.$emit('toggleTasks',this.group._id);
 		}
 	},
 };
