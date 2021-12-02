@@ -3,13 +3,25 @@
 		<!-- This Span eill include the icons when a user hover over the header -->
 		<div class="group-header-title">
 			<button @click="remove">delete group</button>
-			<span v-if="!isEdit" 
-			:style="{'color' : color}" 
-			@click="editTitle" 
-			@mouseover="isTaskToggleBtn = true" 
-			@mouseleave="isTaskToggleBtn = false"><button v-if="isTaskToggleBtn" @click.stop="showTaskToggle">toggleTasks</button> {{ groupToEdit.title }}</span>
-			<input v-else :style="{'color' : color}" type="text" value="groupToEdit.title" ref="titleInput" v-model="groupToEdit.title"  @keyup.enter="$event.target.blur()" @blur="editTitle"/>
-			
+			<span
+				v-if="!isEdit"
+				:style="{ color: color }"
+				@click="editTitle"
+				@mouseover="isTaskToggleBtn = true"
+				@mouseleave="isTaskToggleBtn = false"
+				><button v-if="isTaskToggleBtn" @click.stop="showTaskToggle">toggleTasks</button>
+				{{ groupToEdit.title }}</span
+			>
+			<input
+				v-else
+				:style="{ color: color }"
+				type="text"
+				value="groupToEdit.title"
+				ref="titleInput"
+				v-model="groupToEdit.title"
+				@keyup.enter="$event.target.blur()"
+				@blur="editTitle"
+			/>
 		</div>
 		<div class="group-header-info flex">
 			<div class="group-header-status">
@@ -37,30 +49,29 @@ export default {
 			required: true,
 		},
 	},
-		created() {
-		},
-		data() {
-			return {
-				isEdit : false,
-				isTaskToggleBtn: false,
-				groupToEdit : {...this.group},
-				color: this.group.style.clr
-			}
-		},
+	created() {},
+	data() {
+		return {
+			isEdit: false,
+			isTaskToggleBtn: false,
+			groupToEdit: { ...this.group },
+			color: this.group.style.clr,
+		};
+	},
 	methods: {
 		async editTitle() {
-				await (this.isEdit = !this.isEdit)
-				if(this.$refs.titleInput) this.$refs.titleInput.focus();
-				if(this.group.title !== this.groupToEdit.title) {
-					this.$emit('saveGroup', this.groupToEdit)
-				}			
+			await (this.isEdit = !this.isEdit);
+			if (this.$refs.titleInput) this.$refs.titleInput.focus();
+			if (this.group.title !== this.groupToEdit.title) {
+				this.$emit('saveGroup', this.groupToEdit);
+			}
 		},
 		remove() {
-			this.$emit('removeGroup', this.group)
+			this.$emit('removeGroup', this.group);
 		},
 		showTaskToggle() {
-			this.$emit('toggleTasks',this.group._id);
-		}
+			this.$emit('toggleTasks', this.group._id);
+		},
 	},
 };
 </script>

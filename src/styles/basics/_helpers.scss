@@ -17,7 +17,7 @@
 }
 
 .flex {
-	display: flex;
+	display: flex !important;
 	&.column {
 		flex-direction: column;
 	}
