@@ -157,6 +157,11 @@ function getEmptyBoard() {
 						display: '',
 					},
 				},
+				'date-picker': {
+					default: {
+						display: '',
+					},
+				},
 			},
 		},
 
