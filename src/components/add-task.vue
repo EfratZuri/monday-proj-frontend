@@ -33,6 +33,7 @@ export default {
   methods: {
     addNewTask(id) {
       const task = this.task;
+      if (!task) return;
       this.$emit('addTask', task, id);
       this.addBtn = !this.addBtn;
     },
