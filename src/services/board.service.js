@@ -6,70 +6,16 @@ const STORAGE_KEY_BOARDS = 'boards';
 
 export const boardService = {
   query,
-  async remove(boardId) {
-    // return httpService.delete(`board/${boardId}`)
-    return await storageService.delete('board', boardId);
-  },
+  remove,
   getEmptyBoard,
   getEmptyGroup,
-  getEmptyTask() {
-    return { title: '', _id: '', cmps: {} };
-  },
-  getEmptyActivity() {
-    return { txt: '', _id: '', cratedAt: '', byMember: {}, task: {} };
-  },
-  async saveGroup(group, activeBoardId) {
-    const board = await getById(activeBoardId);
-    // If the group is new
-    if (!group._id) {
-      group._id = utilService.makeId();
-      board.groups.push(group);
-      // Update group
-    } else {
-      const idx = board.groups.findIndex(({ _id }) => _id === group._id);
-      board.groups.splice(idx, 1, group);
-    }
-    saveBoard(board);
-    return group;
-  },
-  async saveTask(boardId, task, groupId, activity) {
-    const board = await getById(boardId);
-    const group = board.groups.find(({ _id }) => _id == groupId);
-    if (!task._id) {
-      task._id = utilService.makeId();
-      group.tasks.push(task);
-    } else {
-      const idx = group.findIndex(({ _id }) => _id === task._id);
-      group.tasks.splice(idx, 1, task);
-    }
-    board.activities.unshift(activity);
-    saveBoard(board);
-    console.log(board);
-    return board;
-  },
-  // updateTask(cmpType, data) {
-  // 	console.log(cmpType, data);
-  // 	// Switch
-  // 	// task.members = data;
-  // 	// task.status = data;
-  // },
+  getEmptyTask,
+  getEmptyActivity,
+  saveGroup,
+  saveTask,
   saveBoard,
 };
 
-function getEmptyBoard() {
-  return {
-    title: 'Board',
-    createdAt: '',
-    _id: '',
-    createdBy: {},
-    members: [],
-    groups: [],
-    activities: [],
-    cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices lectus vitae lectus accumsan, ac convallis sem ultricies. Aliquam sagittis cursus sollicitudin. Etiam feugiat diam turpis, sit amet finibus ligula malesuada sed. ',
-  };
-}
 async function query(filterBy = {}) {
   console.log('', filterBy);
   // let queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`;
@@ -82,6 +28,14 @@ async function query(filterBy = {}) {
   }
   return boards;
 }
+
+// BOARD
+
+async function remove(boardId) {
+  // return httpService.delete(`board/${boardId}`)
+  return await storageService.delete('board', boardId);
+}
+
 async function saveBoard(board) {
   // const addedBoard = await httpService.post(`board`, board)
   let savedBoard;
@@ -99,6 +53,40 @@ async function getById(boardId) {
   const boards = await query();
   const board = boards.find(({ _id }) => _id === boardId);
   return board;
+}
+
+// Save task
+
+async function saveTask(boardId, task, groupId, activity) {
+  const board = await getById(boardId);
+  const group = board.groups.find(({ _id }) => _id == groupId);
+  if (!task._id) {
+    task._id = utilService.makeId();
+    group.tasks.push(task);
+  } else {
+    const idx = group.findIndex(({ _id }) => _id === task._id);
+    group.tasks.splice(idx, 1, task);
+  }
+  board.activities.unshift(activity);
+  saveBoard(board);
+  return board;
+}
+
+// Save group
+
+async function saveGroup(group, activeBoardId) {
+  const board = await getById(activeBoardId);
+  // If the group is new
+  if (!group._id) {
+    group._id = utilService.makeId();
+    board.groups.push(group);
+    // Update group
+  } else {
+    const idx = board.groups.findIndex(({ _id }) => _id === group._id);
+    board.groups.splice(idx, 1, group);
+  }
+  saveBoard(board);
+  return group;
 }
 
 // More ways to send query params:
@@ -124,9 +112,36 @@ async function getById(boardId) {
   });
 })();
 
+// GET EMPTY
+
 function getEmptyGroup(clr) {
   return { title: 'New Group', _id: '', tasks: [], style: { clr } };
 }
+
+function getEmptyTask() {
+  return { title: '', _id: '', cmps: {} };
+}
+
+function getEmptyActivity() {
+  return { txt: '', _id: '', cratedAt: '', byMember: {}, task: {} };
+}
+
+function getEmptyBoard() {
+  return {
+    title: 'Board',
+    createdAt: '',
+    _id: '',
+    createdBy: {},
+    members: [],
+    groups: [],
+    activities: [],
+    cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices lectus vitae lectus accumsan, ac convallis sem ultricies. Aliquam sagittis cursus sollicitudin. Etiam feugiat diam turpis, sit amet finibus ligula malesuada sed. ',
+  };
+}
+
+// Auxiliary functions
 
 function _createBoard() {
   const board = getEmptyBoard();
