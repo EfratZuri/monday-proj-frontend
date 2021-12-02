@@ -13,7 +13,7 @@
 				@blur="saveTitle"
 			/>
 		</div>
-		<ul v-if="cmps && cmps.length" class="cmps-list clean-list">
+		<ul v-if="cmpsOrder && cmpsOrder.length" class="cmps-list clean-list">
 			<li v-for="(cmp, idx) in cmpsOrder" :key="idx" class="cell">
 				<component :is="cmp" :info="getCmpInfo('cmp')" @update="updateTask" />
 			</li>
