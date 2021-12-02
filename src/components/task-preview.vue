@@ -23,7 +23,9 @@
 					v-model="taskToEdit.title"
 					@keyup.enter="saveTitle"
 				/>
-				<button v-if="showEditBtn" class="btn btn-blue" @click="toggleEdit">EDIT</button>
+				<div class="edit-btn-wrapper">
+					<button v-if="showEditBtn" class="btn btn-edit" @click="toggleEdit">EDIT</button>
+				</div>
 			</div>
 		</div>
 

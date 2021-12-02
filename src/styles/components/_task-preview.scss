@@ -84,6 +84,25 @@
 	&:hover > * {
 		color: $primary-hover-clr;
 	}
+	.edit-btn-wrapper {
+		flex: 0 0 24px;
+		text-align: center;
+		line-height: 24px;
+		color: #bbb;
+		order: 1;
+	}
+	.btn-edit {
+		cursor: pointer;
+		height: 24px;
+		flex: initial;
+		margin-left: 8px;
+		color: $secondary-txt-clr;
+		padding-left: 8px;
+		padding-right: 8px;
+		border-radius: 4px;
+		line-height: 22px;
+		padding-top: 2px;
+	}
 }
 .pulse-left-indicator {
 	flex: 0 0 8px;
