@@ -1,5 +1,5 @@
 <template>
-  <section class="task-preview">
+  <section class="task-preview flex-def">
     <div class="task-title" @click="getTaskToEdit">
       <span v-if="!showEditTask">
         {{ task.title }}
@@ -13,15 +13,18 @@
         @blur="saveTitle"
       />
     </div>
-    <ul v-if="cmpsOrder && cmpsOrder.length" class="cmps-list clean-list">
-      <li v-for="(cmp, idx) in cmpsOrder" :key="idx" class="cell">
-        <component :is="cmp" :info="getCmpInfo('cmp')" @update="updateTask" />
+    <ul v-if="cols && cols.length" class="col-list clean-list flex-def">
+      <li v-for="(col, idx) in cols" :key="idx" class="col-cell">
+        <component :is="col.type" :info="getCmpInfo(col)" />
       </li>
     </ul>
   </section>
 </template>
 
 <script>
+import statusPicker from '../components/status-picker';
+import datePicker from '../components/date-picker';
+import memberPicker from '../components/member-picker';
 export default {
   name: 'taskPreview',
   props: {
@@ -32,7 +35,7 @@ export default {
   },
   data() {
     return {
-      cmps: null,
+      cols: null,
       cmpsOrder: null,
       info: null,
       taskToEdit: null,
@@ -41,7 +44,7 @@ export default {
   },
   created() {
     this.cmpsOrder = this.$store.getters.cmpsOrder;
-    this.cmps = this.$store.getters.cmps;
+    this.cols = this.$store.getters.cols;
   },
   methods: {
     updateTask(curType, e) {
@@ -60,15 +63,23 @@ export default {
       if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
       this.$emit('saveTitle', this.taskToEdit);
     },
-    getCmpInfo(cmp) {
-      return this.task?.[cmp] || this.getDefaultCmp(cmp);
+    getCmpInfo(col) {
+      if (!this.task?.[col.type]) return this.getDefaultCmp(col);
+
+      return { selected: this.task[col.type], opts: col.data.opts };
     },
-    getDefaultCmp(cmp) {
+    getDefaultCmp(col) {
+      // return { selected: .options[cmp].default, options: this.cols[cmp].options };
       return {
-        selected: this.cmps.options[cmp].default,
-        options: this.cmps[cmp].options,
+        selected: col.data.opts.find(({ name }) => name === 'default'),
+        opts: col.data.opts,
       };
     },
+  },
+  components: {
+    statusPicker,
+    datePicker,
+    memberPicker,
   },
 };
 </script>

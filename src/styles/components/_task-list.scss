@@ -1,0 +1,11 @@
+.task-list {
+	width: 100%;
+
+	.task-row {
+		display: block;
+		height: 82px;
+		width: 100%;
+	}
+	.task-row > * {
+	}
+}
