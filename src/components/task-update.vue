@@ -39,6 +39,7 @@ export default {
     this.taskToEdit = JSON.parse(
       JSON.stringify(this.$store.getters.taskToEdit)
     );
+    console.log('he');
   },
   methods: {
     addUpdate() {

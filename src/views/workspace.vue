@@ -9,6 +9,7 @@
 	</div>
 =======
   <div class="workspace">
+    <router-view />
     <div v-if="isLoading"><p>Loading</p></div>
     <!-- <router-link> to: </router-link> -->
     <div v-else>
