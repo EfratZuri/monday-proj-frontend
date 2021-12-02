@@ -134,56 +134,6 @@ function getEmptyActivity() {
 }
 
 function getEmptyBoard() {
-<<<<<<< HEAD
-    return {
-        title: 'Board',
-        createdAt: '',
-        _id: '',
-        createdBy: {},
-        members: [],
-        groups: [],
-        activities: [],
-        cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
-        cmps: {
-            'status-picker': {
-                options: {
-                    default: {
-                        display: '',
-                        style: {
-                            backgroundColor: 'rgb(196, 196, 196)',
-                        },
-                    },
-                    stuck: {
-                        style: {
-                            backgroundColor: 'rgb(226, 68, 92)',
-                        },
-                    },
-                    done: {
-                        style: {
-                            backgroundColor: 'rgb(0, 200, 117)',
-                        },
-                    },
-                },
-            },
-            'member-picker': {
-                options: {
-                    default: {
-                        display: '',
-                    },
-                },
-            },
-            'date-picker': {
-                options: {
-                    default: {
-                        display: '',
-                    },
-                },
-            },
-        },
-
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices lectus vitae lectus accumsan, ac convallis sem ultricies. Aliquam sagittis cursus sollicitudin. Etiam feugiat diam turpis, sit amet finibus ligula malesuada sed. ',
-    };
-=======
 	return {
 		title: 'Board',
 		createdAt: '',
@@ -202,7 +152,6 @@ function getEmptyBoard() {
 		description:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices lectus vitae lectus accumsan, ac convallis sem ultricies. Aliquam sagittis cursus sollicitudin. Etiam feugiat diam turpis, sit amet finibus ligula malesuada sed. ',
 	};
->>>>>>> f551f8697abca9790c8f6b85237da42f3de45349
 }
 
 // function getEmptyCmp() {
@@ -212,16 +161,6 @@ function getEmptyBoard() {
 // Auxiliary functions
 
 function _createBoard() {
-<<<<<<< HEAD
-    const board = getEmptyBoard();
-
-    board.groups.push(getEmptyGroup('red'));
-    board.groups.push(getEmptyGroup('blue'));
-    board.groups.push(getEmptyGroup('green'));
-    board.groups.forEach((group) => (group._id = utilService.makeId()));
-    return board;
-}
-=======
 	const board = getEmptyBoard();
 
 	board.groups.push(getEmptyGroup('red'));
@@ -273,4 +212,3 @@ function _getStatusOptions() {
 		},
 	},
 },*/
->>>>>>> f551f8697abca9790c8f6b85237da42f3de45349
