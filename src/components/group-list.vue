@@ -2,8 +2,8 @@
 	<section class="group-list-container">
 		<ul v-if="groups && groups.length" class="group-list clean-list flex column">
 			<li class="group" v-for="(group, idx) in groups" :key="idx">
-				<group-header :group="group" @saveGroup="saveGroup" />
-				<taskList :group="group" @saveTask="saveTask" />
+				<group-header :group="group" @saveGroup="saveGroup"  @removeGroup="removeGroup" @toggleTasks="toggleTasks"/>
+				<taskList v-if="isTasks" :group="group" @saveTask="saveTask" />
 			</li>
 		</ul>
 		<!-- <button class="btn" :style="{ color: groupToEdit?.color || '#fff' }" @click="addGroup"> -->
@@ -28,6 +28,7 @@ export default {
 			groupToEdit: {},
 			groups: [],
 			styleObj: {},
+			isTasks: true,
 			showRename: false,
 		};
 	},
@@ -43,12 +44,18 @@ export default {
 		addGroup() {
 			this.$emit('addGroup', this.groupToEdit);
 		},
+			saveGroup(group) {
+				this.$store.dispatch({ type: 'saveGroup', group });
+			},
+		removeGroup(group) {
+			this.$emit('removeGroup', group)
+		},
 		saveTask(task, groupId) {
 			this.$store.dispatch({ type: 'addTask', details: { task, groupId } });
 		},
-		saveGroup(group) {
-			this.$store.dispatch({ type: 'saveGroup', group });
-		},
+		toggleTasks() {
+			this.isTasks = !this.isTasks;
+		}
 	},
 	components: { taskList, groupHeader },
 };

@@ -1,14 +1,14 @@
 <template>
 	<section class="component">
-		<div :class="[is]" :style="styleObj">
+		<div :class="[is]" :style="styleObj" @click="toggleOptions">
 			<span>{{ selectedToDisplay }}</span>
 		</div>
 
-		<!-- <ul v-if="options && options.length" class="clean-list">
+		<ul v-if="options && options.length && showOptions" class="clean-list">
 			<li v-for="(option, idx) in options" :key="idx">
 				<span @click="update(option, $event)">{{ option }}</span>
 			</li>
-		</ul> -->
+		</ul>
 	</section>
 </template>
 
@@ -17,7 +17,7 @@ export default {
 	name: 'component',
 	props: ['info', 'is'],
 	data() {
-		return { options: null, selected: null, styleObj: {} };
+		return { options: null, selected: null, styleObj: {}, showOptions: false };
 	},
 	created() {
 		console.log('e');
@@ -39,6 +39,9 @@ export default {
 	methods: {
 		update(curType, event) {
 			this.$emit(curType, event);
+		},
+		toggleOptions() {
+			this.showOptions = !this.showOptions;
 		},
 	},
 	computed: {

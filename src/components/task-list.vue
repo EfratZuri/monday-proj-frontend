@@ -2,7 +2,7 @@
 	<section class="task-list-container">
 		<ul v-if="tasks && tasks.length" class="task-list clean-list">
 			<li v-for="task in tasks" :key="task._id">
-				<task-preview :task="task" @saveTitle="saveTask" />
+				<task-preview :task="task" @saveTask="saveTask" />
 			</li>
 		</ul>
 		<add-task :group="group" @addTask="saveTask" />

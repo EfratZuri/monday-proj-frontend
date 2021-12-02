@@ -16,7 +16,8 @@ export const boardStore = {
     getters: {
         boards: (state) => state.boards,
         activeBoard: (state) => state.activeBoard,
-        cmps: (state) => state.activeBoard,
+        cmpsOrder: (state) => state.activeBoard.cmpsOrder,
+        cmps: (state) => state.activeBoard.cmps,
         // cmps: (state) => state.activeBoard ? .cmp,
         boardToEdit: (state) => state.boardToEdit,
         groupToEdit: (state) => state.groupToEdit,
@@ -41,15 +42,12 @@ export const boardStore = {
             state.activeBoard = activeBoard;
         },
         saveGroup(state, { group }) {
-            const idx = state.activeBoard.groups.findIndex(
-                ({ _id }) => _id === group._id
-            );
+            const idx = state.activeBoard.groups.findIndex(({ _id }) => _id === group._id);
             // Add a new Group
             if (idx === -1) {
                 state.activeBoard.groups.push(group);
                 state.groupClrs.curClrIdx++;
-                if (state.groupClrs.curClrIdx >= state.groupClrs.clrs.length)
-                    state.groupClrs.curClrIdx = 0;
+                if (state.groupClrs.curClrIdx >= state.groupClrs.clrs.length) state.groupClrs.curClrIdx = 0;
 
                 state.groupToEdit = boardService.getEmptyGroup(
                     state.groupClrs.clrs[state.groupClrs.curClrIdx]
@@ -80,11 +78,11 @@ export const boardStore = {
             }
         },
         async addTask(context, { details }) {
-            console.log('details', details);
+            const task = JSON.parse(JSON.stringify(details.task));
             try {
                 const newBoard = await boardService.saveTask(
                     context.state.activeBoard._id,
-                    details.task,
+                    task,
                     details.groupId,
                     'add new task'
                 );
@@ -98,10 +96,7 @@ export const boardStore = {
         async saveGroup(context, { group }) {
             if (!group) group = boardService.getEmptyGroup();
             try {
-                const addedGroup = await boardService.saveGroup(
-                    group,
-                    context.state.activeBoard._id
-                );
+                const addedGroup = await boardService.saveGroup(group, context.state.activeBoard._id);
                 console.log('addedGroup', addedGroup);
                 context.commit({ type: 'saveGroup', group: addedGroup });
                 return addedGroup;
@@ -118,5 +113,13 @@ export const boardStore = {
                 return err;
             }
         },
+        removeGroup(context, { group }) {
+            const activeBoard = context.getters.activeBoard
+            try {
+                boardService.removeGroup(group, activeBoard);
+            } catch (error) {
+                console.log('error', error);
+            }
+        }
     },
 };

@@ -14,6 +14,7 @@ export const boardService = {
     saveGroup,
     saveTask,
     saveBoard,
+    removeGroup
 };
 
 async function query(filterBy = {}) {
@@ -114,6 +115,16 @@ function getEmptyGroup(clr) {
     return { title: 'New Group', _id: '', tasks: [], style: { clr } };
 }
 
+function removeGroup(group, activeBoard) {
+    try {
+        const idx = activeBoard.groups.findIndex((currGroup => currGroup._id === group._id));
+        activeBoard.groups.splice(idx, 1);
+        saveBoard(activeBoard);
+    } catch (error) {
+        console.log('error', error);
+    }
+}
+
 function getEmptyTask() {
     return { title: '', _id: '', cmps: {} };
 }
@@ -131,10 +142,10 @@ function getEmptyBoard() {
         members: [],
         groups: [],
         activities: [],
+        cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
         cmps: {
-            cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
-            info: {
-                'status-picker': {
+            'status-picker': {
+                options: {
                     default: {
                         display: '',
                         style: {
@@ -152,12 +163,16 @@ function getEmptyBoard() {
                         },
                     },
                 },
-                'member-picker': {
+            },
+            'member-picker': {
+                options: {
                     default: {
                         display: '',
                     },
                 },
-                'date-picker': {
+            },
+            'date-picker': {
+                options: {
                     default: {
                         display: '',
                     },
