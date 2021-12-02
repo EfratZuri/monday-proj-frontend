@@ -78,11 +78,12 @@ export const boardStore = {
 			}
 		},
 		async addTask(context, { details }) {
+			const task = JSON.parse(JSON.stringify(details.task));
 			try {
 				const newBoard = await boardService.saveTask(
 					context.state.activeBoard._id,
-					details.task,
-					details._id,
+					task,
+					details.groupId,
 					'add new task'
 				);
 
