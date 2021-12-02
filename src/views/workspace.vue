@@ -2,7 +2,7 @@
 	<div class="workspace">
 		<div v-if="isLoading"><p>Loading</p></div>
 		<div v-else>
-			<boardHeader :activeBoard="activeBoard" @addItem="addItem" @saveBoard="saveBoard" />
+			<boardHeader :activeBoard="activeBoard" @addItem="addItem" @saveBoard="saveBoard" @addGroup="addGroup" />
 			<groupList :board="activeBoard" @addGroup="addGroup" />
 		</div>
 	</div>
@@ -32,7 +32,7 @@ export default {
 			console.log('Add item');
 		},
 		addGroup(group) {
-			group.boardId = this.$store.getters.activeBoard._id;
+			// group.boardId = this.$store.getters.activeBoard._id;
 			this.$store.dispatch({ type: 'saveGroup', group });
 		},
 		saveBoard(board) {

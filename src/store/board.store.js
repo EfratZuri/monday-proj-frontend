@@ -60,7 +60,6 @@ export const boardStore = {
         },
 
         addTask(state, { newBoard }) {
-            console.log(state, { newBoard });
             const idx = state.boards.findIndex(({ _id }) => _id === newBoard._id);
             state.boards.splice(idx, 1, newBoard);
         },
@@ -96,12 +95,14 @@ export const boardStore = {
             }
         },
         async saveGroup(context, { group }) {
+            if (!group) group = boardService.getEmptyGroup();
             try {
                 const addedGroup = await boardService.saveGroup(
                     group,
                     context.state.activeBoard._id
                 );
-                context.commit({ type: 'saveGroup', addedGroup });
+                console.log('addedGroup', addedGroup);
+                context.commit({ type: 'saveGroup', group: addedGroup });
                 return addedGroup;
             } catch (err) {
                 return err;

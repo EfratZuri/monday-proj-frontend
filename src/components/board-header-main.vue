@@ -7,7 +7,7 @@
 		<button class="btn" @click="isShowDescription = !isShowDescription">toggle desc</button>
 		<div v-if="isShowDescription" class="board-description">
 			<p v-if="!isEditDesctiption" @click="editDescription">{{ boardToEdit.description }}</p>
-			<textarea cols="30" rows="10" v-else type="text" value="boardToEdit.description" ref="descInput" v-model="boardToEdit.description"  @keyup.enter="$event.target.blur()" @blur="editDescription"/>
+			<textarea cols="60" rows="6" v-else type="text" value="boardToEdit.description" ref="descInput" v-model="boardToEdit.description"  @keyup.enter="$event.target.blur()" @blur="editDescription"/>
 		</div>
 	</section>
 </template>
