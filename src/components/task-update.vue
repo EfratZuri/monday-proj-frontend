@@ -1,5 +1,5 @@
 <template>
-  <section class="task-update">
+  <section v-if="taskToEdit" class="task-update">
     <button>X</button>
     <textarea
       name=""
@@ -32,10 +32,13 @@ export default {
   data() {
     return {
       updateMsg: '',
+      taskToEdit: null,
     };
   },
   created() {
-    this.task = JSON.parse(JSON.stringify(this.$store.getters.taskToEdit));
+    this.taskToEdit = JSON.parse(
+      JSON.stringify(this.$store.getters.taskToEdit)
+    );
   },
   methods: {
     addUpdate() {

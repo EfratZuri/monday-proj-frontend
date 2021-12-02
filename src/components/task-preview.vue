@@ -61,7 +61,7 @@ export default {
       this.$emit('saveTitle', this.taskToEdit);
     },
     getCmpInfo(cmp) {
-      return this.task?.[cmp] || this.getDefault(cmp);
+      return this.task?.[cmp] || this.getDefaultCmp(cmp);
     },
     getDefaultCmp(cmp) {
       return {
