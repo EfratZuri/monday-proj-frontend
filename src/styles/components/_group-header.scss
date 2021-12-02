@@ -1,23 +1,25 @@
 .group-header {
-    line-height: 45px;
+	line-height: 45px;
 }
 
 .group-header-title {
-    & input {
-        outline: none;
-        border: 1px dashed rgb(209, 209, 209);
-        font-size: 1rem;
-        line-height: 24px;
-    }
-    & span {
-        padding: 5px 10px;
-        border: 1px solid transparent;
-    }
-    & span:hover {
-        border: 1px dashed rgb(209, 209, 209);
-    }
+	font-size: 18px;
+	font-weight: 300;
+	& input {
+		outline: none;
+		border: 1px dashed rgb(209, 209, 209);
+		font-size: 1rem;
+		line-height: 24px;
+	}
+	& span {
+		padding: 5px 10px;
+		border: 1px solid transparent;
+	}
+	& span:hover {
+		border: 1px dashed rgb(209, 209, 209);
+	}
 }
 
 .group-header-info {
-    gap: 150px;
+	gap: 150px;
 }
