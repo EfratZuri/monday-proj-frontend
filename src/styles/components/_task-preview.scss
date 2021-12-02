@@ -1,5 +1,8 @@
 .add-task-row {
 	width: 100%;
+	input {
+		border: none !important;
+	}
 }
 
 .task-preview {
@@ -31,6 +34,23 @@
 		position: relative;
 	}
 }
+.grid-cell-component-wrapper {
+	left: 378px;
+	width: 160px;
+}
+
+.grid-cells-row-component-wrapper,
+.grid-cell-component-wrapper {
+	position: absolute;
+	height: 100%;
+	will-change: left;
+}
+
+.grid-cells-row-component {
+	width: 100%;
+	position: relative;
+	height: 100%;
+}
 .grid-cells-row-component-wrapper {
 	max-width: 678px;
 	flex-basis: 678px;
@@ -39,4 +59,14 @@
 }
 .task-title {
 	height: 100%;
+	text-overflow: unset;
+	overflow: hidden;
+	white-space: break-spaces;
+	line-height: 18px;
+	color: $primary-txt-clr;
+	span {
+		padding-left: 10px;
+		flex: 1;
+		font-weight: 400;
+	}
 }

@@ -1,0 +1,10 @@
+.board-header-view-bar {
+	.btn {
+		height: 32px;
+		border-radius: 4px;
+		justify-content: center;
+		&:hover {
+			background-color: $primary-background-hover-color;
+		}
+	}
+}

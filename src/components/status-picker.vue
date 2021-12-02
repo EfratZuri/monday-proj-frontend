@@ -1,6 +1,8 @@
 <template>
-	<div v-if="styleObj" class="col-cell" :style="styleObj">
-		<span>{{ infoForDisplay }} </span>
+	<div class="grid-cell-component-wrapper">
+		<div v-if="styleObj" class="col-cell" :style="styleObj">
+			<span>{{ infoForDisplay }} </span>
+		</div>
 	</div>
 </template>
 
@@ -19,9 +21,8 @@ export default {
 		console.log('Status picker created');
 		const selectedName = this.info.selected;
 		console.log('selcted name', selectedName);
-		if (selectedName?.name === 'default') {
-			this.styleObj = selectedName.style;
-		} else {
+		if (selectedName?.name === 'default') this.styleObj = selectedName.style;
+		else {
 			this.selectedObj = this.info.opts.find(({ name }) => name === selectedName);
 			this.styleObj = this.selectedObj.style;
 		}
