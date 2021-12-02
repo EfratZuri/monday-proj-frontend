@@ -43,11 +43,6 @@ export const boardStore = {
     boardName: (state) => state.activeBoard.title,
   },
   mutations: {
-    getBoardAndGroup(state, task) {
-      console.log(state, task);
-      // const group =
-    },
-
     setBoardName(state, { boardName }) {
       state.boardName = boardName;
     },
@@ -83,10 +78,12 @@ export const boardStore = {
       else state.activeBoard.groups.splice(idx, 1, group);
     },
 
-    addTask(state, { newBoard }) {
-      state.activeBoard = newBoard;
-      const idx = state.boards.findIndex(({ _id }) => _id === newBoard._id);
-      state.boards.splice(idx, 1, newBoard);
+    addTask(state, { boardId, groupId, task }) {
+      const board = state.boards.find((board) => board._id === boardId);
+      const group = board.groups.find(({ _id }) => _id === groupId);
+      const idx = group.tasks.findIndex(({ _id }) => _id === task._id);
+      if (!task._id) group.tasks.push(task);
+      else group.tasks.splice(idx, 1, task);
     },
 
     deleteTask(state, { boardId, groupId, task }) {
@@ -121,7 +118,12 @@ export const boardStore = {
           'add new task'
         );
 
-        context.commit({ type: 'addTask', newBoard });
+        context.commit({
+          type: 'addTask',
+          boardId: context.state.activeBoard._id,
+          task,
+          groupId: details.groupId,
+        });
         return newBoard;
       } catch (err) {
         return err;
