@@ -1,7 +1,7 @@
 <template>
 	<section class="board-header-main flex">
 		<div class="board-title">
-			<h1 v-if="!isEditName" @click="editName">{{ boardToEdit.title }}</h1>
+			<span v-if="!isEditName" @click="editName">{{ boardToEdit.title }}</span>
 			<input v-else type="text" value="boardToEdit.title" ref="titleInput" v-model="boardToEdit.title"  @keyup.enter="$event.target.blur()" @blur="editName"/>
 		</div>
 		<button class="btn" @click="isShowDescription = !isShowDescription">toggle desc</button>
