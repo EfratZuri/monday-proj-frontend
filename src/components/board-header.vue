@@ -1,8 +1,8 @@
 <template>
 	<div class="board-header-container">
-		<boardHeaderMain :activeBoard="activeBoard" @saveBoard="saveBoard"/>
-		<boardHeaderSubsetToolbar />
-		<boardHeaderViewBar @addItem="addItem" />
+		<board-header-main :activeBoard="activeBoard" @saveBoard="saveBoard"/>
+		<board-header-subset-toolbar />
+		<board-header-view-bar @addItem="addItem" />
 	</div>
 </template>
 

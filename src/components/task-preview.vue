@@ -1,7 +1,7 @@
 <template>
 	<section class="task-preview">
 		<ul v-if="cmps && cmps.length" class="cmps-list clean-list">
-			<li v-for="(cmp, idx) in cmps" :key="idx" class="cell">
+			<li v-for="(cmp, idx) in cmpsOrder" :key="idx" class="cell">
 				<component :is="cmp" :info="getCmpInfo('cmp')" @update="updateTask" />
 			</li>
 		</ul>
@@ -18,22 +18,24 @@ export default {
 		},
 	},
 	data() {
-		return { cmps: null };
+		return { cmps: null, cmpsOrder: null, info: null };
 	},
 	created() {
 		this.cmps = this.$store.getters.cmps;
+		this.cmpsOrder = this.cmps.cmpsOrder;
+		this.info = this.cmps.info;
 	},
 	methods: {
 		updateTask(curType, e) {
 			console.log(e, curType);
 		},
 		getCmpInfo(cmp) {
-			console.log(cmp);
-			return this.task.cmps?.[cmp] || this.getDefault(cmp);
+			return this.task.cmps?.[cmp];
+			// || this.getDefault(cmp);
 		},
-		getDefault(cmp) {
-			return { cmp };
-		},
+		// getDefault(cmp) {
+		// return { selected: null };
+		// },
 	},
 	computed: {
 		// cmps() {
