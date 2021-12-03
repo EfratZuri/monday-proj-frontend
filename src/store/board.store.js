@@ -111,7 +111,12 @@ export const boardStore = {
       }
     },
     async addTask(context, { details }) {
-      const task = JSON.parse(JSON.stringify(details.task));
+      if (!details) {
+        details = {};
+        details.groupId = context.state.activeBoard.groups[0]._id;
+        details.task = { title: 'New task', id: utilService.makeId() };
+      }
+      let task = JSON.parse(JSON.stringify(details.task));
       // boardService.getBoardAndGroup(task);
       try {
         const newBoard = await boardService.saveTask(
@@ -153,6 +158,11 @@ export const boardStore = {
         return err;
       }
     },
+    // async saveTaskFromHeader(context,{task}) {
+    //   if(!task)
+    //   console.log(context);
+    // },
+
     async saveGroup(context, { group }) {
       if (!group) {
         const groupColorId = utilService.getRandomInt(
