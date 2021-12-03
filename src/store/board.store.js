@@ -1,5 +1,6 @@
 // import { showMsg } from '../services/event-bus.service.js';
 import { boardService } from '../services/board.service.js';
+import { utilService } from '../services/util.service.js';
 
 export const boardStore = {
   state: {
@@ -7,7 +8,24 @@ export const boardStore = {
     boardToEdit: boardService.getEmptyBoard(),
     activeBoard: null,
     groupClrs: {
-      clrs: ['#579bfc', '#a25ddc', '#66ccff', '#ff642e', '#bb3354'],
+      clrs: ['rgb(3, 127, 76)',
+          'rgb(0, 200, 117)',
+          'rgb(156, 211, 38)',
+          'rgb(202, 182, 65)',
+          'rgb(255, 203, 0)',
+          'rgb(120, 75, 209)',
+          'rgb(162, 93, 220)',
+          'rgb(0, 134, 192)',
+          'rgb(102, 204, 255)',
+          'rgb(187, 51, 84)',
+          'rgb(226, 68, 92)',
+          'rgb(255, 21, 138)',
+          'rgb(255, 90, 196)',
+          'rgb(255, 100, 46)',
+          'rgb(253, 171, 61)',
+          'rgb(127, 83, 71)',
+          'rgb(196, 196, 196)',
+          'rgb(128, 128, 128)'],
       curClrIdx: 0,
     },
     groupToEdit: boardService.getEmptyGroup('#579bfc'),
@@ -134,7 +152,10 @@ export const boardStore = {
       }
     },
     async saveGroup(context, { group }) {
-      if (!group) group = boardService.getEmptyGroup();
+      if (!group) {
+        const groupColorId = utilService.getRandomInt(0, context.state.groupClrs.clrs.length - 1)
+        group = boardService.getEmptyGroup(context.state.groupClrs.clrs[groupColorId]);
+      }
       try {
         const addedGroup = await boardService.saveGroup(
           group,

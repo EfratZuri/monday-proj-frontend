@@ -30,6 +30,12 @@
 				<!-- TODO: show this input to edit the group name  -->
 				<!-- <input type="text" /> -->
 			</div>
+			<div class="group-header-member">
+				<!-- TODO: on click-an input should apper -->
+				<span>Members</span>
+				<!-- TODO: show this input to edit the group name  -->
+				<!-- <input type="text" /> -->
+			</div>
 			<div class="group-header-date">
 				<!-- TODO: on click-an input should apper -->
 				<span>Date</span>
