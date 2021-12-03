@@ -1,15 +1,23 @@
 <template>
   <section class="task-list-container">
     <ul v-if="tasks && tasks.length" class="task-list clean-list">
-      <li v-for="task in tasks" :key="task._id" class="task-row flex-def">
-        <task-preview
-          :task="task"
-          :styleObj="group.style"
-          @saveTitle="saveTask"
-          @deleteTask="deleteTask"
-          @updatePicker="saveTask"
-        />
-      </li>
+      <draggable
+        :component-data="getComponentData()"
+        :list="tasks"
+        group="tasks"
+      >
+        <transition-group>
+          <li v-for="task in tasks" :key="task._id" class="task-row flex-def">
+            <task-preview
+              :task="task"
+              :styleObj="group.style"
+              @saveTitle="saveTask"
+              @deleteTask="deleteTask"
+              @updatePicker="saveTask"
+            />
+          </li>
+        </transition-group>
+      </draggable>
     </ul>
     <add-task :group="group" @addTask="saveTask" />
     <!-- <dialogNode v-if="showDialogNode" @change="changeStatus" /> -->
@@ -19,6 +27,7 @@
 <script>
 // import { Container, Draggable } from 'vue-smooth-dnd';
 // import { applyDrag, generateItems } from '../services/util.service.js';
+import draggable from 'vuedraggable';
 import taskPreview from '@/components/task-preview';
 import addTask from '@/components/add-task';
 export default {
@@ -42,6 +51,26 @@ export default {
     this.tasks = this.group.tasks;
   },
   methods: {
+    handleChange() {
+      console.log('changed');
+    },
+    inputChanged(value) {
+      this.tasks = value;
+    },
+    getComponentData() {
+      return {
+        on: {
+          change: this.handleChange,
+          input: this.inputChanged,
+        },
+        attrs: {
+          wrap: true,
+        },
+        props: {
+          value: this.tasks,
+        },
+      };
+    },
     // onDrop(dropResult) {
     //   this.tasks = applyDrag(this.tasks, dropResult);
     // },
@@ -65,11 +94,24 @@ export default {
     // this.$emit('saveTask', task, this.group._id);
     // },
   },
+  computed: {
+    // myList: {
+    //   get() {
+    //     return this.$store.state.myList;
+    //   },
+    //   set(value) {
+    //     this.$store.commit('updateList', value);
+    //   },
+    // },
+  },
   components: {
     taskPreview,
     addTask,
+    draggable,
     // Container,
     // Draggable,
+    // @start="drag = true"
+    // @end="drag = false"
   },
 };
 </script>
