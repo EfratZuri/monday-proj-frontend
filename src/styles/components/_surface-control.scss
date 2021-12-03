@@ -1,9 +1,28 @@
 .surface-control {
+	// position: fixed;
 	min-width: 66px;
 	height: 100%;
-	background-color: $main-nav-backgound-clr;
+	background-color: $main-nav-background-clr;
 	color: #fff;
 	padding: 10px 20px;
+
+	ion-icon {
+		font-size: 20px;
+	}
+	a {
+		height: 36px;
+		width: 36px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 8px;
+		position: relative;
+		cursor: pointer;
+		outline: none;
+		&.active-link {
+			background-color: rgba(255, 255, 255, 0.3);
+		}
+	}
 }
 .monday-logo-navbar {
 	width: 40px;

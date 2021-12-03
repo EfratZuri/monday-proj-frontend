@@ -49,16 +49,18 @@ export default {
 			this.$emit('addGroup', this.groupToEdit);
 		},
 		saveGroup(group) {
-			this.$store.dispatch({ type: 'saveGroup', group });
+			this.$emit('saveGroup', group);
+			//   this.$store.dispatch({ type: 'saveGroup', group });
 		},
 		removeGroup(group) {
 			this.$emit('removeGroup', group);
 		},
 		saveTask(task, groupId) {
-			this.$store.dispatch({ type: 'addTask', details: { task, groupId } });
+			const details = { task, groupId };
+			this.$emit('saveTask', details);
 		},
 		deleteTask(task, groupId) {
-			this.$store.dispatch({ type: 'deleteTask', details: { task, groupId } });
+			this.$emit('deleteTask', task, groupId);
 		},
 		toggleTasks(id) {
 			if (this.currGroupIds.includes(id)) {

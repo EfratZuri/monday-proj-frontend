@@ -75,20 +75,25 @@
 	color: #666;
 }
 .grid-cell-component-wrapper {
-	left: 378px;
-	width: 160px;
+	// left: 378px;
+	width: 141px;
+	&:not(.picker-component) {
+		&.selected {
+			background-color: $primary-selected-color;
+		}
+	}
 }
 
 .grid-cells-row-component-wrapper,
 .grid-cell-component-wrapper {
-	position: absolute;
+	// position: absolute;
 	height: 100%;
 	will-change: left;
 }
 
 .grid-cells-row-component {
 	width: 100%;
-	position: relative;
+	// position: relative;
 	height: 100%;
 }
 .grid-cells-row-component-wrapper {
@@ -97,26 +102,9 @@
 	line-height: 82px;
 	height: 100%;
 }
-.task-title {
-	height: 100%;
-	text-overflow: unset;
-	overflow: hidden;
-	white-space: break-spaces;
-	line-height: 18px;
-	width: 100%;
-	color: $primary-txt-clr;
-	span {
-		align-self: flex-start;
-		padding-left: 10px;
-		flex: 1;
-		font-weight: 400;
-	}
-	input {
-		width: 100%;
-		border: 1px dashed $primary-txt-clr;
-	}
-}
+
 .name-cell {
+	height: 56px;
 	flex: 1 0 308px;
 	will-change: transform;
 	height: 100%;
@@ -152,6 +140,27 @@
 		padding-top: 2px;
 	}
 }
+
+.task-title {
+	height: 100%;
+	text-overflow: unset;
+	overflow: hidden;
+	white-space: break-spaces;
+	line-height: 18px;
+	width: 100%;
+	color: $primary-txt-clr;
+	span {
+		align-self: flex-start;
+		padding-left: 10px;
+		flex: 1;
+		font-weight: 400;
+	}
+	input {
+		width: 100%;
+		border: 1px dashed $primary-txt-clr;
+	}
+}
+
 .pulse-left-indicator {
 	flex: 0 0 8px;
 	height: 100%;
@@ -165,5 +174,66 @@
 		overflow: hidden;
 		transition: width 0.07s cubic-bezier(0, 0, 0.35, 1);
 		will-change: width;
+	}
+}
+
+.picker-component {
+	&.dropdown-open {
+		position: relative;
+	}
+}
+.picker-component {
+	.dropdown-modal {
+		background-color: $primary-background-clr;
+		color: #323338;
+		box-shadow: 0 8px 16px 0px rgb(0 0 0 / 32%);
+		border-radius: 4px;
+		font-size: 13px;
+		transition: width 0.1s;
+		pointer-events: all;
+		height: 100%;
+		width: 100%;
+		&::before {
+			content: ' ';
+			position: absolute;
+			border: solid transparent;
+			bottom: 100%;
+			border-color: #e1e1e100;
+			pointer-events: none;
+			height: 0;
+			width: 0;
+			right: 50%;
+			transform: translateX(50%);
+			border-width: 10px;
+		}
+		.dropdown-inner-container {
+			&:hover {
+				opacity: 0.85;
+			}
+		}
+		.picker-dropdown-inner-container {
+			height: 300px;
+			padding: 16px 16px 16px 16px;
+			min-width: 0;
+			width: 100%;
+			.picker-opt-container {
+				width: 100%;
+				flex: 0 0 32px;
+				width: 112px;
+				height: 32px;
+				align-self: auto;
+				line-height: 32px;
+				text-align: center;
+				margin-bottom: 8px;
+				border-radius: 2px;
+				text-align: center;
+
+				color: #fff;
+				font-weight: 400;
+				cursor: pointer;
+				transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
+				position: relative;
+			}
+		}
 	}
 }
