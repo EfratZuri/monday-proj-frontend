@@ -1,5 +1,6 @@
 .group-header {
 	line-height: 45px;
+	width: 100%;
 }
 
 .group-header-title {
@@ -18,8 +19,6 @@
 	& span:hover {
 		border: 1px dashed rgb(209, 209, 209);
 	}
-}
-.fa {
 }
 .menu-btn-container {
 	.btn-menu-group-header {
@@ -44,4 +43,12 @@
 
 .group-header-info {
 	gap: 150px;
+}
+.group-name-component {
+	display: flex;
+	gap: 13px;
+}
+
+.col-identifier-status {
+	text-align: center;
 }

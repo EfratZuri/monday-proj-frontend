@@ -52,20 +52,20 @@ export default {
       this.$emit('addGroup', this.groupToEdit);
     },
     saveGroup(group) {
-      this.$emit('saveGroup', group);
-      // this.$store.dispatch({ type: 'saveGroup', group });
+      //   this.$emit('saveGroup', group);
+      this.$store.dispatch({ type: 'saveGroup', group });
     },
     removeGroup(group) {
       this.$emit('removeGroup', group);
     },
     saveTask(task, groupId) {
       console.log(task, groupId);
-      this.$emit('addTask', task, groupId);
-      // this.$store.dispatch({ type: 'addTask', details: { task, groupId } });
+      //   this.$emit('addTask', task, groupId);
+      this.$store.dispatch({ type: 'addTask', details: { task, groupId } });
     },
     deleteTask(task, groupId) {
-      this.$emit('deleteTask', task, groupId);
-      // this.$store.dispatch({ type: 'deleteTask', details: { task, groupId } });
+      //   this.$emit('deleteTask', task, groupId);
+      this.$store.dispatch({ type: 'deleteTask', details: { task, groupId } });
     },
     toggleTasks(id) {
       if (this.currGroupIds.includes(id)) {

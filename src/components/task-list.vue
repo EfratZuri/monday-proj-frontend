@@ -10,7 +10,7 @@
         />
       </li>
     </ul>
-    <add-task :group="group" @addNewTask="saveTask" />
+    <add-task :group="group" @addTask="saveTask" />
     <!-- <dialogNode v-if="showDialogNode" @change="changeStatus" /> -->
   </section>
 </template>
@@ -48,7 +48,6 @@ export default {
       this.showDialogNode = !this.showDialogNode;
     },
     saveTask(task) {
-      console.log(task);
       this.$emit('saveTask', task, this.group._id);
     },
 

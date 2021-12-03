@@ -1,10 +1,13 @@
 <template>
   <section
-    class="task-preview flex-def"
+    class="grid-row-component task-preview flex-def"
     @mouseover="showEditBtn = true"
     @mouseleave="showEditBtn = false"
   >
-    <div class="name-cell flex align-center" :class="{ selected: isSelected }">
+    <div
+      class="grid-cell-row-component-header name-cell flex align-center"
+      :class="{ selected: isSelected }"
+    >
       <div
         class="pulse-left-indicator"
         :style="{ backgroundColor: styleObj.clr, color: styleObj.clr }"
@@ -31,7 +34,6 @@
         </div>
       </div>
     </div>
-
     <div class="grid-cells-row-component">
       <component
         v-for="(col, idx) in cols"
@@ -40,13 +42,6 @@
         :info="getCmpInfo(col)"
       />
     </div>
-    <!-- <div class="grid-cells-row-component-wrapper">
-			<ul v-if="cols && cols.length" class="col-list clean-list flex-def">
-				<li v-for="(col, idx) in cols" :key="idx" class="col-cell">
-					<component :is="col.type" :info="getCmpInfo(col)" />
-				</li>
-			</ul>
-		</div> -->
   </section>
 </template>
 
@@ -97,7 +92,6 @@ export default {
 
     saveTitle() {
       this.toggleEdit();
-      console.log(this.taskToEdit);
       this.$emit('saveTitle', this.taskToEdit);
     },
 

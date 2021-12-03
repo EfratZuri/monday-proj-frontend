@@ -1,11 +1,12 @@
 <template>
   <div class="workspace">
     <!-- <router-view /> -->
+
     <div v-if="isLoading"><p>Loading</p></div>
     <div v-else>
       <boardHeader
         :activeBoard="activeBoard"
-        @addTask="saveTask"
+        @addTask="addTask"
         @saveBoard="saveBoard"
         @addGroup="addGroup"
       />
@@ -13,9 +14,6 @@
         :board="activeBoard"
         @addGroup="addGroup"
         @removeGroup="removeGroup"
-        @saveGroup="saveGroup"
-        @saveTask="saveTask"
-        @deleteTask="deleteTask"
       />
     </div>
   </div>
@@ -41,11 +39,8 @@ export default {
     },
   },
   methods: {
-    saveTask(task, groupId) {
-      this.$store.dispatch({ type: 'addTask', details: { task, groupId } });
-    },
-    deleteTask(task, groupId) {
-      this.$store.dispatch({ type: 'deleteTask', details: { task, groupId } });
+    addTask() {
+      this.$store.dispatch({ type: 'addTask' });
     },
     addGroup(group) {
       // group.boardId = this.$store.getters.activeBoard._id;
@@ -53,9 +48,6 @@ export default {
     },
     removeGroup(group) {
       this.$store.dispatch({ type: 'removeGroup', group });
-    },
-    saveGroup(group) {
-      this.$store.dispatch({ type: 'saveGroup', group });
     },
     saveBoard(board) {
       this.$store.dispatch({ type: 'saveBoard', board });

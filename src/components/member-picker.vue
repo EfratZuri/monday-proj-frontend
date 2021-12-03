@@ -1,6 +1,9 @@
 <template>
 	<div class="grid-cell-component-wrapper">
 		<div class="col-cell">
+			<div class="members-icon">
+				<ion-icon name="person-circle-outline"></ion-icon>
+			</div>
 			<span>{{ infoForDisplay }} </span>
 		</div>
 	</div>
