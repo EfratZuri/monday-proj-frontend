@@ -1,11 +1,10 @@
 <template>
-	<div id="app">
-		<!-- <appHeader /> -->
-		<surfaceControl />
-		<font-awesome-icon icon="user-secret" />
+  <div id="app">
+    <!-- <appHeader /> -->
+    <surfaceControl />
 
-		<router-view />
-	</div>
+    <router-view />
+  </div>
 </template>
 
 <script>
@@ -13,10 +12,10 @@
 import surfaceControl from '@/components/surface-control.vue';
 
 export default {
-	name: 'App',
-	components: {
-		// appHeader,
-		surfaceControl,
-	},
+  name: 'App',
+  components: {
+    // appHeader,
+    surfaceControl,
+  },
 };
 </script>
