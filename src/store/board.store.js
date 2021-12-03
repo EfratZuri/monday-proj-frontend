@@ -78,14 +78,14 @@ export const boardStore = {
 			else state.activeBoard.groups.splice(idx, 1, group);
 		},
 
-    saveTask(state, { boardId, groupId, task }) {
-      const board = state.boards.find((board) => board._id === boardId);
-      const group = board.groups.find(({ _id }) => _id === groupId);
-      const idx = group.tasks.findIndex(({ _id }) => _id === task._id);
-      if (task.title === 'New Task') group.tasks.unshift(task);
-      else if (idx < 0) group.tasks.push(task);
-      else group.tasks.splice(idx, 1, task);
-    },
+		saveTask(state, { boardId, groupId, task }) {
+			const board = state.boards.find((board) => board._id === boardId);
+			const group = board.groups.find(({ _id }) => _id === groupId);
+			const idx = group.tasks.findIndex(({ _id }) => _id === task._id);
+			if (task.title === 'New Task') group.tasks.unshift(task);
+			else if (idx < 0) group.tasks.push(task);
+			else group.tasks.splice(idx, 1, task);
+		},
 
 		deleteTask(state, { boardId, groupId, task }) {
 			const board = state.boards.find((board) => board._id === boardId);
@@ -102,7 +102,6 @@ export const boardStore = {
 				if (!context.state.activeBoard)
 					context.commit({ type: 'setActiveBoard', board: boards[0] });
 
-<<<<<<< HEAD
 				context.commit({ type: 'setBoards', boards });
 			} catch (err) {
 				return err;
@@ -110,27 +109,25 @@ export const boardStore = {
 				context.commit({ type: 'setLoading', isLoading: false });
 			}
 		},
-		async addTask(context, { details }) {
-			console.log('%%%%');
+		async saveTask(context, { details }) {
 			if (!details) {
 				details = {};
 				details.groupId = context.state.activeBoard.groups[0]._id;
 				details.task = { title: 'New Task' };
 			}
-			let task = JSON.parse(JSON.stringify(details.task));
+			details.task = { ...details.task };
 			// boardService.getBoardAndGroup(task);
 			try {
 				const newBoard = await boardService.saveTask(
 					context.state.activeBoard._id,
-					task,
+					details.task,
 					details.groupId,
 					'add new task'
 				);
-
 				context.commit({
-					type: 'addTask',
+					type: 'saveTask',
 					boardId: context.state.activeBoard._id,
-					task,
+					task: details.task,
 					groupId: details.groupId,
 				});
 				return newBoard;
@@ -147,50 +144,6 @@ export const boardStore = {
 					details.groupId,
 					'delete task'
 				);
-=======
-        context.commit({ type: 'setBoards', boards });
-      } catch (err) {
-        return err;
-      } finally {
-        context.commit({ type: 'setLoading', isLoading: false });
-      }
-    },
-    async saveTask(context, { details }) {
-      if (!details) {
-        details = {};
-        details.groupId = context.state.activeBoard.groups[0]._id;
-        details.task = { title: 'New Task' };
-      }
-      details.task = { ...details.task };
-      // boardService.getBoardAndGroup(task);
-      try {
-        const newBoard = await boardService.saveTask(
-          context.state.activeBoard._id,
-          details.task,
-          details.groupId,
-          'add new task'
-        );
-        context.commit({
-          type: 'saveTask',
-          boardId: context.state.activeBoard._id,
-          task: details.task,
-          groupId: details.groupId,
-        });
-        return newBoard;
-      } catch (err) {
-        return err;
-      }
-    },
-    async deleteTask(context, { details }) {
-      const task = JSON.parse(JSON.stringify(details.task));
-      try {
-        const newBoard = await boardService.deleteTask(
-          context.state.activeBoard._id,
-          task,
-          details.groupId,
-          'delete task'
-        );
->>>>>>> 389832aa1fbddcc2bb17c3c346b0a504a8cdbf07
 
 				context.commit({
 					type: 'deleteTask',
@@ -208,7 +161,6 @@ export const boardStore = {
 		//   console.log(context);
 		// },
 
-<<<<<<< HEAD
 		async saveGroup(context, { group }) {
 			if (!group) {
 				const groupColorId = utilService.getRandomInt(0, context.state.groupClrs.clrs.length - 1);
@@ -223,9 +175,10 @@ export const boardStore = {
 			}
 		},
 		async saveBoard(context, { board }) {
-			console.log('board', board);
 			try {
 				const addedBoard = await boardService.saveBoard(board);
+				console.log('addedBoard', addedBoard);
+				context.commit({ type: 'setActiveBoard', activeBoard: addedBoard });
 				return addedBoard;
 			} catch (err) {
 				return err;
@@ -240,46 +193,4 @@ export const boardStore = {
 			}
 		},
 	},
-=======
-    async saveGroup(context, { group }) {
-      if (!group) {
-        const groupColorId = utilService.getRandomInt(
-          0,
-          context.state.groupClrs.clrs.length - 1
-        );
-        group = boardService.getEmptyGroup(
-          context.state.groupClrs.clrs[groupColorId]
-        );
-      }
-      try {
-        const addedGroup = await boardService.saveGroup(
-          group,
-          context.state.activeBoard._id
-        );
-        context.commit({ type: 'saveGroup', group: addedGroup });
-        return addedGroup;
-      } catch (err) {
-        return err;
-      }
-    },
-    async saveBoard(context, { board }) {
-      try {
-        const addedBoard = await boardService.saveBoard(board);
-        console.log('addedBoard', addedBoard);
-        context.commit({ type: "setActiveBoard", activeBoard: addedBoard })
-        return addedBoard;
-      } catch (err) {
-        return err;
-      }
-    },
-    removeGroup(context, { group }) {
-      const activeBoard = context.getters.activeBoard;
-      try {
-        boardService.removeGroup(group, activeBoard);
-      } catch (error) {
-        console.log('error', error);
-      }
-    },
-  },
->>>>>>> 389832aa1fbddcc2bb17c3c346b0a504a8cdbf07
 };
