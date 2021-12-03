@@ -107,7 +107,7 @@ export default {
     },
     boardDescription() {
       return this.activeBoard.description.length
-        ? this.activeBoard.description.length
+        ? this.activeBoard.description
         : 'Add board description';
     },
   },
