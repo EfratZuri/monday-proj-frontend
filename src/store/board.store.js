@@ -178,7 +178,6 @@ export const boardStore = {
           group,
           context.state.activeBoard._id
         );
-        console.log('addedGroup', addedGroup);
         context.commit({ type: 'saveGroup', group: addedGroup });
         return addedGroup;
       } catch (err) {
