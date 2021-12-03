@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     addTask() {
-      console.log('addTask');
+      this.$store.dispatch({ type: 'addTask' });
     },
     addGroup(group) {
       // group.boardId = this.$store.getters.activeBoard._id;
