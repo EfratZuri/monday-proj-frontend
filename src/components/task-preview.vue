@@ -97,6 +97,7 @@ export default {
 
     saveTitle() {
       this.toggleEdit();
+      console.log(this.taskToEdit);
       this.$emit('saveTitle', this.taskToEdit);
     },
 
