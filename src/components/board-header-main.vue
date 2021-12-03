@@ -16,26 +16,33 @@
         />
       </div>
       <span
-        class="description-toggle"
+        class="btn board-header-title-icon"
         @click="isShowDescription = !isShowDescription"
         v-html="descriptionTogglBtn"
       >
       </span>
       <span
+        class="btn board-header-title-icon"
         @click="isStarred = !isStarred"
-        :class="{ 'starred-board': isStarred }"
         v-html="starToggle"
+        :class="{ 'starred-board': this.isStarred }"
       >
       </span>
     </div>
-    <div v-if="isShowDescription" class="board-description">
-      <p v-if="!isEditDesctiption" @click="editDescription">
-        {{ boardToEdit.description }}
-      </p>
+    <section
+      class="board-description"
+      v-if="isShowDescription"
+      @click="editDescription"
+    >
+      <div class="description-line" v-if="!isEditDesctiption">
+        <span class="text-content">
+          {{ boardDescription }}
+        </span>
+      </div>
       <textarea
-        cols="60"
-        rows="6"
         v-else
+        cols="30"
+        rows="10"
         type="text"
         value="boardToEdit.description"
         ref="descInput"
@@ -43,7 +50,7 @@
         @keyup.enter="$event.target.blur()"
         @blur="editDescription"
       />
-    </div>
+    </section>
   </section>
 </template>
 
@@ -94,6 +101,14 @@ export default {
       return this.isStarred
         ? '<ion-icon name="star"></ion-icon>'
         : '<ion-icon name="star-outline"></ion-icon>';
+    },
+    isStarredComp() {
+      return { 'starred-board': this.isStarred };
+    },
+    boardDescription() {
+      return this.activeBoard.description.length
+        ? this.activeBoard.description
+        : 'Add board description';
     },
   },
 };

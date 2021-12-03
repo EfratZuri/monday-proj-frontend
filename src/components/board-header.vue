@@ -1,14 +1,14 @@
 <template>
   <div class="board-header-container">
     <board-header-main :activeBoard="activeBoard" @saveBoard="saveBoard" />
-    <!-- <board-header-subset-toolbar /> -->
+    <board-header-subset-toolbar />
     <board-header-view-bar @addGroup="addGroup" @addTask="addTask" />
   </div>
 </template>
 
 <script>
 import boardHeaderViewBar from '@/components/board-header-view-bar.vue';
-// import boardHeaderSubsetToolbar from '@/components/board-header-subset-toolbar.vue';
+import boardHeaderSubsetToolbar from '@/components/board-header-subset-toolbar.vue';
 import boardHeaderMain from '@/components/board-header-main.vue';
 export default {
   name: 'boardHeader',
@@ -34,7 +34,7 @@ export default {
   components: {
     boardHeaderViewBar,
     boardHeaderMain,
-    // boardHeaderSubsetToolbar,
+    boardHeaderSubsetToolbar,
   },
 };
 </script>
