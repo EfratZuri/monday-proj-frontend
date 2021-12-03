@@ -6,7 +6,7 @@
     <div v-else>
       <boardHeader
         :activeBoard="activeBoard"
-        @addTask="addTask"
+        @addTask="saveTask"
         @saveBoard="saveBoard"
         @addGroup="addGroup"
       />
@@ -14,6 +14,9 @@
         :board="activeBoard"
         @addGroup="addGroup"
         @removeGroup="removeGroup"
+        @saveTask="saveTask"
+        @deleteTask="deleteTask"
+        @saveGroup="saveGroup"
       />
     </div>
   </div>
@@ -39,11 +42,10 @@ export default {
     },
   },
   methods: {
-    addTask() {
-      this.$store.dispatch({ type: 'addTask' });
+    saveTask(details = null) {
+      this.$store.dispatch({ type: 'addTask', details });
     },
     addGroup(group) {
-      // group.boardId = this.$store.getters.activeBoard._id;
       this.$store.dispatch({ type: 'saveGroup', group });
     },
     removeGroup(group) {
@@ -51,6 +53,12 @@ export default {
     },
     saveBoard(board) {
       this.$store.dispatch({ type: 'saveBoard', board });
+    },
+    deleteTask(task, groupId) {
+      this.$store.dispatch({ type: 'deleteTask', details: { task, groupId } });
+    },
+    saveGroup(group) {
+      this.$store.dispatch({ type: 'saveGroup', group });
     },
   },
   components: {
