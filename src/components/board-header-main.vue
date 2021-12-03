@@ -47,7 +47,6 @@
         value="boardToEdit.description"
         ref="descInput"
         v-model="boardToEdit.description"
-        @keyup.enter="$event.target.blur()"
         @blur="editDescription"
       />
     </section>
@@ -77,12 +76,14 @@ export default {
       await (this.isEditName = !this.isEditName);
       if (this.$refs.titleInput) this.$refs.titleInput.focus();
       if (this.boardToEdit.title !== this.activeBoard.title) {
+        console.log('true', true);
         this.$emit('saveBoard', this.boardToEdit);
       }
     },
     async editDescription() {
       await (this.isEditDesctiption = !this.isEditDesctiption);
       if (this.$refs.descInput) this.$refs.descInput.focus();
+      console.log('this.activeBoard.description', this.activeBoard.description);
       if (this.boardToEdit.description !== this.activeBoard.description) {
         this.$emit('saveBoard', this.boardToEdit);
       }
@@ -106,8 +107,12 @@ export default {
       return { 'starred-board': this.isStarred };
     },
     boardDescription() {
-      return this.activeBoard.description.length
-        ? this.activeBoard.description
+      console.log(
+        'this.activeBoard.description.length',
+        this.activeBoard.description
+      );
+      return this.boardToEdit.description.length
+        ? this.boardToEdit.description
         : 'Add board description';
     },
   },

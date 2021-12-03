@@ -80,11 +80,12 @@ export const boardStore = {
       else state.activeBoard.groups.splice(idx, 1, group);
     },
 
-    addTask(state, { boardId, groupId, task }) {
+    saveTask(state, { boardId, groupId, task }) {
       const board = state.boards.find((board) => board._id === boardId);
       const group = board.groups.find(({ _id }) => _id === groupId);
       const idx = group.tasks.findIndex(({ _id }) => _id === task._id);
-      if (!task._id) group.tasks.push(task);
+      if (task.title === 'New Task') group.tasks.unshift(task);
+      else if (idx < 0) group.tasks.push(task);
       else group.tasks.splice(idx, 1, task);
     },
 
@@ -110,27 +111,25 @@ export const boardStore = {
         context.commit({ type: 'setLoading', isLoading: false });
       }
     },
-    async addTask(context, { details }) {
-      console.log('%%%%');
+    async saveTask(context, { details }) {
       if (!details) {
         details = {};
         details.groupId = context.state.activeBoard.groups[0]._id;
         details.task = { title: 'New Task' };
       }
-      let task = JSON.parse(JSON.stringify(details.task));
+      details.task = { ...details.task };
       // boardService.getBoardAndGroup(task);
       try {
         const newBoard = await boardService.saveTask(
           context.state.activeBoard._id,
-          task,
+          details.task,
           details.groupId,
           'add new task'
         );
-
         context.commit({
-          type: 'addTask',
+          type: 'saveTask',
           boardId: context.state.activeBoard._id,
-          task,
+          task: details.task,
           groupId: details.groupId,
         });
         return newBoard;
@@ -186,9 +185,10 @@ export const boardStore = {
       }
     },
     async saveBoard(context, { board }) {
-      console.log('board', board);
       try {
         const addedBoard = await boardService.saveBoard(board);
+        console.log('addedBoard', addedBoard);
+        context.commit({ type: "setActiveBoard", activeBoard: addedBoard })
         return addedBoard;
       } catch (err) {
         return err;
