@@ -40,7 +40,7 @@
 				:key="cmp"
 				class="grid-cell-component-wrapper grid-cell-wrapper-component col-identifier-status"
 			>
-				<span>{{ cmp }}</span>
+				<span>{{ cmpNameForDisplay(cmp) }}</span>
 			</div>
 		</div>
 	</section>
@@ -68,6 +68,12 @@ export default {
 		this.cmpsOrder = this.$store.getters.cmpsOrder;
 	},
 	methods: {
+		cmpNameForDisplay(cmp) {
+			const name = cmp.replace('-picker', '').replace(cmp[0], cmp[0].toUpperCase());
+
+			console.log('name', name);
+			return name;
+		},
 		async editTitle() {
 			await (this.isEdit = !this.isEdit);
 			if (this.$refs.titleInput) this.$refs.titleInput.focus();

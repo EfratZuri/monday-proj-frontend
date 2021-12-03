@@ -1,9 +1,11 @@
 .surface-control {
+	// position: fixed;
 	min-width: 66px;
 	height: 100%;
 	background-color: $main-nav-background-clr;
 	color: #fff;
 	padding: 10px 20px;
+
 	ion-icon {
 		font-size: 20px;
 	}

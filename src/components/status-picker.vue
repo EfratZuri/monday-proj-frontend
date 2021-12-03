@@ -1,7 +1,30 @@
 <template>
-	<div class="grid-cell-component-wrapper">
-		<div v-if="styleObj" class="col-cell" :style="styleObj">
+	<div
+		class="grid-cell-component-wrapper picker-component"
+		:class="{ 'dropdown-open': showOptions }"
+	>
+		<div
+			v-if="styleObj"
+			class="col-cell status-picker-txt"
+			:style="styleObj"
+			@click="toggleStatusPicker"
+		>
 			<span>{{ infoForDisplay }} </span>
+		</div>
+		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
+			<div class="picker-dropdown-inner-container">
+				<div
+					v-for="(opt, idx) in opts"
+					:key="idx"
+					:style="getOptStyle(opt)"
+					class="dropdown-inner-container"
+					@click="update(opt)"
+				>
+					<div class="picker-opt-container">
+						<span>{{ opt.display }}</span>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -14,28 +37,36 @@ export default {
 	data() {
 		return {
 			styleObj: null,
-			selectedObj: {},
+			showOptions: false,
+			selected: {},
+			opts: null,
 		};
 	},
 	created() {
-		const selectedName = this.info.selected;
-		if (selectedName?.name === 'default') this.styleObj = selectedName.style;
-		else {
-			this.selectedObj = this.info.opts.find(({ name }) => name === selectedName);
-			this.styleObj = this.selectedObj.style;
-		}
+		this.selected = this.info.selected;
+		this.styleObj = this.selected.style;
+		this.opts = this.info.opts;
 	},
 	methods: {
-		update(curType, event) {
-			this.$emit(curType, event);
+		update(opt) {
+			this.$emit('update', opt);
+			this.toggleOptions();
 		},
 		toggleOptions() {
 			this.showOptions = !this.showOptions;
 		},
+		toggleStatusPicker() {
+			this.showOptions = !this.showOptions;
+		},
+		getOptStyle(opt) {
+			return opt.style;
+		},
 	},
 	computed: {
 		infoForDisplay() {
-			return this.selectedObj.name === 'default' ? '' : this.selectedObj.name;
+			console.log(this.selected);
+			console.log(this.selected.name === 'default' ? '' : this.selected.display);
+			return this.selected.name === 'default' ? '' : this.selected.display;
 		},
 	},
 };
