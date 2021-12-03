@@ -111,6 +111,7 @@ export const boardStore = {
       }
     },
     async addTask(context, { details }) {
+      console.log('%%%%');
       if (!details) {
         details = {};
         details.groupId = context.state.activeBoard.groups[0]._id;
