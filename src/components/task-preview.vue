@@ -85,8 +85,9 @@ export default {
     },
 
     toggleEdit() {
+      console.log('object');
       this.showEditTask = !this.showEditTask;
-      if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
+      //   if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
     },
     getTaskToEdit() {
       this.taskToEdit = JSON.parse(JSON.stringify(this.task));
