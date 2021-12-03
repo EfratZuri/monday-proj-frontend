@@ -3,21 +3,28 @@
   width: 100%;
 }
 
-.group-header-title {
-  font-size: 18px;
+.group-name-component {
   font-weight: 300;
-  & input {
-    outline: none;
-    border: 1px dashed rgb(209, 209, 209);
-    font-size: 1rem;
-    line-height: 24px;
-  }
-  & span {
-    padding: 5px 10px;
-    border: 1px solid transparent;
-  }
-  & span:hover {
-    border: 1px dashed rgb(209, 209, 209);
+  width: 100%;
+  font-size: 18px;
+  .group-name {
+    width: 100%;
+
+    & input {
+      width: 100%;
+      font-weight: 300;
+      font-size: 18px;
+      outline: none;
+      border: 1px dashed rgb(209, 209, 209);
+      line-height: 24px;
+    }
+    & span {
+      // padding: 5px 10px;
+      border: 1px solid transparent;
+    }
+    & span:hover {
+      border: 1px dashed rgb(209, 209, 209);
+    }
   }
 }
 .menu-btn-container {
@@ -51,4 +58,7 @@
 
 .col-identifier-status {
   text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: $primary-txt-clr;
 }

@@ -49,6 +49,7 @@
         :key="idx"
         :is="col.type"
         :info="getCmpInfo(col)"
+        @update="update($event, col.type)"
       />
     </div>
   </section>
@@ -121,6 +122,11 @@ export default {
         selected: col.data.opts.find(({ name }) => name === 'default'),
         opts: col.data.opts,
       };
+    },
+    update(ev, type) {
+      const copyTask = JSON.parse(JSON.stringify(this.task));
+      copyTask[type] = ev;
+      this.$emit('updatePicker', copyTask);
     },
   },
   components: {

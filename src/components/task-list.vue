@@ -7,6 +7,7 @@
           :styleObj="group.style"
           @saveTitle="saveTask"
           @deleteTask="deleteTask"
+          @updatePicker="saveTask"
         />
       </li>
     </ul>
