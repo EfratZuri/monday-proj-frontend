@@ -9,9 +9,18 @@
       :class="{ selected: isSelected }"
     >
       <div
+        @mouseleave="checkBox = false"
+        @mouseover="checkBox = true"
         class="pulse-left-indicator"
         :style="{ backgroundColor: styleObj.clr, color: styleObj.clr }"
       >
+        <input
+          v-if="checkBox"
+          type="checkbox"
+          class="task-checkbox"
+          name="task-checkbox"
+          id="task-checkbox"
+        />
         <div class="left-indicator-inner"></div>
       </div>
       <div class="task-title">
@@ -69,6 +78,7 @@ export default {
       showEditTask: false,
       showEditBtn: false,
       isSelected: false,
+      checkBox: false,
     };
   },
   created() {

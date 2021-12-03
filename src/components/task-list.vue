@@ -16,6 +16,8 @@
 </template>
 
 <script>
+// import { Container, Draggable } from 'vue-smooth-dnd';
+// import { applyDrag, generateItems } from '../services/util.service.js';
 import taskPreview from '@/components/task-preview';
 import addTask from '@/components/add-task';
 export default {
@@ -30,6 +32,7 @@ export default {
     return {
       taskToEdit: null,
       tasks: [],
+      // tasks: generateItems(50, (i) => ({ id: i, data: 'Draggable ' + i })),
       showDialogNode: false,
       isEdit: false,
     };
@@ -38,6 +41,9 @@ export default {
     this.tasks = this.group.tasks;
   },
   methods: {
+    // onDrop(dropResult) {
+    //   this.tasks = applyDrag(this.tasks, dropResult);
+    // },
     changeStatus() {
       console.log('Change task staus');
     },
@@ -61,6 +67,8 @@ export default {
   components: {
     taskPreview,
     addTask,
+    // Container,
+    // Draggable,
   },
 };
 </script>
