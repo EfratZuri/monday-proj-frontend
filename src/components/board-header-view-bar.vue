@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		<button class="btn btn-blue btn-size-small" @click="addGroup">New group</button>
-
+		<ion-icon name="search-outline"></ion-icon>
 		<input type="search" :class="{ focusVisible: isFocusVisible }" placeholder="Search" />
 		<button class="btn btn-icon">Preson</button>
 		<button class="btn" @click="filter">Filter</button>
