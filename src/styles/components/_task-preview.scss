@@ -167,13 +167,25 @@
 	width: 100%;
 	transition: flex-basis 0.1s ease-in;
 	position: relative;
+
 	.left-indicator-inner {
-		position: relative;
+		// position: relative;
 		width: 8px;
 		height: 100%;
 		overflow: hidden;
 		transition: width 0.07s cubic-bezier(0, 0, 0.35, 1);
 		will-change: width;
+		justify-content: center;
+		&selected,
+		&:hover {
+			width: 32px;
+		}
+		.left-indicator-checkbox {
+			height: 14px;
+			width: 14px;
+			background-color: rgba(0, 0, 0, 0.2);
+			outline: 1px rgba(255, 255, 255, 0.2) solid;
+		}
 	}
 }
 

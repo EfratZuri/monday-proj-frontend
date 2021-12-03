@@ -187,6 +187,11 @@ input {
 		flex-basis: 50%;
 		display: flex;
 		align-items: center;
+		.left-indicator-checkbox {
+			&.selected {
+				width: 32px;
+			}
+		}
 	}
 	.grid-cells-row-component {
 		flex-basis: 50%;
