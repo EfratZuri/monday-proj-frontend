@@ -92,6 +92,7 @@ export const boardStore = {
     },
     async addTask(context, { details }) {
       const task = JSON.parse(JSON.stringify(details.task));
+      // boardService.getBoardAndGroup(task);
       try {
         const newBoard = await boardService.saveTask(
           context.state.activeBoard._id,

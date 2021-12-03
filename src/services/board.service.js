@@ -186,6 +186,11 @@ function getEmptyBoard() {
 
 function getBoardAndGroup(task) {
   console.log(task);
+  const boards = query();
+  const board = boards.find(({ board }) =>
+    board.groups.find(({ group }) => group.include(task))
+  );
+  console.log(board);
 }
 
 function _createBoard() {
