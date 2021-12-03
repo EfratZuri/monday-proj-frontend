@@ -61,7 +61,7 @@
 	display: block;
 
 	width: 100%;
-	height: 80px;
+	height: 35px;
 	flex-basis: 140px;
 	padding: 0 8px;
 	overflow: hidden;
@@ -76,7 +76,8 @@
 }
 .grid-cell-component-wrapper {
 	// left: 378px;
-	width: 141px;
+	// width: 141px;
+	flex-basis: 33.3333333%;
 	&:not(.picker-component) {
 		&.selected {
 			background-color: $primary-selected-color;
