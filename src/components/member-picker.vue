@@ -1,7 +1,7 @@
 <template>
 	<div class="grid-cell-component-wrapper">
 		<div class="col-cell">
-			<div class="members-icon">
+			<div class="members-icon flex">
 				<ion-icon name="person-circle-outline"></ion-icon>
 			</div>
 			<span>{{ infoForDisplay }} </span>
