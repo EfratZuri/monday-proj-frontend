@@ -108,7 +108,6 @@ export default {
 		},
 
 		deleteTask() {
-			this.getTaskToEdit();
 			this.$emit('deleteTask', this.taskToEdit);
 		},
 

@@ -62,19 +62,17 @@ async function getById(boardId) {
 async function saveTask(boardId, task, groupId, activity) {
 	const board = await getById(boardId);
 	const group = board.groups.find(({ _id }) => _id === groupId);
+	console.log('task', task);
 	if (!task._id) {
-		console.log('$$$$$$$$$$$$$$$$$$');
 		task._id = utilService.makeId();
 		if (task.title === 'New Task') group.tasks.unshift(task);
 		else group.tasks.push(task);
 	} else {
-		console.log('@@@@@@@@@@@@@@@@@');
 		const idx = group.tasks.findIndex(({ _id }) => _id === task._id);
 		group.tasks.splice(idx, 1, task);
 	}
 	board.activities.unshift(activity);
 	saveBoard(board);
-	query();
 	return board;
 }
 
@@ -227,15 +225,15 @@ function _getStatusOptions() {
 },
 'member-picker': {
   options: {
-    default: {
-      display: '',
-    },
+	default: {
+	  display: '',
+	},
   },
 },
 'date-picker': {
   options: {
-    default: {
-      display: '',
-    },
+	default: {
+	  display: '',
+	},
   },
 },*/
