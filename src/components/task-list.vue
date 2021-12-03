@@ -54,14 +54,14 @@ export default {
     handleChange() {
       console.log('changed');
     },
-    inputChanged(value) {
-      this.tasks = value;
-    },
+    // inputChanged(value) {
+    //   this.tasks = value;
+    // },
     getComponentData() {
       return {
         on: {
           change: this.handleChange,
-          input: this.inputChanged,
+          // input: this.inputChanged,
         },
         attrs: {
           wrap: true,
