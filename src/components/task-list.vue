@@ -51,17 +51,15 @@ export default {
     this.tasks = this.group.tasks;
   },
   methods: {
-    handleChange() {
-      console.log('changed');
+    handleChange(value) {
+      console.log(value.vue);
     },
-    inputChanged(value) {
-      this.tasks = value;
-    },
+
     getComponentData() {
       return {
         on: {
           change: this.handleChange,
-          input: this.inputChanged,
+          // input: this.inputChanged,
         },
         attrs: {
           wrap: true,
