@@ -14,6 +14,7 @@
 					@saveTask="saveTask"
 					@deleteTask="deleteTask"
 				/>
+				<group-task-summary :group="group" />
 			</li>
 		</ul>
 	</section>
@@ -22,6 +23,7 @@
 <script>
 import taskList from '@/components/task-list';
 import groupHeader from '@/components/group-header';
+import groupTaskSummary from '@/components/group-task-summary';
 // import addTask from './add-task.vue';
 export default {
 	name: 'groupList',
@@ -72,6 +74,6 @@ export default {
 			return this.currGroupIds.includes(id);
 		},
 	},
-	components: { taskList, groupHeader },
+	components: { taskList, groupHeader, groupTaskSummary },
 };
 </script>

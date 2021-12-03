@@ -1,64 +1,71 @@
 .group-header {
-  line-height: 45px;
-  width: 100%;
+	line-height: 45px;
+	width: 100%;
 }
 
 .group-name-component {
-  font-weight: 300;
-  width: 100%;
-  font-size: 18px;
-  .group-name {
-    width: 100%;
+	font-weight: 300;
+	width: 100%;
+	font-size: 18px;
+	.group-name {
+		width: 100%;
 
-    & input {
-      width: 100%;
-      font-weight: 300;
-      font-size: 18px;
-      outline: none;
-      border: 1px dashed rgb(209, 209, 209);
-      line-height: 24px;
-    }
-    & span {
-      // padding: 5px 10px;
-      border: 1px solid transparent;
-    }
-    & span:hover {
-      border: 1px dashed rgb(209, 209, 209);
-    }
-  }
+		input {
+			width: 100%;
+			font-weight: 300;
+			font-size: 18px;
+			outline: none;
+			// line-height: 24px;
+			border: none;
+		}
+		.edit-group-container {
+			width: 100%;
+			border: 1px dashed rgb(209, 209, 209);
+		}
+		& span {
+			// padding: 5px 10px;
+			border: 1px solid transparent;
+		}
+		& span:hover {
+			border: 1px dashed rgb(209, 209, 209);
+		}
+	}
 }
 .menu-btn-container {
-  .btn-menu-group-header {
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    border: 1px solid;
-    transition: color 0.1s ease, background-color 0.1s ease, opacity 0.1s ease;
-    font: normal normal normal 14px/1 FontAwesome;
-    &:not(:hover) {
-      color: $primary-background-clr !important;
-    }
-    &::before {
-      // content: '\f0d7';
-    }
-  }
+	&.dropdown-open {
+		position: relative;
+	}
+	.btn-menu-group-header {
+		border-radius: 50%;
+		width: 16px;
+		height: 16px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 14px;
+		border: 1px solid;
+		transition: color 0.1s ease, background-color 0.1s ease, opacity 0.1s ease;
+		font: normal normal normal 14px/1 FontAwesome;
+		&:not(:hover) {
+			color: $primary-background-clr !important;
+		}
+		&::before {
+			// content: '\f0d7';
+		}
+	}
 }
 
 .group-header-info {
-  gap: 150px;
+	gap: 150px;
 }
 .group-name-component {
-  display: flex;
-  gap: 13px;
+	display: flex;
+	gap: 13px;
 }
 
 .col-identifier-status {
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  color: $primary-txt-clr;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 400;
+	color: $primary-txt-clr;
 }

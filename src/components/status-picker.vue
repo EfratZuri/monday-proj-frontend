@@ -5,7 +5,7 @@
 	>
 		<div
 			v-if="styleObj"
-			class="col-cell status-picker-txt"
+			class="col-cell status-picker-txt flex align-center"
 			:style="styleObj"
 			@click="toggleStatusPicker"
 		>
@@ -20,7 +20,7 @@
 					class="dropdown-inner-container"
 					@click="update(opt)"
 				>
-					<div class="picker-opt-container">
+					<div class="picker-opt-container flex align-center">
 						<span>{{ opt.display }}</span>
 					</div>
 				</div>

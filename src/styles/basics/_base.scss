@@ -140,6 +140,12 @@ input {
 			background-color: #4353ff;
 		}
 	}
+	&-round {
+		display: inline-block;
+		height: 20px;
+		width: 20px;
+		border-radius: 50%;
+	}
 }
 
 .editable-input--wrapper {
@@ -200,4 +206,8 @@ input {
 			flex-basis: 33.33333%;
 		}
 	}
+}
+
+.dropdown-open {
+	position: relative;
 }

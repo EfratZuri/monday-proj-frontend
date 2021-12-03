@@ -8,12 +8,12 @@
 			class="grid-cell-row-component-header name-cell flex align-center"
 			:class="{ selected: isCellSelected }"
 		>
-			<div class="menu-edit-task-container" :class="{ selected: showTaskMenu }">
+			<!-- <div class="menu-edit-task-container" :class="{ selected: showTaskMenu }">
 				<button class="btn" @click="toggleShowTaskMenu">
 					<font-awesome-icon icon="caret-down" />
 				</button>
 				<task-menu v-if="showTaskMenu" :task="task" />
-			</div>
+			</div> -->
 			<div
 				class="pulse-left-indicator"
 				:style="{ backgroundColor: styleObj.clr, color: styleObj.clr }"
