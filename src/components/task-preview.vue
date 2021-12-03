@@ -11,7 +11,7 @@
       >
         <div class="left-indicator-inner"></div>
       </div>
-      <div class="task-title" @click="getTaskToEdit">
+      <div class="task-title">
         <!-- <button class="btn" @click="deleteTask">X</button> -->
         <span v-if="!showEditTask">
           {{ task.title }}
@@ -76,6 +76,7 @@ export default {
     };
   },
   created() {
+    this.taskToEdit = { ...this.task };
     this.cmpsOrder = this.$store.getters.cmpsOrder;
     this.cols = this.$store.getters.cols;
   },
@@ -84,18 +85,20 @@ export default {
       console.log(e, curType);
     },
 
+<<<<<<< HEAD
     toggleEdit() {
       console.log('object');
       this.showEditTask = !this.showEditTask;
       //   if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
-    },
-    getTaskToEdit() {
-      this.taskToEdit = JSON.parse(JSON.stringify(this.task));
+=======
+    async toggleEdit() {
+      await (this.showEditTask = !this.showEditTask);
+      if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
+>>>>>>> 3156f1a0edc4c8a1ce6a8f164850b7db0777bd01
     },
 
     saveTitle() {
       this.toggleEdit();
-      //   if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
       this.$emit('saveTitle', this.taskToEdit);
     },
 
