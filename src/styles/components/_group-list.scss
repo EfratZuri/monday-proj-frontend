@@ -1,8 +1,10 @@
 .group-list-container {
 	background-color: $primary-background-clr;
+	width: 100%;
 }
 .group-list {
 	gap: 25px;
+	width: 100%;
 	.group {
 		width: 100%;
 	}

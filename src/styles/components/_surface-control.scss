@@ -1,6 +1,6 @@
 .surface-control {
-	// position: fixed;
-	min-width: 66px;
+	position: fixed;
+	min-width: $main-nav-width;
 	height: 100%;
 	background-color: $main-nav-background-clr;
 	color: #fff;
