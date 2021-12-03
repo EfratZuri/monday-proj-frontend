@@ -190,7 +190,6 @@ function getBoardAndGroup(task) {
 
 function _createBoard() {
   const board = getEmptyBoard();
-
   board.groups.push(getEmptyGroup('rgb(87, 155, 252)'));
   board.groups.push(getEmptyGroup('rgb(162, 93, 220)'));
   board.groups.forEach((group) => (group._id = utilService.makeId()));
@@ -226,16 +225,16 @@ function _getStatusOptions() {
 
 },
 'member-picker': {
-	options: {
-		default: {
-			display: '',
-		},
-	},
+  options: {
+    default: {
+      display: '',
+    },
+  },
 },
 'date-picker': {
-	options: {
-		default: {
-			display: '',
-		},
-	},
+  options: {
+    default: {
+      display: '',
+    },
+  },
 },*/
