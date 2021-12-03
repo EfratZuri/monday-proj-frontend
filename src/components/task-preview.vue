@@ -4,7 +4,7 @@
     @mouseover="showEditBtn = true"
     @mouseleave="showEditBtn = false"
   >
-    <div class="name-cell flex align-center">
+    <div class="name-cell flex align-center" :class="{ selected: isSelected }">
       <div
         class="pulse-left-indicator"
         :style="{ backgroundColor: styleObj.clr, color: styleObj.clr }"
@@ -73,6 +73,7 @@ export default {
       taskToEdit: null,
       showEditTask: false,
       showEditBtn: false,
+      isSelected: false,
     };
   },
   created() {
@@ -85,7 +86,11 @@ export default {
       console.log(e, curType);
     },
 
+    toggleSelected() {
+      this.isSelected = !this.isSelected;
+    },
     async toggleEdit() {
+      this.toggleSelected();
       await (this.showEditTask = !this.showEditTask);
       if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
     },

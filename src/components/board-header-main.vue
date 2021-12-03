@@ -18,9 +18,14 @@
       <span
         class="description-toggle"
         @click="isShowDescription = !isShowDescription"
+        v-html="descriptionTogglBtn"
       >
-        <ion-icon name="alert-circle"></ion-icon>
-        <!-- <ion-icon name="alert-circle-outline"></ion-icon> -->
+      </span>
+      <span
+        @click="isStarred = !isStarred"
+        :class="{ 'starred-board': isStarred }"
+        v-html="starToggle"
+      >
       </span>
     </div>
     <div v-if="isShowDescription" class="board-description">
@@ -57,6 +62,7 @@ export default {
       isEditDesctiption: false,
       isShowDescription: true,
       boardToEdit: { ...this.activeBoard },
+      isStarred: false,
     };
   },
   methods: {
@@ -78,6 +84,16 @@ export default {
   computed: {
     descriptionToDisplay() {
       return this.boardToEdit.description || 'Add board description';
+    },
+    descriptionTogglBtn() {
+      return this.isShowDescription
+        ? '<ion-icon name="alert-circle"></ion-icon>'
+        : '<ion-icon name="alert-circle-outline"></ion-icon>';
+    },
+    starToggle() {
+      return this.isStarred
+        ? '<ion-icon name="star"></ion-icon>'
+        : '<ion-icon name="star-outline"></ion-icon>';
     },
   },
 };

@@ -2,6 +2,8 @@
 	<div id="app">
 		<!-- <appHeader /> -->
 		<surfaceControl />
+		<font-awesome-icon icon="user-secret" />
+
 		<router-view />
 	</div>
 </template>
