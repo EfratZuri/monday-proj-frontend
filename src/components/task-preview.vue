@@ -4,14 +4,14 @@
 		@mouseover="showEditBtn = true"
 		@mouseleave="showEditBtn = false"
 	>
-		<div class="name-cell flex align-center">
+		<div class="name-cell flex align-center" :class="{ selected: isSelected }">
 			<div
 				class="pulse-left-indicator"
 				:style="{ backgroundColor: styleObj.clr, color: styleObj.clr }"
 			>
 				<div class="left-indicator-inner"></div>
 			</div>
-			<div class="task-title" @click="getTaskToEdit">
+			<div class="task-title flex align-center" @click="getTaskToEdit">
 				<!-- <button class="btn" @click="deleteTask">X</button> -->
 				<span v-if="!showEditTask">
 					{{ task.title }}
@@ -65,6 +65,7 @@ export default {
 			taskToEdit: null,
 			showEditTask: false,
 			showEditBtn: false,
+			isSelected: false,
 		};
 	},
 	created() {
@@ -79,7 +80,11 @@ export default {
 		toggleEdit() {
 			this.showEditTask = !this.showEditTask;
 		},
+		toggleIsSelected() {
+			this.isSelected = !this.isSelected;
+		},
 		getTaskToEdit() {
+			this.toggleIsSelected();
 			this.taskToEdit = JSON.parse(JSON.stringify(this.task));
 		},
 

@@ -1,5 +1,8 @@
 <template>
-	<section v-if="task" class="add-task-row">
+	<section v-if="task" class="add-task-component flex">
+		<div class="pulse-left-indicator" :style="{ backgroundColor: color, color: color }">
+			<div class="left-indicator-inner"></div>
+		</div>
 		<input
 			type="text"
 			v-model="task.title"
@@ -24,10 +27,13 @@ export default {
 		return {
 			task: null,
 			showAddBtn: false,
+			color: this.group.style.clr,
 		};
 	},
 	created() {
 		this.task = JSON.parse(JSON.stringify(this.$store.getters.taskToEdit));
+		this.color = this.group.style?.clr;
+		console.log(this.color);
 	},
 	methods: {
 		addNewTask() {

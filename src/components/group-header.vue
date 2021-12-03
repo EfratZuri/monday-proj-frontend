@@ -1,15 +1,24 @@
 <template>
 	<section class="group-header flex space-between">
 		<!-- This Span eill include the icons when a user hover over the header -->
-		<div class="group-header-title">
-			<button @click="remove">delete group</button>
+		<div class="group-header-title flex align-center">
+			<!-- <button @click="remove">delete group</button> -->
+			<div class="menu-btn-container">
+				<button
+					class="btn-menu-group-header fa"
+					:style="{ color: color, backgroundColor: color, borderColor: color }"
+				>
+					<font-awesome-icon icon="caret-down" />
+				</button>
+			</div>
 			<span
 				v-if="!isEdit"
 				:style="{ color: color }"
 				@click="editTitle"
 				@mouseover="isTaskToggleBtn = true"
 				@mouseleave="isTaskToggleBtn = false"
-				><button v-if="isTaskToggleBtn" @click.stop="showTaskToggle">toggleTasks</button>
+			>
+				<!-- <button v-if="isTaskToggleBtn" @click.stop="showTaskToggle">toggleTasks</button> -->
 				{{ groupToEdit.title }}</span
 			>
 			<input

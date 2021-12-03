@@ -1,7 +1,7 @@
 <template>
 	<div class="grid-cell-component-wrapper">
 		<div class="col-cell">
-			<span>{{ infoForDisplay }} </span>
+			<span>{{ dateForDisplay }}</span>
 		</div>
 	</div>
 </template>
@@ -33,8 +33,10 @@ export default {
 		},
 	},
 	computed: {
-		infoForDisplay() {
-			return this.selectedObj.name === 'default' ? '' : this.selectedObj.name;
+		dateForDisplay() {
+			if (this.selectedObj.name === 'default') return '';
+			return '';
+			// return this.selectedObj.name === 'default' ? '' : this.selectedObj.name;
 		},
 	},
 };
