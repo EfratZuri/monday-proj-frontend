@@ -85,16 +85,9 @@ export default {
       console.log(e, curType);
     },
 
-<<<<<<< HEAD
-    toggleEdit() {
-      console.log('object');
-      this.showEditTask = !this.showEditTask;
-      //   if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
-=======
     async toggleEdit() {
       await (this.showEditTask = !this.showEditTask);
       if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
->>>>>>> 3156f1a0edc4c8a1ce6a8f164850b7db0777bd01
     },
 
     saveTitle() {

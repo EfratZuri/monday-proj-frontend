@@ -114,7 +114,7 @@ export const boardStore = {
       if (!details) {
         details = {};
         details.groupId = context.state.activeBoard.groups[0]._id;
-        details.task = { title: 'New task', id: utilService.makeId() };
+        details.task = { title: 'New Task' };
       }
       let task = JSON.parse(JSON.stringify(details.task));
       // boardService.getBoardAndGroup(task);
