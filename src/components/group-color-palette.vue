@@ -5,6 +5,7 @@
 			:key="idx"
 			class="btn btn-round"
 			:style="{ backgroundColor: color }"
+			@click.stop="selected(color)"
 		></button>
 	</section>
 </template>
@@ -21,7 +22,7 @@ export default {
 	methods: {
 		selected(color) {
 			console.log('selected color', color);
-			this.$emit('select', color);
+			this.$emit('selected', color);
 		},
 	},
 };

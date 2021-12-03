@@ -40,11 +40,10 @@
 					<input
 						:style="{ color: color }"
 						type="text"
-						value="groupToEdit.title"
 						ref="titleInput"
 						v-model="groupToEdit.title"
-						@keyup.enter="$event.target.blur()"
 						@blur="editTitle"
+						@keyup.enter="$event.target.blur()"
 					/>
 				</div>
 			</div>
@@ -74,7 +73,7 @@ export default {
 	},
 	data() {
 		return {
-			isEdit: false,
+			isEdit: true,
 			isTaskToggleBtn: false,
 			groupToEdit: { ...this.group },
 			color: this.group.style.clr,
@@ -91,6 +90,7 @@ export default {
 			console.log(clr);
 			const groupCopy = JSON.parse(JSON.stringify(this.group));
 			groupCopy.style.clr = clr;
+			console.log(groupCopy);
 			this.$emit('saveGroup', groupCopy);
 			// Unshow the color palette
 			this.toggleColorPalette();
@@ -106,7 +106,7 @@ export default {
 			return name;
 		},
 		async editTitle(e) {
-			if (this.showColorPalette || e.target.classList.contains('btn-change-color')) return;
+			if (e.target.classList.contains('btn-change-color')) return;
 			await (this.isEdit = !this.isEdit);
 			if (this.$refs.titleInput) this.$refs.titleInput.focus();
 			if (this.group.title !== this.groupToEdit.title) this.$emit('saveGroup', this.groupToEdit);
