@@ -2,6 +2,8 @@
 	height: 100%;
 	width: 100%;
 	align-items: stretch;
+	margin-left: 30px;
+
 	input {
 		width: 100%;
 		border: 1px solid transparent;
@@ -100,17 +102,32 @@
 .grid-cells-row-component-wrapper {
 	max-width: 678px;
 	flex-basis: 678px;
-	line-height: 82px;
 	height: 100%;
 }
 
 .name-cell {
-	height: 56px;
 	flex: 1 0 308px;
 	will-change: transform;
 	height: 100%;
 	padding: 0 10px 0 0;
 	text-align: left;
+	.menu-edit-task-container {
+		opacity: 0;
+		width: 30px;
+		.btn {
+			border-radius: 4px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: $primary-background-hover-color;
+			width: 18px;
+			height: 18px;
+			font-size: 15px;
+			&.selected {
+				background-color: $primary-selected-color;
+			}
+		}
+	}
 	&.selected {
 		background-color: $primary-selected-color;
 	}
@@ -129,21 +146,19 @@
 		order: 1;
 	}
 	.btn-edit {
-		cursor: pointer;
 		height: 24px;
-		flex: initial;
+		// flex: initial;
 		margin-left: 8px;
 		color: $secondary-txt-clr;
 		padding-left: 8px;
 		padding-right: 8px;
 		border-radius: 4px;
-		line-height: 22px;
+		// line-height: 22px;
 		padding-top: 2px;
 	}
 }
 
 .task-title {
-	height: 100%;
 	text-overflow: unset;
 	overflow: hidden;
 	white-space: break-spaces;

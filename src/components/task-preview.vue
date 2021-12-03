@@ -8,6 +8,12 @@
 			class="grid-cell-row-component-header name-cell flex align-center"
 			:class="{ selected: isCellSelected }"
 		>
+			<div class="menu-edit-task-container" :class="{ selected: showTaskMenu }">
+				<button class="btn" @click="toggleShowTaskMenu">
+					<font-awesome-icon icon="caret-down" />
+				</button>
+				<task-menu v-if="showTaskMenu" :task="task" />
+			</div>
 			<div
 				class="pulse-left-indicator"
 				:style="{ backgroundColor: styleObj.clr, color: styleObj.clr }"
@@ -16,7 +22,7 @@
 					<div class="left-indicator-checkbox" :class="{ selected: isTaskSelected }"></div>
 				</div>
 			</div>
-			<div class="task-title">
+			<div class="task-title flex align-center">
 				<!-- <button class="btn" @click="deleteTask">X</button> -->
 				<span v-if="!showEditTask">
 					{{ task.title }}
@@ -50,6 +56,7 @@
 import statusPicker from '../components/status-picker';
 import datePicker from '../components/date-picker';
 import memberPicker from '../components/member-picker';
+import taskMenu from '@/components/task-menu';
 export default {
 	name: 'taskPreview',
 	props: {
@@ -65,13 +72,13 @@ export default {
 		return {
 			cols: null,
 			cmpsOrder: null,
-			info: null,
 			taskToEdit: null,
 			showEditTask: false,
 			showEditBtn: false,
 			isTaskSelected: false,
 			isCellSelected: false,
 			showCheckBox: false,
+			showTaskMenu: false,
 		};
 	},
 	created() {
@@ -83,7 +90,9 @@ export default {
 		updateTask(curType, e) {
 			console.log(e, curType);
 		},
-
+		toggleShowTaskMenu() {
+			this.showTaskMenu = !this.showTaskMenu;
+		},
 		toggleCellSelected() {
 			this.isCellSelected = !this.isCellSelected;
 		},
@@ -125,6 +134,7 @@ export default {
 		statusPicker,
 		datePicker,
 		memberPicker,
+		taskMenu,
 	},
 	// <!-- @blur="saveTitle" -->
 };
