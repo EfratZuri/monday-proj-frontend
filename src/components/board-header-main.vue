@@ -1,18 +1,20 @@
 <template>
 	<section class="board-header-main flex">
-		<div class="board-title">
-			<h1 v-if="!isEditName" @click="editName" class="element-type-h1">{{ boardToEdit.title }}</h1>
-			<input
-				v-else
-				type="text"
-				value="boardToEdit.title"
-				ref="titleInput"
-				v-model="boardToEdit.title"
-				@keyup.enter="$event.target.blur()"
-				@blur="editName"
-			/>
+		<div class="board-header-main-top">
+			<div class="board-title">
+				<h1 v-if="!isEditName" @click="editName" class="element-type-h1">{{ boardToEdit.title }}</h1>
+				<input
+					v-else
+					type="text"
+					value="boardToEdit.title"
+					ref="titleInput"
+					v-model="boardToEdit.title"
+					@keyup.enter="$event.target.blur()"
+					@blur="editName"
+				/>
+			</div>
+			<button class="btn" @click="isShowDescription = !isShowDescription">toggle desc</button>
 		</div>
-		<button class="btn" @click="isShowDescription = !isShowDescription">toggle desc</button>
 		<div v-if="isShowDescription" class="board-description">
 			<p v-if="!isEditDesctiption" @click="editDescription">{{ boardToEdit.description }}</p>
 			<textarea

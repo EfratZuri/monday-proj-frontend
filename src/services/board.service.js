@@ -16,6 +16,7 @@ export const boardService = {
   deleteTask,
   saveBoard,
   removeGroup,
+  getBoardAndGroup,
 };
 
 async function query(filterBy = {}) {
@@ -183,12 +184,15 @@ function getEmptyBoard() {
 
 // Auxiliary functions
 
+function getBoardAndGroup(task) {
+  console.log(task);
+}
+
 function _createBoard() {
   const board = getEmptyBoard();
 
-  board.groups.push(getEmptyGroup('red'));
-  board.groups.push(getEmptyGroup('blue'));
-  board.groups.push(getEmptyGroup('green'));
+  board.groups.push(getEmptyGroup('rgb(87, 155, 252)'));
+  board.groups.push(getEmptyGroup('rgb(162, 93, 220)'));
   board.groups.forEach((group) => (group._id = utilService.makeId()));
   return board;
 }

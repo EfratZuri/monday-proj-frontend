@@ -1,5 +1,6 @@
 // import { showMsg } from '../services/event-bus.service.js';
 import { boardService } from '../services/board.service.js';
+import { utilService } from '../services/util.service.js';
 
 export const boardStore = {
   state: {
@@ -7,7 +8,24 @@ export const boardStore = {
     boardToEdit: boardService.getEmptyBoard(),
     activeBoard: null,
     groupClrs: {
-      clrs: ['#579bfc', '#a25ddc', '#66ccff', '#ff642e', '#bb3354'],
+      clrs: ['rgb(3, 127, 76)',
+          'rgb(0, 200, 117)',
+          'rgb(156, 211, 38)',
+          'rgb(202, 182, 65)',
+          'rgb(255, 203, 0)',
+          'rgb(120, 75, 209)',
+          'rgb(162, 93, 220)',
+          'rgb(0, 134, 192)',
+          'rgb(102, 204, 255)',
+          'rgb(187, 51, 84)',
+          'rgb(226, 68, 92)',
+          'rgb(255, 21, 138)',
+          'rgb(255, 90, 196)',
+          'rgb(255, 100, 46)',
+          'rgb(253, 171, 61)',
+          'rgb(127, 83, 71)',
+          'rgb(196, 196, 196)',
+          'rgb(128, 128, 128)'],
       curClrIdx: 0,
     },
     groupToEdit: boardService.getEmptyGroup('#579bfc'),
@@ -25,11 +43,6 @@ export const boardStore = {
     boardName: (state) => state.activeBoard.title,
   },
   mutations: {
-    getBoardAndGroup(state, task) {
-      console.log(state, task);
-      // const group =
-    },
-
     setBoardName(state, { boardName }) {
       state.boardName = boardName;
     },
@@ -65,10 +78,12 @@ export const boardStore = {
       else state.activeBoard.groups.splice(idx, 1, group);
     },
 
-    addTask(state, { newBoard }) {
-      state.activeBoard = newBoard;
-      const idx = state.boards.findIndex(({ _id }) => _id === newBoard._id);
-      state.boards.splice(idx, 1, newBoard);
+    addTask(state, { boardId, groupId, task }) {
+      const board = state.boards.find((board) => board._id === boardId);
+      const group = board.groups.find(({ _id }) => _id === groupId);
+      const idx = group.tasks.findIndex(({ _id }) => _id === task._id);
+      if (!task._id) group.tasks.push(task);
+      else group.tasks.splice(idx, 1, task);
     },
 
     deleteTask(state, { boardId, groupId, task }) {
@@ -103,7 +118,12 @@ export const boardStore = {
           'add new task'
         );
 
-        context.commit({ type: 'addTask', newBoard });
+        context.commit({
+          type: 'addTask',
+          boardId: context.state.activeBoard._id,
+          task,
+          groupId: details.groupId,
+        });
         return newBoard;
       } catch (err) {
         return err;
@@ -131,7 +151,10 @@ export const boardStore = {
       }
     },
     async saveGroup(context, { group }) {
-      if (!group) group = boardService.getEmptyGroup();
+      if (!group) {
+        const groupColorId = utilService.getRandomInt(0, context.state.groupClrs.clrs.length - 1)
+        group = boardService.getEmptyGroup(context.state.groupClrs.clrs[groupColorId]);
+      }
       try {
         const addedGroup = await boardService.saveGroup(
           group,
