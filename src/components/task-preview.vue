@@ -11,7 +11,7 @@
 			>
 				<div class="left-indicator-inner"></div>
 			</div>
-			<div class="task-title flex align-center" @click="getTaskToEdit">
+			<div class="task-title">
 				<!-- <button class="btn" @click="deleteTask">X</button> -->
 				<span v-if="!showEditTask">
 					{{ task.title }}
@@ -21,7 +21,8 @@
 					type="text"
 					ref="taskTitle"
 					v-model="taskToEdit.title"
-					@keyup.enter="saveTitle"
+					@blur="saveTitle"
+					@keyup.enter="$event.target.blur()"
 				/>
 				<div class="edit-btn-wrapper">
 					<button v-if="showEditBtn" class="btn btn-edit" @click="toggleEdit">EDIT</button>
@@ -69,6 +70,7 @@ export default {
 		};
 	},
 	created() {
+		this.taskToEdit = { ...this.task };
 		this.cmpsOrder = this.$store.getters.cmpsOrder;
 		this.cols = this.$store.getters.cols;
 	},
@@ -77,20 +79,17 @@ export default {
 			console.log(e, curType);
 		},
 
-		toggleEdit() {
-			this.showEditTask = !this.showEditTask;
-		},
-		toggleIsSelected() {
+		toggleSelected() {
 			this.isSelected = !this.isSelected;
 		},
-		getTaskToEdit() {
-			this.toggleIsSelected();
-			this.taskToEdit = JSON.parse(JSON.stringify(this.task));
+		async toggleEdit() {
+			this.toggleSelected();
+			await (this.showEditTask = !this.showEditTask);
+			if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
 		},
 
 		saveTitle() {
 			this.toggleEdit();
-			if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
 			this.$emit('saveTitle', this.taskToEdit);
 		},
 

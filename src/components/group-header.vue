@@ -80,6 +80,7 @@ export default {
 			if (this.group.title !== this.groupToEdit.title) {
 				this.$emit('saveGroup', this.groupToEdit);
 			}
+			this.isTaskToggleBtn = false;
 		},
 		remove() {
 			this.$emit('removeGroup', this.group);

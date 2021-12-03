@@ -37,7 +37,6 @@ export default {
 	},
 	methods: {
 		addNewTask() {
-			console.log('th');
 			if (!this.task.title) return;
 			this.$emit('addTask', this.task);
 			this.toggleAddBtn();
