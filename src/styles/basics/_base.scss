@@ -69,9 +69,9 @@ input {
 }
 
 .btn {
+	font-family: inherit;
 	display: inline-block;
 	color: inherit;
-	font-family: inherit;
 	border: none;
 	cursor: pointer;
 	transition: all 0.3s ease;
@@ -146,6 +146,12 @@ input {
 		height: 21px;
 		width: 21px;
 		border-radius: 50%;
+	}
+	&-blue-regular {
+		color: $primary-clr;
+		font-size: 14px;
+		font-weight: 400;
+		padding: 4px 2px;
 	}
 }
 

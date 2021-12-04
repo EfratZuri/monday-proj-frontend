@@ -41,8 +41,8 @@
 		<task-update
 			v-if="showPostPanel"
 			:task="task"
-			@closePanel="togglePostPanel"
 			@saveUpdate="saveUpdate"
+			@closePanel="togglePostPanel"
 		/>
 	</section>
 </template>
@@ -120,6 +120,10 @@ export default {
 			const copyTask = JSON.parse(JSON.stringify(this.task));
 			copyTask[type] = ev;
 			this.$emit('updatePicker', copyTask);
+		},
+
+		closePanel() {
+			this.showPostPanel = false;
 		},
 	},
 	components: {

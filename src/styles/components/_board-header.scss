@@ -6,12 +6,33 @@
 	align-items: center;
 	overflow: hidden;
 	margin-right: 48px;
+	border-bottom: $primary-light-gray-border;
 	.monday-board-subset-item {
 		padding-bottom: 4px;
 		position: relative;
 		.btn {
+			border-radius: 4px;
 			max-width: 180px;
-			padding: 7px 16px;
+			padding: 8px 16px;
+			&:hover {
+				background-color: $primary-background-hover-color;
+			}
+		}
+	}
+	.add-board-subset-picker-wrapper {
+		padding-bottom: 4px;
+		.btn {
+			max-width: 180px;
+			padding: 8px 16px;
+			&:hover {
+				background-color: $primary-background-hover-color;
+			}
+		}
+		.monday-board-subsets-tabs__separator {
+			background-color: $primary-border-clr-light;
+			width: 1px;
+			margin: 8px 8px;
+			height: 24px;
 		}
 	}
 }

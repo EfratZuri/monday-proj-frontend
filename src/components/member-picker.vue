@@ -12,7 +12,7 @@
 			</div>
 			<span>{{ infoForDisplay }} </span>
 		</div>
-		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
+		<!-- <div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
 			<div class="picker-dropdown-inner-container">
 				<div class="member-input-container">
 					<input type="text" v-model="memeberName" placeholder="Enter name" />
@@ -21,14 +21,12 @@
 					<div class="flex align-center"><span>People</span></div>
 					<ul v-if="members && members.length" class="clean-list member-list">
 						<li v-for="(member, idx) in members" :key="idx" class="member-row">
-							<!-- TODO: member image -->
-							<!-- TODO: member username -->
 						</li>
 					</ul>
 					<p v-else>No members to show...</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 
