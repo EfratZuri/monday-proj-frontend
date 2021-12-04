@@ -4,25 +4,32 @@
 			<button class="btn-close-panel" @click="closePanel">X</button>
 			<h2>{{ task.title }}</h2>
 		</header>
-		<button v-if="!showTextarea" class="btn new-post-placeholder" @click="toggleTextarea">
-			Write an update
-		</button>
-		<div v-if="showTextarea" class="flex column">
-			<textarea cols="30" rows="10" placeholder="Write an update" v-model="comment.txt"></textarea>
-			<button class="btn btn-update-panel" @click="addUpdate">Update</button>
+		<div class="post-top">
+			<button v-if="!showTextarea" class="btn new-post-placeholder" @click="toggleTextarea">
+				Write an update
+			</button>
+			<div v-if="showTextarea" class="flex column">
+				<textarea
+					cols="30"
+					rows="10"
+					placeholder="Write an update"
+					v-model="comment.txt"
+				></textarea>
+				<button class="btn btn-update-panel" @click="addUpdate">Update</button>
+			</div>
 		</div>
 		<div class="post-list-container">
 			<ul v-if="task.comments" class="post-list">
-				<li :key="task._id" class="post">
-					<div>
-						<span>{{ task.comments[0].txt }}</span>
+				<li v-for="comment in task.comments" :key="comment.id" class="post">
+					<div class="post-txt">
+						<span>{{ comment.txt }}</span>
 					</div>
 					<div class="post-actions-container flex">
 						<div class="post-like-action">
-							<div class="post-like-btn">Like</div>
+							<div class="post-like-btn"><span>Like</span></div>
 						</div>
 						<div class="post-replay-action">
-							<div class="post-replay-btn">Replay</div>
+							<div class="post-replay-btn"><span>Replay</span></div>
 						</div>
 					</div>
 				</li>
