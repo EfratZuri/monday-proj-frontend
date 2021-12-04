@@ -7,6 +7,7 @@
 		<div
 			class="grid-cell-row-component-header name-cell flex align-center"
 			:class="{ selected: isCellSelected }"
+			@click="togglePostPanel"
 		>
 			<!-- <div class="menu-edit-task-container" :class="{ selected: showTaskMenu }">
 				<button class="btn" @click="toggleShowTaskMenu">
@@ -36,7 +37,7 @@
 					@keyup.enter="$event.target.blur()"
 				/>
 				<div class="edit-btn-wrapper">
-					<button v-if="showEditBtn" class="btn btn-edit" @click="toggleEdit">EDIT</button>
+					<button v-if="showEditBtn" class="btn btn-edit" @click.stop="toggleEdit">EDIT</button>
 				</div>
 			</div>
 		</div>
@@ -49,6 +50,7 @@
 				@update="update($event, col.type)"
 			/>
 		</div>
+		<task-update v-if="showPostPanel" :task="task" />
 	</section>
 </template>
 
@@ -57,6 +59,7 @@ import statusPicker from '../components/status-picker';
 import datePicker from '../components/date-picker';
 import memberPicker from '../components/member-picker';
 import taskMenu from '@/components/task-menu';
+import taskUpdate from '@/components/task-update';
 export default {
 	name: 'taskPreview',
 	props: {
@@ -79,6 +82,7 @@ export default {
 			isCellSelected: false,
 			showCheckBox: false,
 			showTaskMenu: false,
+			showPostPanel: false,
 		};
 	},
 	created() {
@@ -87,6 +91,9 @@ export default {
 		this.cols = this.$store.getters.cols;
 	},
 	methods: {
+		togglePostPanel() {
+			this.showPostPanel = !this.showPostPanel;
+		},
 		toggleShowTaskMenu() {
 			this.showTaskMenu = !this.showTaskMenu;
 		},
@@ -129,6 +136,7 @@ export default {
 		datePicker,
 		memberPicker,
 		taskMenu,
+		taskUpdate,
 	},
 	// <!-- @blur="saveTitle" -->
 };
