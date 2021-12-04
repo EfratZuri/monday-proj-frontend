@@ -21,10 +21,10 @@
 					v-if="!showEdit"
 					:style="{ color: color }"
 					@click="editTitle"
-					@mouseover="isTaskToggleBtn = true"
-					@mouseleave="isTaskToggleBtn = false"
+					@mouseover="showTaskToggleBtn = true"
+					@mouseleave="showTaskToggleBtn = false"
 				>
-					<!-- <button v-if="isTaskToggleBtn" @click.stop="showTaskToggle">toggleTasks</button> -->
+					<!-- <button v-if="showTaskToggleBtn" @click.stop="showTaskToggle">toggleTasks</button> -->
 					{{ groupToEdit.title }}</span
 				>
 				<div v-else class="edit-group-container flex align-center">
@@ -77,7 +77,7 @@ export default {
 	data() {
 		return {
 			showEdit: false,
-			isTaskToggleBtn: false,
+			showTaskToggleBtn: false,
 			groupToEdit: { ...this.group },
 			color: this.group.style.clr,
 			cmpsOrder: null,
@@ -114,7 +114,7 @@ export default {
 			if (this.$refs.titleInput) this.$refs.titleInput.focus();
 			if (this.group.title !== this.groupToEdit.title) this.$emit('saveGroup', this.groupToEdit);
 
-			this.isTaskToggleBtn = false;
+			this.showTaskToggleBtn = false;
 		},
 		remove() {
 			this.$emit('removeGroup', this.group);

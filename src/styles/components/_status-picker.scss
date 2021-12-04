@@ -2,7 +2,7 @@
 	color: #fff;
 	font-size: 12px;
 	font-weight: 400;
-	position: relative;
+	// position: relative;
 	justify-content: center;
 	width: 100%;
 	&.col-cell {
@@ -13,7 +13,7 @@
 		}
 	}
 	span {
-		display: inline-block;
+		// display: inline-block;
 	}
 }
 
@@ -69,10 +69,30 @@
 		}
 		.picker-dropdown-inner-container {
 			// height: 300px;
-			padding: 16px 16px 16px 16px;
+			// padding: 16px 16px 0 16px;
 			min-width: 0;
 			width: 100%;
 			height: 100%;
+			.status-list {
+				padding: 16px 16px 0 16px;
+			}
+			.picker-dropdown-footer {
+				border-top: 1px solid rgb(197, 199, 208);
+				color: $primary-clr;
+				font-weight: 300;
+				justify-content: center;
+				height: 40px;
+				.btn {
+					width: 100%;
+					height: 100%;
+					font-size: 13px;
+					font-weight: 300;
+					&:hover {
+						background-color: $primary-clr;
+						color: #fff;
+					}
+				}
+			}
 		}
 	}
 }

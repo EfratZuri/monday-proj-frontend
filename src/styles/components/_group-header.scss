@@ -9,13 +9,17 @@
 	font-size: 18px;
 	.group-name {
 		width: 100%;
-
+		.color-picker-btn-container {
+			margin-left: 5px;
+			justify-content: center;
+		}
 		input {
 			width: 100%;
 			font-weight: 300;
 			font-size: 18px;
 			outline: none;
 			border: none;
+			padding: 0 2px;
 		}
 		.edit-group-container {
 			width: 100%;

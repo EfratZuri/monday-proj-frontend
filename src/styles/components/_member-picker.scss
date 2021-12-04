@@ -1,11 +1,24 @@
-.members-icon {
-	height: 100%;
+.member-picker-component {
 	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	ion-icon {
-		font-size: 26px;
-		color: #c8cad3;
+	.member-input-container {
+		width: 100%;
+		input {
+			background-color: $primary-background-clr !important;
+			width: 100%;
+			border: none;
+			padding-left: 8px;
+			font-size: 14px;
+		}
+	}
+	.members-icon {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		ion-icon {
+			font-size: 26px;
+			color: #c8cad3;
+		}
 	}
 }

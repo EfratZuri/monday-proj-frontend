@@ -41,7 +41,7 @@
 		<task-update
 			v-if="showPostPanel"
 			:task="task"
-			@closePanel="closePanel"
+			@closePanel="togglePostPanel"
 			@saveUpdate="saveUpdate"
 		/>
 	</section>
@@ -98,7 +98,6 @@ export default {
 			this.toggleEdit();
 			this.$emit('saveTitle', this.taskToEdit);
 		},
-
 		deleteTask() {
 			this.$emit('deleteTask', this.taskToEdit);
 		},
@@ -121,10 +120,6 @@ export default {
 			const copyTask = JSON.parse(JSON.stringify(this.task));
 			copyTask[type] = ev;
 			this.$emit('updatePicker', copyTask);
-		},
-
-		closePanel() {
-			this.showPostPanel = false;
 		},
 	},
 	components: {
