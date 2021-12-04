@@ -3,7 +3,13 @@
 		<ul v-if="tasks && tasks.length" class="task-list clean-list">
 			<draggable :component-data="getComponentData()" :list="tasks" group="tasks">
 				<transition-group>
-					<li v-for="task in tasks" :key="task._id" class="task-row flex-def">
+					<li v-for="task in tasks" :key="task._id" class="task-row flex align-center">
+						<div class="menu-edit-task-container" :class="{ selected: showTaskMenu }">
+							<button class="btn" @click="toggleShowTaskMenu">
+								<font-awesome-icon icon="caret-down" />
+							</button>
+							<task-menu v-if="showTaskMenu" :task="task" />
+						</div>
 						<task-preview
 							:task="task"
 							:styleObj="group.style"
@@ -21,11 +27,10 @@
 </template>
 
 <script>
-// import { Container, Draggable } from 'vue-smooth-dnd';
-// import { applyDrag, generateItems } from '../services/util.service.js';
 import draggable from 'vuedraggable';
 import taskPreview from '@/components/task-preview';
 import addTask from '@/components/add-task';
+import taskMenu from '@/components/task-menu';
 export default {
 	name: 'taskList',
 	props: {
@@ -41,6 +46,7 @@ export default {
 			// tasks: generateItems(50, (i) => ({ id: i, data: 'Draggable ' + i })),
 			showDialogNode: false,
 			isEdit: false,
+			showTaskMenu: false,
 		};
 	},
 	created() {
@@ -80,6 +86,9 @@ export default {
 		saveTask(task) {
 			this.$emit('saveTask', task, this.group._id);
 		},
+		toggleShowTaskMenu() {
+			this.showTaskMenu = !this.showTaskMenu;
+		},
 
 		deleteTask(task) {
 			this.$emit('deleteTask', task, this.group._id);
@@ -102,10 +111,7 @@ export default {
 		taskPreview,
 		addTask,
 		draggable,
-		// Container,
-		// Draggable,
-		// @start="drag = true"
-		// @end="drag = false"
+		taskMenu,
 	},
 };
 </script>

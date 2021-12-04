@@ -1,5 +1,5 @@
 .first-level-control-content {
-	position: fixed;
+	position: absolute;
 	z-index: 10000001;
 	left: $main-nav-width;
 	height: 100%;
@@ -10,10 +10,26 @@
 	transition: opacity 100ms ease;
 	background-color: $dark-background-color;
 	border-right: 1px solid $primary-border-clr-light;
-
 	.control-content-container {
+		position: relative;
 		height: 100%;
+		width: 100%;
 		overflow-x: hidden;
 		color: $primary-txt-clr;
+
+		.btn-open-control {
+			background-color: #fff;
+			position: absolute;
+			right: 0;
+			top: 20px;
+			justify-content: center;
+			transform: translateX(50%);
+			z-index: 1000;
+
+			&:hover {
+				background-color: $primary-clr;
+				color: #fff;
+			}
+		}
 	}
 }

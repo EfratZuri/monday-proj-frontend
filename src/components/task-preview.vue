@@ -1,26 +1,20 @@
 <template>
-	<section
-		class="grid-row-component task-preview flex-def"
-		@mouseover="showEditBtn = true"
-		@mouseleave="showEditBtn = false"
-	>
+	<section class="grid-row-component task-preview flex-def">
 		<div
 			class="grid-cell-row-component-header name-cell flex align-center"
 			:class="{ selected: isCellSelected }"
 			@click="togglePostPanel"
 		>
-			<!-- <div class="menu-edit-task-container" :class="{ selected: showTaskMenu }">
-				<button class="btn" @click="toggleShowTaskMenu">
-					<font-awesome-icon icon="caret-down" />
-				</button>
-				<task-menu v-if="showTaskMenu" :task="task" />
-			</div> -->
 			<div
 				class="pulse-left-indicator"
 				:style="{ backgroundColor: styleObj.clr, color: styleObj.clr }"
 			>
 				<div class="left-indicator-inner flex align-center">
-					<div class="left-indicator-checkbox" :class="{ selected: isTaskSelected }"></div>
+					<div
+						class="left-indicator-checkbox"
+						:class="{ selected: isTaskSelected }"
+						@click="selectTask"
+					></div>
 				</div>
 			</div>
 			<div class="task-title flex align-center">
@@ -28,6 +22,7 @@
 				<span v-if="!showEditTask">
 					{{ task.title }}
 				</span>
+				<button v-if="!showEditTask" class="btn btn-edit" @click.stop="toggleEdit">Edit</button>
 				<input
 					v-else
 					type="text"
@@ -36,9 +31,8 @@
 					@blur="saveTitle"
 					@keyup.enter="$event.target.blur()"
 				/>
-				<div class="edit-btn-wrapper">
-					<button v-if="showEditBtn" class="btn btn-edit" @click.stop="toggleEdit">EDIT</button>
-				</div>
+				<!-- <div class="edit-btn-wrapper"> -->
+				<!-- </div> -->
 			</div>
 		</div>
 		<div class="grid-cells-row-component">
@@ -77,11 +71,9 @@ export default {
 			cmpsOrder: null,
 			taskToEdit: null,
 			showEditTask: false,
-			showEditBtn: false,
 			isTaskSelected: false,
 			isCellSelected: false,
 			showCheckBox: false,
-			showTaskMenu: false,
 			showPostPanel: false,
 		};
 	},
@@ -94,9 +86,7 @@ export default {
 		togglePostPanel() {
 			this.showPostPanel = !this.showPostPanel;
 		},
-		toggleShowTaskMenu() {
-			this.showTaskMenu = !this.showTaskMenu;
-		},
+
 		toggleCellSelected() {
 			this.isCellSelected = !this.isCellSelected;
 		},
@@ -129,6 +119,9 @@ export default {
 			const copyTask = JSON.parse(JSON.stringify(this.task));
 			copyTask[type] = ev;
 			this.$emit('updatePicker', copyTask);
+		},
+		selectTask() {
+			console.log('Select task');
 		},
 	},
 	components: {
