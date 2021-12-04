@@ -31,3 +31,9 @@
 @import 'components/group-menu';
 // Color palette
 @import 'components/group-color-palette';
+
+// Header filter
+@import 'components/board-header-add-task.scss';
+@import 'components/board-header-filter-person.scss';
+@import 'components/board-header-filter-search.scss';
+@import 'components/board-header-filter-filter.scss';
