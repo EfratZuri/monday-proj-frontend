@@ -1,34 +1,35 @@
 .status-picker-txt {
-  color: #fff;
-  font-size: 12px;
-  font-weight: 400;
-  position: relative;
-  justify-content: center;
-  &.col-cell {
-    &:hover {
-      .fold-triangle {
-        border-width: 0px 13px 13px 0px;
-      }
-    }
-  }
-  span {
-    display: inline-block;
-  }
+	color: #fff;
+	font-size: 12px;
+	font-weight: 400;
+	position: relative;
+	justify-content: center;
+	width: 100%;
+	&.col-cell {
+		&:hover {
+			.fold-triangle {
+				border-width: 0px 13px 13px 0px;
+			}
+		}
+	}
+	span {
+		display: inline-block;
+	}
 }
 
 .fold-triangle {
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  border-width: 0;
-  border-style: solid;
-  background: inherit;
-  filter: brightness(115%);
-  display: block;
-  border-color: transparent #fff;
-  transition: border-width 0.3s ease-in-out;
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	border-width: 0;
+	border-style: solid;
+	background: inherit;
+	filter: brightness(115%);
+	display: block;
+	border-color: transparent #fff;
+	transition: border-width 0.3s ease-in-out;
 }
 
 .picker-component {

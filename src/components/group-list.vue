@@ -14,7 +14,7 @@
 					@saveTask="saveTask"
 					@deleteTask="deleteTask"
 				/>
-				<group-task-summary :group="group" />
+				<!-- <group-task-summary :group="group" /> -->
 			</li>
 		</ul>
 		<button class="btn" @click="createNewGroup">+ Add new group</button>
@@ -24,8 +24,8 @@
 <script>
 import taskList from '@/components/task-list';
 import groupHeader from '@/components/group-header';
-import groupTaskSummary from '@/components/group-task-summary';
-// import addTask from './add-task.vue';
+// import groupTaskSummary from '@/components/group-task-summary';
+
 export default {
 	name: 'groupList',
 	props: {
@@ -53,7 +53,6 @@ export default {
 		},
 		saveGroup(group) {
 			this.$emit('saveGroup', group);
-			//   this.$store.dispatch({ type: 'saveGroup', group });
 		},
 		removeGroup(group) {
 			this.$emit('removeGroup', group);
@@ -78,6 +77,10 @@ export default {
 			console.log('e');
 		},
 	},
-	components: { taskList, groupHeader, groupTaskSummary },
+	components: {
+		taskList,
+		groupHeader,
+		//   groupTaskSummary
+	},
 };
 </script>
