@@ -21,10 +21,18 @@
       <button class="btn btn-update-panel" @click="addUpdate">Update</button>
     </div>
     <div class="post-list-container">
-      <ul v-if="task.updates" class="post-list">
+      <ul v-if="task.comments" class="post-list">
         <li :key="task._id" class="post">
           <div>
-            <span>{{ task.updates }}</span>
+            <span>{{ task.comments[0].txt }}</span>
+          </div>
+          <div class="post-actions-container flex">
+            <div class="post-like-action">
+              <div class="post-like-btn">Like</div>
+            </div>
+            <div class="post-replay-action">
+              <div class="post-replay-btn">Replay</div>
+            </div>
           </div>
         </li>
       </ul>

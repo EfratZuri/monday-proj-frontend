@@ -88,4 +88,50 @@
     right: 15px;
     bottom: 345px;
   }
+
+  .post-list-container {
+    position: relative;
+    overflow: visible;
+    margin-top: 67px;
+    margin-bottom: 40px;
+    font-size: 16px;
+    line-height: 20px;
+    font-family: 'Roboto', helvetica, arial, sans-serif;
+    font-weight: 300;
+    color: #323338;
+    border: 1px solid #e6e9ef;
+    border-radius: 8px;
+    cursor: auto;
+    // color: var(--primary-text-color);
+
+    .post {
+      padding: 0 15px 15px;
+      min-height: 60px;
+    }
+
+    .post-actions-container {
+      height: 42px;
+      border-top: 1px solid #e6e9ef;
+      justify-content: space-around;
+      align-items: center;
+
+      .post-like-action {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .post-like-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: calc(100% - 8px);
+          height: calc(100% - 8px);
+          border-radius: 4px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
 }
