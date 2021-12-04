@@ -217,6 +217,13 @@ function _getStatusOptions() {
 				backgroundColor: 'rgb(0, 200, 117)',
 			},
 		},
+		{
+			name: 'working on it',
+			display: 'Working on it',
+			style: {
+				backgroundColor: 'rgb(253, 171, 61)',
+			},
+		},
 	];
 }
 /*
