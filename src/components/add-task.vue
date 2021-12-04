@@ -1,12 +1,15 @@
 <template>
 	<section v-if="task" class="add-task-component flex">
-		<div class="pulse-left-indicator" :style="{ backgroundColor: color, color: color }"></div>
+		<div class="pulse-left-indicator" :style="{ backgroundColor: color, color: color }">
+			<div class="left-indicator-inner"></div>
+		</div>
 		<input
 			type="text"
 			v-model="task.title"
 			@focus="toggleAddBtn"
 			placeholder="+Add"
 			@keyup.enter="addNewTask"
+			@blur="turnOffAdd"
 		/>
 		<button v-if="showAddBtn" class="btn btn-blue" @click="addNewTask">+Add</button>
 	</section>
