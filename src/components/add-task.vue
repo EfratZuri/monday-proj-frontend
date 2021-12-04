@@ -12,6 +12,7 @@
       @focus="toggleAddBtn"
       placeholder="+Add"
       @keyup.enter="addNewTask"
+      @blur="turnOffAdd"
     />
     <button v-if="showAddBtn" class="btn btn-blue" @click="addNewTask">
       +Add
@@ -42,12 +43,18 @@ export default {
   methods: {
     addNewTask() {
       if (!this.task.title) return;
+      console.log('$$$$$$$');
       this.$emit('addTask', this.task);
       this.toggleAddBtn();
       this.task.title = '';
     },
     toggleAddBtn() {
       this.showAddBtn = !this.showAddBtn;
+    },
+    turnOffAdd() {
+      setTimeout(() => {
+        this.showAddBtn = false;
+      }, 10);
     },
   },
 };
