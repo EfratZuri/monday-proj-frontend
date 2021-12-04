@@ -119,9 +119,8 @@ export default {
       this.$emit('deleteTask', this.taskToEdit);
     },
 
-    saveUpdate(update) {
-      console.log(update);
-      this.$emit('saveUpdate', update);
+    saveUpdate(details) {
+      this.$emit('saveUpdate', details);
     },
 
     getCmpInfo(col) {

@@ -27,6 +27,7 @@
               @saveTitle="saveTask"
               @deleteTask="deleteTask"
               @updatePicker="saveTask"
+              @saveUpdate="saveUpdate"
             />
           </li>
         </transition-group>
@@ -64,14 +65,14 @@ export default {
     this.tasks = this.group.tasks;
   },
   methods: {
-    handleChange(value) {
-      console.log(value.vue);
-    },
+    // handleChange(value) {
+    //   // console.log(value.vue);
+    // },
 
     getComponentData() {
       return {
         on: {
-          change: this.handleChange,
+          // change: this.handleChange,
           // input: this.inputChanged,
         },
         attrs: {
@@ -104,9 +105,11 @@ export default {
     deleteTask(task) {
       this.$emit('deleteTask', task, this.group._id);
     },
-    // saveTitle(task) {
-    // this.$emit('saveTask', task, this.group._id);
-    // },
+    saveUpdate(details) {
+      console.log(details, this.group._id);
+      details.groupId = this.group._id;
+      this.$emit('saveUpdate', details);
+    },
   },
   computed: {
     // myList: {

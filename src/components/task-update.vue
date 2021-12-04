@@ -16,9 +16,9 @@
         cols="30"
         rows="10"
         placeholder="Write an update"
-        v-model="updateMsg"
+        v-model="comment.txt"
       ></textarea>
-      <button class="btn btn-blue" @click="addUpdate">Update</button>
+      <button class="btn btn-update-panel" @click="addUpdate">Update</button>
     </div>
     <div class="post-list-container">
       <ul v-if="task.updates" class="post-list">
@@ -49,18 +49,23 @@ export default {
       updateMsg: '',
       taskToEdit: null,
       showTextarea: false,
+      comment: null,
     };
   },
   created() {
     this.taskToEdit = JSON.parse(
       JSON.stringify(this.$store.getters.taskToEdit)
     );
+    this.comment = JSON.parse(
+      JSON.stringify(this.$store.getters.commentToEdit)
+    );
   },
   methods: {
     addUpdate() {
       this.showTextarea = false;
-      if (!this.updateMsg) return;
-      this.$emit('saveUpdate', this.updateMsg);
+      if (!this.comment.txt) return;
+      const details = { comment: this.comment, taskId: this.task._id };
+      this.$emit('saveUpdate', details);
     },
     toggleTextarea() {
       this.showTextarea = !this.showTextarea;
