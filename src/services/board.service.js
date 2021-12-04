@@ -93,7 +93,7 @@ async function saveGroup(group, activeBoardId) {
 	// If the group is new
 	if (!group._id) {
 		group._id = utilService.makeId();
-		board.groups.push(group);
+		board.groups.unshift(group);
 		// Update group
 	} else {
 		const idx = board.groups.findIndex(({ _id }) => _id === group._id);

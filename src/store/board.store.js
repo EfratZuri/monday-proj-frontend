@@ -66,7 +66,7 @@ export const boardStore = {
 			const idx = state.activeBoard.groups.findIndex(({ _id }) => _id === group._id);
 			// Add a new Group
 			if (idx === -1) {
-				state.activeBoard.groups.push(group);
+				state.activeBoard.groups.unshift(group);
 				state.groupClrs.curClrIdx++;
 				if (state.groupClrs.curClrIdx >= state.groupClrs.clrs.length) state.groupClrs.curClrIdx = 0;
 
@@ -177,7 +177,6 @@ export const boardStore = {
 		async saveBoard(context, { board }) {
 			try {
 				const addedBoard = await boardService.saveBoard(board);
-				console.log('addedBoard', addedBoard);
 				context.commit({ type: 'setActiveBoard', activeBoard: addedBoard });
 				return addedBoard;
 			} catch (err) {

@@ -60,6 +60,9 @@
     & .description-line {
       border: 1px dashed transparent;
       cursor: text;
+      overflow: hidden;
+      max-height: 20px;
+      // overflow-wrap: break-word;
       &:hover {
         border: 1px dashed rgb(167, 167, 167);
       }

@@ -15,10 +15,6 @@
 <script>
 export default {
 	name: 'boardHeaderSubsetToolbar',
-	data() {
-		return {};
-	},
-	created() {},
 	methods: {
 		move() {
 			console.log('Move Function is not ready yet');
