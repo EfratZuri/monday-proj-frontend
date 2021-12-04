@@ -40,21 +40,24 @@
 		position: relative;
 	}
 	.btn-menu-group-header {
-		border-radius: 50%;
-		width: 16px;
-		height: 16px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
 		font-size: 14px;
+		font-weight: 400;
 		border: 1px solid;
 		transition: color 0.1s ease, background-color 0.1s ease, opacity 0.1s ease;
-		font: normal normal normal 14px/1 FontAwesome;
 		&:not(:hover) {
 			color: $primary-background-clr !important;
 		}
 		&::before {
 			// content: '\f0d7';
+		}
+		&:hover {
+			background-color: transparent !important;
 		}
 	}
 }

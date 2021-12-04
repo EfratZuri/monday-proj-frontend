@@ -1,7 +1,7 @@
 <template>
-	<div class="workspace">
+	<div class="workspace" :class="{ 'control-open': showControlContent }">
 		<!-- <router-view /> -->
-		<control-content />
+		<control-content @toggleOpen="toggleOpenControl" @add="addBoard" />
 		<div class="workspace-content">
 			<div v-if="isLoading"><p>Loading</p></div>
 
@@ -31,6 +31,11 @@ import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
 export default {
 	name: 'workspace',
+	data() {
+		return {
+			showControlContent: false,
+		};
+	},
 	async created() {
 		this.$store.dispatch({ type: 'loadBoards' });
 	},
@@ -63,6 +68,12 @@ export default {
 		},
 		saveGroup(group) {
 			this.$store.dispatch({ type: 'saveGroup', group });
+		},
+		toggleOpenControl() {
+			this.showControlContent = !this.showControlContent;
+		},
+		addBoard() {
+			console.log('add board');
 		},
 	},
 	components: {

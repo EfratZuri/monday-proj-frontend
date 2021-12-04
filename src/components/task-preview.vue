@@ -1,6 +1,6 @@
 <template>
 	<section
-		class="grid-row-component task-preview flex-def"
+		class="grid-row-component task-preview flex align-center"
 		@mouseover="showEditBtn = true"
 		@mouseleave="showEditBtn = false"
 	>
@@ -30,9 +30,7 @@
 					@blur="saveTitle"
 					@keyup.enter="$event.target.blur()"
 				/>
-				<div class="edit-btn-wrapper">
-					<button v-if="showEditBtn" class="btn btn-edit" @click.stop="toggleEdit">EDIT</button>
-				</div>
+				<button v-if="!showEditBtn" class="btn btn-edit" @click.stop="toggleEdit">Edit</button>
 			</div>
 		</div>
 		<div class="grid-cells-row-component">
