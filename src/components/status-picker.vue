@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="grid-cell-component-wrapper picker-component"
+		class="grid-cell-component-wrapper picker-component status-picker"
 		:class="{ 'dropdown-open': showOptions }"
 	>
 		<div

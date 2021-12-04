@@ -87,9 +87,6 @@ export default {
 		this.cols = this.$store.getters.cols;
 	},
 	methods: {
-		updateTask(curType, e) {
-			console.log(e, curType);
-		},
 		toggleShowTaskMenu() {
 			this.showTaskMenu = !this.showTaskMenu;
 		},
@@ -101,7 +98,6 @@ export default {
 			await (this.showEditTask = !this.showEditTask);
 			if (this.$refs.taskTitle) this.$refs.taskTitle.focus();
 		},
-
 		saveTitle() {
 			this.toggleEdit();
 			this.$emit('saveTitle', this.taskToEdit);
@@ -117,7 +113,6 @@ export default {
 			return { selected: this.task[col.type], opts: col.data.opts };
 		},
 		getDefaultCmp(col) {
-			// return { selected: .options[cmp].default, options: this.cols[cmp].options };
 			return {
 				selected: col.data.opts.find(({ name }) => name === 'default'),
 				opts: col.data.opts,

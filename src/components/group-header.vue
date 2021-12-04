@@ -28,7 +28,10 @@
 					{{ groupToEdit.title }}</span
 				>
 				<div v-else class="edit-group-container flex align-center">
-					<div class="color-picker-btn-container" :class="{ 'dropdown-open': showColorPalette }">
+					<div
+						class="color-picker-btn-container flex align-center"
+						:class="{ 'dropdown-open': showColorPalette }"
+					>
 						<button
 							class="btn btn-round btn-change-color"
 							:style="{ backgroundColor: color }"
@@ -73,7 +76,7 @@ export default {
 	},
 	data() {
 		return {
-			isEdit: true,
+			isEdit: false,
 			isTaskToggleBtn: false,
 			groupToEdit: { ...this.group },
 			color: this.group.style.clr,
