@@ -1,5 +1,5 @@
 <template>
-	<div class="grid-cell-component-wrapper">
+	<div class="grid-cell-component-wrapper date-picker-container">
 		<div class="col-cell">
 			<!-- <date-picker v-model="time" range></date-picker> -->
 			<span>{{ dateForDisplay }}</span>
