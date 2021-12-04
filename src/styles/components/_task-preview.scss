@@ -40,6 +40,9 @@
 			background-color: $primary-selected-color;
 		}
 	}
+	&.dropdown-open {
+		position: relative;
+	}
 }
 
 .grid-cells-row-component-wrapper,

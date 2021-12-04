@@ -1,16 +1,33 @@
 <template>
 	<div
-		class="grid-cell-component-wrapper"
+		class="grid-cell-component-wrapper member-picker-component"
 		@mouseover="togglePlusBtn"
-		:class="{ selected: isSelected }"
+		:class="[{ selected: isSelected }, { 'dropdown-open': showOptions }]"
 		@click="toggleSelected"
 	>
-		<div class="col-cell">
+		<div class="col-cell" @click="toggleOptions">
 			<!-- <button v-if="showPlusBtn" class="btn btn-blue">+</button> -->
 			<div class="members-icon flex">
 				<ion-icon name="person-circle-outline" />
 			</div>
 			<span>{{ infoForDisplay }} </span>
+		</div>
+		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
+			<div class="picker-dropdown-inner-container">
+				<div class="member-input-container">
+					<input type="text" v-model="memeberName" placeholder="Enter name" />
+				</div>
+				<div class="members-container flex column">
+					<div class="flex align-center"><span>People</span></div>
+					<ul v-if="members && members.length" class="clean-list member-list">
+						<li v-for="(member, idx) in members" :key="idx" class="member-row">
+							<!-- TODO: member image -->
+							<!-- TODO: member username -->
+						</li>
+					</ul>
+					<p v-else>No members to show...</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -25,15 +42,14 @@ export default {
 			selectedObj: {},
 			showPlusBtn: false,
 			isSelected: false,
+			showOptions: false,
 		};
 	},
 	created() {
 		const selectedName = this.info.selected;
 		if (selectedName.name === 'default') {
 			this.selectedObj = selectedName;
-		} else {
-			this.selectedObj = this.info.opts.find(({ name }) => name === selectedName);
-		}
+		} else this.selectedObj = this.info.opts.find(({ name }) => name === selectedName);
 	},
 	methods: {
 		update(curType, event) {

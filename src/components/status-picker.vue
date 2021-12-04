@@ -15,17 +15,22 @@
 			<span>{{ infoForDisplay }} </span>
 		</div>
 		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
-			<div class="picker-dropdown-inner-container">
-				<div
-					v-for="(opt, idx) in opts"
-					:key="idx"
-					:style="getOptStyle(opt)"
-					class="dropdown-inner-container"
-					@click="update(opt)"
-				>
-					<div class="picker-opt-container flex align-center">
-						<span>{{ opt.display }}</span>
+			<div class="picker-dropdown-inner-container flex space-between column">
+				<div class="status-list">
+					<div
+						v-for="(opt, idx) in opts"
+						:key="idx"
+						:style="getOptStyle(opt)"
+						class="dropdown-inner-container"
+						@click="update(opt)"
+					>
+						<div class="picker-opt-container flex align-center">
+							<span>{{ opt.display }}</span>
+						</div>
 					</div>
+				</div>
+				<div class="picker-dropdown-footer flex align-center">
+					<button class="btn">Add/Edit Labels</button>
 				</div>
 			</div>
 		</div>
