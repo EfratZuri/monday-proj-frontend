@@ -3,7 +3,6 @@
 	width: 100%;
 	align-items: stretch;
 	// margin-left: 30px;
-
 	input {
 		width: 100%;
 		border: 1px solid transparent;
@@ -63,23 +62,25 @@
 	display: block;
 
 	width: 100%;
-	height: 35px;
+	height: 100%;
+	// height: 35px;
 	flex-basis: 140px;
-	padding: 0 8px;
+	// padding: 0 8px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	text-align: center;
 	font-size: 13px;
 	font-weight: 400;
-	border-right: 1px solid;
-	border-right-color: #fff;
+	// border-right: 1px solid;
+	// border-right-color: #fff;
 	color: #666;
 }
 .grid-cell-component-wrapper {
 	// left: 378px;
 	// width: 141px;
-	flex-basis: 33.3333333%;
+	flex-basis: 33.3333333333333333333%;
+	width: 100%;
 	&:not(.picker-component) {
 		&.selected {
 			background-color: $primary-selected-color;
@@ -175,6 +176,9 @@
 	input {
 		width: 100%;
 		border: 1px dashed $primary-txt-clr;
+		&:focus {
+			outline: none;
+		}
 	}
 }
 
@@ -206,67 +210,6 @@
 			background-color: rgba(0, 0, 0, 0.2);
 			outline: 1px rgba(255, 255, 255, 0.2) solid;
 			opacity: 0;
-		}
-	}
-}
-
-.picker-component {
-	&.dropdown-open {
-		position: relative;
-	}
-}
-.picker-component {
-	.dropdown-modal {
-		background-color: $primary-background-clr;
-		color: #323338;
-		box-shadow: 0 8px 16px 0px rgb(0 0 0 / 32%);
-		border-radius: 4px;
-		font-size: 13px;
-		transition: width 0.1s;
-		pointer-events: all;
-		height: 100%;
-		width: 100%;
-		&::before {
-			content: ' ';
-			position: absolute;
-			border: solid transparent;
-			bottom: 100%;
-			border-color: #e1e1e100;
-			pointer-events: none;
-			height: 0;
-			width: 0;
-			right: 50%;
-			transform: translateX(50%);
-			border-width: 10px;
-		}
-		.dropdown-inner-container {
-			&:hover {
-				opacity: 0.85;
-			}
-		}
-		.picker-dropdown-inner-container {
-			height: 300px;
-			padding: 16px 16px 16px 16px;
-			min-width: 0;
-			width: 100%;
-			.picker-opt-container {
-				width: 100%;
-				flex: 0 0 32px;
-				width: 112px;
-				height: 32px;
-				align-self: auto;
-				line-height: 32px;
-				text-align: center;
-				margin-bottom: 8px;
-				border-radius: 2px;
-				text-align: center;
-
-				color: #fff;
-				font-weight: 400;
-				cursor: pointer;
-				transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
-				position: relative;
-			}
 		}
 	}
 }

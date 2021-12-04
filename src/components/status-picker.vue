@@ -6,9 +6,12 @@
 		<div
 			v-if="styleObj"
 			class="col-cell status-picker-txt flex align-center"
+			@mouseover="fold = true"
+			@mouseleave="fold = false"
 			:style="styleObj"
 			@click="toggleStatusPicker"
 		>
+			<span :class="{ 'fold-triangle': fold }"></span>
 			<span>{{ infoForDisplay }} </span>
 		</div>
 		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
@@ -40,6 +43,7 @@ export default {
 			showOptions: false,
 			selected: {},
 			opts: null,
+			fold: false,
 		};
 	},
 	created() {
@@ -64,8 +68,6 @@ export default {
 	},
 	computed: {
 		infoForDisplay() {
-			console.log(this.selected);
-			console.log(this.selected.name === 'default' ? '' : this.selected.display);
 			return this.selected.name === 'default' ? '' : this.selected.display;
 		},
 	},

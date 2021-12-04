@@ -12,9 +12,11 @@
 			border-bottom: 1px solid;
 			border-bottom-color: $primary-background-clr;
 			cursor: pointer;
-
 			&:hover {
 				background-color: $primary-background-hover-color;
+				.status-picker {
+					opacity: 0.8;
+				}
 			}
 			&:hover .menu-edit-task-container {
 				opacity: 1;

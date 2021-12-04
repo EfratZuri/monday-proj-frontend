@@ -11,6 +11,7 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.36",
         "@fortawesome/free-solid-svg-icons": "^5.15.4",
         "@fortawesome/vue-fontawesome": "^2.0.6",
+        "@ionic/cli": "^6.18.1",
         "axios": "^0.24.0",
         "core-js": "^3.6.5",
         "font-awesome": "^4.7.0",
@@ -20,6 +21,7 @@
         "vue": "^2.6.11",
         "vue-router": "^3.5.3",
         "vue-smooth-dnd": "^0.8.1",
+        "vue2-datepicker": "^3.10.4",
         "vuedraggable": "^2.24.3",
         "vuex": "^3.6.2"
     },

@@ -15,12 +15,16 @@
 			font-weight: 300;
 			font-size: 18px;
 			outline: none;
-			// line-height: 24px;
 			border: none;
 		}
 		.edit-group-container {
 			width: 100%;
 			border: 1px dashed rgb(209, 209, 209);
+			.btn-change-color {
+				&:hover {
+					opacity: 0.8;
+				}
+			}
 		}
 		& span {
 			// padding: 5px 10px;

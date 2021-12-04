@@ -19,8 +19,7 @@ export const boardService = {
 	getBoardAndGroup,
 };
 
-async function query(filterBy = {}) {
-	console.log('', filterBy);
+async function query() {
 	// let queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`;
 	// return httpService.get(`board${queryStr}`)
 	let boards = await storageService.query(STORAGE_KEY_BOARDS);
@@ -174,10 +173,6 @@ function getEmptyBoard() {
 	};
 }
 
-// function getEmptyCmp() {
-// 	return {};
-// }
-
 // Auxiliary functions
 
 function getBoardAndGroup(task) {
@@ -217,23 +212,12 @@ function _getStatusOptions() {
 				backgroundColor: 'rgb(0, 200, 117)',
 			},
 		},
+		{
+			name: 'working on it',
+			display: 'Working on it',
+			style: {
+				backgroundColor: 'rgb(253, 171, 61)',
+			},
+		},
 	];
 }
-/*
-'status-picker': {
-
-},
-'member-picker': {
-  options: {
-	default: {
-	  display: '',
-	},
-  },
-},
-'date-picker': {
-  options: {
-	default: {
-	  display: '',
-	},
-  },
-},*/
