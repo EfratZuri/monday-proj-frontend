@@ -22,6 +22,7 @@
 				<span v-if="!showEditTask">
 					{{ task.title }}
 				</span>
+				<button v-if="!showEditBtn" class="btn btn-edit" @click.stop="toggleEdit">Edit</button>
 				<input
 					v-else
 					type="text"
@@ -30,7 +31,6 @@
 					@blur="saveTitle"
 					@keyup.enter="$event.target.blur()"
 				/>
-				<button v-if="!showEditBtn" class="btn btn-edit" @click.stop="toggleEdit">Edit</button>
 			</div>
 		</div>
 		<div class="grid-cells-row-component">
@@ -108,8 +108,8 @@ export default {
 			this.$emit('deleteTask', this.taskToEdit);
 		},
 
-		saveUpdate(update) {
-			console.log(update);
+		saveUpdate(details) {
+			this.$emit('saveUpdate', details);
 		},
 
 		getCmpInfo(col) {

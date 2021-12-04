@@ -19,6 +19,7 @@
 					@saveTask="saveTask"
 					@deleteTask="deleteTask"
 					@saveGroup="saveGroup"
+					@saveUpdate="saveUpdate"
 				/>
 			</div>
 		</div>
@@ -74,6 +75,9 @@ export default {
 		},
 		addBoard() {
 			console.log('add board');
+		},
+		saveUpdate(details) {
+			this.$store.dispatch({ type: 'saveUpdate', details });
 		},
 	},
 	components: {
