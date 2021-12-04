@@ -31,7 +31,6 @@ export default {
 	created() {
 		this.task = JSON.parse(JSON.stringify(this.$store.getters.taskToEdit));
 		this.color = this.group.style?.clr;
-		console.log(this.color);
 	},
 	methods: {
 		addNewTask() {
