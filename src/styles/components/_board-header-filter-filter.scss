@@ -1,0 +1,28 @@
+.filter-filter-wrapper {
+  margin-inline-end: 6px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: rgb(230, 233, 239);
+  }
+  & .filter-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    padding-block-end: 8px;
+  }
+  & .filter-span {
+    max-width: 140px;
+    padding-inline-start: 0;
+    font-size: rem(14px);
+    padding: 1px 0 1px 5px;
+  }
+  & .filter-dropdown-btn {
+    margin-inline-start: 6px;
+    padding-block-end: 4px;
+  }
+}

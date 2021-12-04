@@ -14,9 +14,11 @@ $primary-selected-color: #cce5ff;
 // Background colors
 $dark-background-color: #f5f6f8;
 $main-nav-background-clr: #292f4c;
-// #2a2f4c
 $primary-background-clr: #fff;
 $primary-background-hover-color: #e6e9ef;
+// Border color
+$primary-border-clr-light: #e6e9ef;
+
 // LAYOUT
 $layoutPadding: 20px;
 
@@ -34,3 +36,6 @@ $padding-def: 10px 20px;
 
 // WIDTH
 $main-nav-width: 66px;
+$control-content-width: 30px;
+// task list margin
+$edit-btn-container-width: 30px;

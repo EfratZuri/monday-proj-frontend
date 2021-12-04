@@ -1,78 +1,7 @@
 .board-header-view-bar {
-  .btn {
-    height: 32px;
-    border-radius: 4px;
-    justify-content: center;
-    &:not(.btn-blue):hover {
-      background-color: $primary-background-hover-color;
-    }
-  }
-
-  .add-task-btn-component {
-    height: 100%;
-    .btn-blue {
-      border-radius: 4px 0 0 4px;
-    }
-    & .dropdown-button {
-      border-radius: 0 4px 4px 0;
-      border-left: 1px solid;
-      border-left-color: #0071d9;
-      background-color: #0073ea;
-      width: 28px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-size: 15px;
-      cursor: pointer;
-      transition: background-color 100ms ease-in;
-      &.small-btn {
-        height: 32px;
-      }
-      &:hover {
-        background-color: $primary-hover-clr;
-      }
-      &.clicked {
-        background-color: $primary-hover-clr;
-      }
-    }
-    .header-add-dropdown {
-      background-color: white;
-      position: absolute;
-      left: 174px;
-      top: 197px;
-      height: 80px;
-      width: 220px;
-      font-size: rem(15px);
-      line-height: rem(22.5px);
-      color: rgb(50, 51, 56);
-      //   height: 100px;
-      border-radius: 8px;
-      box-shadow: 0 4px 17px 6px rgb(0 0 0 / 10%);
-      padding: 8px;
-      z-index: 999;
-      & .add-group-wrapper {
-        line-height: 24px;
-        display: flex;
-        align-items: center;
-        padding: 4px 8px;
-        cursor: pointer;
-        color: #323338;
-        font-weight: 400;
-        font-size: 14px;
-        letter-spacing: 0px;
-        white-space: nowrap;
-        border-radius: 4px;
-        text-decoration: none;
-        &:hover {
-          background-color: rgb(230, 233, 239);
-        }
-      }
-    }
-  }
+  padding: 16px 0;
 
   & .filter-tasks-wrapper {
-    gap: 20px;
     & * {
       display: flex;
       align-items: center;
@@ -81,33 +10,6 @@
       border-radius: 4px;
       line-height: 22.5px;
       padding: 2px 0 0 2px;
-    }
-    & .search-tasks-wrapper {
-      //   display: flex;
-      //   align-items: center;
-      //   vertical-align: top;
-      //   cursor: pointer;
-      //   border-radius: 4px;
-      //   line-height: 22.5px;
-      //   width: 60px;
-      //   height: 32px;
-      //   padding: 2px 0 0 2px;
-      //   width: fit-content;
-      &:hover {
-        background-color: $primary-background-hover-color;
-      }
-      & .search-input {
-        // outline: none;
-        // cursor: pointer;
-        // padding: 1px 5px 0 1px;
-        // font-size: rem(15px);
-        // width: 100%;
-        width: fit-content;
-
-        &:hover {
-          background-color: $primary-background-hover-color;
-        }
-      }
     }
   }
 }
