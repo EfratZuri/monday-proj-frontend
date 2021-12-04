@@ -1,9 +1,5 @@
 <template>
-	<section
-		class="grid-row-component task-preview flex align-center"
-		@mouseover="showEditBtn = true"
-		@mouseleave="showEditBtn = false"
-	>
+	<section class="grid-row-component task-preview flex align-center">
 		<div
 			class="grid-cell-row-component-header name-cell flex align-center"
 			:class="{ selected: isCellSelected }"
@@ -19,10 +15,10 @@
 			</div>
 			<div class="task-title flex align-center">
 				<!-- <button class="btn" @click="deleteTask">X</button> -->
-				<span v-if="!showEditTask">
-					{{ task.title }}
-				</span>
-				<button v-if="!showEditBtn" class="btn btn-edit" @click.stop="toggleEdit">Edit</button>
+				<div v-if="!showEditTask">
+					<span>{{ task.title }}</span>
+					<button class="btn btn-edit" @click.stop="toggleEdit">Edit</button>
+				</div>
 				<input
 					v-else
 					type="text"
@@ -74,7 +70,6 @@ export default {
 			cmpsOrder: null,
 			taskToEdit: null,
 			showEditTask: false,
-			showEditBtn: false,
 			isTaskSelected: false,
 			isCellSelected: false,
 			showCheckBox: false,
@@ -88,7 +83,7 @@ export default {
 	},
 	methods: {
 		togglePostPanel() {
-			console.log('$$$$');
+			if (this.showEditTask && !this.showPostPanel) return;
 			this.showPostPanel = !this.showPostPanel;
 		},
 		toggleCellSelected() {
@@ -114,7 +109,6 @@ export default {
 
 		getCmpInfo(col) {
 			if (!this.task?.[col.type]) return this.getDefaultCmp(col);
-
 			return { selected: this.task[col.type], opts: col.data.opts };
 		},
 		getDefaultCmp(col) {

@@ -1,17 +1,16 @@
 .first-level-control-content {
 	height: 100%;
+	width: 100%;
 	background-color: $dark-background-color;
 	border-right: 1px solid $primary-border-clr-light;
 	opacity: 1;
 	transition: opacity 100ms ease;
+	transition: width 0.1s cubic-bezier(0, 0, 0.35, 1);
 	.control-content-container {
 		position: relative;
 		height: 100%;
 		width: 100%;
 		color: $primary-txt-clr;
-		&.open {
-			width: 250px;
-		}
 		.btn-open-control {
 			position: absolute;
 			background-color: #fff;
