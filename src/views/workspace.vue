@@ -1,6 +1,5 @@
 <template>
 	<div class="workspace" :class="{ 'control-open': showControlContent }">
-		<!-- <router-view /> -->
 		<control-content @toggleOpen="toggleOpenControl" @add="addBoard" />
 		<div class="workspace-content">
 			<div v-if="isLoading"><p>Loading</p></div>
