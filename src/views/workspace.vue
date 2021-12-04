@@ -2,23 +2,25 @@
 	<div class="workspace">
 		<!-- <router-view /> -->
 		<control-content />
-		<div v-if="isLoading"><p>Loading</p></div>
+		<div class="workspace-content">
+			<div v-if="isLoading"><p>Loading</p></div>
 
-		<div v-else>
-			<boardHeader
-				:activeBoard="activeBoard"
-				@addTask="saveTask"
-				@saveBoard="saveBoard"
-				@addGroup="addGroup"
-			/>
-			<groupList
-				:board="activeBoard"
-				@addGroup="addGroup"
-				@removeGroup="removeGroup"
-				@saveTask="saveTask"
-				@deleteTask="deleteTask"
-				@saveGroup="saveGroup"
-			/>
+			<div v-else>
+				<boardHeader
+					:activeBoard="activeBoard"
+					@addTask="saveTask"
+					@saveBoard="saveBoard"
+					@addGroup="addGroup"
+				/>
+				<groupList
+					:board="activeBoard"
+					@addGroup="addGroup"
+					@removeGroup="removeGroup"
+					@saveTask="saveTask"
+					@deleteTask="deleteTask"
+					@saveGroup="saveGroup"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
