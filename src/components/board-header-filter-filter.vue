@@ -3,8 +3,9 @@
     <div class="filter-icon-wrapper">
       <ion-icon name="funnel-outline"></ion-icon>
     </div>
-    <span class="btn filter-span" @click="filter"> Filter</span>
-    <div class="filter-dropdown-btn dropdown-button small-btn">
+    <span class="filter-span"> Filter</span>
+    <!-- <span class="btn filter-span" @click="filter"> Filter</span> -->
+    <div class="filter-dropdown-btn">
       <ion-icon name="chevron-down-outline" />
     </div>
   </div>
