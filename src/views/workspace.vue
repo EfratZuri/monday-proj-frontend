@@ -1,6 +1,12 @@
 <template>
   <div class="workspace" :class="{ 'control-open': showControlContent }">
-    <control-content @toggleOpen="toggleOpenControl" @add="addBoard" />
+    <control-content
+      @toggleOpen="toggleOpenControl"
+      @add="addBoard"
+      @showBoard="showBoard"
+      :boards="boards"
+    />
+
     <div class="workspace-content">
       <div v-if="isLoading"><p>Loading</p></div>
 
@@ -80,10 +86,13 @@ export default {
       this.showControlContent = !this.showControlContent;
     },
     addBoard() {
-      console.log('add board');
+      this.$store.dispatch({ type: 'saveBoard' });
     },
     saveComment(details) {
       this.$store.dispatch({ type: 'saveComment', details });
+    },
+    showBoard(board) {
+      this.$store.commit({ type: 'setActiveBoard', activeBoard: board });
     },
   },
   components: {
