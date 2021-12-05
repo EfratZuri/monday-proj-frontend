@@ -72,6 +72,7 @@ export default {
     return {
       cols: null,
       cmpsOrder: null,
+      taskToEdit: null,
       activeBoard: null,
       showEditTask: false,
       isTaskSelected: false,
@@ -111,14 +112,12 @@ export default {
     deleteTask() {
       this.$emit('deleteTask', this.taskToEdit);
     },
-
     saveComment(details) {
       this.$emit('saveComment', details);
     },
-
     getCmpInfo(col) {
-      if (!this.taskToEdit?.[col.type]) return this.getDefaultCmp(col);
-      return { selected: this.taskToEdit[col.type], opts: col.data.opts };
+      if (!this.task?.[col.type]) return this.getDefaultCmp(col);
+      return { selected: this.task[col.type], opts: col.data.opts };
     },
     getDefaultCmp(col) {
       return {
@@ -127,7 +126,7 @@ export default {
       };
     },
     update(ev, type) {
-      const copyTask = JSON.parse(JSON.stringify(this.taskToEdit));
+      const copyTask = JSON.parse(JSON.stringify(this.task));
       copyTask[type] = ev;
       this.$emit('updatePicker', copyTask);
     },

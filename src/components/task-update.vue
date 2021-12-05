@@ -107,6 +107,7 @@
             </div>
             <div class="additional-values">
               <div class="separator"></div>
+              <div class="change-action"></div>
             </div>
             <span>{{ board.activities[0] }}</span>
           </div>

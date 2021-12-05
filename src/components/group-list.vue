@@ -15,7 +15,7 @@
 					@deleteTask="deleteTask"
 					@saveComment="saveComment"
 				/>
-				<!-- <group-task-summary :group="group" /> -->
+				<group-task-summary :group="group" />
 			</li>
 		</ul>
 		<!-- <button class="btn" @click="createNewGroup">+ Add new group</button> -->
@@ -25,7 +25,7 @@
 <script>
 import taskList from '@/components/task-list';
 import groupHeader from '@/components/group-header';
-// import groupTaskSummary from '@/components/group-task-summary';
+import groupTaskSummary from '@/components/group-task-summary';
 
 export default {
 	name: 'groupList',
@@ -84,7 +84,7 @@ export default {
 	components: {
 		taskList,
 		groupHeader,
-		//   groupTaskSummary
+		groupTaskSummary,
 	},
 };
 </script>

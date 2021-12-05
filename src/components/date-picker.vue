@@ -1,32 +1,32 @@
 <template>
 	<div class="grid-cell-component-wrapper date-picker-container">
 		<div class="col-cell">
-			<!-- <date-picker v-model="time" range></date-picker> -->
-			<span>{{ dateForDisplay }}</span>
+			<div class="date box">
+				<span>{{ dateForDisplay }}</span>
+				<date-picker-table :date="selectedCopy.dueDate" @change="update" />
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import datePickerTable from './date-picker-table.vue';
+
 export default {
 	name: 'datePicker',
 	props: ['info'],
 
 	data() {
 		return {
-			selectedObj: {},
-			time: null,
+			selectedCopy: {},
 		};
 	},
 	created() {
-		const selectedName = this.info.selected;
-		if (selectedName.name === 'default') {
-			this.selectedObj = selectedName;
-		} else this.selectedObj = this.info.opts.find(({ name }) => name === selectedName);
+		this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
 	},
 	methods: {
-		update(curType, event) {
-			this.$emit(curType, event);
+		update(dueDate) {
+			this.$emit('update', { dueDate });
 		},
 		toggleOptions() {
 			this.showOptions = !this.showOptions;
@@ -34,9 +34,12 @@ export default {
 	},
 	computed: {
 		dateForDisplay() {
-			if (this.selectedObj.name === 'default') return '';
+			if (!this.selectedCopy.dueDate) return '';
 			return '';
 		},
+	},
+	components: {
+		datePickerTable,
 	},
 };
 </script>
