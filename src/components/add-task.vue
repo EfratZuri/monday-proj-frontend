@@ -43,7 +43,6 @@ export default {
   methods: {
     addNewTask() {
       if (!this.task.title) return;
-      console.log('$$$$$$$');
       this.$emit('addTask', this.task);
       this.toggleAddBtn();
       this.task.title = '';
