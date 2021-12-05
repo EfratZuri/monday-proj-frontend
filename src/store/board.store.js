@@ -59,7 +59,9 @@ export const boardStore = {
       state.activeBoard = state.boards[0];
     },
     saveBoard(state, { board }) {
-      const idx = state.boards.findIndex((currBoard) => currBoard._id === board._id);
+      const idx = state.boards.findIndex(
+        (currBoard) => currBoard._id === board._id
+      );
       if (idx >= 0) state.boards.splice(idx, 1, board);
       else state.boards.unshift(board);
     },
@@ -141,8 +143,7 @@ export const boardStore = {
         const newBoard = await boardService.saveTask(
           context.state.activeBoard._id,
           details.task,
-          details.groupId,
-          'add new task'
+          details.groupId
         );
         context.commit({
           type: 'saveTask',
@@ -161,8 +162,7 @@ export const boardStore = {
         const newBoard = await boardService.deleteTask(
           context.state.activeBoard._id,
           task,
-          details.groupId,
-          'delete task'
+          details.groupId
         );
 
         context.commit({

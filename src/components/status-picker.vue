@@ -66,10 +66,7 @@ export default {
 	methods: {
 		update(opt) {
 			this.$emit('update', opt);
-			this.toggleOptions();
-		},
-		toggleOptions() {
-			this.showOptions = !this.showOptions;
+			this.toggleStatusPicker();
 		},
 		toggleStatusPicker() {
 			this.showOptions = !this.showOptions;
@@ -80,7 +77,7 @@ export default {
 	},
 	computed: {
 		infoForDisplay() {
-			return this.selected.name === 'default' ? '' : this.selected.display;
+			return this.selected.display;
 		},
 	},
 };

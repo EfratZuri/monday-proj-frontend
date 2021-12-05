@@ -40,14 +40,15 @@ export default {
 			}
 			return acc;
 		}, {});
-		this.defaultStyle = this.opts.find(({ name }) => name === 'default').style;
+		this.defaultStyle = this.info.data.default.style;
 	},
 	methods: {
 		getStyle(key, value) {
 			console.log(key, value);
 			const width = (key * 100) / this.taskLen + '%';
 			console.log('Get style , width:', width);
-			const backgroundColor = this.opts.find(({ name }) => name === value).style?.backgroundColor;
+			console.log(this.opts);
+			const backgroundColor = this.opts.find(({ name }) => name === value)?.style?.backgroundColor;
 			console.log('Get style , backgroundColor:', backgroundColor);
 			return { width, backgroundColor };
 		},
