@@ -1,0 +1,14 @@
+.task-menu-container {
+  font-size: 14px;
+  z-index: 1000;
+  border-radius: 8px;
+  box-shadow: 0 4px 17px 6px rgb(0 0 0 / 10%);
+  background-color: $primary-background-clr;
+  transition: all 50ms ease-in;
+  transition-property: opacity, width;
+  overflow: auto;
+  min-width: 50px;
+  order: 1;
+  padding: 12px;
+  max-height: 100%;
+}
