@@ -1,0 +1,43 @@
+.home-control-component {
+  & .boards-list {
+    width: auto;
+    height: 474px;
+    max-width: 254px;
+    max-height: 474px;
+    overflow: hidden;
+    position: relative;
+    & .baords-preview-title {
+      height: 34px;
+      padding-inline-start: 20px;
+    }
+    & ul {
+      list-style: none;
+      & .board-preview-wrapper {
+        height: 100%;
+        width: 100%;
+        padding-inline-start: 32px;
+        & .board-preview {
+          cursor: pointer;
+          padding-inline-start: 8px;
+          padding-inline-end: 8px;
+          display: flex;
+          align-items: center;
+          border-radius: 4px;
+          &:hover {
+            background-color: #e6e9ef;
+          }
+          & .board-preview-dropdown-icon-wrapper {
+            position: absolute;
+            right: 5px;
+            & ion-icon {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+      & .board-preview-icon {
+        padding-inline-end: 8px;
+      }
+    }
+  }
+}
