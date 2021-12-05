@@ -1,8 +1,6 @@
 <template>
 	<section v-if="task" class="add-task-component flex">
-		<div class="pulse-left-indicator" :style="{ backgroundColor: color, color: color }">
-			<div class="left-indicator-inner"></div>
-		</div>
+		<div class="pulse-left-indicator" :style="{ backgroundColor: color, color: color }"></div>
 		<input
 			type="text"
 			v-model="task.title"

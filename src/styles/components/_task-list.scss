@@ -7,10 +7,9 @@
 			display: block;
 			height: 35px;
 			width: 100%;
-			// background-color: #f5f6f8;
 			background-color: #fff;
-			border-bottom: 1px solid;
-			border-bottom-color: $primary-border-clr-light;
+			background-color: #f5f6f8;
+
 			cursor: pointer;
 			&:hover {
 				background-color: $primary-background-hover-color;
