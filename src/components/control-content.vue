@@ -60,6 +60,7 @@ export default {
       this.showControlContent = !this.showControlContent;
     },
     add() {
+      console.log('true', true);
       this.$emit('add');
     },
   },

@@ -11,6 +11,7 @@
           @saveBoard="saveBoard"
           @addGroup="addGroup"
         />
+        <button @click="addBoard">addBoard</button>
         <groupList
           :board="activeBoard"
           @addGroup="addGroup"
@@ -80,7 +81,8 @@ export default {
       this.showControlContent = !this.showControlContent;
     },
     addBoard() {
-      console.log('add board');
+      this.$store.dispatch({ tyoe: 'saveBoard' });
+      console.log('true', true);
     },
     saveComment(details) {
       this.$store.dispatch({ type: 'saveComment', details });
