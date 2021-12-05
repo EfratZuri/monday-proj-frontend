@@ -51,10 +51,10 @@
 					</div>
 					<div class="post-actions-container flex">
 						<div class="post-like-action">
-							<div class="post-like-btn"><span>Like</span></div>
+							<div class="btn post-like-btn"><span>Like</span></div>
 						</div>
 						<div class="post-replay-action">
-							<div class="post-replay-btn"><span>Replay</span></div>
+							<div class="btn post-replay-btn"><span>Replay</span></div>
 						</div>
 					</div>
 				</li>

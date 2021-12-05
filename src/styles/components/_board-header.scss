@@ -2,6 +2,7 @@
 	padding: 16px 30px;
 }
 .monday-board-subsets-tabs {
+	background-color: #fff;
 	display: flex;
 	align-items: center;
 	overflow: hidden;
@@ -12,6 +13,8 @@
 		position: relative;
 		.btn {
 			border-radius: 4px;
+			background-color: #fff;
+
 			max-width: 180px;
 			padding: 8px 16px;
 			&:hover {
@@ -23,6 +26,8 @@
 		padding-bottom: 4px;
 		.btn {
 			max-width: 180px;
+			background-color: #fff;
+
 			padding: 8px 16px;
 			&:hover {
 				background-color: $primary-background-hover-color;
