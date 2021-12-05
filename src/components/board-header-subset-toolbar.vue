@@ -5,7 +5,7 @@
         <span class="main-table-icon">
           <ion-icon name="browsers-outline"></ion-icon>
         </span>
-        <button @click="move">Main Table</button>
+        <span @click="move">Main Table</span>
         <!-- <div
           class="board-subset-item__active-strip transition-enter-done"
         ></div> -->

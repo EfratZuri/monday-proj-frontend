@@ -12,6 +12,9 @@
     font-size: rem(15px);
     width: 65px;
     background-color: transparent;
+    &::placeholder {
+      color: #323338;
+    }
   }
 }
 

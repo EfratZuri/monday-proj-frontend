@@ -5,12 +5,13 @@
   & .monday-board-subset-item {
     color: #323338;
     max-width: 180px;
-    padding: 8px 16px;
+    padding: 7px 16px;
     border-bottom: 2px solid white;
     border-radius: 4px;
     text-align: center;
     line-height: 24px;
     font-size: 16px;
+    cursor: pointer;
     &:hover {
       background-color: #e6e9ef;
     }
@@ -25,7 +26,7 @@
   & .add-new-item-icon {
     padding-inline-end: 8px;
   }
-  & button {
+  & span {
     background-color: transparent;
     font-size: rem(14px);
     border: none;
