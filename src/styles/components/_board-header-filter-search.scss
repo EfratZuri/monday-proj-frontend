@@ -1,11 +1,10 @@
 .search-tasks-wrapper {
   margin-inline-end: 6px;
   line-height: 33px;
-  &:hover {
-    background-color: rgb(230, 233, 239);
-  }
+
   & .search-icon-wrapper {
-    padding-block-end: 8px;
+    padding-block-end: 3px;
+    margin-inline-start: 7px;
   }
   & .search-input {
     outline: none;
