@@ -171,6 +171,7 @@ export const boardStore = {
     },
     async saveUpdate(context, { details }) {
       try {
+        // const detailsToSend = {...details, boardId: context.state.activeBoard._id}
         const newBoard = await boardService.saveUpdate(
           details.comment,
           context.state.activeBoard._id,
