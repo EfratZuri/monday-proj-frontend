@@ -44,6 +44,7 @@
     <task-update
       v-if="showPostPanel"
       :task="task"
+      :board="activeBoard"
       @saveComment="saveComment"
       @closePanel="togglePostPanel"
     />
@@ -71,7 +72,7 @@ export default {
     return {
       cols: null,
       cmpsOrder: null,
-
+      activeBoard: null,
       showEditTask: false,
       isTaskSelected: false,
       isCellSelected: false,
@@ -80,14 +81,15 @@ export default {
     };
   },
   created() {
-    // this.taskToEdit = JSON.parse(JSON.stringify(this.task));
+    this.taskToEdit = JSON.parse(JSON.stringify(this.task));
     this.cmpsOrder = this.$store.getters.cmpsOrder;
+    this.activeBoard = this.$store.getters.activeBoard;
     this.cols = this.$store.getters.cols;
   },
   computed: {
-    taskToEdit() {
-      return JSON.parse(JSON.stringify(this.task));
-    },
+    // taskToEdit() {
+    //   return JSON.parse(JSON.stringify(this.task));
+    // },
   },
   methods: {
     togglePostPanel() {

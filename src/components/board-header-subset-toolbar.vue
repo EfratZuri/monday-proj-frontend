@@ -12,7 +12,7 @@
       </div>
       <div @click="showNewTableOptions" class="monday-board-subset-item">
         <span class="add-new-item-icon">+</span>
-        Add new
+        Add view
       </div>
     </div>
   </section>
