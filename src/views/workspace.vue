@@ -20,6 +20,12 @@
 					@saveGroup="saveGroup"
 					@saveUpdate="saveUpdate"
 				/>
+				<!-- <task-update
+					v-if="showPostPanel"
+					:task="task"
+					@closePanel="togglePostPanel"
+					@saveUpdate="saveUpdate"
+				/> -->
 			</div>
 		</div>
 	</div>
@@ -29,6 +35,7 @@
 import controlContent from '@/components/control-content';
 import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
+
 export default {
 	name: 'workspace',
 	data() {

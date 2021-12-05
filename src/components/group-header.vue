@@ -1,6 +1,5 @@
 <template>
 	<section class="grid-row-component group-header">
-		<!-- This Span eill include the icons when a user hover over the header -->
 		<div class="group-name-component grid-cell-row-component-header">
 			<!-- <button @click="remove">delete group</button> -->
 			<div

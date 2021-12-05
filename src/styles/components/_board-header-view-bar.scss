@@ -1,15 +1,15 @@
 .board-header-view-bar {
-  padding: 16px 0;
+	padding: 16px 0;
 
-  & .filter-tasks-wrapper {
-    & * {
-      display: flex;
-      align-items: center;
-      vertical-align: top;
-      cursor: pointer;
-      border-radius: 4px;
-      line-height: 22.5px;
-      padding: 2px 0 0 2px;
-    }
-  }
+	& .filter-tasks-wrapper {
+		& * {
+			display: flex;
+			align-items: center;
+			vertical-align: top;
+			cursor: pointer;
+			border-radius: 4px;
+			line-height: 22.5px;
+			padding: 2px 0 0 2px;
+		}
+	}
 }
