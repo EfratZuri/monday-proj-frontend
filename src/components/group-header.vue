@@ -66,7 +66,6 @@
 import groupMenu from '@/components/group-menu';
 import groupColorPalette from '@/components/group-color-palette.vue';
 export default {
-<<<<<<< HEAD
 	name: 'groupHeader',
 	props: {
 		group: {
@@ -157,75 +156,6 @@ export default {
 		groupMenu,
 		groupColorPalette,
 	},
-=======
-  name: 'groupHeader',
-  props: {
-    group: {
-      type: Object,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      showEdit: false,
-      showTaskToggleBtn: false,
-      groupToEdit: { ...this.group },
-      color: this.group.style.clr,
-      cmpsOrder: null,
-      showGroupMenu: false,
-      showColorPalette: false,
-    };
-  },
-  created() {
-    this.cmpsOrder = this.$store.getters.cmpsOrder;
-  },
-  methods: {
-    changeColor(clr) {
-      const groupCopy = JSON.parse(JSON.stringify(this.group));
-      groupCopy.style.clr = clr;
-      this.$emit('saveGroup', groupCopy);
-      // Unshow the color palette
-      this.toggleColorPalette();
-    },
-    toggleGroupMenu() {
-      this.showGroupMenu = !this.showGroupMenu;
-    },
-    toggleColorPalette() {
-      this.showColorPalette = !this.showColorPalette;
-    },
-    cmpNameForDisplay(cmp) {
-      const name = cmp
-        .replace('-picker', '')
-        .replace(cmp[0], cmp[0].toUpperCase());
-      return name;
-    },
-    async editTitle(e) {
-      if (e.target.classList.contains('btn-change-color')) return;
-      await (this.showEdit = !this.showEdit);
-      if (this.$refs.titleInput) this.$refs.titleInput.focus();
-      if (this.group.title !== this.groupToEdit.title)
-        this.$emit('saveGroup', this.groupToEdit);
-
-      this.showTaskToggleBtn = false;
-    },
-    remove() {
-      this.$emit('removeGroup', this.group);
-    },
-    showTaskToggle() {
-      this.$emit('toggleTasks', this.group._id);
-    },
-  },
-  computed: {
-    clrs() {
-      console.log(this.$store.getters.clrs);
-      return this.$store.getters.clrs;
-    },
-  },
-  components: {
-    groupMenu,
-    groupColorPalette,
-  },
->>>>>>> 7af399e3aadf3223ad7d6fd87a27ec04f0959185
 };
 </script>
 <!--
