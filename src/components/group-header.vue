@@ -89,10 +89,8 @@ export default {
 	},
 	methods: {
 		changeColor(clr) {
-			console.log(clr);
 			const groupCopy = JSON.parse(JSON.stringify(this.group));
 			groupCopy.style.clr = clr;
-			console.log(groupCopy);
 			this.$emit('saveGroup', groupCopy);
 			// Unshow the color palette
 			this.toggleColorPalette();

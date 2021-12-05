@@ -41,7 +41,7 @@
 		<task-update
 			v-if="showPostPanel"
 			:task="task"
-			@saveUpdate="saveUpdate"
+			@saveComment="saveComment"
 			@closePanel="togglePostPanel"
 		/>
 	</section>
@@ -102,8 +102,8 @@ export default {
 			this.$emit('deleteTask', this.taskToEdit);
 		},
 
-		saveUpdate(details) {
-			this.$emit('saveUpdate', details);
+		saveComment(details) {
+			this.$emit('saveComment', details);
 		},
 
 		getCmpInfo(col) {

@@ -18,7 +18,7 @@
 					@saveTask="saveTask"
 					@deleteTask="deleteTask"
 					@saveGroup="saveGroup"
-					@saveUpdate="saveUpdate"
+					@saveComment="saveComment"
 				/>
 				<!-- <task-update
 					v-if="showPostPanel"
@@ -82,8 +82,8 @@ export default {
 		addBoard() {
 			console.log('add board');
 		},
-		saveUpdate(details) {
-			this.$store.dispatch({ type: 'saveUpdate', details });
+		saveComment(details) {
+			this.$store.dispatch({ type: 'saveComment', details });
 		},
 	},
 	components: {

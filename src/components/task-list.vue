@@ -16,7 +16,7 @@
 							@saveTitle="saveTask"
 							@deleteTask="deleteTask"
 							@updatePicker="saveTask"
-							@saveUpdate="saveUpdate"
+							@saveComment="saveComment"
 						/>
 					</li>
 				</transition-group>
@@ -94,10 +94,9 @@ export default {
 		deleteTask(task) {
 			this.$emit('deleteTask', task, this.group._id);
 		},
-		saveUpdate(details) {
-			console.log(details, this.group._id);
+		saveComment(details) {
 			details.groupId = this.group._id;
-			this.$emit('saveUpdate', details);
+			this.$emit('saveComment', details);
 		},
 	},
 	computed: {

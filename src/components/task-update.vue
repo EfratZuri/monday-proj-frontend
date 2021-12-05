@@ -39,7 +39,7 @@
 							<span> Mention </span>
 						</button>
 					</div>
-					<button class="btn btn-update-panel" @click="addUpdate">Update</button>
+					<button class="btn btn-update-panel" @click="saveComment">Update</button>
 				</div>
 			</div>
 		</div>
@@ -89,11 +89,11 @@ export default {
 		this.taskCopy = JSON.parse(JSON.stringify(this.task));
 	},
 	methods: {
-		addUpdate() {
+		saveComment() {
 			this.showTextarea = false;
 			if (!this.comment.txt) return;
 			const details = { comment: this.comment, taskId: this.task._id };
-			this.$emit('saveUpdate', details);
+			this.$emit('saveComment', details);
 		},
 		toggleTextarea() {
 			this.showTextarea = !this.showTextarea;
