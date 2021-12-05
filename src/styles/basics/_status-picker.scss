@@ -2,18 +2,15 @@
 	color: #fff;
 	font-size: 12px;
 	font-weight: 400;
-	// position: relative;
 	justify-content: center;
 	width: 100%;
 	&.col-cell {
+		position: relative;
 		&:hover {
 			.fold-triangle {
 				border-width: 0px 13px 13px 0px;
 			}
 		}
-	}
-	span {
-		// display: inline-block;
 	}
 }
 
