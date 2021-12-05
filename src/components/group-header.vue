@@ -9,7 +9,7 @@
 			>
 				<button
 					class="btn btn-menu-group-header fa"
-					:style="{ color: color, backgroundColor: color, borderColor: color }"
+					:style="{ color, backgroundColor: color, borderColor: color }"
 				>
 					<font-awesome-icon icon="caret-down" />
 				</button>
@@ -18,7 +18,7 @@
 			<div class="group-name">
 				<span
 					v-if="!showEdit"
-					:style="{ color: color }"
+					:style="{ color }"
 					@click="editTitle"
 					@mouseover="showTaskToggleBtn = true"
 					@mouseleave="showTaskToggleBtn = false"

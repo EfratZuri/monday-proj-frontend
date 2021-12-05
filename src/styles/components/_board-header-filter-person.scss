@@ -1,15 +1,15 @@
 .person-filter-wrapper {
   margin-inline-end: 6px;
   line-height: 33px;
-  &:hover {
-    background-color: rgb(230, 233, 239);
-  }
+  text-align: center;
+  align-items: center;
   & .person-icon-wrapper {
-    padding-block-end: 8px;
+    font-size: 20px;
+    margin-left: 9px;
   }
   & .person-span {
     padding: 1px 0 1px 5px;
-    font-size: rem(15px);
+    font-size: rem(14px);
     width: 65px;
   }
 }

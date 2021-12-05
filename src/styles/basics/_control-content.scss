@@ -1,0 +1,76 @@
+.first-level-control-content {
+	height: 100%;
+	width: 100%;
+	background-color: $dark-background-color;
+	border-right: 1px solid $primary-border-clr-light;
+	opacity: 1;
+	transition: opacity 100ms ease;
+	transition: width 0.1s cubic-bezier(0, 0, 0.35, 1);
+	.control-content-container {
+		position: relative;
+		height: 100%;
+		width: 100%;
+		color: $primary-txt-clr;
+		.btn-open-control {
+			position: absolute;
+			background-color: #fff;
+			right: 0;
+			top: 20px;
+			justify-content: center;
+			transform: translateX(50%);
+			z-index: 1000;
+			height: 27px;
+			width: 27px;
+			padding: 3px 9px;
+			border: 1px solid $primary-border-clr-light;
+			color: rgb(95, 96, 100);
+			font-weight: 300;
+			// font-size: 18px;
+
+			&:hover {
+				background-color: $primary-clr;
+				color: #fff;
+			}
+		}
+		header.control-content-header {
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-between;
+			margin: 12px 16px 18px 16px;
+			height: 68px;
+			.dropdown-navigation-header {
+				width: 100%;
+				span {
+					display: inline-block;
+				}
+			}
+			span {
+				color: #676879;
+				font-size: 14px;
+				font-weight: 400;
+			}
+			.btn-workspace-dropdown-container {
+				padding: 6px;
+				border-radius: 4px;
+				margin-right: 4px;
+				width: 100%;
+				border: 1px solid #676879;
+				h2 {
+					color: $primary-txt-clr;
+				}
+			}
+		}
+		.control-btns {
+			padding: 0 16px 16px 14px;
+			& > * {
+				justify-content: start;
+				padding-left: 6px;
+				font-size: 16px;
+				color: $primary-txt-clr;
+				height: 32px;
+			}
+		}
+	}
+}

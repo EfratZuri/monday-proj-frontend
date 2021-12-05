@@ -5,15 +5,8 @@
       <board-header-filter-search />
       <board-header-filter-person />
       <board-header-filter-filter />
-      <div class="sort-filter-wrapper">
-        <button class="btn btn-icon">
-          <ion-icon name="compass-outline"></ion-icon>
-          <span>Sort</span>
-        </button>
-      </div>
-      <button class="btn btn-icon">
-        <ion-icon name="navigate-outline"></ion-icon>
-      </button>
+      <board-header-filter-sort />
+      <board-header-filter-pin />
     </section>
   </section>
 </template>
@@ -23,6 +16,8 @@ import boardHeaderAddTask from '@/components/board-header-add-task.vue';
 import boardHeaderFilterSearch from '@/components/board-header-filter-search.vue';
 import boardHeaderFilterPerson from '@/components/board-header-filter-person.vue';
 import boardHeaderFilterFilter from '@/components/board-header-filter-filter.vue';
+import boardHeaderFilterSort from '@/components/board-header-filter-sort.vue';
+import boardHeaderFilterPin from '@/components/board-header-filter-pin.vue';
 export default {
   name: 'boardHeaderViewBar',
   data() {
@@ -48,6 +43,8 @@ export default {
     boardHeaderFilterSearch,
     boardHeaderFilterPerson,
     boardHeaderFilterFilter,
+    boardHeaderFilterSort,
+    boardHeaderFilterPin,
   },
 };
 </script>
