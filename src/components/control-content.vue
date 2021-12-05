@@ -39,7 +39,11 @@
             <ion-icon name="search-outline"></ion-icon>
             <span>Search</span>
           </button>
-          <control-content-board-list :boards="boards" @showBoard="showBoard" />
+          <control-content-board-list
+            :boards="boards"
+            @showBoard="showBoard"
+            @removeBoard="removeBoard"
+          />
         </div>
       </div>
     </div>
@@ -73,6 +77,9 @@ export default {
     },
     showBoard(board) {
       this.$emit('showBoard', board);
+    },
+    removeBoard(board) {
+      this.$emit('removeBoard', board);
     },
     toggleWorkspaceList() {},
   },

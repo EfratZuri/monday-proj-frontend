@@ -100,7 +100,7 @@ export default {
     },
     toggleShowTaskMenu() {
       this.showTaskMenu = false;
-      //   this.showTaskMenu = !this.showTaskMenu;
+      // this.showTaskMenu = !this.showTaskMenu;
     },
 
     deleteTask(task) {

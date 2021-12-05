@@ -4,6 +4,7 @@
       @toggleOpen="toggleOpenControl"
       @add="addBoard"
       @showBoard="showBoard"
+      @removeBoard="removeBoard"
       :boards="boards"
     />
 
@@ -93,6 +94,9 @@ export default {
     },
     showBoard(board) {
       this.$store.commit({ type: 'setActiveBoard', activeBoard: board });
+    },
+    removeBoard(board) {
+      this.$store.dispatch({ type: 'removeBoard', board });
     },
   },
   components: {

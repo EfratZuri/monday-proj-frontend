@@ -143,7 +143,6 @@ export default {
       showTextarea: false,
       comment: null,
       showEditTitle: false,
-      taskCopy: null,
       isUpdate: true,
       isActivityLog: false,
     };
@@ -152,7 +151,12 @@ export default {
     this.comment = JSON.parse(
       JSON.stringify(this.$store.getters.commentToEdit)
     );
-    this.taskCopy = JSON.parse(JSON.stringify(this.task));
+  },
+  computed: {
+    taskCopy() {
+      console.log('this.task', this.task);
+      return JSON.parse(JSON.stringify(this.task));
+    },
   },
   methods: {
     saveComment() {
@@ -160,6 +164,9 @@ export default {
       if (!this.comment.txt) return;
       const details = { comment: this.comment, taskId: this.task._id };
       this.$emit('saveComment', details);
+      this.comment = JSON.parse(
+        JSON.stringify(this.$store.getters.commentToEdit)
+      );
     },
     toggleTextarea() {
       this.showTextarea = !this.showTextarea;

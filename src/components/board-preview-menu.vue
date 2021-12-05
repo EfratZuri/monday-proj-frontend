@@ -8,14 +8,18 @@
 <script>
 export default {
   name: 'board-menu',
+  props: {
+    board: {
+      type: Object,
+      required: true,
+    },
+  },
   created() {},
   computed: {},
   methods: {
-    rename() {
-      console.log('rename board');
-    },
+    rename() {},
     remove() {
-      console.log('remove Board');
+      this.$emit('removeBoard', this.board);
     },
   },
 };
