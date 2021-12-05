@@ -185,7 +185,7 @@ function getEmptyBoard() {
 			},
 			{
 				type: 'datePicker',
-				data: { opts: [{ name: 'default', display: '', style: {} }] },
+				data: { opts: [{ name: 'default', dueDate: null }] },
 			},
 		],
 

@@ -9,7 +9,8 @@
 	ion-icon {
 		font-size: 20px;
 	}
-	a {
+	a,
+	.btn {
 		height: 36px;
 		width: 36px;
 		display: flex;
@@ -21,6 +22,9 @@
 		outline: none;
 		&.active-link {
 			background-color: rgba(255, 255, 255, 0.3);
+		}
+		&:not(.active-link):hover {
+			background-color: rgba(0, 0, 0, 0.6);
 		}
 	}
 }
