@@ -107,7 +107,7 @@ export default {
         : 'Add board description';
     },
     boardToEdit() {
-      return this.activeBoard;
+      return JSON.parse(JSON.stringify(this.activeBoard));
     },
   },
 };

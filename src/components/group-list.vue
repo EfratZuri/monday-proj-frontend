@@ -41,7 +41,6 @@ export default {
   data() {
     return {
       groupToEdit: {},
-      groups: [],
       styleObj: {},
       currGroupIds: [],
     };
@@ -49,7 +48,6 @@ export default {
   created() {
     this.groupToEdit = this.$store.getters.groupToEdit;
     this.styleObj = { color: this.groupToEdit?.style.clr || '#000' };
-    this.groups = this.board.groups;
   },
   methods: {
     addGroup() {
@@ -84,6 +82,11 @@ export default {
     },
     createNewGroup() {
       console.log('e');
+    },
+  },
+  computed: {
+    groups() {
+      return this.board.groups;
     },
   },
   components: {

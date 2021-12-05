@@ -58,8 +58,10 @@ export const boardStore = {
       state.boards = boards;
       state.activeBoard = state.boards[0];
     },
-    addBoard(state, { board }) {
-      state.boards.unshift(board);
+    saveBoard(state, { board }) {
+      const idx = state.boards.findIndex((currBoard) => currBoard._id === board._id);
+      if (idx >= 0) state.boards.splice(idx, 1, board);
+      else state.boards.unshift(board);
     },
     setActiveBoard(state, { activeBoard }) {
       state.activeBoard = activeBoard;
@@ -190,6 +192,7 @@ export const boardStore = {
     },
 
     async saveGroup(context, { group }) {
+      console.log('group', group);
       if (!group) {
         const groupColorId = utilService.getRandomInt(
           0,
@@ -211,11 +214,10 @@ export const boardStore = {
       }
     },
     async saveBoard(context, { board }) {
-
       try {
         const addedBoard = await boardService.saveBoard(board);
         context.commit({ type: 'setActiveBoard', activeBoard: addedBoard });
-        context.commit({ type: 'addBoard', board: addedBoard });
+        context.commit({ type: 'saveBoard', board: addedBoard });
         return addedBoard;
       } catch (err) {
         return err;

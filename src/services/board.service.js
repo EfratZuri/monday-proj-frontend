@@ -174,7 +174,9 @@ function getEmptyBoard() {
 		_id: '',
 		createdBy: {},
 		members: [],
-		groups: [],
+		groups: [
+			getEmptyGroup('rgb(87, 155, 252)'), getEmptyGroup('rgb(162, 93, 220)')
+		],
 		activities: [],
 		cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
 		cols: [
@@ -205,8 +207,6 @@ function getBoardAndGroup(task) {
 
 function _createBoard() {
 	const board = getEmptyBoard();
-	board.groups.push(getEmptyGroup('rgb(87, 155, 252)'));
-	board.groups.push(getEmptyGroup('rgb(162, 93, 220)'));
 	board.groups.forEach((group) => (group._id = utilService.makeId()));
 	return board;
 }
