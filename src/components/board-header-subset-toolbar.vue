@@ -1,10 +1,10 @@
 <template>
   <section class="board-header-subset-toolbar">
     <div class="monday-board-subsets-tabs">
-      <div class="monday-board-subset-item active-tab">
-        <span class="main-table-icon">
-          <ion-icon name="browsers-outline"></ion-icon>
-        </span>
+      <div class="monday-board-subset-item active-tab flex align-center gap">
+        <!-- <span class="main-table-icon"> -->
+        <ion-icon name="browsers-outline"></ion-icon>
+        <!-- </span> -->
         <span @click="move">Main Table</span>
         <!-- <div
           class="board-subset-item__active-strip transition-enter-done"
