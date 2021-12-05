@@ -94,7 +94,7 @@
         </div>
       </div>
       <ul v-if="board.activities">
-        <li>
+        <li v-for="activity in board.activities" :key="activity">
           <div class="activity-box">
             <div class="time">Time</div>
             <div class="activity-and-user">
@@ -107,9 +107,12 @@
             </div>
             <div class="additional-values">
               <div class="separator"></div>
-              <div class="change-action"></div>
+              <div class="change-action">
+                <div class="action">
+                  <span>{{ activity }}</span>
+                </div>
+              </div>
             </div>
-            <span>{{ board.activities[0] }}</span>
           </div>
         </li>
       </ul>
