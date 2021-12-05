@@ -281,19 +281,21 @@
       flex: 0 1 auto;
       align-items: center;
       position: relative;
+      margin-left: 10px;
 
       .log-person-item {
         height: 32px;
         border-radius: 4px;
         cursor: pointer;
         display: flex;
+        font-size: 19px;
         align-items: center;
         justify-content: center;
 
         .item-title {
           max-width: 140px;
           opacity: 1;
-          padding-left: 0px;
+          padding-left: 6px;
           white-space: nowrap;
           padding-right: 12px;
           font-size: 14px;
@@ -309,7 +311,7 @@
     height: 39px;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    padding: 0 8px 0 16px;
+    padding: 0 8px 0 26px;
     border-top: 1px solid #c5c7d0;
 
     .time {
