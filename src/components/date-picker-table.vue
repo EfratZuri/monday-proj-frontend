@@ -1,5 +1,5 @@
 <template>
-	<div class="grid-cell-component-wrapper date-picker-container">
+	<div class="date-picker-table-container">
 		<date-picker v-model="date" valueType="format"></date-picker>
 	</div>
 </template>
@@ -11,18 +11,12 @@ import 'vue2-datepicker/index.css';
 export default {
 	name: 'datePickerTable',
 	props: ['date'],
-	data() {
-		return {
-			// date: null,
-		};
-	},
 	watch: {
 		date(val) {
 			this.$emit('change', val);
 		},
 	},
 	created() {
-		// this.date = this.date;
 		console.log(this.date);
 	},
 	components: {
