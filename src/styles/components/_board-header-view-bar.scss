@@ -1,15 +1,18 @@
 .board-header-view-bar {
-	padding: 16px 0;
+  padding: 16px 0;
 
-	& .filter-tasks-wrapper {
-		& * {
-			display: flex;
-			align-items: center;
-			vertical-align: top;
-			cursor: pointer;
-			border-radius: 4px;
-			line-height: 22.5px;
-			padding: 2px 0 0 2px;
-		}
-	}
+  & .filter-tasks-wrapper {
+    & * {
+      // background-color: red;
+      display: flex;
+      align-items: center;
+      vertical-align: middle;
+      cursor: pointer;
+      border-radius: 4px;
+      line-height: 22.5px;
+      &:hover {
+        background-color: rgb(230, 233, 239);
+      }
+    }
+  }
 }
