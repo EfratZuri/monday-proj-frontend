@@ -10,6 +10,7 @@
           class="board-subset-item__active-strip transition-enter-done"
         ></div> -->
       </div>
+      <div class="monday-board-subsets-tabs__separator"></div>
       <div @click="showNewTableOptions" class="monday-board-subset-item">
         <span class="add-new-item-icon">+</span>
         Add view
