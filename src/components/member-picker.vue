@@ -12,21 +12,29 @@
 			</div>
 			<span>{{ infoForDisplay }} </span>
 		</div>
-		<!-- <div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
+		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
 			<div class="picker-dropdown-inner-container">
 				<div class="member-input-container">
-					<input type="text" v-model="memeberName" placeholder="Enter name" />
+					<input type="text" v-model="memberName" placeholder="Enter name" />
 				</div>
-				<div class="members-container flex column">
-					<div class="flex align-center"><span>People</span></div>
-					<ul v-if="members && members.length" class="clean-list member-list">
-						<li v-for="(member, idx) in members" :key="idx" class="member-row">
+				<div class="member-list-container flex column">
+					<div class="member-list-title">
+						<span>People</span>
+					</div>
+					<ul v-if="opts && opts.length" class="clean-list member-list">
+						<li v-for="(member, idx) in opts" :key="idx" class="member-row">
+							<!-- TODO:add user image -->
+							<!-- <img :src="member.imgUrl" alt=""> -->
+							<span>{{ member.username }}</span>
 						</li>
 					</ul>
 					<p v-else>No members to show...</p>
+					<div class="picker-dropdown-footer">
+						<button class="btn">Invite a new member by email</button>
+					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 	</div>
 </template>
 
@@ -37,17 +45,17 @@ export default {
 
 	data() {
 		return {
-			selectedObj: {},
+			selectedCopy: {},
 			showPlusBtn: false,
 			isSelected: false,
 			showOptions: false,
+			memberName: '',
+			opts: null,
 		};
 	},
 	created() {
-		const selectedName = this.info.selected;
-		if (selectedName.name === 'default') {
-			this.selectedObj = selectedName;
-		} else this.selectedObj = this.info.opts.find(({ name }) => name === selectedName);
+		this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
+		this.opts = this.info.opts;
 	},
 	methods: {
 		update(curType, event) {
@@ -65,7 +73,7 @@ export default {
 	},
 	computed: {
 		infoForDisplay() {
-			return this.selectedObj.name === 'default' ? '' : this.selectedObj.name;
+			return this.selectedCopy.name === 'default' ? '' : this.selectedCopy.name;
 		},
 	},
 };

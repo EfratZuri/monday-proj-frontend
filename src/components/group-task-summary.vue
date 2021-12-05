@@ -11,6 +11,7 @@
 import statusSummary from '../components/status-summary';
 import dateSummary from '../components/date-summary';
 import memberSummary from '../components/member-summary';
+import tagSummary from '../components/tag-summary';
 export default {
 	name: 'groupTaskSummary',
 	props: {
@@ -32,7 +33,6 @@ export default {
 			cur.type = prevType.replace('Picker', 'Summary');
 			return cur;
 		});
-		console.log(this.cmps);
 	},
 	methods: {
 		getCmpInfo(cmp) {
@@ -43,6 +43,7 @@ export default {
 		statusSummary,
 		memberSummary,
 		dateSummary,
+		tagSummary,
 	},
 };
 </script>

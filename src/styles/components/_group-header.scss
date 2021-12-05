@@ -1,8 +1,14 @@
 .group-header {
 	line-height: 45px;
 	width: 100%;
-}
+	&.sticky {
+		position: fixed;
+		// left: 0;bax
+		top: 0;
 
+		background-color: $primary-background-clr;
+	}
+}
 .group-name-component {
 	font-weight: 300;
 	width: 100%;

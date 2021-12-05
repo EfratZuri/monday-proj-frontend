@@ -1,5 +1,5 @@
 <template>
-	<section class="grid-row-component group-header">
+	<section class="grid-row-component group-header" ref="header" :class="stickyStyle">
 		<div class="group-name-component grid-cell-row-component-header">
 			<!-- <button @click="remove">delete group</button> -->
 			<div
@@ -82,10 +82,29 @@ export default {
 			cmpsOrder: null,
 			showGroupMenu: false,
 			showColorPalette: false,
+			isSticky: false,
 		};
 	},
 	created() {
 		this.cmpsOrder = this.$store.getters.cmpsOrder;
+	},
+	watch: {},
+	mounted() {
+		// console.log('EEEEEEEEEEEEEEEEEEEEEEEEEE');
+		// const headerHeight = this.$refs.header.getBoundingClientRect().height;
+		// const header = this.$refs.header;
+		// const stickyHeader = function (entries) {
+		// 	const [entry] = entries;
+		// 	if (!entry.isIntersecting) this.isSticky = true;
+		// 	else this.isSticky = false;
+		// 	console.log(this.isSticky);
+		// };
+		// const headerObserver = new IntersectionObserver(stickyHeader, {
+		// 	root: null,
+		// 	threshold: 0,
+		// 	rootMargin: `-${headerHeight}px`,
+		// });
+		// headerObserver.observe(this.$refs.header);
 	},
 	methods: {
 		changeColor(clr) {
@@ -119,11 +138,18 @@ export default {
 		showTaskToggle() {
 			this.$emit('toggleTasks', this.group._id);
 		},
+		stickyHeader(entries) {
+			const [entry] = entries;
+			if (!entry.isIntersecting) this.isSticky = true;
+			else this.isSticky = false;
+		},
 	},
 	computed: {
 		clrs() {
-			console.log(this.$store.getters.clrs);
 			return this.$store.getters.clrs;
+		},
+		stickyStyle() {
+			return { sticky: this.isSticky };
 		},
 	},
 	components: {

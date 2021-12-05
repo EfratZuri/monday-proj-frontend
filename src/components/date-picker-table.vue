@@ -16,9 +16,7 @@ export default {
 			this.$emit('change', val);
 		},
 	},
-	created() {
-		console.log(this.date);
-	},
+	created() {},
 	components: {
 		DatePicker,
 	},
