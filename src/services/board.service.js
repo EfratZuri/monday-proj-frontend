@@ -200,16 +200,34 @@ function getEmptyBoard() {
       getEmptyGroup('rgb(162, 93, 220)'),
     ],
     activities: [],
-    cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
+    cmpsOrder: ['status-picker', 'member-picker', 'date-picker', 'tag-picker'],
     cols: [
-      { type: 'statusPicker', data: { opts: _getStatusOptions() } },
+      {
+        type: 'statusPicker',
+        data: {
+          opts: _getStatusOptions(),
+          default: {
+            display: '',
+            style: {
+              backgroundColor: 'rgb(196, 196, 196)',
+            },
+          },
+        },
+      },
       {
         type: 'memberPicker',
-        data: { opts: [{ name: 'default', display: '', style: {} }] },
+        data: { opts: [], default: { members: [] } },
       },
       {
         type: 'datePicker',
-        data: { opts: [{ name: 'default', dueDate: null }] },
+        data: { opts: [], default: { dueDate: null } },
+      },
+      {
+        type: 'tagPicker',
+        data: {
+          opts: [],
+          default: [],
+        },
       },
     ],
 
@@ -236,13 +254,6 @@ function _createBoard() {
 }
 function _getStatusOptions() {
   return [
-    {
-      name: 'default',
-      display: '',
-      style: {
-        backgroundColor: 'rgb(196, 196, 196)',
-      },
-    },
     {
       name: 'stuck',
       display: 'Stuck',
