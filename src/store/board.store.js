@@ -211,9 +211,11 @@ export const boardStore = {
       }
     },
     async saveBoard(context, { board }) {
+
       try {
         const addedBoard = await boardService.saveBoard(board);
         context.commit({ type: 'setActiveBoard', activeBoard: addedBoard });
+        context.commit({ type: 'addBoard', board: addedBoard });
         return addedBoard;
       } catch (err) {
         return err;

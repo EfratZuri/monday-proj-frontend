@@ -44,6 +44,7 @@ async function saveBoard(board) {
 	// const addedBoard = await httpService.post(`board`, board)
 	let savedBoard;
 	try {
+		if (!board) board = getEmptyBoard();
 		if (board._id) savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
 		else savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
 	} catch (error) {
@@ -168,8 +169,8 @@ function removeGroup(group, activeBoard) {
 
 function getEmptyBoard() {
 	return {
-		title: 'Board',
-		createdAt: '',
+		title: 'New Board',
+		createdAt: new Date(Date.now()).toLocaleString(),
 		_id: '',
 		createdBy: {},
 		members: [],
