@@ -20,6 +20,7 @@
         <group-menu
           v-if="showGroupMenu"
           :boards="boards"
+          :board="board"
           @addGroup="addGroup"
           @toggleTasks="toggleTasks"
           @toggleAllTasks="toggleAllTasks"
@@ -95,6 +96,9 @@ export default {
     boards: {
       type: Array,
     },
+    board: {
+      type: Object,
+    },
   },
   data() {
     return {
@@ -142,7 +146,6 @@ export default {
       if (this.$refs.titleInput) this.$refs.titleInput.focus();
       if (this.group.title !== this.groupToEdit.title)
         this.$emit('saveGroup', this.groupToEdit);
-
       this.showTaskToggleBtn = false;
     },
     remove() {
