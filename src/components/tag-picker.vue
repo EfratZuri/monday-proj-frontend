@@ -5,15 +5,7 @@
 	>
 		<div class="col-cell" @click="toggleOptions">
 			<div v-if="selectedCopy && selectedCopy.length">
-				<!-- <span :style="selectedCopy[0].style">{{ tagForDisplay(selectedCopy[0].txt) }}</span>
-				<span v-if="selectedCopy[1]" :style="selectedCopy[1].style">{{
-					tagForDisplay(selectedCopy[1].txt)
-				}}</span>
-				<div v-if=""></div>
-				<span v-if="selectedCopy[2]" :style="selectedCopy[0].style">{{
-					tagForDisplay(selectedCopy[0].txt)
-				}}</span> -->
-				<span v-for="(tag, idx) in selectedCopy" :key="idx" :style="tag.style">
+				<span v-for="(tag, idx) in selectedCopyTrimed" :key="idx" :style="tag.style">
 					{{ tagForDisplay(tag.txt) }}
 				</span>
 			</div>
@@ -52,13 +44,16 @@ export default {
 	data() {
 		return {
 			selectedCopy: null,
+			selectedCopyTrimed: null,
 			showOptions: false,
 			tagToEdit: { txt: '', style: { color: 'rgb(51,52,56)' } },
 		};
 	},
 	created() {
 		this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
-		// this.selectedCopyTrimed = JSON.parse(JSON.stringify(this.info.selected));
+		let deleteCount = Math.min(3, this.selectedCopy.length);
+		if (this.selectedCopy.length > 3) deleteCount = 2;
+		this.selectedCopyTrimed = this.selectedCopy.slice(0, deleteCount);
 		const clrs = this.$store.getters.clrs;
 		this.tagToEdit.style.color = clrs[utilService.getRandomInt(0, clrs.length - 1)];
 	},

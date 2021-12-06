@@ -21,6 +21,7 @@ export const boardService = {
   saveBoard,
   removeGroup,
   getBoardAndGroup,
+  duplicateGroup
 };
 
 async function query() {
@@ -113,6 +114,19 @@ async function saveGroup(group, activeBoardId) {
   }
   saveBoard(board);
   return group;
+}
+
+async function duplicateGroup(group, activeBoard) {
+  const board = await getById(activeBoard._id);
+  const groupToAdd = JSON.parse(JSON.stringify(group));
+  const currGroupIdx = board.groups.findIndex(currGroup => currGroup._id === group._id);
+  board.groups.splice(currGroupIdx, 0, groupToAdd)
+  try {
+    saveBoard(board);
+  } catch (error) {
+    console.log('error', error);
+    throw error;
+  }
 }
 
 async function saveComment({ comment, boardId, groupId, taskId }) {
