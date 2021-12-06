@@ -8,6 +8,7 @@
         <group-header
           :group="group"
           :boards="boards"
+          :board="board"
           @saveGroup="saveGroup"
           @removeGroup="removeGroup"
           @toggleTasks="toggleTasks"
