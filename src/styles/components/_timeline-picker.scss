@@ -2,7 +2,7 @@
 .timeline-picker-container {
 	min-width: 140px;
 	.timeline-bar-component {
-		height: 22px;
+		max-height: 22px;
 		color: $primary-background-clr;
 		line-height: 22px;
 		border-radius: 11px;
@@ -11,7 +11,8 @@
 		overflow: hidden;
 		text-align: center;
 		white-space: nowrap;
-		background: rgb(171, 171, 171);
+		background: #c4c4c4;
+		cursor: pointer;
 		input {
 			cursor: pointer;
 		}
@@ -20,6 +21,9 @@
 			&:hover {
 				background: linear-gradient(to right, rgb(37, 125, 251) 0%, rgb(12, 13, 24) 0%);
 			}
+		}
+		&:not(.filled):hover {
+			background-color: #ababab;
 		}
 		.timeline-value:after {
 			content: attr(contents);

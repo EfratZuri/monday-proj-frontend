@@ -1,6 +1,6 @@
 <template>
 	<div class="date-picker-table-container">
-		<date-picker v-if="!info.isRangre" v-model="date" valueType="format"></date-picker>
+		<date-picker v-if="!info.isRangre" v-model="date" valueType="date"></date-picker>
 		<date-picker v-else v-model="date" range></date-picker>
 	</div>
 </template>

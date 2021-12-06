@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { utilService } from '../services/util.service.js';
 import datePickerTable from './date-picker-table.vue';
 
 export default {
@@ -34,8 +35,7 @@ export default {
 			this.showCalendar = !this.showCalendar;
 		},
 		update(dueDate) {
-			console.log(dueDate);
-			this.$emit('update', { dueDate });
+			this.$emit('update', { dueDate: +dueDate });
 		},
 		toggleOptions() {
 			this.showOptions = !this.showOptions;
@@ -44,7 +44,9 @@ export default {
 	computed: {
 		dateForDisplay() {
 			if (!this.selectedCopy.dueDate) return '';
-			return this.selectedCopy.dueDate;
+			const date = new Date(this.selectedCopy.dueDate);
+			const dateMonthStr = utilService.months[date.getMonth()];
+			return `${dateMonthStr.substring(0, 3)} ${date.getDate()} `;
 		},
 		infoToSend() {
 			return { date: this.selectedCopy.dueDate, isRangre: false };
