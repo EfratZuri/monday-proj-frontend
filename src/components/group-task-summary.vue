@@ -1,6 +1,6 @@
 <template>
 	<div class="group-task-summary grid-row-component">
-		<div class="grid-cell-row-component-header"></div>
+		<div class="grid-cell-row-component-header" :style="{ flexBasis: '65%' }"></div>
 		<div v-if="cmps" class="grid-cells-row-component">
 			<component v-for="(cmp, idx) in cmps" :key="idx" :is="cmp.type" :info="getCmpInfo(cmp)" />
 		</div>

@@ -55,6 +55,7 @@
 
 <script>
 import statusPicker from '../components/status-picker';
+import priorityPicker from '../components/priority-picker';
 import datePicker from '../components/date-picker';
 import memberPicker from '../components/member-picker';
 import tagPicker from '../components/tag-picker';

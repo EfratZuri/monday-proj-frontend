@@ -1,5 +1,8 @@
-.moveto-menu {
-  position: absolute;
-  z-index: 1000;
-  background-color: red;
+.dropdown-modal {
+  top: 100%;
+  .moveto-menu {
+    & ul {
+      list-style: none;
+    }
+  }
 }
