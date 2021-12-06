@@ -51,4 +51,29 @@
       margin-right: 4px;
     }
   }
+
+  .duplicate-action {
+    display: flex;
+    position: relative;
+  }
+  .task-action {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 20px;
+    cursor: pointer;
+
+    .icon-selected {
+      top: 6px;
+      font-size: 21px;
+      position: relative;
+    }
+
+    .task-action-name {
+      color: #323338;
+      font-size: 13px;
+      position: relative;
+      bottom: -4px;
+    }
+  }
 }

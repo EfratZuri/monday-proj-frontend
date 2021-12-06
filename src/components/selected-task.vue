@@ -11,6 +11,21 @@
         </div>
       </div>
     </div>
+    <div class="duplicate-action">
+      <div></div>
+      <div class="task-action">
+        <span class="icon-selected">
+          <font-awesome-icon icon="copy" />
+        </span>
+        <span class="task-action-name">Duplicate</span>
+      </div>
+    </div>
+    <div class="task-action">
+      <span class="icon-selected">
+        <font-awesome-icon icon="trash" />
+      </span>
+      <span class="task-action-name">Delete</span>
+    </div>
   </section>
 </template>
 
