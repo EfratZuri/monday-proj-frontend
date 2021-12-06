@@ -1,0 +1,31 @@
+.timeline-summary-container,
+.timeline-picker-container {
+	min-width: 140px;
+	.timeline-bar-component {
+		height: 22px;
+		color: $primary-background-clr;
+		line-height: 22px;
+		border-radius: 11px;
+		margin: 8px 16px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		text-align: center;
+		white-space: nowrap;
+		background: rgb(171, 171, 171);
+		input {
+			cursor: pointer;
+		}
+		&.filled {
+			background-image: linear-gradient(to right, rgb(87, 155, 252) 0%, rgb(28, 31, 59) 0%);
+			&:hover {
+				background: linear-gradient(to right, rgb(37, 125, 251) 0%, rgb(12, 13, 24) 0%);
+			}
+		}
+		.timeline-value:after {
+			content: attr(contents);
+		}
+		&:hover:not(.is-editing) .timeline-value:after {
+			content: attr(hovercontents);
+		}
+	}
+}

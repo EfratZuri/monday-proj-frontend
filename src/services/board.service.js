@@ -219,7 +219,14 @@ function getEmptyBoard() {
 		members: [],
 		groups: [getEmptyGroup('rgb(87, 155, 252)'), getEmptyGroup('rgb(162, 93, 220)')],
 		activities: [],
-		cmpsOrder: ['status-picker', 'priority-picker', 'member-picker', 'date-picker', 'tag-picker'],
+		cmpsOrder: [
+			'status-picker',
+			'priority-picker',
+			'member-picker',
+			'date-picker',
+			'timeline-picker',
+			'tag-picker',
+		],
 		cols: [
 			{
 				type: 'statusPicker',
@@ -252,6 +259,10 @@ function getEmptyBoard() {
 			{
 				type: 'datePicker',
 				data: { opts: [], default: { dueDate: null } },
+			},
+			{
+				type: 'timelinePicker',
+				data: { opts: [], default: { dates: [], dayCount: 0 } },
 			},
 			{
 				type: 'tagPicker',

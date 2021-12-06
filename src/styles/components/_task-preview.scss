@@ -1,154 +1,157 @@
 .task-preview {
-  height: 100%;
-  border-bottom: 1px solid;
-  border-bottom-color: $primary-border-clr-light;
+	height: 100%;
+	border-bottom: 1px solid;
+	border-bottom-color: $primary-border-clr-light;
 }
 
 .col-list {
-  display: block;
-  width: 100%;
-  height: 100%;
-  // max-width: 678px;
-  // flex-basis: 678px;
-  position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	// max-width: 678px;
+	// flex-basis: 678px;
+	position: relative;
 }
 .col-cell {
-  position: relative;
-  display: block;
+	position: relative;
+	display: block;
 
-  max-width: 100%;
-  height: 100%;
-  // height: 35px;
-  // flex-basis: 140px;
-  overflow: hidden;
-  // text-overflow: ellipsis;
-  white-space: nowrap;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 400;
-  border-right: 1px solid;
-  border-right-color: #fff;
-  color: #666;
+	max-width: 100%;
+	height: 100%;
+	// height: 35px;
+	// flex-basis: 140px;
+	overflow: hidden;
+	// text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
+	font-size: 13px;
+	font-weight: 400;
+	border-right: 1px solid;
+	border-right-color: #fff;
+	color: #666;
 }
 .grid-cell-component-wrapper {
-  // left: 378px;
-  // width: 141px;
-  flex-basis: 25%;
-  // width: 100%;
-  // background-color: #fff;
-  & > *:not(.picker-component) {
-    &.selected {
-      background-color: $primary-selected-color;
-    }
-  }
-  &.dropdown-open {
-    position: relative;
-  }
+	// left: 378px;
+	// width: 141px;
+	flex-basis: 25%;
+	flex-basis: 16.66666666666666%;
+
+	// width: 100%;
+	// background-color: #fff;
+	& > *:not(.picker-component) {
+		&.selected {
+			background-color: $primary-selected-color;
+		}
+	}
+	&.dropdown-open {
+		position: relative;
+	}
 }
 
 .grid-cells-row-component-wrapper,
 .grid-cell-component-wrapper {
-  height: 100%;
-  will-change: left;
+	height: 100%;
+	will-change: left;
 }
 
 .grid-cells-row-component {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 .grid-cells-row-component-wrapper {
-  max-width: 678px;
-  flex-basis: 678px;
-  height: 100%;
+	// max-width: 678px;
+	// flex-basis: 678px;
+	height: 100%;
 }
 
 .name-cell {
-  flex: 1 0 308px;
-  will-change: transform;
-  height: 100%;
-  padding: 0 10px 0 0;
-  text-align: left;
+	flex: 1 0 308px;
+	flex-basis: 40%;
+	will-change: transform;
+	height: 100%;
+	padding: 0 10px 0 0;
+	text-align: left;
 
-  &.selected {
-    background-color: $primary-selected-color;
-  }
-  & > * {
-    transition: all 0.3;
-    font-size: 13px;
-  }
-  &:hover > * {
-    color: $primary-hover-clr;
-  }
-  .btn-edit {
-    height: 22px;
-    // flex: initial;
-    margin-left: 8px;
-    color: $secondary-txt-clr;
-    padding-left: 8px;
-    padding-right: 8px;
-    border-radius: 4px;
-    background-color: transparent;
-    // line-height: 22px;
-    padding-top: 2px;
-    opacity: 0;
-    transition: background-color 0.3s ease;
-    &:hover {
-      background-color: $dark-background-color;
-    }
-  }
-  .task-title {
-    text-overflow: unset;
-    overflow: hidden;
-    white-space: break-spaces;
-    line-height: 18px;
-    width: 100%;
-    color: $primary-txt-clr;
-    border: 1px solid transparent;
-    &:hover .btn-edit {
-      opacity: 1;
-    }
-    span {
-      align-self: flex-start;
-      padding-left: 10px;
-      font-weight: 400;
-    }
-    & input {
-      width: 100%;
-      border: 1px dashed $primary-txt-clr;
-      &:focus {
-        outline: none;
-      }
-    }
-  }
+	&.selected {
+		background-color: $primary-selected-color;
+	}
+	& > * {
+		transition: all 0.3;
+		font-size: 13px;
+	}
+	&:hover > * {
+		color: $primary-hover-clr;
+	}
+	.btn-edit {
+		height: 22px;
+		// flex: initial;
+		margin-left: 8px;
+		color: $secondary-txt-clr;
+		padding-left: 8px;
+		padding-right: 8px;
+		border-radius: 4px;
+		background-color: transparent;
+		// line-height: 22px;
+		padding-top: 2px;
+		opacity: 0;
+		transition: background-color 0.3s ease;
+		&:hover {
+			background-color: $dark-background-color;
+		}
+	}
+	.task-title {
+		text-overflow: unset;
+		overflow: hidden;
+		white-space: break-spaces;
+		line-height: 18px;
+		width: 100%;
+		color: $primary-txt-clr;
+		border: 1px solid transparent;
+		&:hover .btn-edit {
+			opacity: 1;
+		}
+		span {
+			align-self: flex-start;
+			padding-left: 10px;
+			font-weight: 400;
+		}
+		& input {
+			width: 100%;
+			border: 1px dashed $primary-txt-clr;
+			&:focus {
+				outline: none;
+			}
+		}
+	}
 }
 
 .pulse-left-indicator {
-  flex: 0 0 8px;
-  height: 100%;
-  width: 100%;
-  transition: flex-basis 0.1s ease-in;
-  position: relative;
+	flex: 0 0 8px;
+	height: 100%;
+	width: 100%;
+	transition: flex-basis 0.1s ease-in;
+	position: relative;
 
-  .left-indicator-inner {
-    width: 8px;
-    height: 100%;
-    overflow: hidden;
-    transition: width 0.07s cubic-bezier(0, 0, 0.35, 1);
-    will-change: width;
-    justify-content: center;
-    &selected,
-    &:hover {
-      width: 32px;
-    }
-    &:hover .left-indicator-checkbox {
-      opacity: 1;
-    }
-    .left-indicator-checkbox {
-      height: 14px;
-      width: 14px;
-      background-color: rgba(0, 0, 0, 0.2);
-      outline: 1px rgba(255, 255, 255, 0.2) solid;
-      opacity: 0;
-    }
-  }
+	.left-indicator-inner {
+		width: 8px;
+		height: 100%;
+		overflow: hidden;
+		transition: width 0.07s cubic-bezier(0, 0, 0.35, 1);
+		will-change: width;
+		justify-content: center;
+		&selected,
+		&:hover {
+			width: 32px;
+		}
+		&:hover .left-indicator-checkbox {
+			opacity: 1;
+		}
+		.left-indicator-checkbox {
+			height: 14px;
+			width: 14px;
+			background-color: rgba(0, 0, 0, 0.2);
+			outline: 1px rgba(255, 255, 255, 0.2) solid;
+			opacity: 0;
+		}
+	}
 }

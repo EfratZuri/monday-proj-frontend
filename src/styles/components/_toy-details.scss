@@ -1,12 +1,12 @@
-header.toy-details-header{
-margin-bottom:20px;
+header.toy-details-header {
+	margin-bottom: 20px;
 }
 
 .in-stock-label {
 	display: inline-block;
 	padding: $padding-def;
 	&.in-stock {
-        color:#fff;
+		color: #fff;
 		background-color: green;
 	}
 }

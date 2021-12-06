@@ -1,6 +1,6 @@
 <template>
-	<div class="group-task-summary grid-row-component">
-		<div class="grid-cell-row-component-header" :style="{ flexBasis: '65%' }"></div>
+	<div class="group-task-summary grid-row-component flex align-center">
+		<div class="grid-cell-row-component-header" :style="{ flexBasis: '50%' }"></div>
 		<div v-if="cmps" class="grid-cells-row-component">
 			<component v-for="(cmp, idx) in cmps" :key="idx" :is="cmp.type" :info="getCmpInfo(cmp)" />
 		</div>
@@ -9,7 +9,9 @@
 
 <script>
 import statusSummary from '../components/status-summary';
+import prioritySummary from '../components/priority-summary';
 import dateSummary from '../components/date-summary';
+import timelineSummary from '../components/timeline-summary';
 import memberSummary from '../components/member-summary';
 import tagSummary from '../components/tag-summary';
 export default {
@@ -44,6 +46,8 @@ export default {
 		memberSummary,
 		dateSummary,
 		tagSummary,
+		prioritySummary,
+		timelineSummary,
 	},
 };
 </script>
