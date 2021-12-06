@@ -26,6 +26,7 @@
           @removeGroup="remove"
           @duplicateGroup="duplicateGroup"
           @moveToBoard="moveToBoard"
+          @changeColor="toggleColor"
         />
       </div>
       <div class="group-name">
@@ -54,7 +55,7 @@
             <group-color-palette
               v-if="showColorPalette"
               :colors="clrs"
-              @selected="changeColor"
+              @selected="toggleColorPlatte"
             />
           </div>
 
@@ -118,11 +119,16 @@ export default {
       // Unshow the color palette
       this.toggleColorPalette();
     },
+    toggleColor() {
+      this.showColorPalette = !this.showColorPalette;
+    },
     toggleGroupMenu() {
       this.showGroupMenu = !this.showGroupMenu;
     },
     toggleColorPalette() {
       this.showColorPalette = !this.showColorPalette;
+      this.showEdit = !this.showEdit;
+      console.log('this.showEdit', this.showEdit);
     },
     cmpNameForDisplay(cmp) {
       const name = cmp
