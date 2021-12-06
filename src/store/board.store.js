@@ -90,7 +90,8 @@ export const boardStore = {
 		moveGroupToBoard(state, { moveDetails }) {
 			const { group } = moveDetails;
 			const { board } = moveDetails;
-			console.log('board', board);
+			const toBoard = state.boards.find(currBoard => currBoard._id === board._id);
+			toBoard.groups.push(group);
 			const idx = state.activeBoard.groups.findIndex(currGroup => currGroup._id === group._id)
 			state.activeBoard.groups.splice(idx, 1);
 		},
@@ -246,7 +247,6 @@ export const boardStore = {
 		async moveGroupToBoard(context, { moveDetails }) {
 			try {
 				await boardService.moveGroupToBoard(moveDetails, context.state.activeBoard);
-				console.log('true', true);
 				context.commit({ type: 'moveGroupToBoard', moveDetails });
 			} catch (error) {
 				console.log(error)

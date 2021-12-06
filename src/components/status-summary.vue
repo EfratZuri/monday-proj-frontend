@@ -1,5 +1,5 @@
 <template>
-	<div class="grid-cell-component-wrapper status-summary-container">
+	<div class="grid-cell-component-wrapper status-summary-container" :style="{ padding: '6px 8px' }">
 		<div class="col-cell flex">
 			<div
 				class="summary-cell"

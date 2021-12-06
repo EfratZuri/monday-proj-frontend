@@ -104,6 +104,7 @@ async function deleteTask(boardId, task, groupId) {
 // Save group
 
 async function saveGroup(group, activeBoardId) {
+	console.log('group', group);
 	const board = await getById(activeBoardId);
 	// If the group is new
 	if (!group._id) {
@@ -139,7 +140,7 @@ async function moveGroupToBoard(moveDetails, activeBoard) {
 	toBoard.groups.push(group);
 	fromBoard.groups.splice(groupIdx, 1);
 	await saveBoard(fromBoard);
-	await saveBoard(toBoard);
+	return await saveBoard(toBoard);
 }
 
 async function saveComment({ comment, boardId, groupId, taskId }) {
@@ -211,13 +212,17 @@ function removeGroup(group, activeBoard) {
 }
 
 function getEmptyBoard() {
+	const group1 = getEmptyGroup('rgb(87, 155, 252)')
+	const group2 = getEmptyGroup('rgb(162, 93, 220)')
+	group1._id = utilService.makeId()
+	group2._id = utilService.makeId()
 	return {
 		title: 'New Board',
 		createdAt: new Date(Date.now()).toLocaleString(),
 		_id: '',
 		createdBy: {},
 		members: [],
-		groups: [getEmptyGroup('rgb(87, 155, 252)'), getEmptyGroup('rgb(162, 93, 220)')],
+		groups: [group1, group2],
 		activities: [],
 		cmpsOrder: [
 			'status-picker',
