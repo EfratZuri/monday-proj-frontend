@@ -187,7 +187,6 @@ export const boardStore = {
 					details.groupId
 				);
 
-<<<<<<< HEAD
 				context.commit({
 					type: 'deleteTask',
 					boardId: context.state.activeBoard._id,
@@ -269,72 +268,4 @@ export const boardStore = {
 			}
 		},
 	},
-=======
-				context.commit({
-					type: 'deleteTask',
-					boardId: context.state.activeBoard._id,
-					task,
-					groupId: details.groupId,
-				});
-				return newBoard;
-			} catch (err) {
-				return err;
-			}
-		},
-		async saveComment(context, { details }) {
-			try {
-				const detailsToSend = {
-					...details,
-					boardId: context.state.activeBoard._id,
-				};
-				const newBoard = await boardService.saveComment(detailsToSend);
-				context.commit({ type: 'saveComment', details: detailsToSend });
-				context.commit({ type: 'saveBoard', details: newBoard });
-				return newBoard;
-			} catch (err) {
-				return err;
-			}
-		},
-		async saveGroup(context, { group }) {
-			if (!group) {
-				const groupColorId = utilService.getRandomInt(0, context.state.groupClrs.clrs.length - 1);
-				group = boardService.getEmptyGroup(context.state.groupClrs.clrs[groupColorId]);
-			}
-			try {
-				const addedGroup = await boardService.saveGroup(group, context.state.activeBoard._id);
-				context.commit({ type: 'saveGroup', group: addedGroup });
-				return addedGroup;
-			} catch (err) {
-				return err;
-			}
-		},
-		async duplicateGroup(context, { group }) {
-			try {
-				await boardService.duplicateGroup(group, context.state.activeBoard);
-				context.commit({ type: 'duplicateGroup', group });
-			} catch (err) {
-				console.log('err', err);
-			}
-		},
-		async saveBoard(context, { board }) {
-			try {
-				console.log('board, context', board, context);
-				const addedBoard = await boardService.saveBoard(board);
-				context.commit({ type: 'setActiveBoard', activeBoard: addedBoard });
-				context.commit({ type: 'saveBoard', board: addedBoard });
-				return addedBoard;
-			} catch (err) {
-				return err;
-			}
-		},
-		removeGroup(context, { group }) {
-			const activeBoard = context.getters.activeBoard;
-			try {
-				boardService.removeGroup(group, activeBoard);
-			} catch (error) {
-				console.log('error', error);
-			}
-		},
-	},
->>>>>>> 38f58521759555f04a3b8fcb660ea85db34f7658
 };
