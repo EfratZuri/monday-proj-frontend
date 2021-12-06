@@ -21,7 +21,8 @@ export const boardService = {
   saveBoard,
   removeGroup,
   getBoardAndGroup,
-  duplicateGroup
+  duplicateGroup,
+  moveGroupToBoard,
 };
 
 async function query() {
@@ -48,9 +49,10 @@ async function saveBoard(board) {
   let savedBoard;
   try {
     if (!board) board = getEmptyBoard();
-    if (board._id)
+    if (board._id) {
+      console.log('board', board);
       savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
-    else savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
+    } else savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
   } catch (error) {
     console.log('error', error);
   }
@@ -127,6 +129,17 @@ async function duplicateGroup(group, activeBoard) {
     console.log('error', error);
     throw error;
   }
+}
+
+async function moveGroupToBoard(moveDetails, activeBoard) {
+  const toBoard = moveDetails.board;
+  const { group } = moveDetails;
+  const fromBoard = await getById(activeBoard._id);
+  const groupIdx = fromBoard.groups.findIndex(currGroup => currGroup._id === group._id)
+  toBoard.groups.push(group);
+  fromBoard.groups.splice(groupIdx, 1);
+  await saveBoard(fromBoard);
+  await saveBoard(toBoard);
 }
 
 async function saveComment({ comment, boardId, groupId, taskId }) {

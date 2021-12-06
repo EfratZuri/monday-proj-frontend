@@ -23,6 +23,7 @@
           :boards="boards"
           @addGroup="addGroup"
           @removeGroup="removeGroup"
+          @moveToBoard="moveGroupToBoard"
           @saveTask="saveTask"
           @deleteTask="deleteTask"
           @saveGroup="saveGroup"
@@ -87,6 +88,9 @@ export default {
     },
     duplicateGroup(group) {
       this.$store.dispatch({ type: 'duplicateGroup', group });
+    },
+    moveGroupToBoard(moveDetails) {
+      this.$store.dispatch({ type: 'moveGroupToBoard', moveDetails });
     },
     toggleOpenControl() {
       this.showControlContent = !this.showControlContent;

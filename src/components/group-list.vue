@@ -14,6 +14,7 @@
           @toggleAllTasks="toggleAllTasks"
           @addGroup="addGroup"
           @duplicateGroup="duplicateGroup"
+          @moveToBoard="moveToBoard"
         />
         <taskList
           v-if="!isIncludesGroupIds(group._id)"
@@ -69,6 +70,9 @@ export default {
     duplicateGroup(group) {
       this.$emit('duplicateGroup', group);
     },
+    moveToBoard(moveDetails) {
+      this.$emit('moveToBoard', moveDetails);
+    },
     saveTask(task, groupId) {
       const details = { task, groupId };
       this.$emit('saveTask', details);
@@ -87,7 +91,6 @@ export default {
     },
     toggleAllTasks() {
       this.currGroupIds = this.board.groups.map((group) => group._id);
-      console.log('this.currGroupIds', this.currGroupIds);
     },
     isIncludesGroupIds(id) {
       return this.currGroupIds.includes(id);

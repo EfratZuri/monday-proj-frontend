@@ -25,6 +25,7 @@
           @toggleAllTasks="toggleAllTasks"
           @removeGroup="remove"
           @duplicateGroup="duplicateGroup"
+          @moveToBoard="moveToBoard"
         />
       </div>
       <div class="group-name">
@@ -150,6 +151,10 @@ export default {
     },
     addGroup() {
       this.$emit('addGroup');
+    },
+    moveToBoard(board) {
+      const moveDetails = { board, group: this.group };
+      this.$emit('moveToBoard', moveDetails);
     },
     duplicateGroup() {
       this.$emit('duplicateGroup', this.group);

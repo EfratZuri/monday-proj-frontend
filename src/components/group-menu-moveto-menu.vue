@@ -1,16 +1,30 @@
 <template>
-  <section class="moveto-menu">
-    <div class="menu-item" @click="collapseThis">Collapse this group</div>
-    <div class="menu-item" @click="collapseAll">Collapse all groups</div>
-    <div class="menu-item" @click="addGroup">Add group</div>
-    <div class="menu-item" @click="duplicateGroup">Duplicate this group</div>
-    <div class="menu-item" @click="changeColor">Change color</div>
-    <div class="menu-item" @click="removeGroup">Delete group</div>
+  <section class="dropdown-modal moveto-menu">
+    <ul>
+      <li v-for="board in boards" :key="board._id">
+        <div class="menu-item" @click="moveToBoard(board)">
+          {{ board.title }}
+        </div>
+      </li>
+    </ul>
   </section>
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'group-menu-moveto-menu',
+  props: {
+    boards: {
+      type: Array,
+    },
+  },
+  created() {},
+  methods: {
+    moveToBoard(board) {
+      this.$emit('moveToBoard', board);
+    },
+  },
+};
 </script>
 
 <style></style>

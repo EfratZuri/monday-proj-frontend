@@ -8,7 +8,7 @@
       <span>Move to</span>
       <div class="group-moveto-dropdown-icon-wrapper">
         <ion-icon name="chevron-forward-outline"></ion-icon>
-        <group-menu-moveto-menu />
+        <group-menu-moveto-menu :boards="boards" @moveToBoard="moveToBoard" />
       </div>
     </div>
 
@@ -49,6 +49,9 @@ export default {
     },
     removeGroup() {
       this.$emit('removeGroup');
+    },
+    moveToBoard(board) {
+      this.$emit('moveToBoard', board);
     },
   },
   components: {
