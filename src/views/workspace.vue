@@ -11,6 +11,7 @@
     <div class="workspace-content">
       <div v-if="isLoading"><p>Loading</p></div>
 
+      <<<<<<< HEAD
       <div v-else>
         <boardHeader
           :activeBoard="activeBoard"
@@ -31,6 +32,27 @@
           @duplicateGroup="duplicateGroup"
         />
         <!-- <task-update
+=======
+			<div v-else>
+				<boardHeader
+					:activeBoard="activeBoard"
+					@addTask="saveTask"
+					@saveBoard="saveBoard"
+					@addGroup="addGroup"
+				/>
+				<groupList
+					:board="activeBoard"
+					:boards="boards"
+					@addGroup="addGroup"
+					@removeGroup="removeGroup"
+					@saveTask="saveTask"
+					@deleteTask="deleteTask"
+					@saveGroup="saveGroup"
+					@saveComment="saveComment"
+					@duplicateGroup="duplicateGroup"
+				/>
+				<!-- <task-update
+>>>>>>> 38f58521759555f04a3b8fcb660ea85db34f7658
 					v-if="showPostPanel"
 					:task="task"
 					@closePanel="togglePostPanel"

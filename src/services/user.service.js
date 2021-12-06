@@ -26,8 +26,9 @@ async function _connectUser(urlType, logData) {
 }
 
 function _getUrl(type = '') {
-	const BASE_URL = `${process.env.NODE_ENV !== 'development' ? '' : '//localhost:8020'
-		}/api/v1/users`;
+	const BASE_URL = `${
+		process.env.NODE_ENV !== 'development' ? '' : '//localhost:8020'
+	}/api/v1/users`;
 	return `${BASE_URL}/${type}`;
 }
 

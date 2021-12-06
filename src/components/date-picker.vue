@@ -2,7 +2,9 @@
 	<div class="grid-cell-component-wrapper date-picker-container">
 		<div class="col-cell">
 			<div class="date-box" @click="toggleCalendar">
-				<span>{{ dateForDisplay }}</span>
+				<div class="date-txt-box">
+					<span>{{ dateForDisplay }}</span>
+				</div>
 				<date-picker-table :date="selectedCopy.dueDate" @change="update" />
 			</div>
 		</div>
