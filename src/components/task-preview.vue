@@ -155,6 +155,7 @@ export default {
     taskMenu,
     taskUpdate,
     tagPicker,
+    priorityPicker,
   },
   // <!-- @blur="saveTitle" -->
 };
