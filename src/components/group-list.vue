@@ -10,6 +10,8 @@
           @saveGroup="saveGroup"
           @removeGroup="removeGroup"
           @toggleTasks="toggleTasks"
+          @toggleAllTasks="toggleAllTasks"
+          @addGroup="addGroup"
         />
         <taskList
           v-if="!isIncludesGroupIds(group._id)"
@@ -51,7 +53,7 @@ export default {
   },
   methods: {
     addGroup() {
-      this.$emit('addGroup', this.groupToEdit);
+      this.$emit('addGroup');
     },
     saveGroup(group) {
       this.$emit('saveGroup', group);
@@ -70,12 +72,19 @@ export default {
       this.$emit('saveComment', details);
     },
     toggleTasks(id) {
+      console.log('this.currGroupIds', this.currGroupIds);
+      console.log('id', id);
       if (this.currGroupIds.includes(id)) {
         const foundIdx = this.currGroupIds.findIndex(
           (group) => group._id === id
         );
-        this.currGroupIds.splice(foundIdx, 1);
+        if (foundIdx >= 0) this.currGroupIds.splice(foundIdx, 1);
       } else this.currGroupIds.push(id);
+      console.log('this.currGroupIds', this.currGroupIds);
+    },
+    toggleAllTasks() {
+      this.currGroupIds = this.board.groups.map((group) => group._id);
+      console.log('this.currGroupIds', this.currGroupIds);
     },
     isIncludesGroupIds(id) {
       return this.currGroupIds.includes(id);

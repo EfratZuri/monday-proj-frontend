@@ -17,6 +17,7 @@
     font-size: 15px;
     cursor: pointer;
     transition: background-color 100ms ease-in;
+    position: relative;
     &:hover {
       background-color: $primary-hover-clr;
     }
@@ -27,8 +28,8 @@
   .header-add-dropdown {
     background-color: white;
     position: absolute;
-    left: 174px;
-    top: 197px;
+    top: 120%;
+    left: 0;
     height: 80px;
     width: 220px;
     font-size: rem(15px);

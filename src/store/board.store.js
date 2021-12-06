@@ -30,7 +30,7 @@ export const boardStore = {
       ],
       curClrIdx: 0,
     },
-    groupToEdit: boardService.getEmptyGroup('#579bfc'),
+    groupToEdit: boardService.getEmptyGroup(),
     taskToEdit: boardService.getEmptyTask(),
     commentToEdit: boardService.getEmptyComment(),
   },
@@ -208,7 +208,6 @@ export const boardStore = {
       }
     },
     async saveGroup(context, { group }) {
-      console.log('group', group);
       if (!group) {
         const groupColorId = utilService.getRandomInt(
           0,
