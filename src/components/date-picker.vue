@@ -26,6 +26,7 @@ export default {
 		};
 	},
 	created() {
+		console.log('date created');
 		this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
 	},
 	methods: {
@@ -33,6 +34,7 @@ export default {
 			this.showCalendar = !this.showCalendar;
 		},
 		update(dueDate) {
+			console.log(dueDate);
 			this.$emit('update', { dueDate });
 		},
 		toggleOptions() {
