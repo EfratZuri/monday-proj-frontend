@@ -10,7 +10,7 @@
         <transition-group>
           <li
             v-for="task in tasks"
-            :key="task._id"
+            :key="task.id"
             class="task-row flex align-center"
           >
             <div
@@ -98,7 +98,7 @@ export default {
       this.showDialogNode = !this.showDialogNode;
     },
     saveTask(task) {
-      this.$emit('saveTask', task, this.group._id);
+      this.$emit('saveTask', task, this.group.id);
     },
     toggleShowTaskMenu() {
       // this.showTaskMenu = false;
@@ -109,10 +109,10 @@ export default {
     },
 
     deleteTask(task) {
-      this.$emit('deleteTask', task, this.group._id);
+      this.$emit('deleteTask', task, this.group.id);
     },
     saveComment(details) {
-      details.groupId = this.group._id;
+      details.groupId = this.group.id;
       this.$emit('saveComment', details);
     },
   },

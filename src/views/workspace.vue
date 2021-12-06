@@ -131,7 +131,7 @@ export default {
     },
     setSelected(task, boolean) {
       console.log(task, boolean);
-      const idx = this.tasks.findIndex(({ id }) => id === task._id);
+      const idx = this.tasks.findIndex(({ id }) => id === task.id);
       if (boolean) this.tasks.push(task);
       else this.tasks.splice(idx, 1);
       console.log(this.tasks);

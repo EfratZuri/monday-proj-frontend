@@ -20,7 +20,6 @@ export const boardService = {
 	saveComment,
 	saveBoard,
 	removeGroup,
-	getBoardAndGroup,
 	duplicateGroup,
 	moveGroupToBoard,
 };
@@ -28,20 +27,29 @@ export const boardService = {
 async function query() {
 	// let queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`;
 	// return httpService.get(`board${queryStr}`)
-	let boards = await storageService.query(STORAGE_KEY_BOARDS);
-	if (!boards.length) {
-		const board = _createBoard();
-		boards.push(board);
-		saveBoard(board);
+	try {
+		let boards = await storageService.query(STORAGE_KEY_BOARDS);
+		if (!boards.length) {
+			const board = _createBoard();
+			boards.push(board);
+			saveBoard(board);
+		}
+		return boards;
+	} catch (error) {
+		console.log('error', error);
 	}
-	return boards;
 }
 
-// BOARD
+
+/////////-----------------BOARD-----------------/////////
 
 async function removeBoard(boardId) {
 	// return httpService.delete(`board/${boardId}`)
-	await storageService.remove('boards', boardId);
+	try {
+		await storageService.remove('boards', boardId);
+	} catch (error) {
+		console.log('error', error);
+	}
 }
 
 async function saveBoard(board) {
@@ -50,7 +58,6 @@ async function saveBoard(board) {
 	try {
 		if (!board) board = getEmptyBoard();
 		if (board._id) {
-			console.log('board', board);
 			savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
 		} else savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
 	} catch (error) {
@@ -65,21 +72,63 @@ async function getById(boardId) {
 	return board;
 }
 
-// Save task
+
+/////////-----------------GROUP-----------------/////////
+
+async function saveGroup(group, activeBoardId) {
+	const board = await getById(activeBoardId);
+	if (!group.id) {
+		group.id = utilService.makeId();
+		board.groups.unshift(group);
+	} else {
+		const idx = board.groups.findIndex(({ id }) => id === group.id);
+		board.groups.splice(idx, 1, group);
+	}
+	await saveBoard(board);
+	return group;
+}
+
+async function duplicateGroup(group, groupToAdd, activeBoard) {
+	const board = await getById(activeBoard._id);
+	const currGroupIdx = board.groups.findIndex((currGroup) => currGroup.id === group.id);
+	board.groups.splice(currGroupIdx, 0, groupToAdd);
+	await saveBoard(board);
+	return groupToAdd;
+}
+
+async function moveGroupToBoard(moveDetails, activeBoard) {
+	const toBoard = moveDetails.board;
+	const { group } = moveDetails;
+	const fromBoard = await getById(activeBoard._id);
+	const groupIdx = fromBoard.groups.findIndex((currGroup) => currGroup.id === group.id);
+	toBoard.groups.push(group);
+	fromBoard.groups.splice(groupIdx, 1);
+	await saveBoard(fromBoard);
+	return await saveBoard(toBoard);
+}
+
+async function removeGroup(group, activeBoard) {
+	const idx = activeBoard.groups.findIndex((currGroup) => currGroup.id === group.id);
+	activeBoard.groups.splice(idx, 1);
+	await saveBoard(activeBoard);
+}
+
+
+/////////-----------------TASK-----------------/////////
 
 async function saveTask(boardId, task, groupId) {
 	let activity = getEmptyActivity();
-	activity.txt = task._id ? 'Edit task' : 'Add task';
+	activity.txt = task.id ? 'Edit task' : 'Add task';
 	activity.createdAt = moment().fromNow('LT');
-	activity._id = utilService.makeId();
+	activity.id = utilService.makeId();
 	const board = await getById(boardId);
-	const group = board.groups.find(({ _id }) => _id === groupId);
-	if (!task._id) {
-		task._id = utilService.makeId();
+	const group = board.groups.find(({ id }) => id === groupId);
+	if (!task.id) {
+		task.id = utilService.makeId();
 		if (task.title === 'New Task') group.tasks.unshift(task);
 		else group.tasks.push(task);
 	} else {
-		const idx = group.tasks.findIndex(({ _id }) => _id === task._id);
+		const idx = group.tasks.findIndex(({ id }) => id === task.id);
 		group.tasks.splice(idx, 1, task);
 	}
 	board.activities.unshift(activity);
@@ -89,64 +138,22 @@ async function saveTask(boardId, task, groupId) {
 
 async function deleteTask(boardId, task, groupId) {
 	const board = await getById(boardId);
-	const group = board.groups.find(({ _id }) => _id === groupId);
-	const idx = group.tasks.findIndex(({ _id }) => _id === task._id);
+	const group = board.groups.find(({ id }) => id === groupId);
+	const idx = group.tasks.findIndex(({ id }) => id === task.id);
 	group.tasks.splice(idx, 1);
 	let activity = getEmptyActivity();
 	activity.txt = 'Delete task';
 	activity.createdAt = moment().fromNow('LT');
-	activity._id = utilService.makeId();
+	activity.id = utilService.makeId();
 	board.activities.unshift(activity);
 	saveBoard(board);
 	return board;
 }
 
-// Save group
-
-async function saveGroup(group, activeBoardId) {
-	console.log('group', group);
-	const board = await getById(activeBoardId);
-	// If the group is new
-	if (!group._id) {
-		group._id = utilService.makeId();
-		board.groups.unshift(group);
-		// Update group
-	} else {
-		const idx = board.groups.findIndex(({ _id }) => _id === group._id);
-		board.groups.splice(idx, 1, group);
-	}
-	saveBoard(board);
-	return group;
-}
-
-async function duplicateGroup(group, groupToAdd, activeBoard) {
-	const board = await getById(activeBoard._id);
-	const currGroupIdx = board.groups.findIndex((currGroup) => currGroup._id === group._id);
-	board.groups.splice(currGroupIdx, 0, groupToAdd);
-	try {
-		saveBoard(board);
-		return groupToAdd;
-	} catch (error) {
-		console.log('error', error);
-		throw error;
-	}
-}
-
-async function moveGroupToBoard(moveDetails, activeBoard) {
-	const toBoard = moveDetails.board;
-	const { group } = moveDetails;
-	const fromBoard = await getById(activeBoard._id);
-	const groupIdx = fromBoard.groups.findIndex((currGroup) => currGroup._id === group._id);
-	toBoard.groups.push(group);
-	fromBoard.groups.splice(groupIdx, 1);
-	await saveBoard(fromBoard);
-	return await saveBoard(toBoard);
-}
-
 async function saveComment({ comment, boardId, groupId, taskId }) {
 	const board = await getById(boardId);
-	const group = board.groups.find(({ _id }) => _id === groupId);
-	const task = group.tasks.find(({ _id }) => _id === taskId);
+	const group = board.groups.find(({ id }) => id === groupId);
+	const task = group.tasks.find(({ id }) => id === taskId);
 	const copyComment = JSON.parse(JSON.stringify(comment));
 	copyComment.id = utilService.makeId();
 	copyComment.createdAt = new Date(Date.now()).toLocaleString();
@@ -156,66 +163,37 @@ async function saveComment({ comment, boardId, groupId, taskId }) {
 	let activity = getEmptyActivity();
 	activity.txt = 'Add comment';
 	activity.createdAt = moment().fromNow('LT');
-	activity._id = utilService.makeId();
+	activity.id = utilService.makeId();
 
 	board.activities.unshift(activity);
 	saveBoard(board);
 	return board;
 }
 
-// More ways to send query params:
-// return axios.get('api/toy/?id=1223&balance=13')
-// return axios.get('api/toy/?', {params: {id: 1223, balance:13}})
-// This IIFE functions for Dev purposes
-// It allows testing of real time updates (such as sockets) by listening to storage events
-(async () => {
-	let boards = await storageService.query('board');
-
-	// Dev Helper: Listens to when localStorage changes in OTHER browser
-	window.addEventListener('storage', async () => {
-		console.log('Storage updated');
-		const freshBoards = await storageService.query('board');
-		if (freshBoards.length === boards.length + 1) {
-			console.log('Board Added - localStorage updated from another browser');
-			socketService.emit(SOCKET_EVENT_REVIEW_ADDED, freshBoards[freshBoards.length - 1]);
-		}
-		boards = freshBoards;
-	});
-})();
 
 // GET EMPTY
 
 function getEmptyGroup(clr) {
-	return { title: 'New Group', _id: '', tasks: [], style: { clr } };
+	return { title: 'New Group', id: '', tasks: [], style: { clr } };
 }
 
 function getEmptyTask() {
-	return { title: '', _id: '', cmps: {} };
+	return { title: '', id: '', cmps: {} };
 }
 
 function getEmptyActivity() {
-	return { txt: '', _id: '', createdAt: '', byMember: {} };
+	return { txt: '', id: '', createdAt: '', byMember: {} };
 }
 
 function getEmptyComment() {
 	return { txt: '', id: '', createdAt: '', byMember: {} };
 }
 
-function removeGroup(group, activeBoard) {
-	try {
-		const idx = activeBoard.groups.findIndex((currGroup) => currGroup._id === group._id);
-		activeBoard.groups.splice(idx, 1);
-		saveBoard(activeBoard);
-	} catch (error) {
-		console.log('error', error);
-	}
-}
-
 function getEmptyBoard() {
 	const group1 = getEmptyGroup('rgb(87, 155, 252)')
 	const group2 = getEmptyGroup('rgb(162, 93, 220)')
-	group1._id = utilService.makeId()
-	group2._id = utilService.makeId()
+	group1.id = utilService.makeId()
+	group2.id = utilService.makeId()
 	return {
 		title: 'New Board',
 		createdAt: new Date(Date.now()).toLocaleString(),
@@ -285,18 +263,12 @@ function getEmptyBoard() {
 
 // Auxiliary functions
 
-function getBoardAndGroup(task) {
-	console.log(task);
-	const boards = query();
-	const board = boards.find(({ board }) => board.groups.find(({ group }) => group.include(task)));
-	console.log(board);
-}
-
 function _createBoard() {
 	const board = getEmptyBoard();
-	board.groups.forEach((group) => (group._id = utilService.makeId()));
+	board.groups.forEach(group => group.id = utilService.makeId());
 	return board;
 }
+
 function _getStatusOptions() {
 	return [
 		{
@@ -362,3 +334,23 @@ function _getPriorityOptions() {
 		},
 	];
 }
+
+// More ways to send query params:
+// return axios.get('api/toy/?id=1223&balance=13')
+// return axios.get('api/toy/?', {params: {id: 1223, balance:13}})
+// This IIFE functions for Dev purposes
+// It allows testing of real time updates (such as sockets) by listening to storage events
+(async () => {
+	let boards = await storageService.query('board');
+
+	// Dev Helper: Listens to when localStorage changes in OTHER browser
+	window.addEventListener('storage', async () => {
+		console.log('Storage updated');
+		const freshBoards = await storageService.query('board');
+		if (freshBoards.length === boards.length + 1) {
+			console.log('Board Added - localStorage updated from another browser');
+			socketService.emit(SOCKET_EVENT_REVIEW_ADDED, freshBoards[freshBoards.length - 1]);
+		}
+		boards = freshBoards;
+	});
+})();

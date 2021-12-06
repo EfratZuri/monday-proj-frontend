@@ -17,7 +17,7 @@
         >
           <font-awesome-icon icon="caret-down" />
         </button>
-        <group-menu
+        <group-menu v-click-outside="toggleGroupMenu"
           v-if="showGroupMenu"
           :boards="boards"
           :board="board"
@@ -84,8 +84,10 @@
 </template>
 
 <script>
+// import { ref } from "vue"
 import groupMenu from '@/components/group-menu';
 import groupColorPalette from '@/components/group-color-palette.vue';
+
 export default {
   name: 'groupHeader',
   props: {
@@ -153,7 +155,7 @@ export default {
     },
     toggleTasks() {
       console.log('toggle');
-      this.$emit('toggleTasks', this.group._id);
+      this.$emit('toggleTasks', this.group.id);
     },
     toggleAllTasks() {
       this.$emit('toggleAllTasks');

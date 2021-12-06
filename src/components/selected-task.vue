@@ -6,7 +6,7 @@
     <div class="title-section flex column">
       <div class="title-selected"><span>Task selected</span></div>
       <div class="pulses-dots flex align-center">
-        <div v-for="task in tasks" :key="task._id" class="dot-num">
+        <div v-for="task in tasks" :key="task.id" class="dot-num">
           <span>.</span>
         </div>
       </div>
