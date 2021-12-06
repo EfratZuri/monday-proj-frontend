@@ -39,12 +39,12 @@
             <ion-icon name="search-outline"></ion-icon>
             <span>Search</span>
           </button>
-          <control-content-board-list
-            :boards="boards"
-            @showBoard="showBoard"
-            @removeBoard="removeBoard"
-          />
         </div>
+        <control-content-board-list
+          :boards="boards"
+          @showBoard="showBoard"
+          @removeBoard="removeBoard"
+        />
       </div>
     </div>
   </section>

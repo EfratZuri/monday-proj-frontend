@@ -4,7 +4,7 @@
       <button class="btn-close-panel" @click="closePanel">X</button>
       <div class="task-title-update">
         <h2 v-if="!showEditTitle" @click="toggleEditTitle">{{ task.title }}</h2>
-        <input v-else type="text" v-model="taskCopy.title" />
+        <input v-else type="text" v-model="task.title" />
       </div>
       <div class="monday-board-subsets-tabs flex align-center">
         <div class="monday-board-subset-item">
@@ -154,7 +154,6 @@ export default {
   },
   computed: {
     taskCopy() {
-      console.log('this.task', this.task);
       return JSON.parse(JSON.stringify(this.task));
     },
   },
