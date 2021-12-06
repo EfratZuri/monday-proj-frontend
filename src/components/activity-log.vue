@@ -4,7 +4,7 @@
 			<div class="filter-log-btn-container" :class="{ 'dropdown-open': showFilterMenu }">
 				<button class="btn btn-blue btn-size-small flex align-center" @click="toggleFilterMenu">
 					<span> Filter Log </span>
-					<ion-icon name="chevron-down-outline" />
+					<!-- <ion-icon name="chevron-down-outline" /> -->
 				</button>
 				<div v-if="showFilterMenu" class="filter-log-menu-container">
 					<div class="filter-log-menu-title">

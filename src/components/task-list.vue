@@ -15,12 +15,18 @@
           >
             <div
               class="menu-edit-task-container"
-              :class="{ selected: showTaskMenu }"
+              :class="{ 'dropdown-open': showTaskMenu }"
             >
               <button class="btn" @click="toggleShowTaskMenu">
                 <font-awesome-icon icon="caret-down" />
               </button>
-              <task-menu v-if="showTaskMenu" :task="task" />
+              <task-menu
+                v-if="showTaskMenu"
+                :task="task"
+                @remove="deleteTask"
+                @duplicate="saveTask"
+                @selected="saveTask"
+              />
             </div>
             <task-preview
               :task="task"

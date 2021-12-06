@@ -1,26 +1,25 @@
 <template>
-  <OnClickOutside @trigger="close">
-    <section v-if="task" class="add-task-component flex">
-      <div
-        class="pulse-left-indicator"
-        :style="{ backgroundColor: color, color: color }"
-      ></div>
-      <input
-        type="text"
-        v-model="task.title"
-        @focus="showAddBtn = true"
-        placeholder="+Add"
-        @keyup.enter="addNewTask"
-      />
-      <button v-if="showAddBtn" class="btn btn-blue" @click="addNewTask">
-        +Add
-      </button>
-    </section>
-  </OnClickOutside>
+  <section v-if="task" class="add-task-component flex">
+    <div
+      class="pulse-left-indicator"
+      :style="{ backgroundColor: color, color: color }"
+    ></div>
+    <input
+      type="text"
+      v-model="task.title"
+      @focus="toggleAddBtn"
+      placeholder="+Add"
+      @keyup.enter="addNewTask"
+      @blur="turnOffAdd"
+    />
+    <button v-if="showAddBtn" class="btn btn-blue" @click="addNewTask">
+      +Add
+    </button>
+  </section>
 </template>
 
 <script>
-import { OnClickOutside } from '@vueuse/components';
+// import { OnClickOutside } from '@vueuse/components';
 export default {
   name: 'addTask',
   props: {
@@ -48,7 +47,6 @@ export default {
       this.task.title = '';
     },
     toggleAddBtn() {
-      console.log('gg');
       this.showAddBtn = !this.showAddBtn;
     },
     turnOffAdd() {
@@ -56,13 +54,6 @@ export default {
         this.showAddBtn = false;
       }, 10);
     },
-
-    close() {
-      console.log('fff');
-      this.showAddBtn = false;
-      // tabindex="0" // @blur="toggleAddBtn"
-    },
   },
-  components: { OnClickOutside },
 };
 </script>

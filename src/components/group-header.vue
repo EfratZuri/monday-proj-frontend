@@ -17,7 +17,12 @@
         >
           <font-awesome-icon icon="caret-down" />
         </button>
-        <group-menu v-if="showGroupMenu" />
+        <group-menu
+          v-if="showGroupMenu"
+          @addGroup="addGroup"
+          @toggleTasks="toggleTasks"
+          @toggleAllTasks="toggleAllTasks"
+        />
       </div>
       <div class="group-name">
         <span
@@ -27,7 +32,9 @@
           @mouseover="showTaskToggleBtn = true"
           @mouseleave="showTaskToggleBtn = false"
         >
-          <!-- <button v-if="showTaskToggleBtn" @click.stop="showTaskToggle">toggleTasks</button> -->
+          <!-- <button v-if="showTaskToggleBtn" @click.stop="showTaskToggle">
+            toggleTasks
+          </button> -->
           {{ groupToEdit.title }}</span
         >
         <div v-else class="edit-group-container flex align-center">
@@ -96,24 +103,6 @@ export default {
   created() {
     this.cmpsOrder = this.$store.getters.cmpsOrder;
   },
-  watch: {},
-  mounted() {
-    // console.log('EEEEEEEEEEEEEEEEEEEEEEEEEE');
-    // const headerHeight = this.$refs.header.getBoundingClientRect().height;
-    // const header = this.$refs.header;
-    // const stickyHeader = function (entries) {
-    // 	const [entry] = entries;
-    // 	if (!entry.isIntersecting) this.isSticky = true;
-    // 	else this.isSticky = false;
-    // 	console.log(this.isSticky);
-    // };
-    // const headerObserver = new IntersectionObserver(stickyHeader, {
-    // 	root: null,
-    // 	threshold: 0,
-    // 	rootMargin: `-${headerHeight}px`,
-    // });
-    // headerObserver.observe(this.$refs.header);
-  },
   methods: {
     changeColor(clr) {
       const groupCopy = JSON.parse(JSON.stringify(this.group));
@@ -146,14 +135,39 @@ export default {
     remove() {
       this.$emit('removeGroup', this.group);
     },
-    showTaskToggle() {
+    toggleTasks() {
+      console.log('toggle');
       this.$emit('toggleTasks', this.group._id);
+    },
+    toggleAllTasks() {
+      this.$emit('toggleAllTasks');
+    },
+    addGroup() {
+      this.$emit('addGroup');
     },
     stickyHeader(entries) {
       const [entry] = entries;
       if (!entry.isIntersecting) this.isSticky = true;
       else this.isSticky = false;
     },
+  },
+  watch: {},
+  mounted() {
+    // console.log('EEEEEEEEEEEEEEEEEEEEEEEEEE');
+    // const headerHeight = this.$refs.header.getBoundingClientRect().height;
+    // const header = this.$refs.header;
+    // const stickyHeader = function (entries) {
+    // 	const [entry] = entries;
+    // 	if (!entry.isIntersecting) this.isSticky = true;
+    // 	else this.isSticky = false;
+    // 	console.log(this.isSticky);
+    // };
+    // const headerObserver = new IntersectionObserver(stickyHeader, {
+    // 	root: null,
+    // 	threshold: 0,
+    // 	rootMargin: `-${headerHeight}px`,
+    // });
+    // headerObserver.observe(this.$refs.header);
   },
   computed: {
     clrs() {
