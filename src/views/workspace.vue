@@ -20,12 +20,14 @@
 				/>
 				<groupList
 					:board="activeBoard"
+					:boards="boards"
 					@addGroup="addGroup"
 					@removeGroup="removeGroup"
 					@saveTask="saveTask"
 					@deleteTask="deleteTask"
 					@saveGroup="saveGroup"
 					@saveComment="saveComment"
+					@duplicateGroup="duplicateGroup"
 				/>
 				<!-- <task-update
 					v-if="showPostPanel"
@@ -65,9 +67,6 @@ export default {
 		},
 	},
 	methods: {
-		handleUpdates(payload) {
-			this.$store.dispatch(payload);
-		},
 		saveTask(details = null) {
 			this.$store.dispatch({ type: 'saveTask', details });
 		},
@@ -85,6 +84,9 @@ export default {
 		},
 		saveGroup(group) {
 			this.$store.dispatch({ type: 'saveGroup', group });
+		},
+		duplicateGroup(group) {
+			this.$store.dispatch({ type: 'duplicateGroup', group });
 		},
 		toggleOpenControl() {
 			this.showControlContent = !this.showControlContent;

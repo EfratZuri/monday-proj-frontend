@@ -86,7 +86,11 @@ export const boardStore = {
       // Update Group
       else state.activeBoard.groups.splice(idx, 1, group);
     },
-
+    duplicateGroup(state, { group }) {
+      const groupToAdd = JSON.parse(JSON.stringify(group));
+      const currGroupIdx = state.activeBoard.groups.findIndex(currGroup => currGroup._id === group._id);
+      state.activeBoard.groups.splice(currGroupIdx, 0, groupToAdd)
+    },
     saveTask(state, { boardId, groupId, task }) {
       const board = state.boards.find((board) => board._id === boardId);
       const group = board.groups.find(({ _id }) => _id === groupId);
@@ -226,6 +230,14 @@ export const boardStore = {
         return addedGroup;
       } catch (err) {
         return err;
+      }
+    },
+    async duplicateGroup(context, { group }) {
+      try {
+        await boardService.duplicateGroup(group, context.state.activeBoard);
+        context.commit({ type: 'duplicateGroup', group });
+      } catch (err) {
+        console.log('err', err);
       }
     },
     async saveBoard(context, { board }) {

@@ -15,9 +15,12 @@
 				</button>
 				<group-menu
 					v-if="showGroupMenu"
+					:boards="boards"
 					@addGroup="addGroup"
 					@toggleTasks="toggleTasks"
 					@toggleAllTasks="toggleAllTasks"
+					@removeGroup="remove"
+					@duplicateGroup="duplicateGroup"
 				/>
 			</div>
 			<div class="group-name">
@@ -79,6 +82,9 @@ export default {
 			type: Object,
 			required: true,
 		},
+		boards: {
+			type: Array,
+		},
 	},
 	data() {
 		return {
@@ -134,6 +140,9 @@ export default {
 		addGroup() {
 			this.$emit('addGroup');
 		},
+		duplicateGroup() {
+			this.$emit('duplicateGroup', this.group);
+		},
 		stickyHeader(entries) {
 			const [entry] = entries;
 			if (!entry.isIntersecting) this.isSticky = true;
@@ -142,12 +151,11 @@ export default {
 	},
 	watch: {},
 	mounted() {
+		// console.log('EEEEEEEEEEEEEEEEEEEEEEEEEE');
 		// const headerHeight = this.$refs.header.getBoundingClientRect().height;
 		// const header = this.$refs.header;
 		// const stickyHeader = function (entries) {
-		// 	console.log(header);
 		// 	const [entry] = entries;
-		// 	console.log(entry);
 		// 	if (!entry.isIntersecting) this.isSticky = true;
 		// 	else this.isSticky = false;
 		// 	console.log(this.isSticky);

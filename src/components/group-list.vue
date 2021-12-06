@@ -4,11 +4,13 @@
 			<li class="group" v-for="group in groups" :key="group._id">
 				<group-header
 					:group="group"
+					:boards="boards"
 					@saveGroup="saveGroup"
 					@removeGroup="removeGroup"
 					@toggleTasks="toggleTasks"
 					@toggleAllTasks="toggleAllTasks"
 					@addGroup="addGroup"
+					@duplicateGroup="duplicateGroup"
 				/>
 				<taskList
 					v-if="!isIncludesGroupIds(group._id)"
@@ -36,6 +38,9 @@ export default {
 			type: Object,
 			required: true,
 		},
+		boards: {
+			type: Array,
+		},
 	},
 	data() {
 		return {
@@ -58,6 +63,9 @@ export default {
 		removeGroup(group) {
 			this.$emit('removeGroup', group);
 		},
+		duplicateGroup(group) {
+			this.$emit('duplicateGroup', group);
+		},
 		saveTask(task, groupId) {
 			const details = { task, groupId };
 			this.$emit('saveTask', details);
@@ -70,7 +78,7 @@ export default {
 		},
 		toggleTasks(id) {
 			if (this.currGroupIds.includes(id)) {
-				const foundIdx = this.currGroupIds.findIndex((group) => group._id === id);
+				const foundIdx = this.currGroupIds.findIndex((idx) => idx === id);
 				if (foundIdx >= 0) this.currGroupIds.splice(foundIdx, 1);
 			} else this.currGroupIds.push(id);
 		},
