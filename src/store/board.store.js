@@ -81,14 +81,16 @@ export const boardStore = {
 			// Update Group
 			else state.activeBoard.groups.splice(idx, 1, group);
 		},
-		duplicateGroup(state, { group }) {
-			const groupToAdd = JSON.parse(JSON.stringify(group));
+		duplicateGroup(state, { duplicateDetails }) {
+			const { group } = duplicateDetails;
+			const { groupToAdd } = duplicateDetails;
 			const currGroupIdx = state.activeBoard.groups.findIndex(currGroup => currGroup._id === group._id);
 			state.activeBoard.groups.splice(currGroupIdx, 0, groupToAdd)
 		},
 		moveGroupToBoard(state, { moveDetails }) {
-			console.log('state', state);
 			const { group } = moveDetails;
+			const { board } = moveDetails;
+			console.log('board', board);
 			const idx = state.activeBoard.groups.findIndex(currGroup => currGroup._id === group._id)
 			state.activeBoard.groups.splice(idx, 1);
 		},
@@ -100,14 +102,12 @@ export const boardStore = {
 			else if (idx < 0) group.tasks.push(task);
 			else group.tasks.splice(idx, 1, task);
 		},
-
 		deleteTask(state, { boardId, groupId, task }) {
 			const board = state.boards.find((board) => board._id === boardId);
 			const group = board.groups.find(({ _id }) => _id === groupId);
 			const idx = group.tasks.findIndex(({ _id }) => _id === task._id);
 			group.tasks.splice(idx, 1);
 		},
-
 		saveComment(state, { details }) {
 			const board = state.boards.find(({ _id }) => _id === details.boardId);
 			const group = board.groups.find(({ _id }) => _id === details.groupId);
@@ -116,7 +116,6 @@ export const boardStore = {
 			task.comments.unshift(details.comment);
 			state.commentToEdit = boardService.getEmptyComment();
 		},
-
 		removeBoard(state, { boardId }) {
 			console.log('board', boardId);
 			const idx = state.boards.findIndex((board) => board._id === boardId);
@@ -234,9 +233,12 @@ export const boardStore = {
 			}
 		},
 		async duplicateGroup(context, { group }) {
+			let groupToAdd = JSON.parse(JSON.stringify(group));
+			groupToAdd._id = utilService.makeId();
+			const duplicateDetails = { groupToAdd, group };
 			try {
-				await boardService.duplicateGroup(group, context.state.activeBoard);
-				context.commit({ type: 'duplicateGroup', group });
+				await boardService.duplicateGroup(group, groupToAdd, context.state.activeBoard);
+				context.commit({ type: 'duplicateGroup', duplicateDetails });
 			} catch (err) {
 				console.log('err', err);
 			}
@@ -244,6 +246,7 @@ export const boardStore = {
 		async moveGroupToBoard(context, { moveDetails }) {
 			try {
 				await boardService.moveGroupToBoard(moveDetails, context.state.activeBoard);
+				console.log('true', true);
 				context.commit({ type: 'moveGroupToBoard', moveDetails });
 			} catch (error) {
 				console.log(error)

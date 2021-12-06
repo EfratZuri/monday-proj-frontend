@@ -118,13 +118,13 @@ async function saveGroup(group, activeBoardId) {
 	return group;
 }
 
-async function duplicateGroup(group, activeBoard) {
+async function duplicateGroup(group, groupToAdd, activeBoard) {
 	const board = await getById(activeBoard._id);
-	const groupToAdd = JSON.parse(JSON.stringify(group));
 	const currGroupIdx = board.groups.findIndex((currGroup) => currGroup._id === group._id);
 	board.groups.splice(currGroupIdx, 0, groupToAdd);
 	try {
 		saveBoard(board);
+		return groupToAdd;
 	} catch (error) {
 		console.log('error', error);
 		throw error;
