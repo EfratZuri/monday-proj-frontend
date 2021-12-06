@@ -17,6 +17,7 @@
 @import 'components/task-update';
 @import 'components/task-preview';
 @import 'components/add-task';
+@import 'components/selected-task';
 @import 'components/control-content';
 @import 'components/board-header';
 @import 'components/board-header-main';
@@ -29,7 +30,8 @@
 @import 'components/group-header';
 @import 'components/control-content-board-list';
 @import 'components/board-preview-menu';
-@import 'components/_group-menu-moveto-menu';
+@import 'components/group-menu-moveto-menu';
+@import 'components/signup';
 // Dynamic components
 @import 'components/member-picker';
 @import 'components/status-picker';
