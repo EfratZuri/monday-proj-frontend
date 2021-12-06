@@ -23,6 +23,7 @@
           @saveTask="saveTask"
           @deleteTask="deleteTask"
           @saveComment="saveComment"
+          @setSelected="setSelected"
         />
         <group-task-summary :group="group" />
       </li>
@@ -98,6 +99,11 @@ export default {
     },
     createNewGroup() {
       console.log('e');
+    },
+
+    setSelected(task, boolean) {
+      // console.log(task, boolean);
+      this.$emit('setSelected', task, boolean);
     },
   },
   computed: {

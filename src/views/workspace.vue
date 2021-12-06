@@ -29,7 +29,9 @@
           @saveGroup="saveGroup"
           @saveComment="saveComment"
           @duplicateGroup="duplicateGroup"
+          @setSelected="setSelected"
         />
+        <selected-task v-if="tasks.length" :tasks="tasks" />
         <!-- <task-update
 			<div v-else>
 				<boardHeader
@@ -63,12 +65,14 @@
 import controlContent from '@/components/control-content';
 import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
+import selectedTask from '@/components/selected-task.vue';
 
 export default {
   name: 'workspace',
   data() {
     return {
       showControlContent: false,
+      tasks: [],
     };
   },
   async created() {
@@ -125,11 +129,21 @@ export default {
     removeBoard(board) {
       this.$store.dispatch({ type: 'removeBoard', board });
     },
+    setSelected(task, boolean) {
+      console.log(task, boolean);
+      const idx = this.tasks.findIndex(({ id }) => id === task._id);
+      if (boolean) this.tasks.push(task);
+      else this.tasks.splice(idx, 1);
+      console.log(this.tasks);
+    },
   },
   components: {
     groupList,
     boardHeader,
     controlContent,
+    selectedTask,
   },
 };
 </script>
+
+SelectedTask

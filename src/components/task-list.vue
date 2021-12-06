@@ -35,6 +35,7 @@
               @deleteTask="deleteTask"
               @updatePicker="saveTask"
               @saveComment="saveComment"
+              @setSelected="setSelected"
             />
           </li>
         </transition-group>
@@ -102,6 +103,9 @@ export default {
     toggleShowTaskMenu() {
       // this.showTaskMenu = false;
       this.showTaskMenu = !this.showTaskMenu;
+    },
+    setSelected(task, boolean) {
+      this.$emit('setSelected', task, boolean);
     },
 
     deleteTask(task) {
