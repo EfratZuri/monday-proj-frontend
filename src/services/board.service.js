@@ -8,7 +8,7 @@ const STORAGE_KEY_BOARDS = 'boards';
 
 export const boardService = {
   query,
-  remove,
+  removeBoard,
   getEmptyBoard,
   getEmptyGroup,
   getEmptyTask,
@@ -37,9 +37,9 @@ async function query() {
 
 // BOARD
 
-async function remove(boardId) {
+async function removeBoard(boardId) {
   // return httpService.delete(`board/${boardId}`)
-  return await storageService.delete('board', boardId);
+  await storageService.remove('boards', boardId);
 }
 
 async function saveBoard(board) {
@@ -121,7 +121,7 @@ async function saveComment({ comment, boardId, groupId, taskId }) {
   const task = group.tasks.find(({ _id }) => _id === taskId);
   const copyComment = JSON.parse(JSON.stringify(comment));
   copyComment.id = utilService.makeId();
-  copyComment.createdAt = Date.now();
+  copyComment.createdAt = new Date(Date.now()).toLocaleString();
 
   if (!task.comments) task.comments = [];
   task.comments.unshift(copyComment);

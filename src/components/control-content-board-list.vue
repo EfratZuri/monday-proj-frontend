@@ -4,7 +4,7 @@
     <ul>
       <li
         class="board-preview-wrapper"
-        v-for="(board, idx) in boards"
+        v-for="board in boards"
         :key="board._id"
       >
         <div class="board-preview" @click="showBoard(board)">
@@ -29,12 +29,16 @@
 
           {{ board.title }}
           <div
-            @click.stop="showBoardMenu(idx, board)"
+            @click.stop="showBoardMenu(board)"
             v-if="isShowDropdownIcon"
             class="board-preview-dropdown-icon-wrapper"
           >
             <ion-icon name="ellipsis-horizontal"></ion-icon>
-            <board-preview-menu v-if="isShowMenu" />
+            <board-preview-menu
+              :board="board"
+              @removeBoard="removeBoard"
+              v-if="isCurrBoardMenu(board)"
+            />
           </div>
         </div>
       </li>
@@ -56,6 +60,7 @@ export default {
     return {
       isShowDropdownIcon: true,
       isShowMenu: false,
+      currBoardMenu: null,
     };
   },
   methods: {
@@ -63,12 +68,16 @@ export default {
       console.log('board', board);
       this.$emit('showBoard', board);
     },
-    showBoardMenu(idx, board) {
-      const clickedBoardIdx = this.boards.findIndex(
-        (currBoard) => currBoard._id === board._id
-      );
-      console.log('idx, clickedBoardIdx, board', idx, clickedBoardIdx, board);
-      if (clickedBoardIdx === idx) this.isShowMenu = !this.isShowMenu;
+    showBoardMenu(board) {
+      if (!this.currBoardMenu || this.currBoardMenu !== board)
+        this.currBoardMenu = board;
+      else if (this.currBoardMenu === board) this.currBoardMenu = null;
+    },
+    isCurrBoardMenu(board) {
+      return this.currBoardMenu === board;
+    },
+    removeBoard(board) {
+      this.$emit('removeBoard', board);
     },
   },
   components: {

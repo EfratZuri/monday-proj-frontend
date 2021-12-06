@@ -21,7 +21,7 @@
         <group-task-summary :group="group" />
       </li>
     </ul>
-    <!-- <button class="btn" @click="createNewGroup">+ Add new group</button> -->
+    <button class="btn" @click="createNewGroup">+ Add new group</button>
   </section>
 </template>
 

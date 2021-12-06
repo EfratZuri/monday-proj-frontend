@@ -62,8 +62,8 @@ export const boardStore = {
       const idx = state.boards.findIndex(
         (currBoard) => currBoard._id === board._id
       );
-      if (idx >= 0) state.boards.splice(idx, 1, board);
-      else state.boards.unshift(board);
+      if (idx === -1) state.boards.unshift(board);
+      else state.boards.splice(idx, 1, board);
     },
     setActiveBoard(state, { activeBoard }) {
       state.activeBoard = activeBoard;
@@ -107,10 +107,16 @@ export const boardStore = {
       const board = state.boards.find(({ _id }) => _id === details.boardId);
       const group = board.groups.find(({ _id }) => _id === details.groupId);
       const task = group.tasks.find(({ _id }) => _id === details.taskId);
-      if (task.comments) task.comments = [];
+      if (!task.comments) task.comments = [];
       task.comments.unshift(details.comment);
       state.commentToEdit = boardService.getEmptyComment();
     },
+
+    removeBoard(state, { boardId }) {
+      console.log('board', boardId);
+      const idx = state.boards.findIndex(board => board._id === boardId)
+      state.boards.splice(idx, 1);
+    }
   },
   actions: {
     async loadBoards(context) {
@@ -125,6 +131,17 @@ export const boardStore = {
         return err;
       } finally {
         context.commit({ type: 'setLoading', isLoading: false });
+      }
+    },
+    async removeBoard(context, { board }) {
+      try {
+        await boardService.removeBoard(board._id);
+        context.commit({ type: 'removeBoard', boardId: board._id })
+        if (context.state.activeBoard._id === board._id) {
+          context.commit({ type: 'setActiveBoard', activeBoard: context.state.boards[0] });
+        }
+      } catch (error) {
+        console.log('error', error);
       }
     },
     async saveTask(context, { details }) {
@@ -182,15 +199,14 @@ export const boardStore = {
           ...details,
           boardId: context.state.activeBoard._id,
         };
-        console.log('detailsToSend!!!!!!!!!!!! in save comment', detailsToSend);
         const newBoard = await boardService.saveComment(detailsToSend);
         context.commit({ type: 'saveComment', details: detailsToSend });
+        context.commit({ type: 'saveBoard', details: newBoard });
         return newBoard;
       } catch (err) {
         return err;
       }
     },
-
     async saveGroup(context, { group }) {
       console.log('group', group);
       if (!group) {
@@ -215,6 +231,7 @@ export const boardStore = {
     },
     async saveBoard(context, { board }) {
       try {
+        console.log('board, context', board, context);
         const addedBoard = await boardService.saveBoard(board);
         context.commit({ type: 'setActiveBoard', activeBoard: addedBoard });
         context.commit({ type: 'saveBoard', board: addedBoard });
