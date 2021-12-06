@@ -10,13 +10,9 @@
 				:style="{ backgroundColor: styleObj.clr, color: styleObj.clr }"
 			>
 				<div class="left-indicator-inner flex align-center">
-					<div
-						class="left-indicator-checkbox"
-						:class="{ selected: task?.isSelected }"
-						@click="toggleSelected"
-					>
-						<span v-if="task?.isSelected">
-							<font-awesome-icon icon="check" />
+					<div class="left-indicator-checkbox" :class="{ selected: false }" @click="toggleSelected">
+						<span v-if="task.isSelected">
+							<!-- <font-awesome-icon icon="check" /> -->
 						</span>
 					</div>
 				</div>
