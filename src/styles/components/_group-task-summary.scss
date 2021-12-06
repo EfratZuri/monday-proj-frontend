@@ -2,6 +2,24 @@
 	width: 100%;
 	height: 40px;
 	& > * {
+		// height: 100%;
+	}
+	.grid-cells-row-component {
+		// height: 100%;
+	}
+	.grid-cell-component-wrapper {
+		margin: 0;
+		padding: 6px 8px;
 		height: 100%;
+		.summary-cell {
+			height: 100%;
+		}
+		.col-cell {
+			& > * {
+				margin: 0;
+				// height: 24px;
+			}
+			// height: 100%;
+		}
 	}
 }

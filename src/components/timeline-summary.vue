@@ -22,7 +22,7 @@ export default {
 
 			isFilled: false,
 			datesSorted: null,
-
+			hoverContent: '',
 			showBy: '',
 		};
 	},
@@ -37,7 +37,7 @@ export default {
 			Math.abs(this.datesSorted[0] - this.datesSorted[this.datesSorted.length - 1]) /
 				(1000 * 60 * 60 * 24)
 		);
-		this.hoverContent = dayCount ? `${dayCount}d` : '';
+		this.hoverContent = dayCount ? `${dayCount}d` : '-';
 		this.isFilled = dayCount ? true : false;
 	},
 	methods: {},

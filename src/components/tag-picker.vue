@@ -4,10 +4,17 @@
 		:class="{ 'dropdown-open': showOptions }"
 	>
 		<div class="col-cell" @click="toggleOptions">
-			<div v-if="selectedCopy && selectedCopy.length">
-				<span v-for="(tag, idx) in selectedCopyTrimed" :key="idx" :style="tag.style">
-					{{ tagForDisplay(tag.txt) }}
-				</span>
+			<div v-if="selectedCopy && selectedCopy.length" class="tags-container">
+				<div
+					v-for="(tag, idx) in selectedCopyTrimed"
+					:key="idx"
+					:style="tag.style"
+					class="tag-txt-box"
+				>
+					<span>
+						{{ tagForDisplay(tag.txt) }}
+					</span>
+				</div>
 			</div>
 		</div>
 		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
