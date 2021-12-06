@@ -9,6 +9,7 @@
 
 <script>
 import statusSummary from '../components/status-summary';
+import prioritySummary from '../components/priority-summary';
 import dateSummary from '../components/date-summary';
 import memberSummary from '../components/member-summary';
 import tagSummary from '../components/tag-summary';
@@ -44,6 +45,7 @@ export default {
 		memberSummary,
 		dateSummary,
 		tagSummary,
+		prioritySummary,
 	},
 };
 </script>
