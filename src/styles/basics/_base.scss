@@ -218,10 +218,10 @@ input {
 		// Big screens!
 		// flex-basis: 25%;
 		// Medium screens!
-		flex-basis: 35%;
+		flex-basis: 55%;
 		display: flex;
 		& > * {
-			flex-basis: 25%;
+			flex-basis: 16.66666666666666%;
 		}
 	}
 }

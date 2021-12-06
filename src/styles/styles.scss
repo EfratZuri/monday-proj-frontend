@@ -30,11 +30,13 @@
 @import 'components/group-header';
 @import 'components/control-content-board-list';
 @import 'components/board-preview-menu';
-@import 'components/_group-menu-moveto-menu';
+@import 'components/group-menu-moveto-menu';
+@import 'components/signup';
 // Dynamic components
 @import 'components/member-picker';
 @import 'components/status-picker';
 @import 'components/date-picker';
+@import 'components/timeline-picker';
 @import 'components/date-picker-table';
 // Menu
 @import 'components/group-menu';

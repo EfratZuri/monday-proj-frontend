@@ -1,5 +1,5 @@
 // import { showMsg } from '../services/event-bus.service.js';
-import { userService } from '../services/user.service.js';
+import { userService } from '../services/user-service.js';
 
 export const userStore = {
 	state: {
@@ -10,9 +10,8 @@ export const userStore = {
 	},
 	mutations: {},
 	actions: {
-		async login() {
-			try {
-			} catch (e) {}
+		async addMention(context, { user }) {
+
 		},
 	},
 };
