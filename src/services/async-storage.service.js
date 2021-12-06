@@ -15,6 +15,7 @@ function query(entityType) {
 function get(entityType, entityId) {
 	return query(entityType).then((entities) => entities.find((entity) => entity._id === entityId));
 }
+
 function post(entityType, newEntity) {
 	newEntity._id = _makeId();
 	return query(entityType).then((entities) => {
@@ -23,6 +24,7 @@ function post(entityType, newEntity) {
 		return newEntity;
 	});
 }
+
 function postMany(entityType, newEntities) {
 	return query(entityType).then((entities) => {
 		newEntities = newEntities.map((entity) => ({ ...entity, _id: _makeId() }));
