@@ -4,11 +4,17 @@
 			<draggable :component-data="getComponentData()" :list="tasks" group="tasks">
 				<transition-group>
 					<li v-for="task in tasks" :key="task._id" class="task-row flex align-center">
-						<div class="menu-edit-task-container" :class="{ selected: showTaskMenu }">
+						<div class="menu-edit-task-container" :class="{ 'dropdown-open': showTaskMenu }">
 							<button class="btn" @click="toggleShowTaskMenu">
 								<font-awesome-icon icon="caret-down" />
 							</button>
-							<task-menu v-if="showTaskMenu" :task="task" />
+							<task-menu
+								v-if="showTaskMenu"
+								:task="task"
+								@remove="deleteTask"
+								@duplicate="saveTask"
+								@selected="saveTask"
+							/>
 						</div>
 						<task-preview
 							:task="task"
@@ -88,8 +94,8 @@ export default {
 			this.$emit('saveTask', task, this.group._id);
 		},
 		toggleShowTaskMenu() {
-			this.showTaskMenu = false;
-			// this.showTaskMenu = !this.showTaskMenu;
+			// this.showTaskMenu = false;
+			this.showTaskMenu = !this.showTaskMenu;
 		},
 
 		deleteTask(task) {

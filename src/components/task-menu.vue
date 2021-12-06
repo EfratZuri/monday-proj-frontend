@@ -1,5 +1,5 @@
 <template>
-	<section class="task-menu-container">
+	<section class="task-menu-container dropdown-modal">
 		<button class="btn btn-icon menu-item">
 			<font-awesome-icon icon="arrows-alt-v" />
 			<span>Open</span>
@@ -53,10 +53,14 @@ export default {
 			this.$emit('remove', this.task);
 		},
 		select() {
-			this.$emit('select', this.task);
+			const taskCopy = JSON.parse(JSON.stringify(this.task));
+			taskCopy.isSelected = true;
+			this.$emit('select', taskCopy);
 		},
 		duplicate() {
-			this.$emit('duplicate', this.task);
+			const taskCopy = JSON.parse(JSON.stringify(this.task));
+			taskCopy._id = '';
+			this.$emit('duplicate', taskCopy);
 		},
 	},
 	components: {
