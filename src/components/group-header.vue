@@ -22,6 +22,7 @@
 					@removeGroup="remove"
 					@duplicateGroup="duplicateGroup"
 					@moveToBoard="moveToBoard"
+					@changeColor="toggleColor"
 				/>
 			</div>
 			<div class="group-name">
@@ -47,7 +48,11 @@
 							:style="{ backgroundColor: color }"
 							@click="toggleColorPalette"
 						></button>
-						<group-color-palette v-if="showColorPalette" :colors="clrs" @selected="changeColor" />
+						<group-color-palette
+							v-if="showColorPalette"
+							:colors="clrs"
+							@selected="toggleColorPlatte"
+						/>
 					</div>
 
 					<input
@@ -110,11 +115,16 @@ export default {
 			// Unshow the color palette
 			this.toggleColorPalette();
 		},
+		toggleColor() {
+			this.showColorPalette = !this.showColorPalette;
+		},
 		toggleGroupMenu() {
 			this.showGroupMenu = !this.showGroupMenu;
 		},
 		toggleColorPalette() {
 			this.showColorPalette = !this.showColorPalette;
+			this.showEdit = !this.showEdit;
+			console.log('this.showEdit', this.showEdit);
 		},
 		cmpNameForDisplay(cmp) {
 			const name = cmp.replace('-picker', '').replace(cmp[0], cmp[0].toUpperCase());
