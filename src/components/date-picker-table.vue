@@ -1,6 +1,7 @@
 <template>
 	<div class="date-picker-table-container">
-		<date-picker v-model="date" valueType="format"></date-picker>
+		<date-picker v-if="!info.isRangre" v-model="info.date" valueType="format"></date-picker>
+		<date-picker v-else v-model="info.date" range></date-picker>
 	</div>
 </template>
 
@@ -10,7 +11,7 @@ import 'vue2-datepicker/index.css';
 
 export default {
 	name: 'datePickerTable',
-	props: ['date'],
+	props: ['info'],
 	watch: {
 		date(val) {
 			this.$emit('change', val);

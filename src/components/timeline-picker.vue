@@ -1,12 +1,11 @@
 <template>
-	<div class="grid-cell-component-wrapper date-picker-container">
+	<div class="grid-cell-component-wrapper timeline-picker-container">
 		<div class="col-cell">
 			<div class="date-box" @click="toggleCalendar">
 				<div class="date-txt-box">
 					<span>{{ dateForDisplay }}</span>
 				</div>
 				<date-picker-table :info="infoToSend" @change="update" />
-				<!-- selectedCopy.dueDate" @change="update" /> -->
 			</div>
 		</div>
 	</div>
@@ -16,7 +15,7 @@
 import datePickerTable from './date-picker-table.vue';
 
 export default {
-	name: 'datePicker',
+	name: 'timelinePicker',
 	props: ['info'],
 
 	data() {
@@ -45,7 +44,7 @@ export default {
 			return this.selectedCopy.dueDate;
 		},
 		infoToSend() {
-			return { date: this.selectedCopy.dueDate, isRangre: false };
+			return { date: this.selectedCopy.dueDate, isRangre: true };
 		},
 	},
 	components: {
