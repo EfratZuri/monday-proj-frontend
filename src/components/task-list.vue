@@ -2,6 +2,7 @@
   <section class="task-list-container">
     <ul v-if="tasks && tasks.length" class="task-list clean-list">
       <draggable
+        v-model="myList"
         :component-data="getComponentData()"
         :list="tasks"
         group="tasks"
@@ -55,25 +56,26 @@ export default {
     return {
       taskToEdit: null,
       tasks: [],
-      // tasks: generateItems(50, (i) => ({ id: i, data: 'Draggable ' + i })),
       showDialogNode: false,
       isEdit: false,
       showTaskMenu: false,
+      activeBoard: null,
     };
   },
   created() {
     this.tasks = this.group.tasks;
+    this.activeBoard = this.$store.getters.activeBoard;
   },
   methods: {
-    // handleChange(value) {
-    //   // console.log(value.vue);
-    // },
+    handleChange(value) {
+      this.myList;
+      console.log(value);
+    },
 
     getComponentData() {
       return {
         on: {
-          // change: this.handleChange,
-          // input: this.inputChanged,
+          change: this.handleChange,
         },
         attrs: {
           wrap: true,
@@ -112,14 +114,15 @@ export default {
     },
   },
   computed: {
-    // myList: {
-    //   get() {
-    //     return this.$store.state.myList;
-    //   },
-    //   set(value) {
-    //     this.$store.commit('updateList', value);
-    //   },
-    // },
+    myList: {
+      get() {
+        console.log(this.group.tasks);
+        return this.group.tasks;
+      },
+      set() {
+        return this.$store.commit('setActiveBoard', this.activeBoard);
+      },
+    },
   },
   components: {
     taskPreview,
