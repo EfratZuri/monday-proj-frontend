@@ -19,9 +19,12 @@
         </button>
         <group-menu
           v-if="showGroupMenu"
+          :boards="boards"
           @addGroup="addGroup"
           @toggleTasks="toggleTasks"
           @toggleAllTasks="toggleAllTasks"
+          @removeGroup="remove"
+          @duplicateGroup="duplicateGroup"
         />
       </div>
       <div class="group-name">
@@ -87,6 +90,9 @@ export default {
       type: Object,
       required: true,
     },
+    boards: {
+      type: Array,
+    },
   },
   data() {
     return {
@@ -144,6 +150,9 @@ export default {
     },
     addGroup() {
       this.$emit('addGroup');
+    },
+    duplicateGroup() {
+      this.$emit('duplicateGroup', this.group);
     },
     stickyHeader(entries) {
       const [entry] = entries;

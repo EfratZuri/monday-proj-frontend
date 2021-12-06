@@ -17,6 +17,7 @@
     padding: 4px 16px;
     line-height: 24px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 4px 8px;
     cursor: pointer;
@@ -30,6 +31,13 @@
     text-decoration: none;
     &:hover {
       background-color: #e6e9ef;
+    }
+    .group-moveto-dropdown-icon-wrapper {
+      display: flex;
+      // position: relative;
+      & .ion-icon {
+        font-size: rem(12px);
+      }
     }
   }
 }

@@ -4,15 +4,28 @@
     <div class="menu-item" @click="collapseAll">Collapse all groups</div>
     <div class="menu-item" @click="addGroup">Add group</div>
     <div class="menu-item" @click="duplicateGroup">Duplicate this group</div>
-    <div class="menu-item" @click="moveTo">Move to</div>
+    <div class="menu-item move-to-dropdown-clickable" @click="moveTo">
+      <span>Move to</span>
+      <div class="group-moveto-dropdown-icon-wrapper">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+        <group-menu-moveto-menu />
+      </div>
+    </div>
+
     <div class="menu-item" @click="changeColor">Change color</div>
     <div class="menu-item" @click="removeGroup">Delete group</div>
   </section>
 </template>
 
 <script>
+import groupMenuMovetoMenu from '@/components/group-menu-moveto-menu';
 export default {
   name: 'groupMenu',
+  props: {
+    boards: {
+      type: Array,
+    },
+  },
   created() {},
   computed: {},
   methods: {
@@ -26,17 +39,20 @@ export default {
       this.$emit('addGroup');
     },
     duplicateGroup() {
-      console.log('duplicate group');
+      this.$emit('duplicateGroup');
     },
     moveTo() {
-      console.log('move to');
+      this.$emit('moveTo');
     },
     changeColor() {
-      console.log('change color');
+      this.$emit('changeColor');
     },
     removeGroup() {
-      console.log('remove group');
+      this.$emit('removeGroup');
     },
+  },
+  components: {
+    groupMenuMovetoMenu,
   },
 };
 </script>
