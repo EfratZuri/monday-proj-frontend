@@ -52,7 +52,7 @@ export default {
     turnOffAdd() {
       setTimeout(() => {
         this.showAddBtn = false;
-      }, 10);
+      }, 100);
     },
   },
 };
