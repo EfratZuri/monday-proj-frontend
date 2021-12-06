@@ -11,7 +11,8 @@
 }
 .group-name-component {
 	font-weight: 300;
-	width: 100%;
+	// width: 100%;
+	flex-basis: 65%;
 	font-size: 18px;
 	.group-name {
 		width: 100%;
