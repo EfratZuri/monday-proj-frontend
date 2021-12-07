@@ -26,7 +26,6 @@
               ></path>
             </svg>
           </span>
-
           {{ board.title }}
           <div
             @click.stop="showBoardMenu(board)"
@@ -38,6 +37,7 @@
           <board-preview-menu
             :board="board"
             @removeBoard="removeBoard"
+            @saveBoard="saveBoard"
             v-if="isCurrBoardMenu(board)"
           />
         </div>
@@ -78,6 +78,9 @@ export default {
     },
     removeBoard(board) {
       this.$emit('removeBoard', board);
+    },
+    saveBoard(board) {
+      this.$emit('saveBoard', board);
     },
   },
   components: {

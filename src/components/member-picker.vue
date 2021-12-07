@@ -4,6 +4,7 @@
 		@mouseover="togglePlusBtn"
 		:class="[{ selected: isSelected }, { 'dropdown-open': showOptions }]"
 		@click="toggleSelected"
+		:style="{ width: info.data.style.width }"
 	>
 		<div class="col-cell" @click="toggleOptions">
 			<!-- <button v-if="showPlusBtn" class="btn btn-blue">+</button> -->
@@ -55,7 +56,7 @@ export default {
 	},
 	created() {
 		this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
-		this.opts = this.info.opts;
+		this.opts = this.info.data.opts;
 	},
 	methods: {
 		update(curType, event) {

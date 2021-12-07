@@ -2,17 +2,23 @@
 	<div
 		class="grid-cell-component-wrapper picker-component"
 		:class="{ 'dropdown-open': showOptions }"
+		:style="{ width: info.data.style.width }"
 	>
 		<div
 			v-if="styleObj"
-			class="col-cell status-picker-txt flex align-center"
+			class="col-cell"
+			:style="info.data.style"
 			@mouseover="fold = true"
 			@mouseleave="fold = false"
-			:style="styleObj"
-			@click="toggleStatusPicker"
 		>
-			<span :class="{ 'fold-triangle': fold }"></span>
-			<span>{{ infoForDisplay }} </span>
+			<div
+				class="status-picker-txt flex align-center"
+				:style="styleObj"
+				@click="toggleStatusPicker"
+			>
+				<span :class="{ 'fold-triangle': fold }"></span>
+				<span>{{ infoForDisplay }} </span>
+			</div>
 		</div>
 		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
 			<div class="picker-dropdown-inner-container flex space-between column">
@@ -56,7 +62,7 @@ export default {
 			handler() {
 				this.selected = this.info.selected;
 				this.styleObj = this.selected.style;
-				this.opts = this.info.opts;
+				this.opts = this.info.data.opts;
 			},
 			deep: true,
 			immediate: true,

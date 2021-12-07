@@ -80,18 +80,13 @@ export const boardStore = {
 			// Update Group
 			else state.activeBoard.groups.splice(idx, 1, group);
 		},
-		duplicateGroup(state, { duplicateDetails }) {
-			const { group } = duplicateDetails;
-			const { groupToAdd } = duplicateDetails;
-			const currGroupIdx = state.activeBoard.groups.findIndex(currGroup => currGroup.id === group.id);
-			state.activeBoard.groups.splice(currGroupIdx, 0, groupToAdd)
-		},
+
 		moveGroupToBoard(state, { moveDetails }) {
 			const { group } = moveDetails;
 			const { board } = moveDetails;
-			const toBoard = state.boards.find(currBoard => currBoard._id === board._id);
+			const toBoard = state.boards.find((currBoard) => currBoard._id === board._id);
 			toBoard.groups.push(group);
-			const idx = state.activeBoard.groups.findIndex(currGroup => currGroup.id === group.id)
+			const idx = state.activeBoard.groups.findIndex((currGroup) => currGroup.id === group.id);
 			state.activeBoard.groups.splice(idx, 1);
 		},
 		//----------TASK----------//
@@ -115,7 +110,7 @@ export const boardStore = {
 			const task = group.tasks.find(({ id }) => id === details.taskId);
 			if (!task.comments) task.comments = [];
 			task.comments.unshift(details.comment);
-			console.log('state.activeBoard',state.activeBoard);
+			console.log('state.activeBoard', state.activeBoard);
 			state.commentToEdit = boardService.getEmptyComment();
 		},
 	},
@@ -161,7 +156,7 @@ export const boardStore = {
 				await boardService.moveGroupToBoard(moveDetails, context.state.activeBoard);
 				context.commit({ type: 'moveGroupToBoard', moveDetails });
 			} catch (error) {
-				console.log(error)
+				console.log(error);
 			}
 		},
 		async removeGroup(context, { group }) {
@@ -174,19 +169,11 @@ export const boardStore = {
 		},
 		async saveGroup(context, { group }) {
 			if (!group) {
-				const groupColorId = utilService.getRandomInt(
-					0,
-					context.state.groupClrs.clrs.length - 1
-				);
-				group = boardService.getEmptyGroup(
-					context.state.groupClrs.clrs[groupColorId]
-				);
+				const groupColorId = utilService.getRandomInt(0, context.state.groupClrs.clrs.length - 1);
+				group = boardService.getEmptyGroup(context.state.groupClrs.clrs[groupColorId]);
 			}
 			try {
-				const addedGroup = await boardService.saveGroup(
-					group,
-					context.state.activeBoard._id
-				);
+				const addedGroup = await boardService.saveGroup(group, context.state.activeBoard._id);
 				context.commit({ type: 'saveGroup', group: addedGroup });
 				return addedGroup;
 			} catch (err) {
@@ -268,5 +255,25 @@ export const boardStore = {
 				return err;
 			}
 		},
+		//----------COLUMN----------//
+		// async saveTask(context, { details }) {
+
+		// 	try {
+		// 		const columnAdded = await boardService.saveTask(
+		// 			context.state.activeBoard._id,
+		// 			details.task,
+		// 			details.groupId
+		// 		);
+		// 		context.commit({
+		// 			type: 'saveTask',
+		// 			boardId: context.state.activeBoard._id,
+		// 			task: details.task,
+		// 			groupId: details.groupId,
+		// 		});
+		// 		return newBoard;
+		// 	} catch (err) {
+		// 		return err;
+		// 	}
+		// },
 	},
 };

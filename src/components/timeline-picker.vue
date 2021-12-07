@@ -1,6 +1,9 @@
 <template>
-	<div class="grid-cell-component-wrapper timeline-picker-container">
-		<div class="col-cell">
+	<div
+		class="grid-cell-component-wrapper timeline-picker-container"
+		:style="{ width: info.data.style.width }"
+	>
+		<div class="col-cell" :style="info.data.style">
 			<div class="date-box timeline-bar-component" :class="{ filled: isFilled }">
 				<div class="date-txt-box">
 					<span class="timeline-value" :hovercontents="hoverContent" :contents="dateForDisplay">

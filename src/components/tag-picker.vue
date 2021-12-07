@@ -2,8 +2,9 @@
 	<div
 		class="grid-cell-component-wrapper tag-picker-container"
 		:class="{ 'dropdown-open': showOptions }"
+		:style="{ width: info.data.style.width }"
 	>
-		<div class="col-cell" @click="toggleOptions">
+		<div class="col-cell" @click="toggleOptions" :style="info.data.style">
 			<div v-if="selectedCopy && selectedCopy.length" class="tags-container">
 				<div
 					v-for="(tag, idx) in selectedCopyTrimed"

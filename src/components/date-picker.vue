@@ -1,7 +1,10 @@
 <template>
-	<div class="grid-cell-component-wrapper date-picker-container">
+	<div
+		class="grid-cell-component-wrapper date-picker-container"
+		:style="{ width: info.data.style.width }"
+	>
 		<div class="col-cell">
-			<div class="date-box" @click="toggleCalendar">
+			<div class="date-box" :style="info.data.style">
 				<div class="date-txt-box">
 					<span>{{ dateForDisplay }}</span>
 				</div>
@@ -23,21 +26,14 @@ export default {
 	data() {
 		return {
 			selectedCopy: {},
-			showCalendar: false,
 		};
 	},
 	created() {
 		this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
 	},
 	methods: {
-		toggleCalendar() {
-			this.showCalendar = !this.showCalendar;
-		},
 		update(dueDate) {
 			this.$emit('update', { dueDate: +dueDate });
-		},
-		toggleOptions() {
-			this.showOptions = !this.showOptions;
 		},
 	},
 	computed: {

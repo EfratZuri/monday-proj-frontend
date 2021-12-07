@@ -5,6 +5,7 @@
       @add="addBoard"
       @showBoard="showBoard"
       @removeBoard="removeBoard"
+      @saveBoard="saveBoard"
       :boards="boards"
     />
 
@@ -28,8 +29,8 @@
           @deleteTask="deleteTask"
           @saveGroup="saveGroup"
           @saveComment="saveComment"
-          @duplicateGroup="duplicateGroup"
           @setSelected="setSelected"
+          @addColumn="addColumn"
         />
         <user-msg v-if="msg" :msg="msg" @closeUserMsg="closeUserMsg" />
         <selected-task
@@ -54,7 +55,6 @@
 					@deleteTask="deleteTask"
 					@saveGroup="saveGroup"
 					@saveComment="saveComment"
-					@duplicateGroup="duplicateGroup"
 				/>
 					v-if="showPostPanel"
 					:task="task"
@@ -97,6 +97,9 @@ export default {
     },
   },
   methods: {
+    addColumn(columnType) {
+      this.$store.dispatch({ type: 'addColumn', columnType });
+    },
     saveTask(details = null) {
       this.$store.dispatch({ type: 'saveTask', details });
     },
@@ -108,6 +111,7 @@ export default {
       this.$store.dispatch({ type: 'removeGroup', group });
     },
     saveBoard(board) {
+      console.log('board', board);
       this.$store.dispatch({ type: 'saveBoard', board });
     },
     deleteTask(task, groupId) {
@@ -116,10 +120,6 @@ export default {
     },
     saveGroup(group) {
       this.$store.dispatch({ type: 'saveGroup', group });
-    },
-    duplicateGroup(group) {
-      this.showMsg('We successfully duplicated 1 group');
-      this.$store.dispatch({ type: 'duplicateGroup', group });
     },
     moveGroupToBoard(moveDetails) {
       this.$store.dispatch({ type: 'moveGroupToBoard', moveDetails });
@@ -170,5 +170,3 @@ export default {
   },
 };
 </script>
-
-SelectedTask
