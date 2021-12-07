@@ -123,10 +123,10 @@ export default {
 		},
 		getCmpInfo(col) {
 			if (!this.task?.[col.type]) return this.getDefaultCmp(col);
-			return { selected: this.task[col.type], opts: col.data.opts };
+			return { selected: this.task[col.type], data: col.data };
 		},
 		getDefaultCmp(col) {
-			return { selected: col.data.default, opts: col.data.opts };
+			return { selected: col.data.default, data: col.data };
 		},
 		update(ev, type) {
 			const copyTask = JSON.parse(JSON.stringify(this.task));

@@ -4,21 +4,27 @@
 	font-size: 12px;
 	font-weight: 400;
 	// position: relative;
+	height: 100%;
 	justify-content: center;
 	text-align: center;
 	width: 100%;
 	&:hover {
 		opacity: 0.85;
 	}
-	&.col-cell {
+
+	span {
+		// display: inline-block;
+	}
+}
+
+.col-cell {
+	.status-picker-txt,
+	.priority-picker-txt {
 		&:hover {
 			.fold-triangle {
 				border-width: 0px 13px 13px 0px;
 			}
 		}
-	}
-	span {
-		// display: inline-block;
 	}
 }
 

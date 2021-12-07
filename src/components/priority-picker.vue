@@ -2,17 +2,20 @@
 	<div
 		class="grid-cell-component-wrapper picker-component"
 		:class="{ 'dropdown-open': showOptions }"
+		:style="{ width: info.data.style.maxWidth }"
 	>
-		<div
-			v-if="styleObj"
-			class="col-cell priority-picker-txt flex align-center"
-			@mouseover="fold = true"
-			@mouseleave="fold = false"
-			:style="styleObj"
-			@click="togglePriorityPicker"
-		>
-			<span :class="{ 'fold-triangle': fold }"></span>
-			<span>{{ infoForDisplay }} </span>
+		<div class="col-cell" :style="info.data.style">
+			<div
+				v-if="styleObj"
+				class="priority-picker-txt flex align-center"
+				@mouseover="fold = true"
+				@mouseleave="fold = false"
+				:style="styleObj"
+				@click="togglePriorityPicker"
+			>
+				<span :class="{ 'fold-triangle': fold }"></span>
+				<span>{{ infoForDisplay }} </span>
+			</div>
 		</div>
 		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
 			<div class="picker-dropdown-inner-container flex space-between column">
@@ -55,8 +58,9 @@ export default {
 		info: {
 			handler() {
 				this.selected = this.info.selected;
+				console.log('Selected form priority!!!!!!!!!!!!!!', this.selected);
 				this.styleObj = this.selected.style;
-				this.opts = this.info.opts;
+				this.opts = this.info.data.opts;
 			},
 			deep: true,
 			immediate: true,
