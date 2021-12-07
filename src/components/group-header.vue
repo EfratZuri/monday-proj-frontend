@@ -68,11 +68,11 @@
 		</div>
 		<div class="grid-cells-row-component">
 			<div
-				v-for="cmp in cmpsOrder"
-				:key="cmp"
+				v-for="(col, idx) in cols"
+				:key="idx"
 				class="grid-cell-component-wrapper grid-cell-wrapper-component col-identifier-status"
 			>
-				<span>{{ cmpNameForDisplay(cmp) }}</span>
+				<span>{{ cmpNameForDisplay(col.type) }}</span>
 			</div>
 		</div>
 		<div class="add-column-container">
@@ -110,7 +110,7 @@ export default {
 			showTaskToggleBtn: false,
 			groupToEdit: { ...this.group },
 			color: this.group.style.clr,
-			cmpsOrder: null,
+			cols: null,
 			showGroupMenu: false,
 			showColorPalette: false,
 			isSticky: false,
@@ -118,7 +118,7 @@ export default {
 		};
 	},
 	created() {
-		this.cmpsOrder = this.$store.getters.cmpsOrder;
+		this.cols = this.$store.getters.cols;
 	},
 	methods: {
 		changeColor(clr) {
@@ -129,7 +129,7 @@ export default {
 		},
 
 		cmpNameForDisplay(cmp) {
-			const name = cmp.replace('-picker', '').replace(cmp[0], cmp[0].toUpperCase());
+			const name = cmp.replace('Picker', '').replace(cmp[0], cmp[0].toUpperCase());
 			return name;
 		},
 		async editTitle(e) {
