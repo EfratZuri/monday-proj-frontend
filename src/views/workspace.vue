@@ -32,7 +32,8 @@
 					@setSelected="setSelected"
 					@addColumn="addColumn"
 				/>
-				<selected-task v-if="tasks.length" :tasks="tasks" />
+				<user-msg v-if="msg" :msg="msg" @closeUserMsg="closeUserMsg" />
+				<selected-task v-if="tasks.length" :tasks="tasks" @closeTaskSelected="closeTaskSelected" />
 				<!-- <task-update
 			<div v-else>
 				<boardHeader
@@ -67,6 +68,7 @@ import controlContent from '@/components/control-content';
 import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
 import selectedTask from '@/components/selected-task.vue';
+import userMsg from '@/components/user-msg.vue';
 
 export default {
 	name: 'workspace',
@@ -74,6 +76,7 @@ export default {
 		return {
 			showControlContent: false,
 			tasks: [],
+			msg: '',
 		};
 	},
 	async created() {
@@ -101,18 +104,21 @@ export default {
 			this.$store.dispatch({ type: 'saveGroup', group });
 		},
 		removeGroup(group) {
+			this.showMsg('We successfully deleted 1 group');
 			this.$store.dispatch({ type: 'removeGroup', group });
 		},
 		saveBoard(board) {
 			this.$store.dispatch({ type: 'saveBoard', board });
 		},
 		deleteTask(task, groupId) {
+			this.showMsg('We successfully deleted 1 task');
 			this.$store.dispatch({ type: 'deleteTask', details: { task, groupId } });
 		},
 		saveGroup(group) {
 			this.$store.dispatch({ type: 'saveGroup', group });
 		},
 		duplicateGroup(group) {
+			this.showMsg('We successfully duplicated 1 group');
 			this.$store.dispatch({ type: 'duplicateGroup', group });
 		},
 		moveGroupToBoard(moveDetails) {
@@ -140,12 +146,27 @@ export default {
 			else this.tasks.splice(idx, 1);
 			console.log(this.tasks);
 		},
+		closeTaskSelected() {
+			this.tasks = [];
+		},
+		showMsg(msg) {
+			console.log(msg);
+			this.msg = msg;
+			setTimeout(() => {
+				this.msg = null;
+			}, 8000);
+		},
+
+		closeUserMsg() {
+			this.msg = null;
+		},
 	},
 	components: {
 		groupList,
 		boardHeader,
 		controlContent,
 		selectedTask,
+		userMsg,
 	},
 };
 </script>
