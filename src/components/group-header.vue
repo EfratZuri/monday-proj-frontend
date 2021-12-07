@@ -35,9 +35,6 @@
 					@mouseover="showTaskToggleBtn = true"
 					@mouseleave="showTaskToggleBtn = false"
 				>
-					<!-- <button v-if="showTaskToggleBtn" @click.stop="showTaskToggle">
-            toggleTasks
-          </button> -->
 					{{ groupToEdit.title }}</span
 				>
 				<div v-else class="edit-group-container flex align-center">
@@ -90,6 +87,7 @@
 // import { ref } from "vue"
 import groupMenu from '@/components/group-menu';
 import groupColorPalette from '@/components/group-color-palette.vue';
+import columnMenu from '@/components/column-menu.vue';
 
 export default {
 	name: 'groupHeader',
@@ -115,6 +113,7 @@ export default {
 			showGroupMenu: false,
 			showColorPalette: false,
 			isSticky: false,
+			showColumnMenu: false,
 		};
 	},
 	created() {
@@ -159,6 +158,9 @@ export default {
 		},
 		toggleAllTasks() {
 			this.$emit('toggleAllTasks');
+		},
+		toggleColumnMenu() {
+			this.showColumnMenu = !this.showColumnMenu;
 		},
 		addGroup() {
 			this.$emit('addGroup');
@@ -205,6 +207,7 @@ export default {
 	components: {
 		groupMenu,
 		groupColorPalette,
+		columnMenu,
 	},
 };
 </script>
