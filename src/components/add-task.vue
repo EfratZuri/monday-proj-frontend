@@ -2,7 +2,7 @@
   <section
     v-if="task"
     class="add-task-component flex"
-    v-click-outside="turnOffAdd"
+    v-click-outside="toggleAddBtn"
   >
     <div
       class="pulse-left-indicator"
@@ -53,7 +53,9 @@ export default {
       this.showAddBtn = !this.showAddBtn;
     },
     turnOffAdd() {
-      this.showAddBtn = false;
+      setTimeout(() => {
+        this.showAddBtn = false;
+      }, 100);
     },
   },
 };
