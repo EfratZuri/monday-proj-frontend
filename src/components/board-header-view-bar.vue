@@ -1,6 +1,6 @@
 <template>
   <section class="board-header-view-bar flex-def">
-    <board-header-add-task @addTask="addTask" @addGroup="addGroup" />
+    <board-header-add-task @addTask="addTask" @addGroup="addGroup"/>
     <section class="filter-tasks-wrapper flex">
       <board-header-filter-search />
       <board-header-filter-person />

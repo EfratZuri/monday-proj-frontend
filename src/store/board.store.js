@@ -37,23 +37,17 @@ export const boardStore = {
 	getters: {
 		boards: (state) => state.boards,
 		activeBoard: (state) => state.activeBoard,
+		boardToEdit: (state) => state.boardToEdit,
 		cmpsOrder: (state) => state.activeBoard.cmpsOrder,
 		cols: (state) => state.activeBoard.cols,
 		cmps: (state) => state.activeBoard?.cmp,
-		boardToEdit: (state) => state.boardToEdit,
 		groupToEdit: (state) => state.groupToEdit,
 		commentToEdit: (state) => state.commentToEdit,
 		taskToEdit: (state) => state.taskToEdit,
-		boardName: (state) => state.activeBoard.title,
 		clrs: (state) => state.groupClrs.clrs,
 	},
 	mutations: {
-		setBoardName(state, { boardName }) {
-			state.boardName = boardName;
-		},
-		addItem(state, { item }) {
-			state.board.groups[0].items.unshift(item);
-		},
+		//----------BOARD----------//
 		setBoards(state, { boards }) {
 			state.boards = boards;
 			state.activeBoard = state.boards[0];
@@ -63,11 +57,16 @@ export const boardStore = {
 			if (idx === -1) state.boards.unshift(board);
 			else state.boards.splice(idx, 1, board);
 		},
+		removeBoard(state, { boardId }) {
+			const idx = state.boards.findIndex((board) => board._id === boardId);
+			state.boards.splice(idx, 1);
+		},
 		setActiveBoard(state, { activeBoard }) {
 			state.activeBoard = activeBoard;
 		},
+		//----------GROUP----------//
 		saveGroup(state, { group }) {
-			const idx = state.activeBoard.groups.findIndex(({ _id }) => _id === group._id);
+			const idx = state.activeBoard.groups.findIndex(({ id }) => id === group.id);
 			// Add a new Group
 			if (idx === -1) {
 				state.activeBoard.groups.unshift(group);
@@ -84,52 +83,50 @@ export const boardStore = {
 		duplicateGroup(state, { duplicateDetails }) {
 			const { group } = duplicateDetails;
 			const { groupToAdd } = duplicateDetails;
-			const currGroupIdx = state.activeBoard.groups.findIndex(currGroup => currGroup._id === group._id);
+			const currGroupIdx = state.activeBoard.groups.findIndex(currGroup => currGroup.id === group.id);
 			state.activeBoard.groups.splice(currGroupIdx, 0, groupToAdd)
 		},
 		moveGroupToBoard(state, { moveDetails }) {
 			const { group } = moveDetails;
 			const { board } = moveDetails;
-			console.log('board', board);
-			const idx = state.activeBoard.groups.findIndex(currGroup => currGroup._id === group._id)
+			const toBoard = state.boards.find(currBoard => currBoard._id === board._id);
+			toBoard.groups.push(group);
+			const idx = state.activeBoard.groups.findIndex(currGroup => currGroup.id === group.id)
 			state.activeBoard.groups.splice(idx, 1);
 		},
+		//----------TASK----------//
 		saveTask(state, { boardId, groupId, task }) {
 			const board = state.boards.find((board) => board._id === boardId);
-			const group = board.groups.find(({ _id }) => _id === groupId);
-			const idx = group.tasks.findIndex(({ _id }) => _id === task._id);
+			const group = board.groups.find(({ id }) => id === groupId);
+			const idx = group.tasks.findIndex(({ id }) => id === task.id);
 			if (task.title === 'New Task') group.tasks.unshift(task);
 			else if (idx < 0) group.tasks.push(task);
 			else group.tasks.splice(idx, 1, task);
 		},
 		deleteTask(state, { boardId, groupId, task }) {
 			const board = state.boards.find((board) => board._id === boardId);
-			const group = board.groups.find(({ _id }) => _id === groupId);
-			const idx = group.tasks.findIndex(({ _id }) => _id === task._id);
+			const group = board.groups.find(({ id }) => id === groupId);
+			const idx = group.tasks.findIndex(({ id }) => id === task.id);
 			group.tasks.splice(idx, 1);
 		},
 		saveComment(state, { details }) {
 			const board = state.boards.find(({ _id }) => _id === details.boardId);
-			const group = board.groups.find(({ _id }) => _id === details.groupId);
-			const task = group.tasks.find(({ _id }) => _id === details.taskId);
+			const group = board.groups.find(({ id }) => id === details.groupId);
+			const task = group.tasks.find(({ id }) => id === details.taskId);
 			if (!task.comments) task.comments = [];
 			task.comments.unshift(details.comment);
+			console.log('state.activeBoard',state.activeBoard);
 			state.commentToEdit = boardService.getEmptyComment();
-		},
-		removeBoard(state, { boardId }) {
-			console.log('board', boardId);
-			const idx = state.boards.findIndex((board) => board._id === boardId);
-			state.boards.splice(idx, 1);
 		},
 	},
 	actions: {
+		//----------BOARD----------//
 		async loadBoards(context) {
 			context.commit({ type: 'setLoading', isLoading: true });
 			try {
 				const boards = await boardService.query();
 				if (!context.state.activeBoard)
 					context.commit({ type: 'setActiveBoard', board: boards[0] });
-
 				context.commit({ type: 'setBoards', boards });
 			} catch (err) {
 				return err;
@@ -148,10 +145,70 @@ export const boardStore = {
 				console.log('error', error);
 			}
 		},
+		async saveBoard(context, { board }) {
+			try {
+				const addedBoard = await boardService.saveBoard(board);
+				context.commit({ type: 'setActiveBoard', activeBoard: addedBoard });
+				context.commit({ type: 'saveBoard', board: addedBoard });
+				return addedBoard;
+			} catch (err) {
+				return err;
+			}
+		},
+		//----------GROUP----------//
+		async moveGroupToBoard(context, { moveDetails }) {
+			try {
+				await boardService.moveGroupToBoard(moveDetails, context.state.activeBoard);
+				context.commit({ type: 'moveGroupToBoard', moveDetails });
+			} catch (error) {
+				console.log(error)
+			}
+		},
+		async removeGroup(context, { group }) {
+			const activeBoard = context.getters.activeBoard;
+			try {
+				await boardService.removeGroup(group, activeBoard);
+			} catch (error) {
+				console.log('error', error);
+			}
+		},
+		async saveGroup(context, { group }) {
+			if (!group) {
+				const groupColorId = utilService.getRandomInt(
+					0,
+					context.state.groupClrs.clrs.length - 1
+				);
+				group = boardService.getEmptyGroup(
+					context.state.groupClrs.clrs[groupColorId]
+				);
+			}
+			try {
+				const addedGroup = await boardService.saveGroup(
+					group,
+					context.state.activeBoard._id
+				);
+				context.commit({ type: 'saveGroup', group: addedGroup });
+				return addedGroup;
+			} catch (err) {
+				return err;
+			}
+		},
+		async duplicateGroup(context, { group }) {
+			let groupToAdd = JSON.parse(JSON.stringify(group));
+			groupToAdd.id = utilService.makeId();
+			const duplicateDetails = { groupToAdd, group };
+			try {
+				await boardService.duplicateGroup(group, groupToAdd, context.state.activeBoard);
+				context.commit({ type: 'duplicateGroup', duplicateDetails });
+			} catch (err) {
+				console.log('err', err);
+			}
+		},
+		//----------TASK----------//
 		async saveTask(context, { details }) {
 			if (!details) {
 				details = {};
-				details.groupId = context.state.activeBoard.groups[0]._id;
+				details.groupId = context.state.activeBoard.groups[0].id;
 				details.task = { title: 'New Task' };
 			}
 			details.task = { ...details.task };
@@ -209,65 +266,6 @@ export const boardStore = {
 				return newBoard;
 			} catch (err) {
 				return err;
-			}
-		},
-		async saveGroup(context, { group }) {
-			if (!group) {
-				const groupColorId = utilService.getRandomInt(
-					0,
-					context.state.groupClrs.clrs.length - 1
-				);
-				group = boardService.getEmptyGroup(
-					context.state.groupClrs.clrs[groupColorId]
-				);
-			}
-			try {
-				const addedGroup = await boardService.saveGroup(
-					group,
-					context.state.activeBoard._id
-				);
-				context.commit({ type: 'saveGroup', group: addedGroup });
-				return addedGroup;
-			} catch (err) {
-				return err;
-			}
-		},
-		async duplicateGroup(context, { group }) {
-			let groupToAdd = JSON.parse(JSON.stringify(group));
-			groupToAdd._id = utilService.makeId();
-			const duplicateDetails = { groupToAdd, group };
-			try {
-				await boardService.duplicateGroup(group, groupToAdd, context.state.activeBoard);
-				context.commit({ type: 'duplicateGroup', duplicateDetails });
-			} catch (err) {
-				console.log('err', err);
-			}
-		},
-		async moveGroupToBoard(context, { moveDetails }) {
-			try {
-				await boardService.moveGroupToBoard(moveDetails, context.state.activeBoard);
-				console.log('true', true);
-				context.commit({ type: 'moveGroupToBoard', moveDetails });
-			} catch (error) {
-				console.log(error)
-			}
-		},
-		async saveBoard(context, { board }) {
-			try {
-				const addedBoard = await boardService.saveBoard(board);
-				context.commit({ type: 'setActiveBoard', activeBoard: addedBoard });
-				context.commit({ type: 'saveBoard', board: addedBoard });
-				return addedBoard;
-			} catch (err) {
-				return err;
-			}
-		},
-		async removeGroup(context, { group }) {
-			const activeBoard = context.getters.activeBoard;
-			try {
-				await boardService.removeGroup(group, activeBoard);
-			} catch (error) {
-				console.log('error', error);
 			}
 		},
 	},

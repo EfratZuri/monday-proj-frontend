@@ -4,7 +4,7 @@
       v-if="groups && groups.length"
       class="group-list clean-list flex column"
     >
-      <li class="group" v-for="group in groups" :key="group._id">
+      <li class="group" v-for="group in groups" :key="group.id">
         <group-header
           :group="group"
           :boards="boards"
@@ -18,7 +18,7 @@
           @moveToBoard="moveToBoard"
         />
         <taskList
-          v-if="!isIncludesGroupIds(group._id)"
+          v-if="!isIncludesGroupIds(group.id)"
           :group="group"
           @saveTask="saveTask"
           @deleteTask="deleteTask"
@@ -92,7 +92,7 @@ export default {
       } else this.currGroupIds.push(id);
     },
     toggleAllTasks() {
-      this.currGroupIds = this.board.groups.map((group) => group._id);
+      this.currGroupIds = this.board.groups.map((group) => group.id);
     },
     isIncludesGroupIds(id) {
       return this.currGroupIds.includes(id);

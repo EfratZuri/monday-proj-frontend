@@ -8,11 +8,11 @@
     </button>
     <div
       class="dropdown-button small-btn"
-      @click="isAddDropdown = !isAddDropdown"
+      @click="toggleAddDropdown"
       :class="{ clicked: isAddDropdown }"
     >
       <ion-icon name="chevron-down-outline" />
-      <div v-if="isAddDropdown" class="header-add-dropdown">
+      <div class="header-add-dropdown" v-click-outside="toggleAddDropdown"  v-if="isAddDropdown" >
         <div class="add-group-wrapper" @click="addGroup">
           <span
             ><ion-icon name="easel-outline"></ion-icon> New group of tasks</span
@@ -36,9 +36,12 @@ export default {
       this.$emit('addTask');
     },
     addGroup() {
-      this.isAddDropdown = false;
       this.$emit('addGroup');
+      this.isAddDropdown = false;
     },
+    toggleAddDropdown() {
+      this.isAddDropdown = !this.isAddDropdown;
+    }
   },
 };
 </script>

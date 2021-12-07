@@ -14,6 +14,7 @@
 					<font-awesome-icon icon="caret-down" />
 				</button>
 				<group-menu
+					v-click-outside="toggleGroupMenu"
 					v-if="showGroupMenu"
 					:boards="boards"
 					:board="board"
@@ -34,6 +35,9 @@
 					@mouseover="showTaskToggleBtn = true"
 					@mouseleave="showTaskToggleBtn = false"
 				>
+					<!-- <button v-if="showTaskToggleBtn" @click.stop="showTaskToggle">
+            toggleTasks
+          </button> -->
 					{{ groupToEdit.title }}</span
 				>
 				<div v-else class="edit-group-container flex align-center">
@@ -83,9 +87,10 @@
 </template>
 
 <script>
+// import { ref } from "vue"
 import groupMenu from '@/components/group-menu';
 import groupColorPalette from '@/components/group-color-palette.vue';
-import columnMenu from '@/components/column-menu';
+
 export default {
 	name: 'groupHeader',
 	props: {
@@ -110,7 +115,6 @@ export default {
 			showGroupMenu: false,
 			showColorPalette: false,
 			isSticky: false,
-			showColumnMenu: false,
 		};
 	},
 	created() {
@@ -151,13 +155,10 @@ export default {
 		},
 		toggleTasks() {
 			console.log('toggle');
-			this.$emit('toggleTasks', this.group._id);
+			this.$emit('toggleTasks', this.group.id);
 		},
 		toggleAllTasks() {
 			this.$emit('toggleAllTasks');
-		},
-		toggleColumnMenu() {
-			this.showColumnMenu = !this.showColumnMenu;
 		},
 		addGroup() {
 			this.$emit('addGroup');
@@ -175,6 +176,7 @@ export default {
 			else this.isSticky = false;
 		},
 	},
+	watch: {},
 	mounted() {
 		// console.log('EEEEEEEEEEEEEEEEEEEEEEEEEE');
 		// const headerHeight = this.$refs.header.getBoundingClientRect().height;
@@ -203,7 +205,6 @@ export default {
 	components: {
 		groupMenu,
 		groupColorPalette,
-		columnMenu,
 	},
 };
 </script>

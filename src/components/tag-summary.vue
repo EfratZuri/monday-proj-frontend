@@ -20,7 +20,6 @@ export default {
 		};
 	},
 	created() {
-		console.log('tad created');
 		this.tags = this.info.group.tasks.filter((task) => task?.tagPicker);
 	},
 	methods: {
