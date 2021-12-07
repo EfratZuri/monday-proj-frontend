@@ -2,9 +2,10 @@
 	<section class="grid-row-component group-header" ref="header" :class="stickyStyle">
 		<div class="group-name-component grid-cell-row-component-header">
 			<!-- <button @click="remove">delete group</button> -->
+
 			<div
 				class="menu-btn-container"
-				@click="toggleGroupMenu"
+				@click="toggle('showGroupMenu')"
 				:class="{ 'dropdown-open': showGroupMenu }"
 			>
 				<button
@@ -14,7 +15,7 @@
 					<font-awesome-icon icon="caret-down" />
 				</button>
 				<group-menu
-					v-click-outside="toggleGroupMenu"
+					v-click-outside="toggle('showGroupMenu')"
 					v-if="showGroupMenu"
 					:boards="boards"
 					:board="board"
@@ -24,7 +25,7 @@
 					@removeGroup="remove"
 					@duplicateGroup="duplicateGroup"
 					@moveToBoard="moveToBoard"
-					@changeColor="toggleColor"
+					@changeColor="toggle('showColorPalette')"
 				/>
 			</div>
 			<div class="group-name">
@@ -75,10 +76,10 @@
 			</div>
 		</div>
 		<div class="add-column-container">
-			<button class="btn btn-icon" @click="toggleColumnMenu">
+			<button class="btn btn-icon" @click="toggle('showColumnMenu')">
 				<font-awesome-icon icon="plus-circle" />
 			</button>
-			<column-menu v-if="showColumnMenu" />
+			<column-menu v-if="showColumnMenu" @addColumn="addColumn" />
 		</div>
 	</section>
 </template>
@@ -86,8 +87,8 @@
 <script>
 // import { ref } from "vue"
 import groupMenu from '@/components/group-menu';
-import groupColorPalette from '@/components/group-color-palette.vue';
-import columnMenu from '@/components/column-menu.vue';
+import groupColorPalette from '@/components/group-color-palette';
+import columnMenu from '@/components/column-menu';
 
 export default {
 	name: 'groupHeader',
@@ -124,20 +125,9 @@ export default {
 			const groupCopy = JSON.parse(JSON.stringify(this.group));
 			groupCopy.style.clr = clr;
 			this.$emit('saveGroup', groupCopy);
-			// Unshow the color palette
 			this.toggleColorPalette();
 		},
-		toggleColor() {
-			this.showColorPalette = !this.showColorPalette;
-		},
-		toggleGroupMenu() {
-			this.showGroupMenu = !this.showGroupMenu;
-		},
-		toggleColorPalette() {
-			this.showColorPalette = !this.showColorPalette;
-			this.showEdit = !this.showEdit;
-			console.log('this.showEdit', this.showEdit);
-		},
+
 		cmpNameForDisplay(cmp) {
 			const name = cmp.replace('-picker', '').replace(cmp[0], cmp[0].toUpperCase());
 			return name;
@@ -152,16 +142,7 @@ export default {
 		remove() {
 			this.$emit('removeGroup', this.group);
 		},
-		toggleTasks() {
-			console.log('toggle');
-			this.$emit('toggleTasks', this.group.id);
-		},
-		toggleAllTasks() {
-			this.$emit('toggleAllTasks');
-		},
-		toggleColumnMenu() {
-			this.showColumnMenu = !this.showColumnMenu;
-		},
+
 		addGroup() {
 			this.$emit('addGroup');
 		},
@@ -177,25 +158,48 @@ export default {
 			if (!entry.isIntersecting) this.isSticky = true;
 			else this.isSticky = false;
 		},
+		addColumn(columnType) {
+			this.$emit('addColumn', columnType);
+		},
+		// TOGGLE
+		toggle(toggleType) {
+			this[toggleType] = !this[toggleType];
+		},
+		toggleTasks() {
+			this.$emit('toggleTasks', this.group.id);
+		},
+		toggleAllTasks() {
+			this.$emit('toggleAllTasks');
+		},
+		// toggleColor() {
+		// 	this.showColorPalette = !this.showColorPalette;
+		// },
+		// toggleGroupMenu() {
+		// 	this.showGroupMenu = !this.showGroupMenu;
+		// },
+		toggleColorPalette() {
+			this.showColorPalette = !this.showColorPalette;
+			this.showEdit = !this.showEdit;
+			console.log('this.showEdit', this.showEdit);
+		},
 	},
-	watch: {},
-	mounted() {
-		// console.log('EEEEEEEEEEEEEEEEEEEEEEEEEE');
-		// const headerHeight = this.$refs.header.getBoundingClientRect().height;
-		// const header = this.$refs.header;
-		// const stickyHeader = function (entries) {
-		// 	const [entry] = entries;
-		// 	if (!entry.isIntersecting) this.isSticky = true;
-		// 	else this.isSticky = false;
-		// 	console.log(this.isSticky);
-		// };
-		// const headerObserver = new IntersectionObserver(stickyHeader, {
-		// 	root: null,
-		// 	threshold: 0,
-		// 	rootMargin: `-${headerHeight}px`,
-		// });
-		// headerObserver.observe(this.$refs.header);
-	},
+	// mounted() {
+	// 	// console.log('EEEEEEEEEEEEEEEEEEEEEEEEEE');
+	// 	// const headerHeight = this.$refs.header.getBoundingClientRect().height;
+	// 	// const header = this.$refs.header;
+	// 	// const stickyHeader = function (entries) {
+	// 	// 	const [entry] = entries;
+	// 	// 	if (!entry.isIntersecting) this.isSticky = true;
+	// 	// 	else this.isSticky = false;
+	// 	// 	console.log(this.isSticky);
+	// 	// };
+	// 	// const headerObserver = new IntersectionObserver(stickyHeader, {
+	// 	// 	root: null,
+	// 	// 	threshold: 0,
+	// 	// 	rootMargin: `-${headerHeight}px`,
+	// 	// });
+	// 	// headerObserver.observe(this.$refs.header);
+	// },
 	computed: {
 		clrs() {
 			return this.$store.getters.clrs;

@@ -36,9 +36,6 @@ export default {
 		update(dueDate) {
 			this.$emit('update', { dueDate: +dueDate });
 		},
-		toggleOptions() {
-			this.showOptions = !this.showOptions;
-		},
 	},
 	computed: {
 		dateForDisplay() {
