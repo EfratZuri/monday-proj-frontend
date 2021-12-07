@@ -1,18 +1,40 @@
 <template>
-  <div class="user-msg-container"></div>
+  <div class="monday-notice-container">
+    <div class="user-msg-container">
+      <div class="check-user-msg">
+        <span><font-awesome-icon icon="check" /></span>
+      </div>
+      <div class="msg-content">
+        <span>{{ msg }}</span>
+      </div>
+      <div class="undo-action">
+        <button class="undo-btn">Undo</button>
+      </div>
+      <button class="close-user-msg" @click="closeUserMsg">X</button>
+    </div>
+  </div>
 </template>
 
 <script>
-// import { utilService } from '../services/util.service.js';
-
 export default {
   name: 'userMsg',
-  props: [],
+  props: {
+    msg: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {};
   },
-  created() {},
-  methods: {},
+  created() {
+    console.log(this.msg);
+  },
+  methods: {
+    closeUserMsg() {
+      this.$emit('closeUserMsg');
+    },
+  },
   computed: {},
 };
 </script>
