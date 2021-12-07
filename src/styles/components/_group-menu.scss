@@ -17,7 +17,6 @@
     padding: 4px 16px;
     line-height: 24px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 4px 8px;
     cursor: pointer;
@@ -32,12 +31,21 @@
     &:hover {
       background-color: #e6e9ef;
     }
+    & .group-menu-icon-wrapper {
+      display: flex;
+      margin-inline-end: 8px;
+      & .menu-item-color-pick {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+      }
+      & ion-icon {
+        font-size: rem(18px);
+      }
+    }
     .group-moveto-dropdown-icon-wrapper {
       display: flex;
       position: relative;
-      & .ion-icon {
-        font-size: rem(12px);
-      }
     }
   }
 }
