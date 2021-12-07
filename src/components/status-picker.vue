@@ -35,16 +35,17 @@
 						</div>
 					</div>
 				</div>
-				<div v-else class="flex">
+				<div v-else class="flex dropdown-inner-container labels-list column">
 					<div
 						v-for="(opt, idx) in opts"
 						:key="idx"
-						class="dropdown-inner-container labels-list flex column align-center"
+						class="color-opt-editing flex align-center"
 						@click="update(opt)"
 					>
-						<div class="">
+						<div class="input-wrapper flex align-center">
 							<div class="color-box btn" :style="getOptStyle(opt)"></div>
-							<div class="picker-opt-container flex align-center">
+							<div class="label-input text-cmp">
+								<input type="text" />
 								<span>{{ opt.display }}</span>
 							</div>
 						</div>
@@ -85,6 +86,7 @@ export default {
 				this.selected = this.info.selected;
 				this.styleObj = this.selected.style;
 				this.opts = this.info.data.opts;
+				this.optsCopy = this.info.data.opts;
 			},
 			deep: true,
 			immediate: true,
