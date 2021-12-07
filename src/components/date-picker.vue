@@ -27,7 +27,6 @@ export default {
 		};
 	},
 	created() {
-		console.log('date created');
 		this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
 	},
 	methods: {
