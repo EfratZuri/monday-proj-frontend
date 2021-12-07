@@ -26,6 +26,11 @@
         v-html="starToggle"
         :class="{ 'starred-board': this.boardToEdit.isFavorite }"
       ></button>
+      <!-- <div class="board-header-right flex">
+        <div class="invite-btn-header">
+          <span><font-awesome-icon icon="user-plus" /></span>
+        </div>
+      </div> -->
     </div>
     <section
       class="board-description"
