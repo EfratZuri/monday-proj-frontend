@@ -5,7 +5,7 @@
     </div>
     <!-- <VTooltip> -->
     <!-- <b-button v-b-tooltip.hover title="Tooltip content">Hover Me</b-button> -->
-    <spasn class="person-span">Person</spasn>
+    <span class="person-span">Person</span>
     <!-- <template #popper> filter by person! </template> -->
     <!-- </VTooltip> -->
   </section>

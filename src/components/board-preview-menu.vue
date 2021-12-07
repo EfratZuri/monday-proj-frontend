@@ -89,7 +89,7 @@ export default {
   methods: {
     duplicateBoard() {
       let boardToEdit = JSON.parse(JSON.stringify(this.board));
-      boardToEdit._id = '';
+      delete boardToEdit._id;
       this.$emit('saveBoard', boardToEdit);
     },
     remove() {

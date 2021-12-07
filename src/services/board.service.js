@@ -26,7 +26,7 @@ export const boardService = {
 async function query(filterBy = {}) {
 	try {
 		let queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`;
-		return httpService.get(`board${queryStr}`);
+		return await httpService.get(`board${queryStr}`);
 		// const boards = await storageService.query(STORAGE_KEY_BOARDS);
 		// if (!boards.length) {
 		// 	const board = _createBoard();
@@ -42,7 +42,6 @@ async function query(filterBy = {}) {
 /////////-----------------BOARD-----------------/////////
 
 async function removeBoard(boardId) {
-	console.log('boardId', boardId);
 	try {
 		return httpService.delete(`board/${boardId}`)
 		// await storageService.remove('boards', boardId);
@@ -62,6 +61,7 @@ async function saveBoard(board) {
 	} catch (error) {
 		console.log('error', error);
 	}
+	console.log('savedBoard', savedBoard);
 	return savedBoard;
 }
 

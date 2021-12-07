@@ -111,7 +111,6 @@ export default {
       this.$store.dispatch({ type: 'removeGroup', group });
     },
     saveBoard(board) {
-      console.log('board', board);
       this.$store.dispatch({ type: 'saveBoard', board });
     },
     deleteTask(task, groupId) {
