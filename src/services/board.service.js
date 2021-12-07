@@ -232,10 +232,10 @@ function getEmptyBoard() {
 							backgroundColor: 'rgb(196, 196, 196)',
 						},
 					},
-				},
-				style: {
-					flexBasis: '140px',
-					maxWidth: '140px',
+					style: {
+						flexBasis: '140px',
+						maxWidth: '140px',
+					},
 				},
 			},
 			{
