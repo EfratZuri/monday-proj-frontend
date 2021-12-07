@@ -22,7 +22,6 @@ export default {
   methods: {
     addGroup() {
       this.$emit('addGroup');
-      console.log('Add item from board header,this method is NOT READY');
     },
     addTask() {
       this.$emit('addTask');

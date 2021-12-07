@@ -1,5 +1,5 @@
 <template>
-  <section class="group-menu-container dropdown-modal board-preview-dropdown">
+  <section class="dropdown-modal board-preview-dropdown">
     <div class="menu-item" @click="rename">Rename</div>
     <div class="menu-item board-preview-items-wrapper" @click="remove">
       <div class="board-preview-delete-icon-wrapper">
