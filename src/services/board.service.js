@@ -301,6 +301,7 @@ function _getStatusOptions() {
 	return [
 		{
 			name: 'stuck',
+			id: utilService.makeId(),
 			display: 'Stuck',
 			style: {
 				backgroundColor: 'rgb(226, 68, 92)',
@@ -308,6 +309,7 @@ function _getStatusOptions() {
 		},
 		{
 			name: 'done',
+			id: utilService.makeId(),
 			display: 'Done',
 			style: {
 				backgroundColor: 'rgb(0, 200, 117)',
@@ -315,6 +317,7 @@ function _getStatusOptions() {
 		},
 		{
 			name: 'working on it',
+			id: utilService.makeId(),
 			display: 'Working on it',
 			style: {
 				backgroundColor: 'rgb(253, 171, 61)',
@@ -327,6 +330,7 @@ function _getPriorityOptions() {
 	return [
 		{
 			name: 'critical',
+			id: utilService.makeId(),
 			display: 'Critical',
 			style: {
 				backgroundColor: 'rgb(226, 68, 92)',
@@ -334,6 +338,7 @@ function _getPriorityOptions() {
 		},
 		{
 			name: 'high',
+			id: utilService.makeId(),
 			display: 'High',
 			style: {
 				backgroundColor: 'rgb(255, 203, 0)',
@@ -341,6 +346,7 @@ function _getPriorityOptions() {
 		},
 		{
 			name: 'medium',
+			id: utilService.makeId(),
 			display: 'Medium',
 			style: {
 				backgroundColor: 'rgb(87, 155, 252)',
@@ -348,6 +354,7 @@ function _getPriorityOptions() {
 		},
 		{
 			name: 'low',
+			id: utilService.makeId(),
 			display: 'Low',
 			style: {
 				backgroundColor: 'rgb(0, 200, 117)',
@@ -355,6 +362,7 @@ function _getPriorityOptions() {
 		},
 		{
 			name: 'best effort',
+			id: utilService.makeId(),
 			display: 'Best Effort',
 			style: {
 				backgroundColor: 'rgb(128, 128, 128)',

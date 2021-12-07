@@ -33,6 +33,7 @@ export const boardStore = {
 		groupToEdit: boardService.getEmptyGroup(),
 		taskToEdit: boardService.getEmptyTask(),
 		commentToEdit: boardService.getEmptyComment(),
+		labelClrPalette: ['rgb(255, 90, 196)'],
 	},
 	getters: {
 		boards: (state) => state.boards,
@@ -45,6 +46,7 @@ export const boardStore = {
 		commentToEdit: (state) => state.commentToEdit,
 		taskToEdit: (state) => state.taskToEdit,
 		clrs: (state) => state.groupClrs.clrs,
+		labelClrPalette: (state) => state.labelClrPalette,
 	},
 	mutations: {
 		//----------BOARD----------//

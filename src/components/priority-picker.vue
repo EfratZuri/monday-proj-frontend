@@ -17,30 +17,13 @@
 				<span>{{ infoForDisplay }} </span>
 			</div>
 		</div>
-		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
-			<div class="picker-dropdown-inner-container flex space-between column">
-				<div class="priority-list">
-					<div
-						v-for="(opt, idx) in opts"
-						:key="idx"
-						:style="getOptStyle(opt)"
-						class="dropdown-inner-container"
-						@click="update(opt)"
-					>
-						<div class="picker-opt-container flex align-center">
-							<span>{{ opt.display }}</span>
-						</div>
-					</div>
-				</div>
-				<div class="picker-dropdown-footer flex align-center">
-					<button class="btn">Add/Edit Labels</button>
-				</div>
-			</div>
-		</div>
+		<labels-popup v-if="showOptions" :opts="optsCopy" @update="update" />
 	</div>
 </template>
 
 <script>
+import labelsPopup from '@/components/labels-popup';
+
 export default {
 	name: 'priorityPicker',
 	props: ['info'],
@@ -51,6 +34,7 @@ export default {
 			showOptions: false,
 			selected: {},
 			opts: null,
+			optsCopy: null,
 			fold: false,
 		};
 	},
@@ -61,6 +45,7 @@ export default {
 				console.log('Selected form priority!!!!!!!!!!!!!!', this.selected);
 				this.styleObj = this.selected.style;
 				this.opts = this.info.data.opts;
+				this.optsCopy = JSON.parse(JSON.stringify(this.opts));
 			},
 			deep: true,
 			immediate: true,
@@ -84,5 +69,6 @@ export default {
 			return this.selected.display;
 		},
 	},
+	components: { labelsPopup },
 };
 </script>

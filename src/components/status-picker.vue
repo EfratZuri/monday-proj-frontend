@@ -20,52 +20,12 @@
 				<span>{{ infoForDisplay }} </span>
 			</div>
 		</div>
-		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
-			<div class="picker-dropdown-inner-container flex space-between column">
-				<div v-if="!showEditModal" class="status-list">
-					<div
-						v-for="(opt, idx) in opts"
-						:key="idx"
-						:style="getOptStyle(opt)"
-						class="dropdown-inner-container"
-						@click="update(opt)"
-					>
-						<div class="picker-opt-container flex align-center">
-							<span>{{ opt.display }}</span>
-						</div>
-					</div>
-				</div>
-				<div v-else class="flex dropdown-inner-container labels-list column">
-					<div
-						v-for="(opt, idx) in opts"
-						:key="idx"
-						class="color-opt-editing flex align-center"
-						@click="update(opt)"
-					>
-						<div class="input-wrapper flex align-center">
-							<div class="color-box btn" :style="getOptStyle(opt)"></div>
-							<div class="label-input text-cmp">
-								<input type="text" />
-								<span>{{ opt.display }}</span>
-							</div>
-						</div>
-						<div class="btn btn-delete-status">
-							<button class="btn btn-icon">
-								<font-awesome-icon icon="times-circle" />
-							</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="picker-dropdown-footer flex align-center">
-					<button class="btn" @click="toggleEditModal">Add/Edit Labels</button>
-				</div>
-			</div>
-		</div>
+		<labels-popup v-if="showOptions" :opts="optsCopy" @update="update" @apply="saveLabel" />
 	</div>
 </template>
 
 <script>
+import labelsPopup from '@/components/labels-popup';
 export default {
 	name: 'statusPicker',
 	props: ['info'],
@@ -77,7 +37,7 @@ export default {
 			selected: {},
 			opts: null,
 			fold: false,
-			showEditModal: false,
+			optsCopy: null,
 		};
 	},
 	watch: {
@@ -86,7 +46,7 @@ export default {
 				this.selected = this.info.selected;
 				this.styleObj = this.selected.style;
 				this.opts = this.info.data.opts;
-				this.optsCopy = this.info.data.opts;
+				this.optsCopy = JSON.parse(JSON.stringify(this.opts));
 			},
 			deep: true,
 			immediate: true,
@@ -101,11 +61,9 @@ export default {
 		toggleStatusPicker() {
 			this.showOptions = !this.showOptions;
 		},
-		getOptStyle(opt) {
-			return opt.style;
-		},
-		toggleEditModal() {
-			this.showEditModal = !this.showEditModal;
+
+		saveLabel(opt) {
+			this.$emit('saveLabel', opt);
 		},
 	},
 	computed: {
@@ -113,5 +71,6 @@ export default {
 			return this.selected.display;
 		},
 	},
+	components: { labelsPopup },
 };
 </script>

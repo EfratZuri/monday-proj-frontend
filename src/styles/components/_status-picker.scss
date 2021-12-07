@@ -140,6 +140,23 @@
 					font-size: 0.75rem;
 					cursor: text;
 				}
+				input {
+					width: 88px;
+					height: 100%;
+					color: #323338;
+					// color: var(--primary-text-on-secondary-color);
+					background-color: #f5f6f8;
+					// background-color: var(--dark-background-on-secondary-color);
+					outline: none;
+					padding-left: 8px;
+					padding-right: 4px;
+					border: none;
+					border-radius: 0 2px 2px 0;
+					border-width: 1px 1px 1px 0;
+					border-style: solid;
+					border-color: transparent;
+					min-width: 0;
+				}
 			}
 		}
 	}

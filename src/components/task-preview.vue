@@ -40,6 +40,7 @@
 				:is="col.type"
 				:info="getCmpInfo(col)"
 				@update="update($event, col.type)"
+				@saveLabel="saveLabel($event, col.type)"
 			/>
 		</div>
 		<task-update
@@ -132,6 +133,9 @@ export default {
 			const copyTask = JSON.parse(JSON.stringify(this.task));
 			copyTask[type] = ev;
 			this.$emit('updatePicker', copyTask);
+		},
+		saveLabel(ev, type) {
+			console.log(ev, type);
 		},
 
 		closePanel() {
