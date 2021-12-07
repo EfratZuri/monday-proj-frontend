@@ -80,14 +80,7 @@ export const boardStore = {
 			// Update Group
 			else state.activeBoard.groups.splice(idx, 1, group);
 		},
-		duplicateGroup(state, { duplicateDetails }) {
-			const { group } = duplicateDetails;
-			const { groupToAdd } = duplicateDetails;
-			const currGroupIdx = state.activeBoard.groups.findIndex(
-				(currGroup) => currGroup.id === group.id
-			);
-			state.activeBoard.groups.splice(currGroupIdx, 0, groupToAdd);
-		},
+
 		moveGroupToBoard(state, { moveDetails }) {
 			const { group } = moveDetails;
 			const { board } = moveDetails;
