@@ -2,6 +2,7 @@
 	<section class="grid-row-component group-header" ref="header" :class="stickyStyle">
 		<div class="group-name-component grid-cell-row-component-header">
 			<!-- <button @click="remove">delete group</button> -->
+
 			<div
 				class="menu-btn-container"
 				@click="toggleGroupMenu"
@@ -78,13 +79,14 @@
 			<button class="btn btn-icon" @click="toggleColumnMenu">
 				<font-awesome-icon icon="plus-circle" />
 			</button>
-			<column-menu v-if="showColumnMenu" />
+			<column-menu v-if="showColumnMenu" @addColumn="addColumn" />
 		</div>
 	</section>
 </template>
 
 <script>
 // import { ref } from "vue"
+
 import groupMenu from '@/components/group-menu';
 import groupColorPalette from '@/components/group-color-palette.vue';
 import columnMenu from '@/components/column-menu.vue';
@@ -177,25 +179,27 @@ export default {
 			if (!entry.isIntersecting) this.isSticky = true;
 			else this.isSticky = false;
 		},
+		addColumn(columnType) {
+			this.$emit('addColumn', columnType);
+		},
 	},
-	watch: {},
-	mounted() {
-		// console.log('EEEEEEEEEEEEEEEEEEEEEEEEEE');
-		// const headerHeight = this.$refs.header.getBoundingClientRect().height;
-		// const header = this.$refs.header;
-		// const stickyHeader = function (entries) {
-		// 	const [entry] = entries;
-		// 	if (!entry.isIntersecting) this.isSticky = true;
-		// 	else this.isSticky = false;
-		// 	console.log(this.isSticky);
-		// };
-		// const headerObserver = new IntersectionObserver(stickyHeader, {
-		// 	root: null,
-		// 	threshold: 0,
-		// 	rootMargin: `-${headerHeight}px`,
-		// });
-		// headerObserver.observe(this.$refs.header);
-	},
+	// mounted() {
+	// 	// console.log('EEEEEEEEEEEEEEEEEEEEEEEEEE');
+	// 	// const headerHeight = this.$refs.header.getBoundingClientRect().height;
+	// 	// const header = this.$refs.header;
+	// 	// const stickyHeader = function (entries) {
+	// 	// 	const [entry] = entries;
+	// 	// 	if (!entry.isIntersecting) this.isSticky = true;
+	// 	// 	else this.isSticky = false;
+	// 	// 	console.log(this.isSticky);
+	// 	// };
+	// 	// const headerObserver = new IntersectionObserver(stickyHeader, {
+	// 	// 	root: null,
+	// 	// 	threshold: 0,
+	// 	// 	rootMargin: `-${headerHeight}px`,
+	// 	// });
+	// 	// headerObserver.observe(this.$refs.header);
+	// },
 	computed: {
 		clrs() {
 			return this.$store.getters.clrs;
