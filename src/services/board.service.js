@@ -225,6 +225,10 @@ function getEmptyBoard() {
 							backgroundColor: 'rgb(196, 196, 196)',
 						},
 					},
+					style: {
+						flexBasis: '140px',
+						maxWidth: '140px',
+					},
 				},
 			},
 			{
@@ -238,24 +242,53 @@ function getEmptyBoard() {
 						},
 					},
 				},
+				style: {
+					flexBasis: '140px',
+					maxWidth: '140px',
+				},
 			},
 			{
 				type: 'memberPicker',
-				data: { opts: [], default: { members: [] } },
+				data: {
+					opts: [],
+					default: { members: [] },
+					style: {
+						flexBasis: '98px',
+						maxWidth: '98px',
+					},
+				},
 			},
 			{
 				type: 'datePicker',
-				data: { opts: [], default: { dueDate: null } },
+				data: {
+					opts: [],
+					default: { dueDate: null },
+					style: {
+						flexBasis: '140px',
+						maxWidth: '140px',
+					},
+				},
 			},
 			{
 				type: 'timelinePicker',
-				data: { opts: [], default: { dates: [], dayCount: 0 } },
+				data: {
+					opts: [],
+					default: { dates: [], dayCount: 0 },
+					style: {
+						flexBasis: '140px',
+						maxWidth: '140px',
+					},
+				},
 			},
 			{
 				type: 'tagPicker',
 				data: {
 					opts: [],
 					default: [],
+					style: {
+						flexBasis: '140px',
+						maxWidth: '140px',
+					},
 				},
 			},
 		],
