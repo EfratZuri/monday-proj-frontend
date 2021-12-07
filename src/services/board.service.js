@@ -28,7 +28,7 @@ async function query() {
 	// let queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`;
 	// return httpService.get(`board${queryStr}`)
 	try {
-		let boards = await storageService.query(STORAGE_KEY_BOARDS);
+		const boards = await storageService.query(STORAGE_KEY_BOARDS);
 		if (!boards.length) {
 			const board = _createBoard();
 			boards.push(board);
@@ -39,7 +39,6 @@ async function query() {
 		console.log('error', error);
 	}
 }
-
 
 /////////-----------------BOARD-----------------/////////
 
@@ -57,9 +56,9 @@ async function saveBoard(board) {
 	let savedBoard;
 	try {
 		if (!board) board = getEmptyBoard();
-		if (board._id) {
-			savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
-		} else savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
+		// if (board._id) savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
+		// else savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
+		savedBoard = await storageService[board._id ? 'put' : 'post'](STORAGE_KEY_BOARDS, board);
 	} catch (error) {
 		console.log('error', error);
 	}
@@ -71,7 +70,6 @@ async function getById(boardId) {
 	const board = boards.find(({ _id }) => _id === boardId);
 	return board;
 }
-
 
 /////////-----------------GROUP-----------------/////////
 
@@ -100,7 +98,7 @@ async function moveGroupToBoard(moveDetails, activeBoard) {
 	const toBoard = moveDetails.board;
 	const { group } = moveDetails;
 	const fromBoard = await getById(activeBoard._id);
-	const groupIdx = fromBoard.groups.findIndex((currGroup) => currGroup.id === group.id);
+	const groupIdx = fromBoard.groups.findIndex(({ id }) => id === group.id);
 	toBoard.groups.push(group);
 	fromBoard.groups.splice(groupIdx, 1);
 	await saveBoard(fromBoard);
@@ -108,11 +106,10 @@ async function moveGroupToBoard(moveDetails, activeBoard) {
 }
 
 async function removeGroup(group, activeBoard) {
-	const idx = activeBoard.groups.findIndex((currGroup) => currGroup.id === group.id);
+	const idx = activeBoard.groups.findIndex(({ id }) => id === group.id);
 	activeBoard.groups.splice(idx, 1);
 	await saveBoard(activeBoard);
 }
-
 
 /////////-----------------TASK-----------------/////////
 
@@ -170,7 +167,6 @@ async function saveComment({ comment, boardId, groupId, taskId }) {
 	return board;
 }
 
-
 // GET EMPTY
 
 function getEmptyGroup(clr) {
@@ -190,10 +186,10 @@ function getEmptyComment() {
 }
 
 function getEmptyBoard() {
-	const group1 = getEmptyGroup('rgb(87, 155, 252)')
-	const group2 = getEmptyGroup('rgb(162, 93, 220)')
-	group1.id = utilService.makeId()
-	group2.id = utilService.makeId()
+	const group1 = getEmptyGroup('rgb(87, 155, 252)');
+	const group2 = getEmptyGroup('rgb(162, 93, 220)');
+	group1.id = utilService.makeId();
+	group2.id = utilService.makeId();
 	return {
 		title: 'New Board',
 		createdAt: new Date(Date.now()).toLocaleString(),
@@ -266,7 +262,7 @@ function getEmptyBoard() {
 
 function _createBoard() {
 	const board = getEmptyBoard();
-	board.groups.forEach(group => group.id = utilService.makeId());
+	board.groups.forEach((group) => (group.id = utilService.makeId()));
 	return board;
 }
 
