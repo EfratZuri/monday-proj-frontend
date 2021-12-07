@@ -22,9 +22,9 @@
       ></button>
       <button
         class="btn board-header-title-icon"
-        @click="isStarred = !isStarred"
+        @click="toggleFavorite"
         v-html="starToggle"
-        :class="{ 'starred-board': this.isStarred }"
+        :class="{ 'starred-board': this.boardToEdit.isFavorite }"
       ></button>
     </div>
     <section
@@ -65,7 +65,6 @@ export default {
       isEditName: false,
       isEditDesctiption: false,
       isShowDescription: true,
-      isStarred: false,
     };
   },
   methods: {
@@ -83,6 +82,10 @@ export default {
         this.$emit('saveBoard', this.boardToEdit);
       }
     },
+    async toggleFavorite() {
+      this.boardToEdit.isFavorite = !this.boardToEdit.isFavorite;
+      this.$emit('saveBoard', this.boardToEdit);
+    },
   },
   computed: {
     descriptionToDisplay() {
@@ -94,7 +97,7 @@ export default {
         : '<ion-icon name="alert-circle-outline"></ion-icon>';
     },
     starToggle() {
-      return this.isStarred
+      return this.boardToEdit.isFavorite
         ? '<ion-icon name="star"></ion-icon>'
         : '<ion-icon name="star-outline"></ion-icon>';
     },

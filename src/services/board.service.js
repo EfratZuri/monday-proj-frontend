@@ -202,6 +202,7 @@ function getEmptyBoard() {
 		members: [],
 		groups: [group1, group2],
 		activities: [],
+		isFavorite: false,
 		cmpsOrder: [
 			'status-picker',
 			'priority-picker',
