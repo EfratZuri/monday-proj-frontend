@@ -10,7 +10,7 @@ import router from './router';
 import store from './store/store';
 import './styles/styles.scss';
 import vClickOutside from 'v-click-outside'
- 
+
 Vue.use(vClickOutside)
 library.add(fas);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
@@ -19,9 +19,9 @@ Vue.config.productionTip = false;
 // import { IonicVue } from '@ionic/vue';
 
 new Vue({
-	router,
-	store,
-	render: (h) => h(App),
+  router,
+  store,
+  render: (h) => h(App),
 }).$mount('#app');
 
 /*

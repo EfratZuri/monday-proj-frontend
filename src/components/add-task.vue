@@ -1,5 +1,9 @@
 <template>
-  <section v-if="task" class="add-task-component flex">
+  <section
+    v-if="task"
+    class="add-task-component flex"
+    v-click-outside="turnOffAdd"
+  >
     <div
       class="pulse-left-indicator"
       :style="{ backgroundColor: color, color: color }"
@@ -10,7 +14,6 @@
       @focus="toggleAddBtn"
       placeholder="+Add"
       @keyup.enter="addNewTask"
-      @blur="turnOffAdd"
     />
     <button v-if="showAddBtn" class="btn btn-blue" @click="addNewTask">
       +Add
@@ -50,9 +53,7 @@ export default {
       this.showAddBtn = !this.showAddBtn;
     },
     turnOffAdd() {
-      setTimeout(() => {
-        this.showAddBtn = false;
-      }, 100);
+      this.showAddBtn = false;
     },
   },
 };

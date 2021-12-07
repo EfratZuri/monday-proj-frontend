@@ -17,7 +17,8 @@
         >
           <font-awesome-icon icon="caret-down" />
         </button>
-        <group-menu v-click-outside="toggleGroupMenu"
+        <group-menu
+          v-click-outside="toggleGroupMenu"
           v-if="showGroupMenu"
           :boards="boards"
           :board="board"

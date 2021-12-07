@@ -4,7 +4,11 @@
     <div class="menu-item" @click="collapseAll">Collapse all groups</div>
     <div class="menu-item" @click="addGroup">Add group</div>
     <div class="menu-item" @click="duplicateGroup">Duplicate this group</div>
-    <div class="menu-item move-to-dropdown-clickable" @click="moveTo">
+    <div
+      class="menu-item move-to-dropdown-clickable"
+      @click="moveTo"
+      v-if="boards.length > 1"
+    >
       <span>Move to</span>
       <div class="group-moveto-dropdown-icon-wrapper">
         <ion-icon name="chevron-forward-outline"></ion-icon>
