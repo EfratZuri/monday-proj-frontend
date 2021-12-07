@@ -2,7 +2,7 @@
 	<div
 		class="grid-cell-component-wrapper picker-component"
 		:class="{ 'dropdown-open': showOptions }"
-		:style="{ width: info.data.style.width }"
+		:style="{ width: info.data.style.maxWidth }"
 	>
 		<div
 			v-if="styleObj"

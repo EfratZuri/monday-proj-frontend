@@ -1,6 +1,9 @@
 <template>
-	<div class="grid-cell-component-wrapper priority-summary-container">
-		<div class="col-cell flex">
+	<div
+		class="grid-cell-component-wrapper priority-summary-container"
+		:style="{ width: info.data.style.maxWidth }"
+	>
+		<div class="col-cell flex" :style="info.data.style">
 			<div
 				class="summary-cell"
 				v-if="!taskLen"

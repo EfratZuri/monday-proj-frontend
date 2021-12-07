@@ -1,6 +1,9 @@
 <template>
-	<div class="grid-cell-component-wrapper date-summary-container" :style="{ flexBasis: '25%' }">
-		<div class="col-cell" :width="'100%'">
+	<div
+		class="grid-cell-component-wrapper date-summary-container"
+		:style="{ width: info.data.style.maxWidth }"
+	>
+		<div class="col-cell" :style="info.data.style">
 			<div v-if="tags && tags.length">
 				<span v-for="(tag, idx) in tags" :key="idx" :style="tag.style">
 					{{ tagForDisplay(tag.txt) }}
@@ -20,6 +23,7 @@ export default {
 		};
 	},
 	created() {
+		console.log(this.info);
 		this.tags = this.info.group.tasks.filter((task) => task?.tagPicker);
 	},
 	methods: {

@@ -1,6 +1,9 @@
 <template>
-	<div class="grid-cell-component-wrapper member-summary-container">
-		<div class="col-cell"></div>
+	<div
+		class="grid-cell-component-wrapper member-summary-container"
+		:style="{ width: info.data.style.maxWidth }"
+	>
+		<div class="col-cell" :style="info.data.style"></div>
 	</div>
 </template>
 

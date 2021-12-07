@@ -1,6 +1,9 @@
 <template>
-	<div class="grid-cell-component-wrapper timeline-summary-container">
-		<div class="col-cell" :hovercontents="hoverContent">
+	<div
+		class="grid-cell-component-wrapper timeline-summary-container"
+		:style="{ width: info.data.style.maxWidth }"
+	>
+		<div class="col-cell" :hovercontents="hoverContent" :style="info.data.style">
 			<div class="date-box timeline-bar-component" :class="{ filled: isFilled }">
 				<span class="timeline-value" :hovercontents="hoverContent" :contents="dateForDisplay">
 				</span>

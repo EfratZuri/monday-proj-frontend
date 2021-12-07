@@ -70,6 +70,7 @@
 				v-for="(col, idx) in cols"
 				:key="idx"
 				class="grid-cell-component-wrapper grid-cell-wrapper-component col-identifier-status"
+				:style="col.data.style"
 			>
 				<span>{{ cmpNameForDisplay(col.type) }}</span>
 			</div>
@@ -173,9 +174,9 @@ export default {
 		// toggleColor() {
 		// 	this.showColorPalette = !this.showColorPalette;
 		// },
-		// toggleGroupMenu() {
-		// 	this.showGroupMenu = !this.showGroupMenu;
-		// },
+		toggleGroupMenu() {
+			this.showGroupMenu = !this.showGroupMenu;
+		},
 		toggleColorPalette() {
 			this.showColorPalette = !this.showColorPalette;
 			this.showEdit = !this.showEdit;
