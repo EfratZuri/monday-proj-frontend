@@ -34,12 +34,12 @@
             class="board-preview-dropdown-icon-wrapper"
           >
             <ion-icon name="ellipsis-horizontal"></ion-icon>
-            <board-preview-menu
-              :board="board"
-              @removeBoard="removeBoard"
-              v-if="isCurrBoardMenu(board)"
-            />
           </div>
+          <board-preview-menu
+            :board="board"
+            @removeBoard="removeBoard"
+            v-if="isCurrBoardMenu(board)"
+          />
         </div>
       </li>
     </ul>
