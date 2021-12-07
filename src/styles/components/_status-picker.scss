@@ -11,10 +11,6 @@
 	&:hover {
 		opacity: 0.85;
 	}
-
-	span {
-		// display: inline-block;
-	}
 }
 
 .col-cell {
@@ -77,6 +73,16 @@
 			&:hover {
 				opacity: 0.85;
 			}
+			&.labels-list {
+				.label-row {
+					.btn-delete-status {
+						visibility: hidden;
+					}
+					&:hover .btn-delete-status {
+						visibility: visible;
+					}
+				}
+			}
 		}
 		.picker-dropdown-inner-container {
 			// height: 300px;
@@ -103,6 +109,36 @@
 						background-color: $primary-clr;
 						color: #fff;
 					}
+				}
+			}
+		}
+		.labels-list {
+			.color-box {
+				flex: 0 0 16px;
+				height: 100%;
+				width: 16px;
+				border-radius: 2px 0 0 2px;
+				border-width: 1px 0 1px 1px;
+				transition: background-color 0.03s;
+			}
+		}
+		.color-opt-editing {
+			.input-wrapper {
+				border-radius: 2px;
+				height: 32px;
+				width: 104px;
+				flex: 0 0 104px;
+				transition: background-color 0.1s;
+				.label-input {
+					padding: 0 4px 0 8px;
+					border: none;
+					width: 88px;
+					border-radius: 0 2px 2px 0;
+					transition: background-color 0.1s;
+					background-color: #f5f6f8;
+					outline: none;
+					font-size: 0.75rem;
+					cursor: text;
 				}
 			}
 		}

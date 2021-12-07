@@ -31,19 +31,25 @@ export default {
 			defaultStyle: null,
 		};
 	},
-	created() {
-		this.opts = this.info.data.opts;
-		this.statusPickerLabelCount = this.info.group.tasks.reduce((acc, task) => {
-			if (task.statusPicker) {
-				if (acc[task.statusPicker.name]) acc[task.statusPicker.name]++;
-				else acc[task.statusPicker.name] = 1;
-			} else {
-				if (acc.default) acc.default++;
-				else acc.default = 1;
-			}
-			return acc;
-		}, {});
-		this.defaultStyle = this.info.data.default.style;
+	watch: {
+		info: {
+			handler() {
+				this.opts = this.info.data.opts;
+				this.statusPickerLabelCount = this.info.group.tasks.reduce((acc, task) => {
+					if (task.statusPicker) {
+						if (acc[task.statusPicker.name]) acc[task.statusPicker.name]++;
+						else acc[task.statusPicker.name] = 1;
+					} else {
+						if (acc.default) acc.default++;
+						else acc.default = 1;
+					}
+					return acc;
+				}, {});
+				this.defaultStyle = this.info.data.default.style;
+			},
+			deep: true,
+			immediate: true,
+		},
 	},
 	methods: {
 		getStyle(key, value) {

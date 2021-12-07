@@ -17,7 +17,9 @@
 	flex-basis: 45%;
 	font-size: 18px;
 	.group-name {
-		width: 100%;
+		flex: 1 1;
+		// width: 100%;
+		min-width: 180px;
 		margin: 0 10px 0 0;
 		.color-picker-btn-container {
 			margin-left: 5px;
