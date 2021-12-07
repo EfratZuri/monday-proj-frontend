@@ -34,19 +34,39 @@ export default {
 			defaultStyle: null,
 		};
 	},
+	watch: {
+		info: {
+			handler() {
+				this.opts = this.info.data.opts;
+				this.priorityPickerLabelCount = this.info.group.tasks.reduce((acc, task) => {
+					if (task.priorityPicker) {
+						if (acc[task.priorityPicker.name]) acc[task.priorityPicker.name]++;
+						else acc[task.priorityPicker.name] = 1;
+					} else {
+						if (acc.default) acc.default++;
+						else acc.default = 1;
+					}
+					return acc;
+				}, {});
+				this.defaultStyle = this.info.data.default.style;
+			},
+			deep: true,
+			immediate: true,
+		},
+	},
 	created() {
-		this.opts = this.info.data.opts;
-		this.priorityPickerLabelCount = this.info.group.tasks.reduce((acc, task) => {
-			if (task.priorityPicker) {
-				if (acc[task.priorityPicker.name]) acc[task.priorityPicker.name]++;
-				else acc[task.priorityPicker.name] = 1;
-			} else {
-				if (acc.default) acc.default++;
-				else acc.default = 1;
-			}
-			return acc;
-		}, {});
-		this.defaultStyle = this.info.data.default.style;
+		// this.opts = this.info.data.opts;
+		// this.priorityPickerLabelCount = this.info.group.tasks.reduce((acc, task) => {
+		// 	if (task.priorityPicker) {
+		// 		if (acc[task.priorityPicker.name]) acc[task.priorityPicker.name]++;
+		// 		else acc[task.priorityPicker.name] = 1;
+		// 	} else {
+		// 		if (acc.default) acc.default++;
+		// 		else acc.default = 1;
+		// 	}
+		// 	return acc;
+		// }, {});
+		// this.defaultStyle = this.info.data.default.style;
 	},
 	methods: {
 		getStyle(key, value) {

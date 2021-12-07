@@ -1,8 +1,6 @@
 <template>
 	<section class="grid-row-component group-header" ref="header" :class="stickyStyle">
 		<div class="group-name-component grid-cell-row-component-header">
-			<!-- <button @click="remove">delete group</button> -->
-
 			<div
 				class="menu-btn-container"
 				@click="toggleGroupMenu"
@@ -27,6 +25,7 @@
 					@changeColor="toggle('showColorPalette')"
 				/>
 			</div>
+
 			<div class="group-name">
 				<span
 					v-if="!showEdit"

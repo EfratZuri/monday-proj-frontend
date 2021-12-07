@@ -1,7 +1,7 @@
 <template>
   <section class="board-header-main flex">
-    <div class="board-header-main-top">
-      <div class="board-title">
+    <div class="board-header-main-top flex space-between align-center">
+      <div class="board-title flex align-center">
         <h1 v-if="!isEditName" @click="editName" class="element-type-h1">
           {{ boardToEdit.title }}
         </h1>
@@ -14,23 +14,32 @@
           @keyup.enter="$event.target.blur()"
           @blur="editName"
         />
+        <button
+          class="btn board-header-title-icon"
+          @click="isShowDescription = !isShowDescription"
+          v-html="descriptionTogglBtn"
+        ></button>
+        <button
+          class="btn board-header-title-icon"
+          @click="toggleFavorite"
+          v-html="starToggle"
+          :class="{ 'starred-board': this.boardToEdit.isFavorite }"
+        ></button>
       </div>
-      <button
-        class="btn board-header-title-icon"
-        @click="isShowDescription = !isShowDescription"
-        v-html="descriptionTogglBtn"
-      ></button>
-      <button
-        class="btn board-header-title-icon"
-        @click="toggleFavorite"
-        v-html="starToggle"
-        :class="{ 'starred-board': this.boardToEdit.isFavorite }"
-      ></button>
-      <!-- <div class="board-header-right flex">
-        <div class="invite-btn-header">
-          <span><font-awesome-icon icon="user-plus" /></span>
-        </div>
-      </div> -->
+      <div class="flex align-center gap">
+        <button
+          class="btn flex align-center"
+          @click="openSlidePanel('lastView')"
+        >
+          <span>Last seen</span>
+          <div class="overlap-image image-border">
+            <span>E</span>
+          </div>
+        </button>
+        <button class="btn btn-icon" @click="openSlidePanel('activity')">
+          <span>Activity</span>
+        </button>
+      </div>
     </div>
     <section
       class="board-description"
@@ -90,6 +99,9 @@ export default {
     async toggleFavorite() {
       this.boardToEdit.isFavorite = !this.boardToEdit.isFavorite;
       this.$emit('saveBoard', this.boardToEdit);
+    },
+    openSlidePanel(sec) {
+      console.log('open slide panel', sec);
     },
   },
   computed: {

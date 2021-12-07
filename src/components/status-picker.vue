@@ -22,7 +22,7 @@
 		</div>
 		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
 			<div class="picker-dropdown-inner-container flex space-between column">
-				<div class="status-list">
+				<div v-if="!showEditModal" class="status-list">
 					<div
 						v-for="(opt, idx) in opts"
 						:key="idx"
@@ -35,8 +35,29 @@
 						</div>
 					</div>
 				</div>
+				<div v-else class="flex">
+					<div
+						v-for="(opt, idx) in opts"
+						:key="idx"
+						class="dropdown-inner-container labels-list flex column align-center"
+						@click="update(opt)"
+					>
+						<div class="">
+							<div class="color-box btn" :style="getOptStyle(opt)"></div>
+							<div class="picker-opt-container flex align-center">
+								<span>{{ opt.display }}</span>
+							</div>
+						</div>
+						<div class="btn btn-delete-status">
+							<button class="btn btn-icon">
+								<font-awesome-icon icon="times-circle" />
+							</button>
+						</div>
+					</div>
+				</div>
+
 				<div class="picker-dropdown-footer flex align-center">
-					<button class="btn">Add/Edit Labels</button>
+					<button class="btn" @click="toggleEditModal">Add/Edit Labels</button>
 				</div>
 			</div>
 		</div>
@@ -55,6 +76,7 @@ export default {
 			selected: {},
 			opts: null,
 			fold: false,
+			showEditModal: false,
 		};
 	},
 	watch: {
@@ -79,6 +101,9 @@ export default {
 		},
 		getOptStyle(opt) {
 			return opt.style;
+		},
+		toggleEditModal() {
+			this.showEditModal = !this.showEditModal;
 		},
 	},
 	computed: {
