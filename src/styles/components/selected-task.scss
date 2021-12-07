@@ -62,6 +62,9 @@
     text-align: center;
     margin-right: 20px;
     cursor: pointer;
+    &:hover {
+      color: #0073ea;
+    }
 
     .icon-selected {
       top: 6px;
@@ -74,6 +77,24 @@
       font-size: 13px;
       position: relative;
       bottom: -4px;
+      &:hover {
+        color: #0073ea;
+      }
+    }
+  }
+
+  .exit-action {
+    width: 63px;
+    height: 63px;
+    border-radius: 0 5px 5px 0;
+    border-left: 2px solid #c5c7d0;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+    cursor: pointer;
+
+    &:hover {
+      color: #0073ea;
     }
   }
 }

@@ -26,6 +26,9 @@
       </span>
       <span class="task-action-name">Delete</span>
     </div>
+    <div class="exit-action flex">
+      <span class="exit-btn" @click="closeTaskSelected">X</span>
+    </div>
   </section>
 </template>
 
@@ -44,7 +47,11 @@ export default {
       showMoveToOptions: false,
     };
   },
-  methods: {},
+  methods: {
+    closeTaskSelected() {
+      this.$emit('closeTaskSelected');
+    },
+  },
   components: {},
 };
 </script>

@@ -31,7 +31,11 @@
           @duplicateGroup="duplicateGroup"
           @setSelected="setSelected"
         />
-        <selected-task v-if="tasks.length" :tasks="tasks" />
+        <selected-task
+          v-if="tasks.length"
+          :tasks="tasks"
+          @closeTaskSelected="closeTaskSelected"
+        />
         <!-- <task-update
 			<div v-else>
 				<boardHeader
@@ -135,6 +139,9 @@ export default {
       if (boolean) this.tasks.push(task);
       else this.tasks.splice(idx, 1);
       console.log(this.tasks);
+    },
+    closeTaskSelected() {
+      this.tasks = [];
     },
   },
   components: {
