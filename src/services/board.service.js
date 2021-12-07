@@ -167,6 +167,13 @@ async function saveComment({ comment, boardId, groupId, taskId }) {
 	return board;
 }
 
+// COLUMNS
+
+// async function saveColumns(boardId, columnType) {
+// 	const board = await getById(boardId);
+// 	return board;
+// }
+
 // GET EMPTY
 
 function getEmptyGroup(clr) {

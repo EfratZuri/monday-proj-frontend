@@ -83,13 +83,12 @@ export default {
 			} else this.currGroupIds.push(id);
 		},
 		toggleAllTasks() {
-			this.currGroupIds = this.board.groups.map((group) => group.id);
+			this.currGroupIds = this.board.groups.map(({ id }) => id);
 		},
 		isIncludesGroupIds(id) {
 			return this.currGroupIds.includes(id);
 		},
 		setSelected(task, boolean) {
-			// console.log(task, boolean);
 			this.$emit('setSelected', task, boolean);
 		},
 		addColumn(columnType) {
