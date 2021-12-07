@@ -5,7 +5,7 @@
 
 			<div
 				class="menu-btn-container"
-				@click="toggle('showGroupMenu')"
+				@click="toggleGroupMenu"
 				:class="{ 'dropdown-open': showGroupMenu }"
 			>
 				<button
@@ -15,7 +15,7 @@
 					<font-awesome-icon icon="caret-down" />
 				</button>
 				<group-menu
-					v-click-outside="toggle('showGroupMenu')"
+					v-click-outside="toggleGroupMenu"
 					v-if="showGroupMenu"
 					:boards="boards"
 					:board="board"
@@ -23,7 +23,6 @@
 					@toggleTasks="toggleTasks"
 					@toggleAllTasks="toggleAllTasks"
 					@removeGroup="remove"
-					@duplicateGroup="duplicateGroup"
 					@moveToBoard="moveToBoard"
 					@changeColor="toggle('showColorPalette')"
 				/>

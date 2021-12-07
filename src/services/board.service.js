@@ -20,7 +20,6 @@ export const boardService = {
 	saveComment,
 	saveBoard,
 	removeGroup,
-	duplicateGroup,
 	moveGroupToBoard,
 };
 
@@ -84,14 +83,6 @@ async function saveGroup(group, activeBoardId) {
 	}
 	await saveBoard(board);
 	return group;
-}
-
-async function duplicateGroup(group, groupToAdd, activeBoard) {
-	const board = await getById(activeBoard._id);
-	const currGroupIdx = board.groups.findIndex((currGroup) => currGroup.id === group.id);
-	board.groups.splice(currGroupIdx, 0, groupToAdd);
-	await saveBoard(board);
-	return groupToAdd;
 }
 
 async function moveGroupToBoard(moveDetails, activeBoard) {

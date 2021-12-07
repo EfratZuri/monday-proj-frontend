@@ -44,6 +44,7 @@
           :boards="boards"
           @showBoard="showBoard"
           @removeBoard="removeBoard"
+          @saveBoard="saveBoard"
         />
       </div>
     </div>
@@ -80,6 +81,9 @@ export default {
     },
     removeBoard(board) {
       this.$emit('removeBoard', board);
+    },
+    saveBoard(board) {
+      this.$emit('saveBoard', board);
     },
     toggleWorkspaceList() {},
   },
