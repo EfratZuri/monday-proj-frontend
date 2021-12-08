@@ -14,7 +14,7 @@
 
 <script>
 import signForm from '@/components/sign-form.vue';
-import { userService } from '@/services/user-service.js';
+import { userService } from '@/services/user.service.js';
 export default {
   name: 'signup',
   methods: {
