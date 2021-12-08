@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="task-title flex align-center">
-				<div v-if="!showEditTask">
+				<div class="task-title-inner" v-if="!showEditTask">
 					<span>{{ task.title }}</span>
 					<button class="btn btn-edit" @click.stop="toggleEdit">Edit</button>
 				</div>
@@ -131,6 +131,7 @@ export default {
 			return { selected: col.data.default, data: col.data };
 		},
 		update(ev, type) {
+			console.log(type);
 			const copyTask = JSON.parse(JSON.stringify(this.task));
 			copyTask[type] = ev;
 			this.$emit('updatePicker', copyTask);

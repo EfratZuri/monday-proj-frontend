@@ -36,19 +36,16 @@ export default {
 		};
 	},
 	watch: {
-		// 	info: {
-		// 	handler() {
-		// this.selected = JSON.parse(JSON.stringify(this.info.selected));
-		// 	},
-		// 	deep: true,
-		// 	immediate: true,
-		// },
-	},
-	created() {
-		this.selected = JSON.parse(JSON.stringify(this.info.selected));
-		const dayCount = this.selected.dayCount;
-		this.isFilled = dayCount ? true : false;
-		this.hoverContent = !dayCount ? 'Set Dates' : `${dayCount}d`;
+		info: {
+			handler() {
+				this.selected = JSON.parse(JSON.stringify(this.info.selected));
+				const dayCount = this.selected.dayCount;
+				this.isFilled = dayCount ? true : false;
+				this.hoverContent = !dayCount ? 'Set Dates' : `${dayCount}d`;
+			},
+			deep: true,
+			immediate: true,
+		},
 	},
 	methods: {
 		update(dueDates) {

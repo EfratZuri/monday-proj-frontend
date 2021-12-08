@@ -14,12 +14,17 @@
 
 <script>
 import signForm from '@/components/sign-form.vue';
-import { userService } from '@/services/user-service.js';
+import { userService } from '@/services/user.service.js';
 export default {
   name: 'login',
   methods: {
     login(user) {
-      userService.login(user);
+      try {
+        userService.login(user);
+        console.log('Logged in!');
+      } catch (error) {
+        console.log('error', error);
+      }
     },
   },
   components: {
