@@ -96,6 +96,9 @@ export default {
 	},
 
 	methods: {
+		toggleEditModal() {
+			this.showEditModal = !this.showEditModal;
+		},
 		update(opt) {
 			this.$emit('update', opt);
 			this.toggleStatusPicker();
