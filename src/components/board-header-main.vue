@@ -26,19 +26,26 @@
           :class="{ 'starred-board': this.boardToEdit.isFavorite }"
         ></button>
       </div>
-      <div class="flex align-center gap">
+      <div class="flex align-center gap actions-header">
         <button
-          class="btn flex align-center"
+          class="btn flex align-center user-img-last-seen"
           @click="openSlidePanel('lastView')"
         >
           <span>Last seen</span>
-          <div class="overlap-image image-border">
-            <span>E</span>
+          <div class="overlap-images images-border">
+            <div class="overlap-image">
+              <span class="user-name-img">E</span>
+              <span class="user-name-img">N</span>
+              <span class="user-name-img">E</span>
+            </div>
           </div>
         </button>
         <button class="btn btn-icon" @click="openSlidePanel('activity')">
+          <font-awesome-icon icon="chart-line" />
           <span>Activity</span>
         </button>
+
+        <div class="add-to-board"><span> + Add to board</span></div>
       </div>
     </div>
     <section

@@ -24,7 +24,7 @@
       <span class="icon-selected">
         <font-awesome-icon icon="trash" />
       </span>
-      <span class="task-action-name">Delete</span>
+      <span class="task-action-name" @click="deleteTaskSelected">Delete</span>
     </div>
     <div class="exit-action flex">
       <span class="exit-btn" @click="closeTaskSelected">X</span>
@@ -50,6 +50,9 @@ export default {
   methods: {
     closeTaskSelected() {
       this.$emit('closeTaskSelected');
+    },
+    deleteTaskSelected() {
+      this.$emit('deleteTaskSelected', this.tasks);
     },
   },
   components: {},
