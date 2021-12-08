@@ -115,7 +115,7 @@ export default {
 			this.$store.dispatch({ type: 'saveBoard', board });
 		},
 		async deleteTask(task, groupId) {
-			this.showMsg('We successfully deleted 1 task');
+			this.showMsg('We successfully deleted task');
 			await this.$store.dispatch({
 				type: 'deleteTask',
 				details: { task, groupId },
@@ -163,10 +163,6 @@ export default {
 			this.msg = null;
 		},
 		async deleteTaskSelected(tasks) {
-			// const groups=
-			// this.tasks.forEach((task)=>{
-
-			// })
 			for (let i = 0; i < tasks.length; i++) {
 				const group = this.activeBoard.groups.find((group) => {
 					return group.tasks.find((task) => task.id === tasks[i].id);
