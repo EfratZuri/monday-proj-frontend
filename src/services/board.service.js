@@ -39,6 +39,7 @@ async function query(filterBy = {}) {
   }
 }
 
+
 /////////-----------------BOARD-----------------/////////
 
 async function removeBoard(boardId) {
@@ -58,7 +59,6 @@ async function saveBoard(board) {
     if (board._id) savedBoard = await await httpService.put(`board`, board);
     else savedBoard = await await httpService.post(`board`, board);
     // savedBoard = await storageService[board._id ? 'put' : 'post'](STORAGE_KEY_BOARDS, board);
-    console.log('savedBoard', savedBoard);
     return savedBoard;
   } catch (error) {
     console.log('error', error);

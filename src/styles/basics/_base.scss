@@ -218,14 +218,21 @@ input {
 		// Big screens!
 		// flex-basis: 25%;
 		// Medium screens!
-		flex-basis: 55%;
+		// flex-basis: 55%;
 		display: flex;
+		// max-width: 100%;
+		height: 100%;
+
 		& > * {
-			flex-basis: 16.66666666666666%;
+			// flex-basis: 16.66666666666666%;
 		}
 	}
 }
 
 .dropdown-open {
 	position: relative;
+}
+.hero-icon {
+	width: 19px;
+	height: 19px;
 }

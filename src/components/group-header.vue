@@ -69,7 +69,7 @@
 				v-for="(col, idx) in cols"
 				:key="idx"
 				class="grid-cell-component-wrapper grid-cell-wrapper-component col-identifier-status"
-				:style="col.data.style"
+				:style="{ width: col.data.style.maxWidth }"
 			>
 				<span>{{ cmpNameForDisplay(col.type) }}</span>
 			</div>

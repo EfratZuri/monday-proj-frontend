@@ -9,6 +9,12 @@
 			bottom: 4px;
 			left: 5px;
 			border: 1px dashed $primary-txt-clr;
+			z-index: 100;
 		}
 	}
+	input {
+		opacity: 0;
+		cursor: pointer;
+	}
+	cursor: pointer;
 }

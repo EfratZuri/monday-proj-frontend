@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="grid-cell-component-wrapper date-picker-container"
-		:style="{ width: info.data.style.width }"
+		:style="{ width: info.data.style.maxWidth }"
 	>
 		<div class="col-cell">
 			<div class="date-box" :style="info.data.style">
