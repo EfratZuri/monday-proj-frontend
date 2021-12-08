@@ -1,16 +1,12 @@
 <template>
 	<div class="group-task-summary grid-row-component flex align-center space-between">
-		<!-- style="flex-basis: 267px" -->
-		<div
-			class="grid-cell-row-component-header empty-cell-cmp group-title"
-			:style="{ flex: '1 1' }"
-		></div>
+		<div class="grid-cell-row-component-header"></div>
 		<div v-if="cmps" class="grid-cells-row-component" :style="{ width: '992px' }">
 			<component v-for="(cmp, idx) in cmps" :key="idx" :is="cmp.type" :info="getCmpInfo(cmp)" />
 		</div>
+		<div class="space-item"></div>
 	</div>
 </template>
-
 <script>
 import statusSummary from '../components/status-summary';
 import prioritySummary from '../components/priority-summary';
