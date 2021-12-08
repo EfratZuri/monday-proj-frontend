@@ -9,7 +9,6 @@
 					<span>{{ dateForDisplay }}</span>
 				</div>
 				<date-picker-table :info="infoToSend" @change="update" />
-				<!-- selectedCopy.dueDate" @change="update" /> -->
 			</div>
 		</div>
 	</div>
@@ -28,9 +27,16 @@ export default {
 			selectedCopy: {},
 		};
 	},
-	created() {
-		this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
+	watch: {
+		info: {
+			handler() {
+				this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
+			},
+			deep: true,
+			immediate: true,
+		},
 	},
+	created() {},
 	methods: {
 		update(dueDate) {
 			this.$emit('update', { dueDate: +dueDate });

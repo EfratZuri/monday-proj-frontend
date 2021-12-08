@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="task-title flex align-center">
-				<div v-if="!showEditTask">
+				<div class="task-title-inner" v-if="!showEditTask">
 					<span>{{ task.title }}</span>
 					<button class="btn btn-edit" @click.stop="toggleEdit">Edit</button>
 				</div>
