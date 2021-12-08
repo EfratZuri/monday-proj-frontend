@@ -1,5 +1,8 @@
 <template>
-	<div class="grid-cell-component-wrapper status-summary-container">
+	<div
+		class="grid-cell-component-wrapper status-summary-container"
+		:style="{ width: info.data.style.maxWidth }"
+	>
 		<div class="col-cell flex summary-container">
 			<div class="battery-container flex align-center">
 				<div
