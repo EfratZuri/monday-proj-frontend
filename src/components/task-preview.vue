@@ -10,9 +10,9 @@
 				:style="{ backgroundColor: styleObj.clr, color: styleObj.clr }"
 				@click.stop="toggleSelected"
 			>
-				<div class="left-indicator-inner flex align-center">
-					<div class="left-indicator-checkbox" :class="{ selected: isTaskSelected }">
-						<span v-if="isTaskSelected">
+				<div class="left-indicator-inner flex align-center" :class="{ selected: isTaskSelected }">
+					<div class="left-indicator-checkbox">
+						<span v-if="isTaskSelected" class="flex align-center">
 							<font-awesome-icon icon="check" />
 						</span>
 					</div>

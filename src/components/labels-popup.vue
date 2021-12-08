@@ -14,7 +14,7 @@
 					</div>
 				</div>
 			</div>
-			<div v-else class="flex dropdown-inner-container labels-list column">
+			<!-- <div v-else class="flex dropdown-inner-container labels-list column">
 				<div
 					v-for="(opt, idx) in opts"
 					:key="idx"
@@ -34,8 +34,28 @@
 						</button>
 					</div>
 				</div>
+			</div> -->
+			<div v-else class="flex dropdown-inner-container labels-list column">
+				<div
+					v-for="(opt, idx) in opts"
+					:key="idx"
+					class="color-opt-editing flex align-center"
+					@click="update(opt)"
+				>
+					<div class="input-wrapper flex align-center">
+						<div class="color-box btn" :style="getOptStyle(opt)"></div>
+						<div class="label-input text-cmp">
+							<input type="text" v-model="opt.display" />
+							<!-- <span>{{ opt.display }}</span> -->
+						</div>
+					</div>
+					<div class="btn btn-delete-status">
+						<button class="btn btn-icon">
+							<font-awesome-icon icon="times-circle" />
+						</button>
+					</div>
+				</div>
 			</div>
-
 			<div class="picker-dropdown-footer flex align-center">
 				<button v-if="!showEditModal" class="btn" @click="toggleEditModal">Add/Edit Labels</button>
 				<button v-else class="btn" @click="apply">Apply</button>
@@ -63,7 +83,7 @@ export default {
 			console.log('apply');
 		},
 		getOptStyle(opt) {
-			console.log(opt);
+			return opt.style;
 		},
 		update(opt) {
 			console.log(opt);
