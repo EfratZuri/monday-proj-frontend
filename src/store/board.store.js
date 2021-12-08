@@ -85,10 +85,9 @@ export const boardStore = {
       // Update Group
       else state.activeBoard.groups.splice(idx, 1, group);
     },
-
     moveGroupToBoard(state, { moveDetails }) {
-      const { group } = moveDetails;
-      const { board } = moveDetails;
+      const { group } = moveDetails; //group
+      const { board } = moveDetails; //from board
       const toBoard = state.boards.find(
         (currBoard) => currBoard._id === board._id
       );
@@ -129,8 +128,9 @@ export const boardStore = {
       context.commit({ type: 'setLoading', isLoading: true });
       try {
         const boards = await boardService.query();
-        if (!context.state.activeBoard)
-          context.commit({ type: 'setActiveBoard', board: boards[0] });
+        if (!context.state.activeBoard) {
+          context.commit({ type: 'setActiveBoard', activeBoard: boards[0] });
+        }
         context.commit({ type: 'setBoards', boards });
       } catch (err) {
         return err;
@@ -154,10 +154,10 @@ export const boardStore = {
     },
     async saveBoard(context, { board }) {
       try {
-        const addedBoard = await boardService.saveBoard(board);
-        context.commit({ type: 'setActiveBoard', activeBoard: addedBoard });
-        context.commit({ type: 'saveBoard', board: addedBoard });
-        return addedBoard;
+        const savedBoard = await boardService.saveBoard(board);
+        context.commit({ type: 'setActiveBoard', activeBoard: savedBoard });
+        context.commit({ type: 'saveBoard', board: savedBoard });
+        return board;
       } catch (err) {
         return err;
       }

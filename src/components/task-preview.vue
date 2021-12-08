@@ -49,6 +49,8 @@
 			@saveComment="saveComment"
 			@closePanel="togglePostPanel"
 		/>
+		<div class="space-item"></div>
+		<div class="indicator"></div>
 	</section>
 </template>
 

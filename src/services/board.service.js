@@ -1,10 +1,10 @@
-// import { httpService } from './http.service';
+import { httpService } from './http.service';
 import { storageService } from './async-storage.service';
 import { utilService } from './util.service';
 import { socketService, SOCKET_EVENT_REVIEW_ADDED } from './socket.service';
 import moment from 'moment';
 // import { util } from 'vue/types/umd';
-const STORAGE_KEY_BOARDS = 'boards';
+// const STORAGE_KEY_BOARDS = 'boards';
 
 export const boardService = {
   query,
@@ -23,17 +23,17 @@ export const boardService = {
   moveGroupToBoard,
 };
 
-async function query() {
-  // let queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`;
-  // return httpService.get(`board${queryStr}`)
+async function query(filterBy = {}) {
   try {
-    const boards = await storageService.query(STORAGE_KEY_BOARDS);
-    if (!boards.length) {
-      const board = _createBoard();
-      boards.push(board);
-      saveBoard(board);
-    }
-    return boards;
+    let queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`;
+    return await httpService.get(`board${queryStr}`);
+    // const boards = await storageService.query(STORAGE_KEY_BOARDS);
+    // if (!boards.length) {
+    // 	const board = _createBoard();
+    // 	boards.push(board);
+    // 	saveBoard(board);
+    // }
+    // return boards;
   } catch (error) {
     console.log('error', error);
   }
@@ -42,9 +42,9 @@ async function query() {
 /////////-----------------BOARD-----------------/////////
 
 async function removeBoard(boardId) {
-  // return httpService.delete(`board/${boardId}`)
   try {
-    await storageService.remove('boards', boardId);
+    return httpService.delete(`board/${boardId}`);
+    // await storageService.remove('boards', boardId);
   } catch (error) {
     console.log('error', error);
   }
@@ -55,16 +55,14 @@ async function saveBoard(board) {
   let savedBoard;
   try {
     if (!board) board = getEmptyBoard();
-    // if (board._id) savedBoard = await storageService.put(STORAGE_KEY_BOARDS, board);
-    // else savedBoard = await storageService.post(STORAGE_KEY_BOARDS, board);
-    savedBoard = await storageService[board._id ? 'put' : 'post'](
-      STORAGE_KEY_BOARDS,
-      board
-    );
+    if (board._id) savedBoard = await await httpService.put(`board`, board);
+    else savedBoard = await await httpService.post(`board`, board);
+    // savedBoard = await storageService[board._id ? 'put' : 'post'](STORAGE_KEY_BOARDS, board);
+    console.log('savedBoard', savedBoard);
+    return savedBoard;
   } catch (error) {
     console.log('error', error);
   }
-  return savedBoard;
 }
 
 async function getById(boardId) {
@@ -96,7 +94,7 @@ async function moveGroupToBoard(moveDetails, activeBoard) {
   toBoard.groups.push(group);
   fromBoard.groups.splice(groupIdx, 1);
   await saveBoard(fromBoard);
-  return await saveBoard(toBoard);
+  await saveBoard(toBoard);
 }
 
 async function removeGroup(group, activeBoard) {
@@ -194,7 +192,6 @@ function getEmptyBoard() {
   return {
     title: 'New Board',
     createdAt: new Date(Date.now()).toLocaleString(),
-    _id: '',
     createdBy: {},
     members: [],
     groups: [group1, group2],
@@ -286,19 +283,17 @@ function getEmptyBoard() {
         },
       },
     ],
-
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices lectus vitae lectus accumsan, ac convallis sem ultricies. Aliquam sagittis cursus sollicitudin. Etiam feugiat diam turpis, sit amet finibus ligula malesuada sed. ',
+    description: '',
   };
 }
 
 // Auxiliary functions
 
-function _createBoard() {
-  const board = getEmptyBoard();
-  board.groups.forEach((group) => (group.id = utilService.makeId()));
-  return board;
-}
+// function _createBoard() {
+// 	const board = getEmptyBoard();
+// 	board.groups.forEach((group) => (group.id = utilService.makeId()));
+// 	return board;
+// }
 
 function _getStatusOptions() {
   return [

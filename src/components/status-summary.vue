@@ -1,21 +1,23 @@
 <template>
-	<div class="grid-cell-component-wrapper status-summary-container" :style="{ padding: '6px 8px' }">
-		<div class="col-cell flex">
-			<div
-				class="summary-cell"
-				v-if="!taskLen"
-				:style="{
-					width: '100%',
-					backgroundColor: defaultStyle.backgroundColor,
-				}"
-			></div>
-			<div
-				v-else
-				class="summary-cell"
-				v-for="(key, value, idx) in statusPickerLabelCount"
-				:key="idx"
-				:style="getStyle(key, value)"
-			></div>
+	<div class="grid-cell-component-wrapper status-summary-container">
+		<div class="col-cell flex summary-container">
+			<div class="battery-container flex align-center">
+				<div
+					class="summary-cell"
+					v-if="!taskLen"
+					:style="{
+						width: '100%',
+						backgroundColor: defaultStyle.backgroundColor,
+					}"
+				></div>
+				<div
+					v-else
+					class="summary-cell"
+					v-for="(key, value, idx) in statusPickerLabelCount"
+					:key="idx"
+					:style="getStyle(key, value)"
+				></div>
+			</div>
 		</div>
 	</div>
 </template>

@@ -20,6 +20,8 @@
 				<span>{{ infoForDisplay }} </span>
 			</div>
 		</div>
+		<!-- <labels-popup v-if="showOptions" @apply="saveLabel" /> -->
+
 		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
 			<div class="picker-dropdown-inner-container flex space-between column">
 				<div v-if="!showEditModal" class="status-list">
@@ -104,8 +106,9 @@ export default {
 		getOptStyle(opt) {
 			return opt.style;
 		},
-		toggleEditModal() {
-			this.showEditModal = !this.showEditModal;
+
+		saveLabel(label) {
+			console.log('save label', label);
 		},
 	},
 	computed: {

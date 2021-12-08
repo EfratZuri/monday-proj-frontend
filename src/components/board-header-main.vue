@@ -112,9 +112,6 @@ export default {
     },
   },
   computed: {
-    descriptionToDisplay() {
-      return this.boardToEdit.description || 'Add board description';
-    },
     descriptionTogglBtn() {
       return this.isShowDescription
         ? '<ion-icon name="alert-circle"></ion-icon>'
