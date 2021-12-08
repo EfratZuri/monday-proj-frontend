@@ -20,7 +20,7 @@
 				<span>{{ infoForDisplay }} </span>
 			</div>
 		</div>
-		<labels-popup v-if="showOptions" @apply="saveLabel" :opts="opts" />
+		<labels-popup v-if="showOptions" @update="update" @apply="saveLabel" :opts="opts" />
 	</div>
 </template>
 
@@ -64,7 +64,9 @@ export default {
 		toggleStatusPicker() {
 			this.showOptions = !this.showOptions;
 		},
-
+		apply() {
+			console.log('hey');
+		},
 		saveLabel(label) {
 			console.log('save label', label);
 		},

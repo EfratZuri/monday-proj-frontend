@@ -40,19 +40,19 @@
 				<div class="member-input-container">
 					<input type="text" v-model="tagToEdit.txt" placeholder="Add tags" />
 				</div>
-				<!-- <div class="tag-list">
+				<div v-if="selectedCopy" class="tag-list">
 					<div
-						v-for="(opt, idx) in opts"
+						v-for="(opt, idx) in selectedCopy"
 						:key="idx"
-						:style="getOptStyle(opt)"
+						:style="opt.style"
 						class="dropdown-inner-container"
 						@click="update(opt)"
 					>
 						<div class="picker-opt-container flex align-center">
-							<span>{{ opt.display }}</span>
+							<span>{{ opt.txt }}</span>
 						</div>
 					</div>
-				</div> -->
+				</div>
 				<div class="picker-dropdown-footer flex align-center">
 					<button class="btn" @click="update">+Create new tag</button>
 				</div>
@@ -78,6 +78,8 @@ export default {
 		info: {
 			handler() {
 				this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
+				console.log(this.info);
+				console.log(this.selectedCopy);
 				let deleteCount = Math.min(3, this.selectedCopy.length);
 				if (this.selectedCopy.length > 3) deleteCount = 2;
 				this.selectedCopyTrimed = this.selectedCopy.slice(0, deleteCount);

@@ -17,7 +17,7 @@
 				<span>{{ infoForDisplay }} </span>
 			</div>
 		</div>
-		<labels-popup v-if="showOptions" @apply="saveLabel" :opts="opts" />
+		<labels-popup v-if="showOptions" @apply="saveLabel" @update="update" :opts="opts" />
 
 		<!-- <div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
 			<div class="picker-dropdown-inner-container flex space-between column">
@@ -80,6 +80,9 @@ export default {
 		},
 		getOptStyle(opt) {
 			return opt.style;
+		},
+		saveLabel() {
+			console.log('applu');
 		},
 	},
 	computed: {
