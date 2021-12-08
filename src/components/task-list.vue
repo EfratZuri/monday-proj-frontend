@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       taskToEdit: null,
-      tasks: [],
+      // tasks: [],
       showDialogNode: false,
       isEdit: false,
       showTaskMenu: false,
@@ -62,7 +62,7 @@ export default {
     };
   },
   created() {
-    this.tasks = this.group.tasks;
+    // this.tasks = this.group.tasks;
     this.activeBoard = this.$store.getters.activeBoard;
   },
   methods: {
@@ -95,6 +95,9 @@ export default {
     },
   },
   computed: {
+    tasks() {
+      return this.group.tasks;
+    },
     // myList: {
     //   get() {
     //     return this.group.tasks;

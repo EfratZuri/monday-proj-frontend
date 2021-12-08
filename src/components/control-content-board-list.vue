@@ -54,6 +54,7 @@ export default {
 	},
 	data() {
 		return {
+			isShowDropdownIcon: true,
 			isShowMenu: false,
 			currBoardMenu: null,
 		};
