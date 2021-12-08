@@ -1,7 +1,6 @@
 <template>
 	<div
 		class="grid-cell-component-wrapper member-picker-component"
-		@mouseover="togglePlusBtn"
 		:class="[{ selected: isSelected }, { 'dropdown-open': showOptions }]"
 		@click="toggleSelected"
 		:style="{ width: info.data.style.width }"
@@ -11,7 +10,10 @@
 			<div class="members-icon flex">
 				<ion-icon name="person-circle-outline" />
 			</div>
-			<span>{{ infoForDisplay }} </span>
+			<button class="btn btn-icon btn-add">
+				<ion-icon name="plus-circle" />
+			</button>
+			<!-- <span>{{ infoForDisplay }} </span> -->
 		</div>
 		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
 			<div class="picker-dropdown-inner-container">
@@ -47,7 +49,6 @@ export default {
 	data() {
 		return {
 			selectedCopy: {},
-			showPlusBtn: false,
 			isSelected: false,
 			showOptions: false,
 			memberName: '',
@@ -64,9 +65,6 @@ export default {
 		},
 		toggleOptions() {
 			this.showOptions = !this.showOptions;
-		},
-		togglePlusBtn() {
-			this.showPlusBtn = !this.showPlusBtn;
 		},
 		toggleSelected() {
 			this.isSelected = !this.isSelected;

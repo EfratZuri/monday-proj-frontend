@@ -17,7 +17,11 @@
 					</span>
 				</div>
 			</div>
+			<button class="btn btn-icon btn-add">
+				<ion-icon name="plus-circle" />
+			</button>
 		</div>
+		<!-- Edit/add dropdown-modal -->
 		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
 			<div class="picker-dropdown-inner-container flex space-between column">
 				<div class="member-input-container">
