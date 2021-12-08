@@ -58,11 +58,11 @@ async function saveBoard(board) {
 		if (board._id) savedBoard = await await httpService.put(`board`, board);
 		else savedBoard = await await httpService.post(`board`, board);
 		// savedBoard = await storageService[board._id ? 'put' : 'post'](STORAGE_KEY_BOARDS, board);
+		console.log('savedBoard', savedBoard);
+		return savedBoard;
 	} catch (error) {
 		console.log('error', error);
 	}
-	console.log('savedBoard', savedBoard);
-	return savedBoard;
 }
 
 async function getById(boardId) {
@@ -94,7 +94,7 @@ async function moveGroupToBoard(moveDetails, activeBoard) {
 	toBoard.groups.push(group);
 	fromBoard.groups.splice(groupIdx, 1);
 	await saveBoard(fromBoard);
-	return await saveBoard(toBoard);
+	await saveBoard(toBoard);
 }
 
 async function removeGroup(group, activeBoard) {

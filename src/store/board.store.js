@@ -82,10 +82,9 @@ export const boardStore = {
 			// Update Group
 			else state.activeBoard.groups.splice(idx, 1, group);
 		},
-
 		moveGroupToBoard(state, { moveDetails }) {
-			const { group } = moveDetails;
-			const { board } = moveDetails;
+			const { group } = moveDetails; //group
+			const { board } = moveDetails; //from board
 			const toBoard = state.boards.find((currBoard) => currBoard._id === board._id);
 			toBoard.groups.push(group);
 			const idx = state.activeBoard.groups.findIndex((currGroup) => currGroup.id === group.id);
@@ -145,10 +144,10 @@ export const boardStore = {
 		},
 		async saveBoard(context, { board }) {
 			try {
-				const addedBoard = await boardService.saveBoard(board);
-				context.commit({ type: 'setActiveBoard', activeBoard: board });
-				context.commit({ type: 'saveBoard', board: board });
-				return addedBoard;
+				const savedBoard = await boardService.saveBoard(board);
+				context.commit({ type: 'setActiveBoard', activeBoard: savedBoard });
+				context.commit({ type: 'saveBoard', board: savedBoard });
+				return board;
 			} catch (err) {
 				return err;
 			}

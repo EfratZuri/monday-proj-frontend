@@ -131,7 +131,6 @@ export default {
       this.$emit('saveGroup', groupCopy);
       this.toggleColorPalette();
     },
-
     cmpNameForDisplay(cmp) {
       const name = cmp
         .replace('Picker', '')
@@ -149,7 +148,6 @@ export default {
     remove() {
       this.$emit('removeGroup', this.group);
     },
-
     addGroup() {
       this.$emit('addGroup');
     },
