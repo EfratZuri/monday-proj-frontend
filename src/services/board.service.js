@@ -56,7 +56,7 @@ async function saveBoard(board) {
   let savedBoard;
   try {
     if (!board) board = getEmptyBoard();
-    if (board._id) savedBoard = await await httpService.put(`board`, board);
+    if (board._id) savedBoard = await httpService.put(`board`, board);
     else savedBoard = await await httpService.post(`board`, board);
     // savedBoard = await storageService[board._id ? 'put' : 'post'](STORAGE_KEY_BOARDS, board);
     return savedBoard;
