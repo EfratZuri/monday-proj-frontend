@@ -25,25 +25,25 @@ export const userService = {
 window.userService = userService
 
 async function getUsers() {
-    return await storageService.query('user')
-    // return httpService.get(`user`)
+    // return await storageService.query('user')
+    return httpService.get(`user`)
 }
 
 async function getById(userId) {
-    const user = await storageService.get('user', userId)
-    // const user = await httpService.get(`user/${userId}`)
+    // const user = await storageService.get('user', userId)
+    const user = await httpService.get(`user/${userId}`)
     gWatchedUser = user;
     return user;
 }
 
 function remove(userId) {
-    return storageService.remove('user', userId)
-    // return httpService.delete(`user/${userId}`)
+    // return storageService.remove('user', userId)
+    return httpService.delete(`user/${userId}`)
 }
 
 async function update(user) {
-    await storageService.put('user', user)
-    // user = await httpService.put(`user/${user._id}`, user)
+    // await storageService.put('user', user)
+    user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
     if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
     return user;
@@ -72,7 +72,7 @@ async function signup(logginUser) {
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
     // socketService.emit('unset-user-socket');
-    // return await httpService.post('auth/logout')
+    return await httpService.post('auth/logout')
 }
 
 // async function changeScore(by) {
