@@ -137,6 +137,11 @@
 		transition: width 0.07s cubic-bezier(0, 0, 0.35, 1);
 		will-change: width;
 		justify-content: center;
+		&.selected {
+			.left-indicator-checkbox {
+				background-color: $primary-background-clr;
+			}
+		}
 		&.selected,
 		&:hover {
 			width: 32px;
@@ -150,10 +155,6 @@
 			background-color: rgba(0, 0, 0, 0.2);
 			outline: 1px rgba(255, 255, 255, 0.2) solid;
 			opacity: 0;
-			&.selected {
-				width: 32px;
-				background-color: $primary-background-clr;
-			}
 			span {
 				width: 100%;
 			}

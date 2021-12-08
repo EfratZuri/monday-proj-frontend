@@ -24,8 +24,8 @@
 					<div class="input-wrapper flex align-center">
 						<div class="color-box btn" :style="getOptStyle(opt)"></div>
 						<div class="label-input text-cmp">
-							<input type="text" />
-							<span>{{ opt.display }}</span>
+							<input type="text" v-model="opt.display" />
+							<!-- <span>{{ opt.display }}</span> -->
 						</div>
 					</div>
 					<div class="btn btn-delete-status">
@@ -35,7 +35,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="picker-dropdown-footer flex align-center">
 				<button v-if="!showEditModal" class="btn" @click="toggleEditModal">Add/Edit Labels</button>
 				<button v-else class="btn" @click="apply">Apply</button>
@@ -59,14 +58,15 @@ export default {
 	watch: {},
 
 	methods: {
-		apply() {
+		apply(opt) {
 			console.log('apply');
+			this.$emit('apply', opt);
 		},
 		getOptStyle(opt) {
-			console.log(opt);
+			return opt.style;
 		},
 		update(opt) {
-			console.log(opt);
+			this.$emit('update', opt);
 		},
 		toggleEditModal() {
 			this.showEditModal = !this.showEditModal;

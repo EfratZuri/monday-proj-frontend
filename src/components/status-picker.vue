@@ -20,54 +20,12 @@
 				<span>{{ infoForDisplay }} </span>
 			</div>
 		</div>
-		<!-- <labels-popup v-if="showOptions" @apply="saveLabel" /> -->
-
-		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
-			<div class="picker-dropdown-inner-container flex space-between column">
-				<div v-if="!showEditModal" class="status-list">
-					<div
-						v-for="(opt, idx) in opts"
-						:key="idx"
-						:style="getOptStyle(opt)"
-						class="dropdown-inner-container"
-						@click="update(opt)"
-					>
-						<div class="picker-opt-container flex align-center">
-							<span>{{ opt.display }}</span>
-						</div>
-					</div>
-				</div>
-				<div v-else class="flex dropdown-inner-container labels-list column">
-					<div
-						v-for="(opt, idx) in opts"
-						:key="idx"
-						class="color-opt-editing flex align-center"
-						@click="update(opt)"
-					>
-						<div class="input-wrapper flex align-center">
-							<div class="color-box btn" :style="getOptStyle(opt)"></div>
-							<div class="label-input text-cmp">
-								<input type="text" />
-								<span>{{ opt.display }}</span>
-							</div>
-						</div>
-						<div class="btn btn-delete-status">
-							<button class="btn btn-icon">
-								<font-awesome-icon icon="times-circle" />
-							</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="picker-dropdown-footer flex align-center">
-					<button class="btn" @click="toggleEditModal">Add/Edit Labels</button>
-				</div>
-			</div>
-		</div>
+		<labels-popup v-if="showOptions" @update="update" @apply="saveLabel" :opts="opts" />
 	</div>
 </template>
 
 <script>
+import labelsPopup from '@/components/labels-popup';
 export default {
 	name: 'statusPicker',
 	props: ['info'],
@@ -106,10 +64,9 @@ export default {
 		toggleStatusPicker() {
 			this.showOptions = !this.showOptions;
 		},
-		getOptStyle(opt) {
-			return opt.style;
+		apply() {
+			console.log('hey');
 		},
-
 		saveLabel(label) {
 			console.log('save label', label);
 		},
@@ -118,6 +75,9 @@ export default {
 		infoForDisplay() {
 			return this.selected.display;
 		},
+	},
+	components: {
+		labelsPopup,
 	},
 };
 </script>

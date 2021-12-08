@@ -39,7 +39,6 @@ async function query(filterBy = {}) {
   }
 }
 
-
 /////////-----------------BOARD-----------------/////////
 
 async function removeBoard(boardId) {
