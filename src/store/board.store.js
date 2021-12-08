@@ -1,4 +1,5 @@
 // import { showMsg } from '../services/event-bus.service.js';
+// import { connectSockets } from '../../../backend/services/socket.service.js';
 import { boardService } from '../services/board.service.js';
 import { utilService } from '../services/util.service.js';
 
@@ -147,6 +148,7 @@ export const boardStore = {
 			try {
 				const savedBoard = await boardService.saveBoard(board);
 				context.commit({ type: 'setActiveBoard', activeBoard: savedBoard });
+				console.log('context.state.activeBoard', context.state.activeBoard);
 				context.commit({ type: 'saveBoard', board: savedBoard });
 				return board;
 			} catch (err) {

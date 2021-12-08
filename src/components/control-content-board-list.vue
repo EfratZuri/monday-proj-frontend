@@ -65,7 +65,6 @@ export default {
   },
   methods: {
     showBoard(board) {
-      console.log('board', board);
       this.$emit('showBoard', board);
     },
     showBoardMenu(board) {
