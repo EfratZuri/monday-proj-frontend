@@ -12,8 +12,8 @@
 		width: 100%;
 		color: $primary-txt-clr;
 		.control-content-separator {
-			border-bottom: 1px solid $primary-border-clr-light;
 			margin: 0 20px;
+			color: $primary-background-hover-clr;
 		}
 		.btn-open-control {
 			position: absolute;
@@ -55,6 +55,9 @@
 				font-size: 14px;
 				font-weight: 400;
 			}
+			.btn-icon {
+				width: 24px;
+			}
 			.btn-workspace-dropdown-container {
 				padding: 6px;
 				border-radius: 4px;
@@ -74,14 +77,13 @@
 		}
 		.control-btns {
 			padding: 0 16px 16px 14px;
+
 			& > * {
 				justify-content: start;
 				padding-left: 6px;
-				font-size: 16px;
-				color: $primary-txt-clr;
-				height: 32px;
-				padding: 0 16px 16px 14px;
+				width: 100%;
 				font-size: 13px;
+				height: 32px;
 			}
 			.btn {
 				background-color: transparent;
@@ -119,13 +121,8 @@
 				& ul {
 					list-style: none;
 					& .board-preview-wrapper {
-						height: 100%;
-						width: 100%;
-						padding-inline-start: 32px;
 						& .board-preview {
 							cursor: pointer;
-							padding-inline-start: 8px;
-							padding-inline-end: 8px;
 							display: flex;
 							align-items: center;
 							border-radius: 4px;
@@ -140,9 +137,6 @@
 								}
 							}
 						}
-					}
-					& .board-preview-icon {
-						padding-inline-end: 8px;
 					}
 				}
 			}

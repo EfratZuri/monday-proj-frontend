@@ -22,7 +22,7 @@
 								></path>
 							</svg>
 						</span>
-						<span>
+						<span class="flex align-center">
 							{{ board.title }}
 						</span>
 					</div>
@@ -30,13 +30,13 @@
 					<div @click.stop="showBoardMenu(board)" class="board-preview-dropdown-icon-wrapper">
 						<ion-icon name="ellipsis-horizontal"></ion-icon>
 					</div>
-					<board-preview-menu
-						v-if="isCurrBoardMenu(board)"
-						:board="board"
-						@removeBoard="removeBoard"
-						@saveBoard="saveBoard"
-					/>
 				</div>
+				<board-preview-menu
+					v-if="isCurrBoardMenu(board)"
+					:board="board"
+					@removeBoard="removeBoard"
+					@saveBoard="saveBoard"
+				/>
 			</li>
 		</ul>
 	</section>
