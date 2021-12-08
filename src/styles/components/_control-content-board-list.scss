@@ -10,7 +10,6 @@
 		height: 34px;
 	}
 	& ul {
-		list-style: none;
 		.board-preview-wrapper {
 			font-size: 14px;
 			font-weight: 400;
@@ -21,11 +20,6 @@
 				}
 			}
 			& .board-preview {
-				cursor: pointer;
-				padding-inline-start: 8px;
-				padding-inline-end: 8px;
-				display: flex;
-				align-items: center;
 				border-radius: 4px;
 				position: relative;
 				.board-preview-dropdown-icon-wrapper {

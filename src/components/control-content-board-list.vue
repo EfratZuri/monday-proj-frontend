@@ -1,8 +1,8 @@
 <template>
 	<section class="boards-list">
-		<ul>
+		<ul class="clean-list">
 			<li class="board-preview-wrapper" v-for="board in boards" :key="board._id">
-				<div class="board-preview" @click="showBoard(board)">
+				<div class="board-preview flex align-center space-between" @click="showBoard(board)">
 					<div class="board-preview-icon-box btn-icon">
 						<span class="board-preview-icon flex align-center">
 							<svg
@@ -27,18 +27,14 @@
 						</span>
 					</div>
 
-					<div
-						@click.stop="showBoardMenu(board)"
-						v-if="isShowDropdownIcon"
-						class="board-preview-dropdown-icon-wrapper"
-					>
+					<div @click.stop="showBoardMenu(board)" class="board-preview-dropdown-icon-wrapper">
 						<ion-icon name="ellipsis-horizontal"></ion-icon>
 					</div>
 					<board-preview-menu
+						v-if="isCurrBoardMenu(board)"
 						:board="board"
 						@removeBoard="removeBoard"
 						@saveBoard="saveBoard"
-						v-if="isCurrBoardMenu(board)"
 					/>
 				</div>
 			</li>
@@ -58,14 +54,12 @@ export default {
 	},
 	data() {
 		return {
-			isShowDropdownIcon: true,
 			isShowMenu: false,
 			currBoardMenu: null,
 		};
 	},
 	methods: {
 		showBoard(board) {
-			console.log('board', board);
 			this.$emit('showBoard', board);
 		},
 		showBoardMenu(board) {
