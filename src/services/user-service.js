@@ -1,10 +1,11 @@
 // Test Data
-// userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Noya', score: 22})
-// userService.login({username: 'muki', password: 'muki1'})
+// signup({ username: 'muki', password: 'muki1', fullname: 'Muki Noya', score: 22 })
+// login({ username: 'muki', password: 'muki1' })
 
 import { storageService } from './async-storage.service'
-// import { httpService } from './http.service'
+import { httpService } from './http.service'
 import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
+
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 var gWatchedUser = null;
 
@@ -50,19 +51,22 @@ async function update(user) {
 async function login(logginUser) {
     const users = await storageService.query('user')
     const user = users.find(user => user.username === logginUser.username)
+
     return _saveLocalUser(user)
 
     // const user = await httpService.post('auth/login', userCred)
     // socketService.emit('set-user-socket', user._id);
     // if (user) return _saveLocalUser(user)
 }
+
 async function signup(logginUser) {
     logginUser.imageUrl = 'https://romancebooks.co.il/wp-content/uploads/2019/06/default-user-image.png'
-    const user = await storageService.post('user', logginUser)
-    // const user = await httpService.post('auth/signup', userCred)
-    // socketService.emit('set-user-socket', user._id);
+    // const user = await storageService.post('user', logginUser)
+    const user = await httpService.post('auth/signup', logginUser)
+    socketService.emit('set-user-socket', user._id);
     return _saveLocalUser(user)
 }
+
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
     // socketService.emit('unset-user-socket');
@@ -84,7 +88,8 @@ function _saveLocalUser(user) {
 }
 
 function getLoggedinUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
+    console.log('sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)', JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)));
+    // return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
 }
 
 

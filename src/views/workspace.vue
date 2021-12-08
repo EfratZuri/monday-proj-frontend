@@ -73,7 +73,7 @@ import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
 import selectedTask from '@/components/selected-task.vue';
 import userMsg from '@/components/user-msg.vue';
-
+// import { userService } from '../services/user-service.js';
 export default {
   name: 'workspace',
   data() {
@@ -84,7 +84,13 @@ export default {
     };
   },
   async created() {
-    this.$store.dispatch({ type: 'loadBoards' });
+    await this.$store.dispatch({ type: 'loadBoards' });
+    socketService.setup();
+    socketService.emit('board topic', this.activeBoard._id);
+    socketService.on('board saved', (board) => {
+      console.log('hey from socket');
+      this.saveBoard(board);
+    });
   },
   computed: {
     isLoading() {
@@ -171,6 +177,11 @@ export default {
       }
       this.tasks = [];
     },
+  },
+
+  destroyed() {
+    socketService.off('board saved', this.saveBoard);
+    socketService.terminate();
   },
   components: {
     groupList,
