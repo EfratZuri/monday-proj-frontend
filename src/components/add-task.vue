@@ -48,9 +48,7 @@ export default {
       this.showAddBtn = !this.showAddBtn;
     },
     turnOffAdd() {
-      setTimeout(() => {
-        this.showAddBtn = false;
-      }, 200);
+      // Vue.nextTick().then(() => (this.showAddBtn = false));
     },
   },
 };
