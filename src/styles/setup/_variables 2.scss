@@ -12,10 +12,10 @@ $primary-clr: #0073ea;
 
 $primary-selected-color: #cce5ff;
 // Background colors
-$dark-background-color: #f5f6f8;
+$dark-background-clr: #f5f6f8;
 $main-nav-background-clr: #292f4c;
 $primary-background-clr: #fff;
-$primary-background-hover-color: #e6e9ef;
+$primary-background-hover-clr: #e6e9ef;
 // Border color
 $primary-border-clr-light: #e6e9ef;
 
@@ -43,4 +43,4 @@ $edit-btn-container-width: 30px;
 // BORDER
 $primary-blue-border: 1px solid $primary-clr;
 $primary-black-border: 1px solid $primary-txt-clr;
-$primary-light-gray-border: 1px solid $primary-background-hover-color;
+$primary-light-gray-border: 1px solid $primary-background-hover-clr;

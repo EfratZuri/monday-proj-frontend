@@ -4,7 +4,7 @@
 	border-bottom-color: $primary-border-clr-light;
 	.space-item {
 		flex: 0 0 30px;
-		background-color: $dark-background-color;
+		background-color: $dark-background-clr;
 		border-bottom: 1px solid #e6e9ef;
 		height: 100%;
 	}
@@ -30,7 +30,7 @@
 .col-cell {
 	position: relative;
 	display: block;
-	background-color: $dark-background-color;
+	background-color: $dark-background-clr;
 
 	max-width: 100%;
 	height: 100%;
@@ -87,7 +87,7 @@
 	height: 100%;
 	padding: 0 10px 0 0;
 	text-align: left;
-	background-color: $dark-background-color;
+	background-color: $dark-background-clr;
 
 	&.selected {
 		background-color: $primary-selected-color;
@@ -113,7 +113,7 @@
 		opacity: 0;
 		transition: background-color 0.3s ease;
 		&:hover {
-			background-color: $dark-background-color;
+			background-color: $dark-background-clr;
 		}
 	}
 	.task-title {
@@ -126,7 +126,7 @@
 		color: $primary-txt-clr;
 		border: 1px solid transparent;
 		padding-left: 10px;
-		// background-color: $dark-background-color;
+		// background-color: $dark-background-clr;
 		&:hover .btn-edit {
 			opacity: 1;
 		}
@@ -159,7 +159,7 @@
 		transition: width 0.07s cubic-bezier(0, 0, 0.35, 1);
 		will-change: width;
 		justify-content: center;
-		&selected,
+		&.selected,
 		&:hover {
 			width: 32px;
 		}
@@ -172,6 +172,13 @@
 			background-color: rgba(0, 0, 0, 0.2);
 			outline: 1px rgba(255, 255, 255, 0.2) solid;
 			opacity: 0;
+			&.selected {
+				width: 32px;
+				background-color: $primary-background-clr;
+			}
+			span {
+				width: 100%;
+			}
 		}
 	}
 }
