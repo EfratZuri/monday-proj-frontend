@@ -3,22 +3,24 @@
 		class="grid-cell-component-wrapper priority-summary-container"
 		:style="{ width: info.data.style.maxWidth }"
 	>
-		<div class="col-cell flex" :style="info.data.style">
-			<div
-				class="summary-cell"
-				v-if="!taskLen"
-				:style="{
-					width: '100%',
-					backgroundColor: defaultStyle.backgroundColor,
-				}"
-			></div>
-			<div
-				v-else
-				class="summary-cell"
-				v-for="(key, value, idx) in priorityPickerLabelCount"
-				:key="idx"
-				:style="getStyle(key, value)"
-			></div>
+		<div class="col-cell flex summary-container" :style="info.data.style">
+			<div class="battery-container">
+				<div
+					class="summary-cell"
+					v-if="!taskLen"
+					:style="{
+						width: '100%',
+						backgroundColor: defaultStyle.backgroundColor,
+					}"
+				></div>
+				<div
+					v-else
+					class="summary-cell"
+					v-for="(key, value, idx) in priorityPickerLabelCount"
+					:key="idx"
+					:style="getStyle(key, value)"
+				></div>
+			</div>
 		</div>
 	</div>
 </template>

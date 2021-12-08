@@ -53,7 +53,7 @@
 		font-size: 16px;
 		font-weight: 300;
 		&:hover {
-			background-color: $primary-background-hover-color;
+			background-color: $primary-background-hover-clr;
 		}
 	}
 
@@ -135,7 +135,7 @@
 			.btn {
 				transition: all 0;
 				&:hover {
-					background-color: $primary-background-hover-color;
+					background-color: $primary-background-hover-clr;
 				}
 			}
 			.post-like-action {

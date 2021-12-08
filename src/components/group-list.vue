@@ -4,34 +4,38 @@
       v-if="groups && groups.length"
       class="group-list clean-list flex column"
     >
-      <li class="group" v-for="group in groups" :key="group.id">
-        <group-header
-          :group="group"
-          :boards="boards"
-          :board="board"
-          @saveGroup="saveGroup"
-          @removeGroup="removeGroup"
-          @toggleTasks="toggleTasks"
-          @toggleAllTasks="toggleAllTasks"
-          @addGroup="addGroup"
-          @moveToBoard="moveToBoard"
-          @addColumn="addColumn"
-        />
-        <taskList
-          v-if="!isIncludesGroupIds(group.id)"
-          :group="group"
-          @saveTask="saveTask"
-          @deleteTask="deleteTask"
-          @saveComment="saveComment"
-          @setSelected="setSelected"
-        />
-        <group-task-summary :group="group" />
-      </li>
+      <draggable @end="handleChange()" :list="groups" group="groups">
+        <li class="group" v-for="group in groups" :key="group.id">
+          <!-- <span class="test">DRAG</span> -->
+          <group-header
+            :group="group"
+            :boards="boards"
+            :board="board"
+            @saveGroup="saveGroup"
+            @removeGroup="removeGroup"
+            @toggleTasks="toggleTasks"
+            @toggleAllTasks="toggleAllTasks"
+            @addGroup="addGroup"
+            @moveToBoard="moveToBoard"
+            @addColumn="addColumn"
+          />
+          <taskList
+            v-if="!isIncludesGroupIds(group.id)"
+            :group="group"
+            @saveTask="saveTask"
+            @deleteTask="deleteTask"
+            @saveComment="saveComment"
+            @setSelected="setSelected"
+          />
+          <group-task-summary :group="group" />
+        </li>
+      </draggable>
     </ul>
   </section>
 </template>
 
 <script>
+import draggable from 'vuedraggable';
 import taskList from '@/components/task-list';
 import groupHeader from '@/components/group-header';
 import groupTaskSummary from '@/components/group-task-summary';
@@ -50,9 +54,19 @@ export default {
   data() {
     return {
       currGroupIds: [],
+      activeBoard: null,
     };
   },
+  created() {
+    this.activeBoard = this.$store.getters.activeBoard;
+  },
   methods: {
+    handleChange() {
+      return this.$store.dispatch({
+        type: 'saveBoard',
+        board: this.activeBoard,
+      });
+    },
     addGroup() {
       this.$emit('addGroup');
     },
@@ -103,6 +117,7 @@ export default {
     taskList,
     groupHeader,
     groupTaskSummary,
+    draggable,
   },
 };
 </script>

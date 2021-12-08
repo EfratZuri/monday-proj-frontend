@@ -1,9 +1,9 @@
 <template>
-	<div class="labels-popup-container dropdown-modal picker-dropdown-component">
+	<div class="dropdown-modal picker-dropdown-component">
 		<div class="picker-dropdown-inner-container flex space-between column">
 			<div v-if="!showEditModal" class="status-list">
 				<div
-					v-for="(opt, idx) in optsCopy"
+					v-for="(opt, idx) in opts"
 					:key="idx"
 					:style="getOptStyle(opt)"
 					class="dropdown-inner-container"
@@ -16,7 +16,7 @@
 			</div>
 			<div v-else class="flex dropdown-inner-container labels-list column">
 				<div
-					v-for="(opt, idx) in optsCopy"
+					v-for="(opt, idx) in opts"
 					:key="idx"
 					class="color-opt-editing flex align-center"
 					@click="update(opt)"
@@ -24,7 +24,8 @@
 					<div class="input-wrapper flex align-center">
 						<div class="color-box btn" :style="getOptStyle(opt)"></div>
 						<div class="label-input text-cmp">
-							<input type="text" :v-model="opt.display" :placeholder="opt.display" />
+							<input type="text" />
+							<span>{{ opt.display }}</span>
 						</div>
 					</div>
 					<div class="btn btn-delete-status">
@@ -33,7 +34,6 @@
 						</button>
 					</div>
 				</div>
-				<labels-color-palette-list @selected="colorSelected" />
 			</div>
 
 			<div class="picker-dropdown-footer flex align-center">
@@ -45,8 +45,6 @@
 </template>
 
 <script>
-import labelsColorPaletteList from '@/components/labels-color-palette-list';
-
 export default {
 	name: 'labelsPopup',
 	props: {
@@ -56,37 +54,24 @@ export default {
 		},
 	},
 	data() {
-		return {
-			showEditModal: false,
-			optsCopy: null,
-			emptyLabel: { name: '', display: '', style: { backgroundColor: '' }, id: '' },
-		};
+		return { showEditModal: false };
 	},
-	created() {
-		this.optsCopy = JSON.parse(JSON.stringify(this.opts));
-	},
+	watch: {},
+
 	methods: {
+		apply() {
+			console.log('apply');
+		},
 		getOptStyle(opt) {
-			return opt.style;
+			console.log(opt);
 		},
 		update(opt) {
-			this.$emit('update', opt);
+			console.log(opt);
 		},
 		toggleEditModal() {
 			this.showEditModal = !this.showEditModal;
 		},
-		colorSelected(clr) {
-			this.emptyLabel.style.backgroundColor = clr;
-			// this.optsCopy.push(this.emptyLabel);
-			this.$emit('apply', this.emptyLabel);
-		},
-		apply() {
-			console.log('spplay');
-			this.$emit('apply', this.optsCopy);
-		},
 	},
-	components: {
-		labelsColorPaletteList,
-	},
+	computed: {},
 };
 </script>

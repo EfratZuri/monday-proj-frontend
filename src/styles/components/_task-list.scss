@@ -7,12 +7,12 @@
 			display: block;
 			height: 35px;
 			width: 100%;
-			background-color: #fff;
-			background-color: #f5f6f8;
+			background-color: $primary-background-clr;
+			// background-color: #f5f6f8;
 
 			cursor: pointer;
 			&:hover {
-				background-color: $primary-background-hover-color;
+				background-color: $primary-background-hover-clr;
 				.status-picker {
 					opacity: 0.8;
 				}
@@ -28,7 +28,7 @@
 					display: flex;
 					justify-content: center;
 					align-items: center;
-					background-color: $primary-background-hover-color;
+					background-color: $primary-background-hover-clr;
 					width: 18px;
 					height: 18px;
 					font-size: 15px;

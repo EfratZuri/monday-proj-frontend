@@ -33,7 +33,6 @@ export const boardStore = {
 		groupToEdit: boardService.getEmptyGroup(),
 		taskToEdit: boardService.getEmptyTask(),
 		commentToEdit: boardService.getEmptyComment(),
-		labelClrPalette: ['rgb(255, 90, 196)'],
 	},
 	getters: {
 		boards: (state) => state.boards,
@@ -46,7 +45,6 @@ export const boardStore = {
 		commentToEdit: (state) => state.commentToEdit,
 		taskToEdit: (state) => state.taskToEdit,
 		clrs: (state) => state.groupClrs.clrs,
-		labelClrPalette: (state) => state.labelClrPalette,
 	},
 	mutations: {
 		//----------BOARD----------//
@@ -136,7 +134,10 @@ export const boardStore = {
 				await boardService.removeBoard(board._id);
 				context.commit({ type: 'removeBoard', boardId: board._id });
 				if (context.state.activeBoard._id === board._id) {
-					context.commit({ type: 'setActiveBoard', activeBoard: context.state.boards[0] });
+					context.commit({
+						type: 'setActiveBoard',
+						activeBoard: context.state.boards[0],
+					});
 				}
 			} catch (error) {
 				console.log('error', error);

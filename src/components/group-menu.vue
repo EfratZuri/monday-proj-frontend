@@ -127,7 +127,7 @@
       <div class="group-menu-icon-wrapper">
         <div
           class="menu-item-color-pick"
-          :style="{ backgroundColor: group.style.clr }"
+          :style="{ backgroundColor: groupColor }"
         />
       </div>
       Change color
@@ -165,9 +165,6 @@ export default {
       type: Array,
     },
     board: {
-      type: Object,
-    },
-    group: {
       type: Object,
     },
   },

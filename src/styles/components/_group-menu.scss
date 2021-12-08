@@ -38,14 +38,15 @@
         width: 14px;
         height: 14px;
         border-radius: 50%;
-      }
-      & ion-icon {
-        font-size: rem(18px);
+        background-color: red;
       }
     }
     .group-moveto-dropdown-icon-wrapper {
       display: flex;
       position: relative;
+      & .ion-icon {
+        font-size: rem(12px);
+      }
     }
   }
 }
