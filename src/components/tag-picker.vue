@@ -2,7 +2,7 @@
 	<div
 		class="grid-cell-component-wrapper tag-picker-container"
 		:class="{ 'dropdown-open': showOptions }"
-		:style="{ width: info.data.style.width }"
+		:style="{ width: info.data.style.maxWidth }"
 	>
 		<div class="col-cell" @click="toggleOptions" :style="info.data.style">
 			<div v-if="selectedCopy && selectedCopy.length" class="tags-container">

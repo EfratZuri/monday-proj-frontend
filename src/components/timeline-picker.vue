@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="grid-cell-component-wrapper timeline-picker-container"
-		:style="{ width: info.data.style.width }"
+		:style="{ width: info.data.style.maxWidth }"
 	>
 		<div class="col-cell" :style="info.data.style">
 			<div class="date-box timeline-bar-component" :class="{ filled: isFilled }">

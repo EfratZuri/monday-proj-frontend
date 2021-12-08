@@ -3,7 +3,7 @@
 		class="grid-cell-component-wrapper member-picker-component"
 		:class="[{ selected: isSelected }, { 'dropdown-open': showOptions }]"
 		@click="toggleSelected"
-		:style="{ width: info.data.style.width }"
+		:style="{ width: info.data.style.maxWidth }"
 	>
 		<div class="col-cell" @click="toggleOptions">
 			<!-- <button v-if="showPlusBtn" class="btn btn-blue">+</button> -->
