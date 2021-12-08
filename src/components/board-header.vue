@@ -18,7 +18,6 @@ export default {
       required: true,
     },
   },
-  created() {},
   methods: {
     addGroup() {
       this.$emit('addGroup');
