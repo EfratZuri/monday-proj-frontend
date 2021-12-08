@@ -131,6 +131,7 @@ export default {
 			return { selected: col.data.default, data: col.data };
 		},
 		update(ev, type) {
+			console.log(type);
 			const copyTask = JSON.parse(JSON.stringify(this.task));
 			copyTask[type] = ev;
 			this.$emit('updatePicker', copyTask);

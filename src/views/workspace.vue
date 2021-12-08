@@ -68,7 +68,6 @@
 </template>
 
 <script>
-import { socketService } from '../services/socket.service.js';
 import controlContent from '@/components/control-content';
 import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
