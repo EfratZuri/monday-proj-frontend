@@ -2,21 +2,6 @@
 	height: 100%;
 	border-bottom: 1px solid;
 	border-bottom-color: $primary-border-clr-light;
-	.space-item {
-		flex: 0 0 30px;
-		background-color: $dark-background-clr;
-		border-bottom: 1px solid #e6e9ef;
-		height: 100%;
-	}
-	.indicator {
-		background-color: #e6e9ef;
-		position: relative;
-		min-width: 8px;
-		height: 100%;
-		overflow: hidden;
-		will-change: width;
-		transition: min-width 0.07s cubic-bezier(0, 0, 0.35, 1);
-	}
 }
 
 .col-list {

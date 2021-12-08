@@ -215,17 +215,8 @@ input {
 		}
 	}
 	.grid-cells-row-component {
-		// Big screens!
-		// flex-basis: 25%;
-		// Medium screens!
-		// flex-basis: 55%;
 		display: flex;
-		// max-width: 100%;
 		height: 100%;
-
-		& > * {
-			// flex-basis: 16.66666666666666%;
-		}
 	}
 }
 
@@ -235,4 +226,20 @@ input {
 .hero-icon {
 	width: 19px;
 	height: 19px;
+}
+.space-item {
+	flex: 0 0 30px;
+	background-color: $dark-background-clr;
+	border-bottom: 1px solid #e6e9ef;
+	height: 100%;
+}
+
+.indicator {
+	background-color: #e6e9ef;
+	position: relative;
+	min-width: 8px;
+	height: 100%;
+	overflow: hidden;
+	will-change: width;
+	transition: min-width 0.07s cubic-bezier(0, 0, 0.35, 1);
 }
