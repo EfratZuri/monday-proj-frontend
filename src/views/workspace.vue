@@ -85,6 +85,7 @@ export default {
     };
   },
   async created() {
+    console.log('this.$store.getters.user', this.$store.getters.user);
     await this.$store.dispatch({ type: 'loadBoards' });
     socketService.setup();
     socketService.emit('board topic', this.activeBoard._id);
