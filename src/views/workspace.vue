@@ -38,6 +38,7 @@
           :tasks="tasks"
           @close="closeTaskSelected"
           @deleteTaskSelected="deleteTaskSelected"
+          @duplicateTaskSelected="duplicateTaskSelected"
         />
         <!-- <task-update
 			<div v-else>
@@ -86,9 +87,9 @@ export default {
   },
   async created() {
     await this.$store.dispatch({ type: 'loadBoards' });
-    socketService.setup();
-    socketService.emit('board topic', this.activeBoard._id);
-    socketService.on('board saved', (board) => {
+    window.socketService.setup();
+    window.socketService.emit('board topic', this.activeBoard._id);
+    window.socketService.on('board saved', (board) => {
       console.log('hey from socket');
       this.saveBoard(board);
     });
@@ -108,11 +109,14 @@ export default {
     addColumn(columnType) {
       this.$store.dispatch({ type: 'addColumn', columnType });
     },
-    saveTask(details = null) {
-      this.$store.dispatch({ type: 'saveTask', details });
+    async saveTask(details = null) {
+      console.log(details);
+      await this.$store.dispatch({ type: 'saveTask', details });
+      this.sendSocket(this.activeBoard);
     },
-    addGroup(group) {
-      this.$store.dispatch({ type: 'saveGroup', group });
+    async addGroup(group) {
+      await this.$store.dispatch({ type: 'saveGroup', group });
+      this.sendSocket(this.activeBoard);
     },
     removeGroup(group) {
       this.showMsg('We successfully deleted 1 group');
@@ -165,6 +169,9 @@ export default {
         this.msg = null;
       }, 8000);
     },
+    sendSocket(board) {
+      window.socketService.emit('save board', board);
+    },
 
     closeUserMsg() {
       this.msg = null;
@@ -175,6 +182,21 @@ export default {
           return group.tasks.find((task) => task.id === tasks[i].id);
         });
         await this.deleteTask(tasks[i], group.id);
+      }
+      this.tasks = [];
+    },
+
+    async duplicateTaskSelected(tasks) {
+      for (let i = 0; i < tasks.length; i++) {
+        const group = this.activeBoard.groups.find((group) => {
+          return group.tasks.find((task) => task.id === tasks[i].id);
+        });
+        let taskCopy = JSON.parse(JSON.stringify(tasks[i]));
+        console.log(taskCopy);
+        taskCopy.id = '';
+        const details = { task: taskCopy, groupId: group.id };
+        console.log(details);
+        await this.saveTask(details);
       }
       this.tasks = [];
     },
