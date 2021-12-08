@@ -11,6 +11,10 @@
 		height: 100%;
 		width: 100%;
 		color: $primary-txt-clr;
+		.control-content-separator {
+			border-bottom: 1px solid $primary-border-clr-light;
+			margin: 0 20px;
+		}
 		.btn-open-control {
 			position: absolute;
 			background-color: #fff;
@@ -59,6 +63,12 @@
 				border: 1px solid #676879;
 				h2 {
 					color: $primary-txt-clr;
+					font-size: 15px;
+					font-weight: 500;
+				}
+				.btn-icon {
+					width: 16px;
+					height: 16px;
 				}
 			}
 		}
@@ -70,6 +80,27 @@
 				font-size: 16px;
 				color: $primary-txt-clr;
 				height: 32px;
+				padding: 0 16px 16px 14px;
+				font-size: 13px;
+			}
+			.btn {
+				background-color: transparent;
+				font-size: 14px;
+				color: $primary-txt-clr;
+				border-radius: 4px;
+				gap: 8px;
+				& > * {
+					height: 100%;
+					display: flex;
+					align-items: center;
+				}
+				&:hover {
+					background-color: $primary-background-hover-clr;
+				}
+			}
+			.hero-icon {
+				width: 19px;
+				height: 19px;
 			}
 		}
 
@@ -81,7 +112,7 @@
 				max-height: 474px;
 				overflow: hidden;
 				position: relative;
-				& .baords-preview-title {
+				& .boards-preview-title {
 					height: 34px;
 					padding-inline-start: 20px;
 				}
