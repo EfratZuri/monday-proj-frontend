@@ -20,11 +20,11 @@
         <span class="task-action-name">Duplicate</span>
       </div>
     </div>
-    <div class="task-action">
+    <div class="task-action" @click="deleteTaskSelected">
       <span class="icon-selected">
         <font-awesome-icon icon="trash" />
       </span>
-      <span class="task-action-name" @click="deleteTaskSelected">Delete</span>
+      <span class="task-action-name">Delete</span>
     </div>
     <div class="exit-action flex">
       <span class="exit-btn" @click="closeTaskSelected">X</span>
