@@ -1,10 +1,14 @@
 <template>
-  <section class="signup">
-    <header>
-      <h2>monday</h2>
+  <section class="sign">
+    <header class="sign-header">
+      <img
+        class="account-logo"
+        src="https://cdn.monday.com/images/logos/monday_logo_short.png"
+      />
     </header>
-    <h2>Create an account</h2>
-    <sign-form :type="'signup'" @sign="signup" />
+    <div class="sign-wrapper">
+      <sign-form :type="'signup'" @sign="signup" />
+    </div>
   </section>
 </template>
 
@@ -15,7 +19,6 @@ export default {
   name: 'signup',
   methods: {
     signup(user) {
-      console.log('user', user);
       userService.signup(user);
     },
   },

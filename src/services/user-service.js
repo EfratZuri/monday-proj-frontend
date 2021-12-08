@@ -4,8 +4,8 @@
 
 import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
-import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
-
+import { socketService } from './socket.service'
+// SOCKET_EVENT_USER_UPDATED
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 var gWatchedUser = null;
 
@@ -18,7 +18,7 @@ export const userService = {
     getById,
     remove,
     update,
-    changeScore
+    // changeScore
 }
 
 // Debug technique
@@ -35,6 +35,7 @@ async function getById(userId) {
     gWatchedUser = user;
     return user;
 }
+
 function remove(userId) {
     return storageService.remove('user', userId)
     // return httpService.delete(`user/${userId}`)
@@ -49,14 +50,15 @@ async function update(user) {
 }
 
 async function login(logginUser) {
-    const users = await storageService.query('user')
-    const user = users.find(user => user.username === logginUser.username)
+    // const users = await storageService.query('user')
+    // const user = users.find(user => user.username === logginUser.username)
 
-    return _saveLocalUser(user)
+    // return _saveLocalUser(user)
 
-    // const user = await httpService.post('auth/login', userCred)
-    // socketService.emit('set-user-socket', user._id);
-    // if (user) return _saveLocalUser(user)
+    const user = await httpService.post('auth/login', logginUser)
+    socketService.emit('set-user-socket', user._id);
+    console.log('logginUser', user);
+    if (user) return _saveLocalUser(user)
 }
 
 async function signup(logginUser) {
@@ -73,13 +75,13 @@ async function logout() {
     // return await httpService.post('auth/logout')
 }
 
-async function changeScore(by) {
-    const user = getLoggedinUser()
-    if (!user) throw new Error('Not loggedin')
-    user.score = user.score + by || by
-    await update(user)
-    return user.score
-}
+// async function changeScore(by) {
+//     const user = getLoggedinUser()
+//     if (!user) throw new Error('Not loggedin')
+//     user.score = user.score + by || by
+//     await update(user)
+//     return user.score
+// }
 
 
 function _saveLocalUser(user) {
@@ -88,18 +90,14 @@ function _saveLocalUser(user) {
 }
 
 function getLoggedinUser() {
-    console.log('sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)', JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)));
-    // return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
+    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
 }
 
-
-// (async ()=>{
-//     await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',score: 10000, isAdmin: false})
-//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
-// })();
-
-
+(async () => {
+    await userService.signup({ fullname: 'Puki Norma', username: 'user1', password: '123', isAdmin: false })
+    await userService.signup({ fullname: 'Master Adminov', username: 'admin', password: '123', isAdmin: true })
+    await userService.signup({ fullname: 'Muki G', username: 'muki', password: '123' })
+})();
 
 // This IIFE functions for Dev purposes 
 // It allows testing of real time updates (such as sockets) by listening to storage events
@@ -113,10 +111,10 @@ function getLoggedinUser() {
         const freshUsers = await storageService.query('user')
         const watchedUser = freshUsers.find(u => u._id === gWatchedUser._id)
         if (!watchedUser) return;
-        if (gWatchedUser.score !== watchedUser.score) {
-            console.log('Watched user score changed - localStorage updated from another browser')
-            socketService.emit(SOCKET_EVENT_USER_UPDATED, watchedUser)
-        }
+        // if (gWatchedUser.score !== watchedUser.score) {
+        //     console.log('Watched user score changed - localStorage updated from another browser')
+        //     socketService.emit(SOCKET_EVENT_USER_UPDATED, watchedUser)
+        // }
         gWatchedUser = watchedUser
     })
 })();
