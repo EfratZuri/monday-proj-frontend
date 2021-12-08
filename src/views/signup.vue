@@ -15,7 +15,7 @@ export default {
   name: 'signup',
   methods: {
     signup(user) {
-      console.log('true', true);
+      console.log('user', user);
       userService.signup(user);
     },
   },
