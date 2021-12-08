@@ -37,6 +37,7 @@
           v-if="tasks.length"
           :tasks="tasks"
           @closeTaskSelected="closeTaskSelected"
+          @deleteTaskSelected="deleteTaskSelected"
         />
         <!-- <task-update
 			<div v-else>
@@ -114,9 +115,12 @@ export default {
       console.log('board', board);
       this.$store.dispatch({ type: 'saveBoard', board });
     },
-    deleteTask(task, groupId) {
+    async deleteTask(task, groupId) {
       this.showMsg('We successfully deleted 1 task');
-      this.$store.dispatch({ type: 'deleteTask', details: { task, groupId } });
+      await this.$store.dispatch({
+        type: 'deleteTask',
+        details: { task, groupId },
+      });
     },
     saveGroup(group) {
       this.$store.dispatch({ type: 'saveGroup', group });
@@ -140,17 +144,16 @@ export default {
       this.$store.dispatch({ type: 'removeBoard', board });
     },
     setSelected(task, boolean) {
-      console.log(task, boolean);
-      const idx = this.tasks.findIndex(({ id }) => id === task.id);
       if (boolean) this.tasks.push(task);
-      else this.tasks.splice(idx, 1);
-      console.log(this.tasks);
+      else {
+        const idx = this.tasks.findIndex(({ id }) => id === task.id);
+        this.tasks.splice(idx, 1);
+      }
     },
     closeTaskSelected() {
       this.tasks = [];
     },
     showMsg(msg) {
-      console.log(msg);
       this.msg = msg;
       setTimeout(() => {
         this.msg = null;
@@ -159,6 +162,19 @@ export default {
 
     closeUserMsg() {
       this.msg = null;
+    },
+    async deleteTaskSelected(tasks) {
+      // const groups=
+      // this.tasks.forEach((task)=>{
+
+      // })
+      for (let i = 0; i < tasks.length; i++) {
+        const group = this.activeBoard.groups.find((group) => {
+          return group.tasks.find((task) => task.id === tasks[i].id);
+        });
+        await this.deleteTask(tasks[i], group.id);
+      }
+      this.tasks = [];
     },
   },
   components: {

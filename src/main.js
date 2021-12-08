@@ -3,18 +3,24 @@ import App from './App.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+// Make BootstrapVue available throughout your project
+
 // import { createApp } from 'vue';
 // import { IonicVue } from '@ionic/vue';
 
 import router from './router';
 import store from './store/store';
 import './styles/styles.scss';
-import vClickOutside from 'v-click-outside'
+import vClickOutside from 'v-click-outside';
+import Tooltip from 'vue-directive-tooltip';
+import 'vue-directive-tooltip/dist/vueDirectiveTooltip.css';
 
-Vue.use(vClickOutside)
+Vue.use(vClickOutside);
 library.add(fas);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
+Vue.use(Tooltip);
 
 // import { IonicVue } from '@ionic/vue';
 

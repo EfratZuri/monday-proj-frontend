@@ -82,8 +82,8 @@ export default {
   computed: {
     isFavorite() {
       return this.board.isFavorite
-        ? 'Remove from favorites'
-        : 'Add to favorites';
+        ? 'Add to favorites'
+        : 'Remove from favorites';
     },
   },
   methods: {

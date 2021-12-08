@@ -1,44 +1,37 @@
 <template>
   <section class="task-list-container">
     <ul v-if="tasks && tasks.length" class="task-list clean-list">
-      <draggable
-        v-model="myList"
-        :component-data="getComponentData()"
-        :list="tasks"
-        group="tasks"
-      >
-        <transition-group>
-          <li
-            v-for="task in tasks"
-            :key="task.id"
-            class="task-row flex align-center"
+      <draggable @end="handleChange()" :list="tasks" group="tasks">
+        <li
+          v-for="task in tasks"
+          :key="task.id"
+          class="task-row flex align-center"
+        >
+          <div
+            class="menu-edit-task-container"
+            :class="{ 'dropdown-open': showTaskMenu }"
           >
-            <div
-              class="menu-edit-task-container"
-              :class="{ 'dropdown-open': showTaskMenu }"
-            >
-              <button class="btn" @click="toggleShowTaskMenu">
-                <font-awesome-icon icon="caret-down" />
-              </button>
-              <task-menu
-                v-if="showTaskMenu"
-                :task="task"
-                @remove="deleteTask"
-                @duplicate="saveTask"
-                @selected="saveTask"
-              />
-            </div>
-            <task-preview
+            <button class="btn" @click="toggleShowTaskMenu">
+              <font-awesome-icon icon="caret-down" />
+            </button>
+            <task-menu
+              v-if="showTaskMenu"
               :task="task"
-              :styleObj="group.style"
-              @saveTask="saveTask"
-              @deleteTask="deleteTask"
-              @updatePicker="saveTask"
-              @saveComment="saveComment"
-              @setSelected="setSelected"
+              @remove="deleteTask"
+              @duplicate="saveTask"
+              @selected="saveTask"
             />
-          </li>
-        </transition-group>
+          </div>
+          <task-preview
+            :task="task"
+            :styleObj="group.style"
+            @saveTask="saveTask"
+            @deleteTask="deleteTask"
+            @updatePicker="saveTask"
+            @saveComment="saveComment"
+            @setSelected="setSelected"
+          />
+        </li>
       </draggable>
     </ul>
     <add-task :group="group" @addTask="saveTask" />
@@ -73,27 +66,12 @@ export default {
     this.activeBoard = this.$store.getters.activeBoard;
   },
   methods: {
-    handleChange(value) {
-      this.myList;
-      console.log(value);
+    handleChange() {
+      return this.$store.dispatch({
+        type: 'saveBoard',
+        board: this.activeBoard,
+      });
     },
-
-    getComponentData() {
-      return {
-        on: {
-          change: this.handleChange,
-        },
-        attrs: {
-          wrap: true,
-        },
-        props: {
-          value: this.tasks,
-        },
-      };
-    },
-    // onDrop(dropResult) {
-    //   this.tasks = applyDrag(this.tasks, dropResult);
-    // },
     toggleDialogNode() {
       this.showDialogNode = !this.showDialogNode;
     },
@@ -117,14 +95,11 @@ export default {
     },
   },
   computed: {
-    myList: {
-      get() {
-        return this.group.tasks;
-      },
-      set() {
-        return this.$store.commit('setActiveBoard', this.activeBoard);
-      },
-    },
+    // myList: {
+    //   get() {
+    //     return this.group.tasks;
+    //   },
+    // },
   },
   components: {
     taskPreview,
