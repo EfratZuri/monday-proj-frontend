@@ -63,6 +63,7 @@ export const boardStore = {
 			state.boards.splice(idx, 1);
 		},
 		setActiveBoard(state, { activeBoard }) {
+			console.log(activeBoard);
 			state.activeBoard = activeBoard;
 		},
 		//----------GROUP----------//

@@ -20,7 +20,7 @@
 					@saveBoard="saveBoard"
 					@addGroup="addGroup"
 				/>
-				<groupList
+				<group-list
 					:board="activeBoard"
 					:boards="boards"
 					@addGroup="addGroup"
@@ -86,13 +86,13 @@ export default {
 		};
 	},
 	async created() {
-		// await this.$store.dispatch({ type: 'loadBoards' });
-		// window.socketService.setup();
-		// window.socketService.emit('board topic', this.activeBoard._id);
-		// window.socketService.on('board saved', (board) => {
-		// console.log('hey from socket');
-		// this.saveBoard(board);
-		// });
+		await this.$store.dispatch({ type: 'loadBoards' });
+		window.socketService.setup();
+		window.socketService.emit('board topic', this.activeBoard._id);
+		window.socketService.on('board saved', (board) => {
+			console.log('hey from socket');
+			this.saveBoard(board);
+		});
 	},
 	computed: {
 		isLoading() {

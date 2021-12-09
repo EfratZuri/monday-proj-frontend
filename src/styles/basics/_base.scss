@@ -208,6 +208,8 @@ input {
 		// flex-basis: 65%;
 		display: flex;
 		align-items: center;
+		// position: fixed;
+		height: 100%;
 		.left-indicator-checkbox {
 			&.selected {
 				width: 32px;
