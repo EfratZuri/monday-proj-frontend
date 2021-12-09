@@ -78,8 +78,6 @@ export default {
 		info: {
 			handler() {
 				this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
-				console.log(this.info);
-				console.log(this.selectedCopy);
 				let deleteCount = Math.min(3, this.selectedCopy.length);
 				if (this.selectedCopy.length > 3) deleteCount = 2;
 				this.selectedCopyTrimed = this.selectedCopy.slice(0, deleteCount);
