@@ -34,6 +34,10 @@
 						</button>
 					</div>
 				</div>
+				<div class="new-label-container" @click="addNewLabel">
+					<span class="">New Label</span>
+				</div>
+				<label-color-palette @selectColor="selectColor" />
 			</div>
 			<div class="picker-dropdown-footer flex align-center">
 				<button v-if="!showEditModal" class="btn" @click="toggleEditModal">Add/Edit Labels</button>
@@ -44,6 +48,7 @@
 </template>
 
 <script>
+import labelColorPalette from '@/components/label-color-palette';
 export default {
 	name: 'labelsPopup',
 	props: {
@@ -58,6 +63,9 @@ export default {
 	watch: {},
 
 	methods: {
+		addNewLabel() {
+			console.log('add new label');
+		},
 		apply(opt) {
 			console.log('apply');
 			this.$emit('apply', opt);
@@ -71,7 +79,10 @@ export default {
 		toggleEditModal() {
 			this.showEditModal = !this.showEditModal;
 		},
+		selectColor(color) {
+			console.log('color from select color from pop up', color);
+		},
 	},
-	computed: {},
+	components: { labelColorPalette },
 };
 </script>
