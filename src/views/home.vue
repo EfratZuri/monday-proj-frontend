@@ -33,7 +33,10 @@
         </div>
         <div class="header-button-started">
           <div class="header-btn">
-            <button class="btn btn-get-started">Get started</button>
+            <router-link to="login" class="btn btn-blue-round">
+              Get starred
+              <span>icon</span>
+            </router-link>
           </div>
         </div>
       </nav>

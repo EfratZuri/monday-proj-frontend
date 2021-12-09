@@ -76,7 +76,7 @@ import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
 import selectedTask from '@/components/selected-task.vue';
 import userMsg from '@/components/user-msg.vue';
-// import socketService from '../services/socket.service.js';
+import socketService from '../services/socket.service.js';
 export default {
   name: 'workspace',
   data() {
@@ -191,25 +191,25 @@ export default {
     },
 
     async duplicateTaskSelected(tasks) {
-      // for (let i = 0; i < tasks.length; i++) {
-      // 	const group = this.activeBoard.groups.find((group) => {
-      // 		return group.tasks.find((task) => task.id === tasks[i].id);
-      // 	});
-      // 	let taskCopy = JSON.parse(JSON.stringify(tasks[i]));
-      // 	// console.log(taskCopy);
-      // 	taskCopy.id = '';
-      // 	const details = { task: taskCopy, groupId: group.id };
-      // 	// console.log(details);
-      // 	await this.saveTask(details);
-      // }
-      // this.tasks = [];
+      for (let i = 0; i < tasks.length; i++) {
+        const group = this.activeBoard.groups.find((group) => {
+          return group.tasks.find((task) => task.id === tasks[i].id);
+        });
+        let taskCopy = JSON.parse(JSON.stringify(tasks[i]));
+        // console.log(taskCopy);
+        taskCopy.id = '';
+        const details = { task: taskCopy, groupId: group.id };
+        // console.log(details);
+        await this.saveTask(details);
+      }
+      this.tasks = [];
       console.log(tasks);
     },
   },
 
   destroyed() {
-    // socketService.off('board saved', this.saveBoard);
-    // socketService.terminate();
+    socketService.off('board saved', this.saveBoard);
+    socketService.terminate();
   },
   components: {
     groupList,
