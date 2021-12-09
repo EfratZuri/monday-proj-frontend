@@ -39,7 +39,8 @@
 				:key="idx"
 				:is="col.type"
 				:info="getCmpInfo(col)"
-				@update="update($event, col.type)"
+				@update="updateTask($event, col.type)"
+				@saveBoardCol="saveBoardCol($event, col.type)"
 			/>
 		</div>
 		<task-update
@@ -131,10 +132,15 @@ export default {
 		getDefaultCmp(col) {
 			return { selected: col.data.default, data: col.data };
 		},
-		update(ev, type) {
+		updateTask(ev, type) {
 			const copyTask = JSON.parse(JSON.stringify(this.task));
 			copyTask[type] = ev;
 			this.$emit('updatePicker', copyTask);
+		},
+		saveBoardCol(ev, type) {
+			const details = { type, item: ev };
+			console.log('Details from PREVIEW!!!', details);
+			this.$emit('saveBoardCol', details);
 		},
 
 		closePanel() {

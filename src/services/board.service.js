@@ -16,11 +16,13 @@ export const boardService = {
 	getEmptyComment,
 	saveGroup,
 	saveTask,
+
 	deleteTask,
 	saveComment,
 	saveBoard,
 	removeGroup,
 	moveGroupToBoard,
+	saveBoardCol,
 };
 
 async function query(filterBy = {}) {
@@ -162,6 +164,17 @@ async function saveComment({ comment, boardId, groupId, taskId }) {
 
 // COLUMNS
 
+async function saveBoardCol(boardId, details) {
+	const board = await getById(boardId);
+	const col = board.cols.find(({ type }) => type === details.type);
+	const itemCopy = JSON.parse(JSON.stringify(details.item));
+	if (!itemCopy?.id) {
+		itemCopy.id = utilService.makeId();
+	}
+	col.data.opts.push(itemCopy);
+	saveBoard(board);
+	return board;
+}
 // async function saveColumns(boardId, columnType) {
 // 	const board = await getById(boardId);
 // 	return board;
@@ -370,7 +383,7 @@ function _getPriorityOptions() {
 // (async () => {
 //   let boards = await storageService.query('board');
 
-  // Dev Helper: Listens to when localStorage changes in OTHER browser
+// Dev Helper: Listens to when localStorage changes in OTHER browser
 //   window.addEventListener('storage', async () => {
 //     console.log('Storage updated');
 //     const freshBoards = await storageService.query('board');

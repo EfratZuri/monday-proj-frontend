@@ -33,6 +33,7 @@
 					@saveComment="saveComment"
 					@setSelected="setSelected"
 					@addColumn="addColumn"
+					@saveBoardCol="saveBoardCol"
 				/>
 				<user-msg v-if="msg" :msg="msg" @closeUserMsg="closeUserMsg" />
 				<selected-task
@@ -110,6 +111,9 @@ export default {
 		},
 	},
 	methods: {
+		saveBoardCol(details) {
+			this.$store.dispatch({ type: 'saveBoardCol', details });
+		},
 		addColumn(columnType) {
 			this.$store.dispatch({ type: 'addColumn', columnType });
 		},

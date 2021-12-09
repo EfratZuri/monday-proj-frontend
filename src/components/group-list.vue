@@ -23,6 +23,7 @@
 						@deleteTask="deleteTask"
 						@saveComment="saveComment"
 						@setSelected="setSelected"
+						@saveBoardCol="saveBoardCol"
 					/>
 					<group-task-summary :group="group" />
 				</li>
@@ -63,6 +64,10 @@ export default {
 				type: 'saveBoard',
 				board: this.activeBoard,
 			});
+		},
+		saveBoardCol(details) {
+			console.log('details from GROUP LIST!!!!!!', details);
+			this.$emit('saveBoardCol', details);
 		},
 		addGroup() {
 			this.$emit('addGroup');

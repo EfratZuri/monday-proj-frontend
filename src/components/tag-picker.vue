@@ -45,7 +45,7 @@
 				</div>
 				<div v-if="selectedCopy" class="tag-list">
 					<div
-						v-for="(opt, idx) in selectedCopy"
+						v-for="(opt, idx) in opts"
 						:key="idx"
 						:style="opt.style"
 						class="dropdown-inner-container"
@@ -57,7 +57,7 @@
 					</div>
 				</div>
 				<div class="picker-dropdown-footer flex align-center">
-					<button class="btn" @click="update">+Create new tag</button>
+					<button class="btn" @click="saveBoardCol">+Create new tag</button>
 				</div>
 			</div>
 		</div>
@@ -72,9 +72,10 @@ export default {
 	data() {
 		return {
 			selectedCopy: null,
+			opts: null,
 			selectedCopyTrimed: null,
 			showOptions: false,
-			tagToEdit: { txt: '', style: { color: 'rgb(51,52,56)' } },
+			tagToEdit: { txt: '', style: { color: 'rgb(51,52,56)' }, id: '' },
 			isMoreThan3: false,
 			tagsLeftCount: 0,
 		};
@@ -92,6 +93,7 @@ export default {
 				this.selectedCopyTrimed = this.selectedCopy.slice(0, deleteCount);
 				const clrs = this.$store.getters.clrs;
 				this.tagToEdit.style.color = clrs[utilService.getRandomInt(0, clrs.length - 1)];
+				this.opts = JSON.parse(JSON.stringify(this.info.data.opts));
 			},
 			deep: true,
 			immediate: true,
@@ -103,6 +105,10 @@ export default {
 			this.selectedCopy.unshift(this.tagToEdit);
 			this.$emit('update', this.selectedCopy);
 			this.toggleOptions();
+		},
+		saveBoardCol() {
+			this.update();
+			this.$emit('saveBoardCol', this.tagToEdit);
 		},
 		toggleOptions() {
 			this.showOptions = !this.showOptions;
