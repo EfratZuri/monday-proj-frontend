@@ -3,7 +3,14 @@
 	width: 100%;
 	justify-content: space-between;
 	padding-left: 30px;
-
+	.grid-cells-row-component {
+		.grid-cell-component-wrapper {
+			&:hover {
+				background-color: $dark-background-clr;
+				border-radius: 2px 2px 0 0;
+			}
+		}
+	}
 	&.sticky {
 		position: fixed;
 		// left: 0;bax

@@ -9,7 +9,7 @@
 			:boards="boards"
 			:activeBoard="activeBoard"
 		/>
-		<div class="workspace-content">
+		<div class="workspace-content" :class="{ selected: isTaskSelected }">
 			<div v-if="isLoading" class="loading-img">
 				<img src="https://cdn.monday.com/images/loader/loader.gif" />
 			</div>
@@ -85,6 +85,7 @@ export default {
 			showControlContent: false,
 			tasks: [],
 			msg: '',
+			isTaskSelected: false,
 		};
 	},
 	async created() {
@@ -167,6 +168,8 @@ export default {
 				const idx = this.tasks.findIndex(({ id }) => id === task.id);
 				this.tasks.splice(idx, 1);
 			}
+			if (this.tasks.length) this.isTaskSelected = true;
+			else this.isTaskSelected = false;
 		},
 		closeTaskSelected() {
 			this.tasks = [];
