@@ -1,7 +1,7 @@
 <template>
   <section class="group-menu-container dropdown-modal">
     <div class="menu-item" @click="collapseThis">
-      <div class="group-menu-icon-wrapper">
+      <div class="menu-icon-wrapper">
         <svg
           viewBox="0 0 16 16"
           fill="currentColor"
@@ -29,7 +29,7 @@
       Collapse this group
     </div>
     <div class="menu-item" @click="collapseAll">
-      <div class="group-menu-icon-wrapper">
+      <div class="menu-icon-wrapper">
         <svg
           viewBox="0 0 16 16"
           fill="currentColor"
@@ -57,13 +57,13 @@
       Collapse all groups
     </div>
     <div class="menu-item" @click="addGroup">
-      <div class="group-menu-icon-wrapper">
+      <div class="menu-icon-wrapper">
         <ion-icon name="add-circle-outline"></ion-icon>
       </div>
       Add group
     </div>
     <div class="menu-item" @click="duplicateGroup">
-      <div class="group-menu-icon-wrapper">
+      <div class="menu-icon-wrapper">
         <svg
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -88,7 +88,7 @@
       @click="moveTo"
       v-if="boards.length > 1"
     >
-      <div class="group-menu-icon-wrapper">
+      <div class="menu-icon-wrapper">
         <svg
           viewBox="0 0 16 16"
           fill="currentColor"
@@ -124,7 +124,7 @@
       </div>
     </div>
     <div class="menu-item" @click="changeColor">
-      <div class="group-menu-icon-wrapper">
+      <div class="menu-icon-wrapper">
         <div
           class="menu-item-color-pick"
           :style="{ backgroundColor: groupColor }"
@@ -133,7 +133,7 @@
       Change color
     </div>
     <div class="menu-item" @click="removeGroup">
-      <div class="group-menu-icon-wrapper">
+      <div class="menu-icon-wrapper">
         <svg
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -181,7 +181,7 @@ export default {
       this.$emit('addGroup');
     },
     duplicateGroup() {
-      this.$emit('');
+      this.$emit('duplicateGroup');
     },
     moveTo() {
       this.$emit('moveTo');

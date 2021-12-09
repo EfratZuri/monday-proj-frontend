@@ -18,8 +18,13 @@ import { userService } from '@/services/user.service.js';
 export default {
   name: 'signup',
   methods: {
-    signup(user) {
-      userService.signup(user);
+    async signup(user) {
+      try {
+        await userService.signup(user);
+        this.$router.push('/boards');
+      } catch (error) {
+        console.log('error', error);
+      }
     },
   },
   components: {

@@ -4,7 +4,7 @@
 
 import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
-import { socketService } from './socket.service'
+// import { socketService } from './socket.service'
 // SOCKET_EVENT_USER_UPDATED
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 var gWatchedUser = null;
@@ -68,14 +68,9 @@ async function login(logginUser) {
     // const users = await storageService.query('user')
     // const user = users.find(user => user.username === logginUser.username)
     // return _saveLocalUser(user)
-    try {
-        const user = await httpService.post('auth/login', logginUser)
-        socketService.emit('set-user-socket', user._id);
-        if (user) return _saveLocalUser(user)
-    } catch (error) {
-        console.log('error', error);
-        throw error;
-    }
+    const user = await httpService.post('auth/login', logginUser)
+    // socketService.emit('set-user-socket', user._id);
+    if (user) return _saveLocalUser(user)
 }
 
 async function signup(logginUser) {
@@ -83,7 +78,7 @@ async function signup(logginUser) {
         logginUser.imageUrl = 'https://romancebooks.co.il/wp-content/uploads/2019/06/default-user-image.png'
         // const user = await storageService.post('user', logginUser)
         const user = await httpService.post('auth/signup', logginUser)
-        socketService.emit('set-user-socket', user._id);
+        // socketService.emit('set-user-socket', user._id);
         return _saveLocalUser(user)
     } catch (error) {
         console.log('error', error);
@@ -91,9 +86,13 @@ async function signup(logginUser) {
 }
 
 async function logout() {
-    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    // socketService.emit('unset-user-socket');
-    return await httpService.post('auth/logout')
+    try {
+        sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+        // socketService.emit('unset-user-socket');
+        return await httpService.post('auth/logout')
+    } catch (error) {
+        console.log('error', error);
+    }
 }
 
 // async function changeScore(by) {
@@ -114,11 +113,11 @@ function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
 }
 
-(async () => {
-    await userService.signup({ fullname: 'Puki Norma', username: 'user1', password: '123', isAdmin: false })
-    await userService.signup({ fullname: 'Master Adminov', username: 'admin', password: '123', isAdmin: true })
-    await userService.signup({ fullname: 'Muki G', username: 'muki', password: '123' })
-})();
+// (async () => {
+//     await userService.signup({ fullname: 'Puki Norma', username: 'user1', password: '123', isAdmin: false })
+//     await userService.signup({ fullname: 'Master Adminov', username: 'admin', password: '123', isAdmin: true })
+//     await userService.signup({ fullname: 'Muki G', username: 'muki', password: '123' })
+// })();
 
 // This IIFE functions for Dev purposes 
 // It allows testing of real time updates (such as sockets) by listening to storage events

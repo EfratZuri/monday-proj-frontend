@@ -1,29 +1,42 @@
 <template>
   <section class="sign-cmp">
     <h1 class="sign-title">{{ signTitle }}</h1>
+    <section
+      v-if="type === 'login' && wrongInputs"
+      class="wrong-inputs-wrapper flex"
+    >
+      <div class="wrong-inputs-icon">
+        <ion-icon name="ban-outline"></ion-icon>
+      </div>
+      <div class="wrong-inputs-text flex">
+        Wrong username or password, would you like to
+        <router-link to="/signup" class="wrong-inputs-signup-link">
+          sign up ?
+        </router-link>
+      </div>
+    </section>
+
     <form @submit.prevent="sign" class="sign-form">
       <div v-if="type === 'signup'" class="sign-item-wrapper flex column">
-        <label>Enter your fullname</label>
-        <input
-          type="fullname"
-          placeholder="Full name"
-          v-model="user.fullname"
-        />
+        <label>Enter your full name</label>
+        <input type="fullname" v-model="user.fullname" />
       </div>
       <div class="sign-item-wrapper flex column">
-        <label>Enter your username</label>
-        <input type="text" placeholder="Username" v-model="user.username" />
+        <label>Username : </label>
+        <input type="text" v-model="user.username" />
       </div>
       <div class="sign-item-wrapper flex column">
-        <label for=""> Password</label>
-        <input type="password" placeholder="Password" v-model="user.password" />
+        <label for="">Password : </label>
+        <input type="password" v-model="user.password" />
       </div>
-      <button class="btn btn-blue">{{ type }}</button>
+      <button class="btn btn-blue">{{ btnTxt }}</button>
     </form>
-    <div class="another-sign-options">
+    <section class="another-sign-options">
       <div>
         <span class="sign-option">Try as a</span>
-        <router-link to="" class="another-options-links btn btn-underline"
+        <router-link
+          to="/boards"
+          class="another-options-links btn btn-underline"
           >guest</router-link
         >
       </div>
@@ -39,7 +52,7 @@
           <span class="another-options-links">Log in</span></router-link
         >
       </div>
-    </div>
+    </section>
   </section>
 </template>
 
@@ -50,9 +63,9 @@ export default {
     type: {
       type: String,
     },
-  },
-  created() {
-    console.log('this.type', this.type);
+    wrongInputs: {
+      type: Boolean,
+    },
   },
   data() {
     return {
@@ -64,6 +77,9 @@ export default {
       return this.type === 'login'
         ? 'Log in to your account'
         : 'Sign up new account';
+    },
+    btnTxt() {
+      return this.type === 'login' ? 'Login' : 'Sign up';
     },
   },
   methods: {

@@ -74,6 +74,7 @@ async function getById(boardId) {
 
 async function saveGroup(group, activeBoardId) {
   const board = await getById(activeBoardId);
+  console.log('group', group);
   if (!group.id) {
     group.id = utilService.makeId();
     board.groups.unshift(group);

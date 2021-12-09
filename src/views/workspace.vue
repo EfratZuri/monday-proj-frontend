@@ -8,9 +8,10 @@
       @saveBoard="saveBoard"
       :boards="boards"
     />
-
     <div class="workspace-content">
-      <div v-if="isLoading"><p>Loading</p></div>
+      <div v-if="isLoading" class="loading-img">
+        <img src="https://cdn.monday.com/images/loader/loader.gif" />
+      </div>
 
       <div v-else>
         <boardHeader
@@ -102,6 +103,9 @@ export default {
     },
     activeBoard() {
       return this.$store.getters.activeBoard;
+    },
+    loggedinUser() {
+      return this.$store.getters.user;
     },
   },
   methods: {

@@ -7,26 +7,31 @@
       />
     </header>
     <div class="sign-wrapper">
-      <sign-form :type="'login'" @login="login" />
+      <sign-form :type="'login'" @login="login" :wrongInputs="isWrongInputs" />
     </div>
   </section>
 </template>
-
 <script>
 import signForm from '@/components/sign-form.vue';
-import { userService } from '@/services/user.service.js';
 export default {
   name: 'login',
+  data() {
+    return {
+      isWrongInputs: false,
+    };
+  },
   methods: {
-    login(user) {
+    async login(user) {
       try {
-        userService.login(user);
-        console.log('Logged in!');
+        await this.$store.dispatch({ type: 'login', user });
+        this.$router.push('/boards');
       } catch (error) {
+        this.isWrongInputs = true;
         console.log('error', error);
       }
     },
   },
+  computed: {},
   components: {
     signForm,
   },
