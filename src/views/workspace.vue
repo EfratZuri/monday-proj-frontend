@@ -190,18 +190,16 @@ export default {
 		},
 
 		async duplicateTaskSelected(tasks) {
-			// for (let i = 0; i < tasks.length; i++) {
-			// 	const group = this.activeBoard.groups.find((group) => {
-			// 		return group.tasks.find((task) => task.id === tasks[i].id);
-			// 	});
-			// 	let taskCopy = JSON.parse(JSON.stringify(tasks[i]));
-			// 	// console.log(taskCopy);
-			// 	taskCopy.id = '';
-			// 	const details = { task: taskCopy, groupId: group.id };
-			// 	// console.log(details);
-			// 	await this.saveTask(details);
-			// }
-			// this.tasks = [];
+			for (let i = 0; i < tasks.length; i++) {
+				const group = this.activeBoard.groups.find((group) => {
+					return group.tasks.find((task) => task.id === tasks[i].id);
+				});
+				let taskCopy = JSON.parse(JSON.stringify(tasks[i]));
+				taskCopy.id = '';
+				const details = { task: taskCopy, groupId: group.id };
+				await this.saveTask(details);
+			}
+			this.tasks = [];
 			console.log(tasks);
 		},
 	},

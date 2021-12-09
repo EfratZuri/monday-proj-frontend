@@ -3,6 +3,7 @@ import App from './App.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Element from 'element-ui';
 
 // Make BootstrapVue available throughout your project
 
@@ -15,7 +16,7 @@ import './styles/styles.scss';
 import vClickOutside from 'v-click-outside';
 import Tooltip from 'vue-directive-tooltip';
 import 'vue-directive-tooltip/dist/vueDirectiveTooltip.css';
-
+Vue.use(Element);
 Vue.use(vClickOutside);
 library.add(fas);
 Vue.component('font-awesome-icon', FontAwesomeIcon);

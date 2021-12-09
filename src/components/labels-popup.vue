@@ -1,6 +1,6 @@
 <template>
-	<div class="dropdown-modal picker-dropdown-component">
-		<div class="picker-dropdown-inner-container flex space-between column">
+	<div class="dropdown-modal picker-dropdown-component flex">
+		<div class="picker-dropdown-inner-container">
 			<div v-if="!showEditModal" class="status-list">
 				<div
 					v-for="(opt, idx) in opts"
@@ -21,6 +21,18 @@
 					class="color-opt-editing flex align-center"
 					@click="update(opt)"
 				>
+					<div class="icon-box drag-box-icon">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="icon-hero-drag"
+							viewBox="0 0 20 20"
+							fill="currentColor"
+						>
+							<path
+								d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+							/>
+						</svg>
+					</div>
 					<div class="input-wrapper flex align-center">
 						<div class="color-box btn" :style="getOptStyle(opt)"></div>
 						<div class="label-input text-cmp">
