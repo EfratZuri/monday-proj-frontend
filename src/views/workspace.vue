@@ -113,14 +113,13 @@ export default {
 			this.$store.dispatch({ type: 'addColumn', columnType });
 		},
 		async saveTask(details = null) {
-			// console.log(details);
-			console.log('details!!!!!!!!!!!!!!!!!!!', details);
+			console.log('savetask from workspace');
 			await this.$store.dispatch({ type: 'saveTask', details });
-			// this.sendSocket(this.activeBoard);
+			this.sendSocket(this.activeBoard);
 		},
 		async addGroup(group) {
 			await this.$store.dispatch({ type: 'saveGroup', group });
-			// this.sendSocket(this.activeBoard);
+			this.sendSocket(this.activeBoard);
 		},
 		removeGroup(group) {
 			this.showMsg('We successfully deleted 1 group');
@@ -173,9 +172,9 @@ export default {
 				this.msg = null;
 			}, 8000);
 		},
-		// sendSocket(board) {
-		// 	// window.socketService.emit('save board', board);
-		// },
+		sendSocket(board) {
+			window.socketService.emit('save board', board);
+		},
 
 		closeUserMsg() {
 			this.msg = null;

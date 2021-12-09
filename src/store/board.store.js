@@ -92,14 +92,11 @@ export const boardStore = {
 		},
 		//----------TASK----------//
 		saveTask(state, { boardId, groupId, task }) {
-			console.log('Save task', boardId, groupId, task);
 			const board = state.boards.find((board) => board._id === boardId);
 			const group = board.groups.find(({ id }) => id === groupId);
-			console.log('task from save task', task);
 			const idx = group.tasks.findIndex(({ id }) => id === task.id);
-			console.log('idx!!!!!!!!!!!!!!!!!', idx);
 			if (task.title === 'New Task') group.tasks.unshift(task);
-			else if (idx === -1) group.tasks.push(task);
+			else if (idx < 0) group.tasks.push(task);
 			else group.tasks.splice(idx, 1, task);
 		},
 		deleteTask(state, { boardId, groupId, task }) {
@@ -202,6 +199,7 @@ export const boardStore = {
 		},
 		//----------TASK----------//
 		async saveTask(context, { details }) {
+			console.log('savetask from action');
 			if (!details) {
 				details = {};
 				details.groupId = context.state.activeBoard.groups[0].id;

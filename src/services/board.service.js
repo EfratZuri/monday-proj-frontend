@@ -106,6 +106,7 @@ async function removeGroup(group, activeBoard) {
 /////////-----------------TASK-----------------/////////
 
 async function saveTask(boardId, task, groupId) {
+	console.log('savetask from service');
 	let activity = getEmptyActivity();
 	activity.txt = task.id ? 'Edit task' : 'Add task';
 	activity.createdAt = moment().fromNow('LT');
@@ -121,7 +122,7 @@ async function saveTask(boardId, task, groupId) {
 		group.tasks.splice(idx, 1, task);
 	}
 	board.activities.unshift(activity);
-	saveBoard(board);
+	await saveBoard(board);
 	return board;
 }
 
