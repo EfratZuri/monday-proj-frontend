@@ -76,7 +76,7 @@ import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
 import selectedTask from '@/components/selected-task.vue';
 import userMsg from '@/components/user-msg.vue';
-// import socketService from '../services/socket.service.js';
+import socketService from '../services/socket.service.js';
 export default {
 	name: 'workspace',
 	data() {
@@ -208,8 +208,8 @@ export default {
 	},
 
 	destroyed() {
-		// socketService.off('board saved', this.saveBoard);
-		// socketService.terminate();
+		socketService.off('board saved', this.saveBoard);
+		socketService.terminate();
 	},
 	components: {
 		groupList,
