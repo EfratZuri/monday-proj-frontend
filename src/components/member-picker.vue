@@ -7,11 +7,28 @@
 	>
 		<div class="col-cell" @click="toggleOptions">
 			<!-- <button v-if="showPlusBtn" class="btn btn-blue">+</button> -->
-			<div class="members-icon flex">
-				<ion-icon name="person-circle-outline" />
+			<div class="members-icon flex align-center">
+				<img
+					src="@/assets/dapulse-person-column.svg"
+					alt=""
+					aria-hidden="true"
+					class="person-bullet-image person-bullet-component"
+				/>
+				<!-- <ion-icon name="person-circle-outline" /> -->
 			</div>
 			<button class="btn btn-icon btn-add">
-				<ion-icon name="plus-circle" />
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="hero-icon"
+					viewBox="0 0 20 20"
+					fill="currentColor"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+						clip-rule="evenodd"
+					/>
+				</svg>
 			</button>
 			<!-- <span>{{ infoForDisplay }} </span> -->
 		</div>

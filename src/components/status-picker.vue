@@ -16,7 +16,8 @@
 				:style="styleObj"
 				@click="toggleStatusPicker"
 			>
-				<span :class="{ 'fold-triangle': fold }"></span>
+				<!-- :class="{ 'fold-triangle': fold }" -->
+				<span class="fold-triangle"></span>
 				<span>{{ infoForDisplay }} </span>
 			</div>
 		</div>
