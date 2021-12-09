@@ -4,7 +4,7 @@
 			Dropdown List<i class="el-icon-arrow-down el-icon--right"></i>
 		</span>
 		<el-dropdown-menu slot="dropdown">
-			<el-dropdown-item v-for="(action, idx) in actions" :key="idx"> </el-dropdown-item>
+			<el-dropdown-item v-for="(action, idx) in actions" :key="idx"> {{ action }}</el-dropdown-item>
 			<!-- <el-dropdown-item divided>Action 5</el-dropdown-item> -->
 		</el-dropdown-menu>
 	</el-dropdown>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-	name: 'dropdown',
+	name: 'customDropdown',
 	props: ['actions'],
 	created() {
 		console.log(this.actions);

@@ -4,29 +4,40 @@
 		:style="{ width: info.data.style.maxWidth }"
 	>
 		<div class="col-cell summary-container" :hovercontents="hoverContent" :style="info.data.style">
-			<div class="date-box timeline-bar-component" :class="{ filled: isFilled }">
+			<div
+				class="date-box timeline-bar-component"
+				:class="{ filled: isFilled }"
+				@click="toggleOptions"
+			>
 				<span class="timeline-value" :hovercontents="hoverContent" :contents="dateForDisplay">
 				</span>
-				<!-- <span>{{ dateForDisplay }}</span> -->
 			</div>
+			<!-- modal -->
+			<!-- <div v-if="showOptions" class="dropdown-modal">
+				<div v-for="(opt, idx) in dropdownOpts" :key="idx" class="input-wrapper">
+					<label for="">{{ opt }}</label>
+					<input type="radio" />
+				</div>
+			</div> -->
 		</div>
 	</div>
 </template>
 
 <script>
 import { utilService } from '../services/util.service.js';
-
+// import customDropdown from '@/components/custom-components/custom-dropdown';
 export default {
 	name: 'timelineSummary',
 	props: ['info'],
 	data() {
 		return {
 			selected: {},
-
+			showOptions: false,
 			isFilled: false,
 			datesSorted: null,
 			hoverContent: '',
 			showBy: '',
+			dropdownOpts: ['Earliest to Latest', 'Earliest', 'Latest'],
 		};
 	},
 	created() {
@@ -43,7 +54,11 @@ export default {
 		this.hoverContent = dayCount ? `${dayCount}d` : '-';
 		this.isFilled = dayCount ? true : false;
 	},
-	methods: {},
+	methods: {
+		toggleOptions() {
+			this.showOptions = !this.showOptions;
+		},
+	},
 	computed: {
 		dateForDisplay() {
 			if (!this.datesSorted || !this.datesSorted.length) return '-';
@@ -56,6 +71,9 @@ export default {
 				date1.getMonth() === date2.getMonth() ? '' : date2MonthStr.substring(0, 3)
 			}${date2.getDate()}`;
 		},
+	},
+	components: {
+		// customDropdown,
 	},
 };
 </script>
