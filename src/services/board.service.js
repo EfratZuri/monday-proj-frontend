@@ -55,8 +55,8 @@ async function saveBoard(board) {
   let savedBoard;
   try {
     if (!board) board = getEmptyBoard();
-    if (board._id) savedBoard = await httpService.put(`board`, board);
-    else savedBoard = await await httpService.post(`board`, board);
+    if (board._id) savedBoard = await httpService.put('board', board);
+    else savedBoard = await httpService.post('board', board);
     // savedBoard = await storageService[board._id ? 'put' : 'post'](STORAGE_KEY_BOARDS, board);
     return savedBoard;
   } catch (error) {
@@ -106,6 +106,7 @@ async function removeGroup(group, activeBoard) {
 /////////-----------------TASK-----------------/////////
 
 async function saveTask(boardId, task, groupId) {
+  console.log('savetask from service');
   let activity = getEmptyActivity();
   activity.txt = task.id ? 'Edit task' : 'Add task';
   activity.createdAt = moment().fromNow('LT');
@@ -121,7 +122,7 @@ async function saveTask(boardId, task, groupId) {
     group.tasks.splice(idx, 1, task);
   }
   board.activities.unshift(activity);
-  saveBoard(board);
+  await saveBoard(board);
   return board;
 }
 

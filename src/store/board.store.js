@@ -222,6 +222,7 @@ export const boardStore = {
     },
     //----------TASK----------//
     async saveTask(context, { details }) {
+      console.log('savetask from action');
       if (!details) {
         details = {};
         details.groupId = context.state.activeBoard.groups[0].id;

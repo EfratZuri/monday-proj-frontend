@@ -113,7 +113,7 @@ export default {
       this.$store.dispatch({ type: 'addColumn', columnType });
     },
     async saveTask(details = null) {
-      console.log(details);
+      console.log('savetask from workspace');
       await this.$store.dispatch({ type: 'saveTask', details });
       this.sendSocket(this.activeBoard);
     },
