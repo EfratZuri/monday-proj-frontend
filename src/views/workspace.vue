@@ -7,6 +7,7 @@
 			@removeBoard="removeBoard"
 			@saveBoard="saveBoard"
 			:boards="boards"
+			:activeBoard="activeBoard"
 		/>
 		<div class="workspace-content">
 			<div v-if="isLoading" class="loading-img">
@@ -195,8 +196,10 @@ export default {
 					return group.tasks.find((task) => task.id === tasks[i].id);
 				});
 				let taskCopy = JSON.parse(JSON.stringify(tasks[i]));
+				// console.log(taskCopy);
 				taskCopy.id = '';
 				const details = { task: taskCopy, groupId: group.id };
+				// console.log(details);
 				await this.saveTask(details);
 			}
 			this.tasks = [];

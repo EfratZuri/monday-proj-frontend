@@ -368,16 +368,19 @@ function _getPriorityOptions() {
 // This IIFE functions for Dev purposes
 // It allows testing of real time updates (such as sockets) by listening to storage events
 // (async () => {
-// 	let boards = await storageService.query('board');
+//   let boards = await storageService.query('board');
 
-// 	// Dev Helper: Listens to when localStorage changes in OTHER browser
-// 	window.addEventListener('storage', async () => {
-// 		console.log('Storage updated');
-// 		const freshBoards = await storageService.query('board');
-// 		if (freshBoards.length === boards.length + 1) {
-// 			console.log('Board Added - localStorage updated from another browser');
-// 			socketService.emit(SOCKET_EVENT_REVIEW_ADDED, freshBoards[freshBoards.length - 1]);
-// 		}
-// 		boards = freshBoards;
-// 	});
+  // Dev Helper: Listens to when localStorage changes in OTHER browser
+//   window.addEventListener('storage', async () => {
+//     console.log('Storage updated');
+//     const freshBoards = await storageService.query('board');
+//     if (freshBoards.length === boards.length + 1) {
+//       console.log('Board Added - localStorage updated from another browser');
+//       socketService.emit(
+//         SOCKET_EVENT_REVIEW_ADDED,
+//         freshBoards[freshBoards.length - 1]
+//       );
+//     }
+//     boards = freshBoards;
+//   });
 // })();

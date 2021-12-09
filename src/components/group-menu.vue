@@ -86,7 +86,7 @@
     <div
       class="menu-item move-to-dropdown-clickable"
       @click="moveTo"
-      v-if="boards.length > 1"
+      v-if="boards.length > 1 && isShowMenu"
     >
       <div class="menu-icon-wrapper">
         <svg
@@ -167,6 +167,14 @@ export default {
     board: {
       type: Object,
     },
+    groupColor: {
+      type: String,
+    },
+  },
+  data() {
+    return {
+      isShowMenu: false,
+    };
   },
   created() {},
   computed: {},
