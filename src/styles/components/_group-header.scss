@@ -1,13 +1,70 @@
 .group-header {
-	line-height: 45px;
+	line-height: 40px;
 	width: 100%;
 	justify-content: space-between;
 	padding-left: 30px;
 	.grid-cells-row-component {
+		.column-header-inner {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 0 5px;
+			height: 100%;
+			& > * {
+				height: 100%;
+			}
+		}
 		.grid-cell-component-wrapper {
+			.title-wrapper {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				height: 100%;
+				position: relative;
+
+				span {
+					// line-height: 21px;
+					border: 1px dashed transparent;
+				}
+				&:hover {
+					span {
+						border: 1px dashed $primary-txt-clr;
+					}
+				}
+			}
 			&:hover {
 				background-color: $dark-background-clr;
 				border-radius: 2px 2px 0 0;
+			}
+			.column-header-element-wrapper {
+				display: flex;
+				flex: 1;
+				align-items: center;
+				max-height: 100%;
+				height: 100%;
+				span {
+					justify-self: flex-start;
+					width: 100%;
+					.drag-handle {
+						justify-self: flex-start;
+					}
+				}
+				.column-header-drag-wrapper {
+					height: 30px;
+					width: 30px;
+					.drag-handle {
+						color: $secondary-txt-clr;
+						cursor: move;
+						width: 16px;
+						// opacity: 0;
+						flex: 0 0 auto;
+						transition: margin-right 150ms, opacity 150ms;
+					}
+				}
 			}
 		}
 	}
