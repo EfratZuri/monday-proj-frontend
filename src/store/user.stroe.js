@@ -11,9 +11,11 @@ export const userStore = {
 	mutations: {
 		logout(state) {
 			state.user = null;
+			console.log('state.user', state.user);
 		},
-		login(state) {
-			state.user = userService.getLoggedinUser();
+		login(state, { user }) {
+			state.user = user;
+			console.log('state.user', state.user);
 		}
 	},
 	actions: {
@@ -29,7 +31,7 @@ export const userStore = {
 		async login(context, { user }) {
 			try {
 				await userService.login(user)
-				context.commit({ type: 'login', user });
+				context.commit({ type: 'login', user: userService.getLoggedinUser() });
 			} catch (error) {
 				console.log('error', error);
 				throw error;
