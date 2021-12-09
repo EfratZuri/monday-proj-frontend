@@ -61,12 +61,11 @@ export default {
   data() {
     return {
       isUserMenuOpen: false,
-      user: this.$store.getters.user,
     };
   },
   created() {},
   computed: {
-    loggedinUser() {
+    user() {
       return this.$store.getters.user;
     },
     letterToShow() {

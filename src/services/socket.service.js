@@ -9,7 +9,7 @@ const baseUrl = process.env.NODE_ENV === 'production' ? '' : '//localhost:3030';
 export const socketService = createSocketService();
 // export const socketService = createDummySocketService();
 
-window.socketService = socketService;
+// window.socketService = socketService;
 
 // var socketIsReady = false;
 // socketService.setup();

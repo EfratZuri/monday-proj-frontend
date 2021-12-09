@@ -100,10 +100,11 @@ export const boardStore = {
     },
     //----------TASK----------//
     saveTask(state, { boardId, groupId, task }) {
-      const board = state.boards.find((board) => board._id === boardId);
-      const group = board.groups.find(({ id }) => id === groupId);
+      console.log('state, { boardId, groupId, task }', state, { boardId, groupId, task });
+      let board = state.boards.find((board) => board._id === boardId);
+      let group = board.groups.find(({ id }) => id === groupId);
       const idx = group.tasks.findIndex(({ id }) => id === task.id);
-      if (task.title === 'New Task') group.tasks.unshift(task);
+      if (!task.id) group.tasks.unshift(task);
       else if (idx < 0) group.tasks.push(task);
       else group.tasks.splice(idx, 1, task);
     },
@@ -128,7 +129,8 @@ export const boardStore = {
     async loadBoards(context) {
       context.commit({ type: 'setLoading', isLoading: true });
       try {
-        const boards = await boardService.query();
+        let boards = await boardService.query();
+        boards = JSON.parse(JSON.stringify(boards));
         if (!context.state.activeBoard) {
           context.commit({ type: 'setActiveBoard', activeBoard: boards[0] });
         }
@@ -227,7 +229,7 @@ export const boardStore = {
         details.groupId = context.state.activeBoard.groups[0].id;
         details.task = { title: 'New Task' };
       }
-      //   details.task = { ...details.task };
+      details.task = JSON.parse(JSON.stringify(details.task));
       try {
         const newBoard = await boardService.saveTask(
           context.state.activeBoard._id,

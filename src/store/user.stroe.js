@@ -6,7 +6,7 @@ export const userStore = {
 		user: userService.getLoggedinUser(),
 	},
 	getters: {
-		user: () => userService.getLoggedinUser(),
+		user: (state) => state.user,
 	},
 	mutations: {
 		logout(state) {

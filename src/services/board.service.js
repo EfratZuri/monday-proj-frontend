@@ -1,5 +1,5 @@
 import { httpService } from './http.service';
-import { storageService } from './async-storage.service';
+// import { storageService } from './async-storage.service';
 import { utilService } from './util.service';
 import { socketService, SOCKET_EVENT_REVIEW_ADDED } from './socket.service';
 import moment from 'moment';
@@ -106,6 +106,7 @@ async function removeGroup(group, activeBoard) {
 /////////-----------------TASK-----------------/////////
 
 async function saveTask(boardId, task, groupId) {
+  console.log('boardId, task, groupId', boardId, task, groupId);
   let activity = getEmptyActivity();
   activity.txt = task.id ? 'Edit task' : 'Add task';
   activity.createdAt = moment().fromNow('LT');
@@ -366,20 +367,20 @@ function _getPriorityOptions() {
 // return axios.get('api/toy/?', {params: {id: 1223, balance:13}})
 // This IIFE functions for Dev purposes
 // It allows testing of real time updates (such as sockets) by listening to storage events
-(async () => {
-  let boards = await storageService.query('board');
+// (async () => {
+//   let boards = await storageService.query('board');
 
   // Dev Helper: Listens to when localStorage changes in OTHER browser
-  window.addEventListener('storage', async () => {
-    console.log('Storage updated');
-    const freshBoards = await storageService.query('board');
-    if (freshBoards.length === boards.length + 1) {
-      console.log('Board Added - localStorage updated from another browser');
-      socketService.emit(
-        SOCKET_EVENT_REVIEW_ADDED,
-        freshBoards[freshBoards.length - 1]
-      );
-    }
-    boards = freshBoards;
-  });
-})();
+//   window.addEventListener('storage', async () => {
+//     console.log('Storage updated');
+//     const freshBoards = await storageService.query('board');
+//     if (freshBoards.length === boards.length + 1) {
+//       console.log('Board Added - localStorage updated from another browser');
+//       socketService.emit(
+//         SOCKET_EVENT_REVIEW_ADDED,
+//         freshBoards[freshBoards.length - 1]
+//       );
+//     }
+//     boards = freshBoards;
+//   });
+// })();
