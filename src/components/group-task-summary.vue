@@ -4,7 +4,7 @@
 		<div v-if="cmps" class="grid-cells-row-component" :style="{ width: '992px' }">
 			<component v-for="(cmp, idx) in cmps" :key="idx" :is="cmp.type" :info="getCmpInfo(cmp)" />
 		</div>
-		<div class="space-item"></div>
+		<!-- <div class="space-item"></div> -->
 	</div>
 </template>
 <script>

@@ -36,7 +36,6 @@ export default {
 			immediate: true,
 		},
 	},
-	created() {},
 	methods: {
 		update(dueDate) {
 			this.$emit('update', { dueDate: +dueDate });

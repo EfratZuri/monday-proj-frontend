@@ -13,19 +13,30 @@
 						backgroundColor: defaultStyle.backgroundColor,
 					}"
 				></div>
-				<div
+				<custom-tool-tip
+					v-else
+					v-for="(key, value, idx) in statusPickerLabelCount"
+					:key="idx"
+					class="summary-cell"
+					:style="getStyle(key, value)"
+					:info="getToolTipInfo(getContentToolTip(key, value))"
+				>
+					<div class="summary-cell"></div>
+				</custom-tool-tip>
+				<!-- <div
 					v-else
 					class="summary-cell"
 					v-for="(key, value, idx) in statusPickerLabelCount"
 					:key="idx"
 					:style="getStyle(key, value)"
-				></div>
+				></div> -->
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import customToolTip from '../components/custom-components/custom-tool-tip';
 export default {
 	name: 'statusSummary',
 	props: ['info'],
@@ -64,7 +75,16 @@ export default {
 			else backgroundColor = this.opts.find(({ name }) => name === value)?.style?.backgroundColor;
 			return { width, backgroundColor };
 		},
+		getContentToolTip(key, value) {
+			console.log(key, value);
+			const percentage = (key * 100) / this.taskLen;
+			return `${value} ${key}/${this.taskLen} ${percentage}%`;
+		},
+		getToolTipInfo(content = '', placement = 'top') {
+			return { orientation: 'top', content, placement };
+		},
 	},
 	computed: {},
+	components: { customToolTip },
 };
 </script>

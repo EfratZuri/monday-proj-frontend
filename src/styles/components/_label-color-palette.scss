@@ -4,12 +4,12 @@ $labels-clrs: #ff158a, #bb3354, #7f5347, #ffcb00, #9cd326, #037f4c, #579bfc, #66
 
 .label-color-palette-container {
 	height: 100%;
-	height: auto;
+	min-height: auto;
 	.label-color-palette-btns {
 		height: 100%;
 		height: auto;
 		overflow: overlay;
-		position: absolute;
+		// position: absolute;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;

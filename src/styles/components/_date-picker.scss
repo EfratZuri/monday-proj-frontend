@@ -9,7 +9,7 @@
 			bottom: 4px;
 			left: 5px;
 			border: 1px dashed $primary-txt-clr;
-			z-index: 100;
+			// z-index: 100;
 		}
 	}
 	input {
@@ -17,4 +17,21 @@
 		cursor: pointer;
 	}
 	cursor: pointer;
+}
+.col-cell {
+	.date-box {
+		position: relative;
+		.date-txt-box {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			// z-index: 1;
+			// background-color: $primary-background-clr;
+		}
+	}
 }
