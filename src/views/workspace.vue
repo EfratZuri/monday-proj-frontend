@@ -7,6 +7,7 @@
       @removeBoard="removeBoard"
       @saveBoard="saveBoard"
       :boards="boards"
+      :activeBoard="activeBoard"
     />
     <div class="workspace-content">
       <div v-if="isLoading" class="loading-img">
