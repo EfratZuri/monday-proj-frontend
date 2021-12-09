@@ -13,7 +13,10 @@
 		color: $primary-txt-clr;
 		.control-content-separator {
 			margin: 0 20px;
-			color: $primary-background-hover-clr;
+			// color: $primary-background-hover-clr;
+			border-top-width: 1px;
+			border-top-style: solid;
+			border-top-color: rgb(230, 233, 239);
 		}
 		.btn-open-control {
 			position: absolute;

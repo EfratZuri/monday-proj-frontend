@@ -21,6 +21,7 @@
           v-if="showGroupMenu"
           :boards="boards"
           :board="board"
+          :groupColor="group.style.clr"
           @addGroup="addGroup"
           @toggleTasks="toggleTasks"
           @toggleAllTasks="toggleAllTasks"

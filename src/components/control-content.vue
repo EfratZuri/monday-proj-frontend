@@ -120,6 +120,7 @@
 
         <control-content-board-list
           :boards="boards"
+          :activeBoard="activeBoard"
           @showBoard="showBoard"
           @removeBoard="removeBoard"
           @saveBoard="saveBoard"
@@ -138,6 +139,9 @@ export default {
       type: Array,
       required: true,
     },
+    activeBoard: {
+      type: Object,
+    },
   },
   data() {
     return {
@@ -145,7 +149,6 @@ export default {
       isShowDropdownIcon: true,
     };
   },
-  created() {},
   methods: {
     toggleOpen() {
       this.$emit('toggleOpen');

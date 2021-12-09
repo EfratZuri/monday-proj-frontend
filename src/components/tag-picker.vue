@@ -16,6 +16,9 @@
 						{{ tagForDisplay(tag.txt) }}
 					</span>
 				</div>
+				<div v-if="isMoreThan3" class="tags-counter-component">
+					<span class="tags-counter-txt">+{{ tagsLeftCount }}</span>
+				</div>
 				<button class="btn btn-icon btn-add">
 					<!-- <ion-icon name="plus-circle" /> -->
 					<svg
@@ -72,16 +75,20 @@ export default {
 			selectedCopyTrimed: null,
 			showOptions: false,
 			tagToEdit: { txt: '', style: { color: 'rgb(51,52,56)' } },
+			isMoreThan3: false,
+			tagsLeftCount: 0,
 		};
 	},
 	watch: {
 		info: {
 			handler() {
 				this.selectedCopy = JSON.parse(JSON.stringify(this.info.selected));
-				console.log(this.info);
-				console.log(this.selectedCopy);
 				let deleteCount = Math.min(3, this.selectedCopy.length);
-				if (this.selectedCopy.length > 3) deleteCount = 2;
+				if (this.selectedCopy.length > 3) {
+					deleteCount = 2;
+					this.isMoreThan3 = true;
+					this.tagsLeftCount = this.selectedCopy.length - deleteCount;
+				}
 				this.selectedCopyTrimed = this.selectedCopy.slice(0, deleteCount);
 				const clrs = this.$store.getters.clrs;
 				this.tagToEdit.style.color = clrs[utilService.getRandomInt(0, clrs.length - 1)];

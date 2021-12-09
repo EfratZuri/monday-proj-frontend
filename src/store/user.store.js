@@ -6,7 +6,7 @@ export const userStore = {
 		user: userService.getLoggedinUser(),
 	},
 	getters: {
-		user: () => userService.getLoggedinUser(),
+		user: (state) => state.user,
 	},
 	mutations: {
 		logout(state) {
@@ -16,12 +16,12 @@ export const userStore = {
 		login(state, { user }) {
 			state.user = user;
 			console.log('state.user', state.user);
-		}
+		},
 	},
 	actions: {
 		async logout(context) {
 			try {
-				const loggedOut = await userService.logout()
+				const loggedOut = await userService.logout();
 				context.commit({ type: 'logout' });
 				return loggedOut;
 			} catch (error) {
@@ -30,14 +30,13 @@ export const userStore = {
 		},
 		async login(context, { user }) {
 			try {
-				await userService.login(user)
+				await userService.login(user);
 				context.commit({ type: 'login', user: userService.getLoggedinUser() });
 			} catch (error) {
 				console.log('error', error);
 				throw error;
 			}
-
-		}
+		},
 		// async addMention(context, { user }) {
 		// },
 	},
