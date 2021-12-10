@@ -1,3 +1,26 @@
+:root {
+	--primary-txt-clr: #323338;
+	--lightest-txt-clr: #fff;
+	--secondary-txt-clr: #676879;
+	--primary-txt-clr: #323338;
+	--primary-hover-clr: #0060b9;
+	--primary-clr: #0073ea;
+
+	--primary-selected-color: #cce5ff;
+	// Background colors
+	--dark-background-clr: #f5f6f8;
+	--main-nav-background-clr: #292f4c;
+	--primary-background-clr: #fff;
+	// DARK MODE
+	--primary-background-dark-mode-clr: #292f4c;
+	--primary-background-light-dark-mode-clr: #181b34;
+	--primary-txt-clr-dark-mode: #d5d8df;
+	--primary-background-hover-clr: #e6e9ef;
+	--primary-border-clr-light: #e6e9ef;
+
+	--primary-light-gray-border: 1px solid var(--primary-background-hover-clr);
+}
+
 * {
 	padding: 0;
 	margin: 0;
@@ -15,10 +38,10 @@ body {
 	background-size: 400px;
 	line-height: 1.5;
 	overflow: auto;
-	background-color: #fff;
+	background-color: var(--primary-background-clr);
 	height: 100vh;
 	font-family: 'Roboto', sans-serif;
-	color: $primary-txt-clr;
+	color: var(--primary-txt-clr);
 	// background-attachment: fixed;
 }
 
@@ -83,7 +106,7 @@ input {
 	}
 	&-black {
 		background-color: #111;
-		color: #fff;
+		color: var(--lightest-txt-clr);
 		padding: 10px 20px;
 		border-radius: 3px;
 		font-weight: 500;
@@ -93,14 +116,14 @@ input {
 		}
 	}
 	&-white {
-		background-color: #fff;
+		background-color: var(--primary-background-clr);
 		padding: 10px 20px;
 		color: #111;
 		font-weight: 500;
 		border: 1px solid rgba(0, 0, 0, 0.3);
 	}
 	&-underline {
-		color: #0073e6;
+		color: var(--primary-clr);
 		border-bottom: 1px solid currentColor;
 	}
 	&-icon {
@@ -109,8 +132,9 @@ input {
 		background-color: transparent;
 	}
 	&-blue {
-		background-color: #0073ea;
-		color: #fff;
+		background-color: var(--primary-clr);
+		// var(--primary-clr)
+		color: var(--lightest-txt-clr);
 		border-radius: 4px;
 		&:hover {
 			background-color: $primary-hover-clr;
@@ -129,7 +153,7 @@ input {
 	}
 	&-blue-round {
 		background-color: #4353ff;
-		color: #fff;
+		color: var(--lightest-txt-clr);
 		padding: 16px 32px;
 		font-size: 18px;
 		border-radius: 40px;
@@ -148,7 +172,7 @@ input {
 		border-radius: 50%;
 	}
 	&-blue-regular {
-		color: $primary-clr;
+		color: var(--primary-clr);
 		font-size: 14px;
 		font-weight: 400;
 		padding: 4px 2px;
@@ -162,7 +186,8 @@ input {
 
 .editable-input--wrapper {
 	width: 100%;
-	background-color: #fff;
+	background-color: var(--primary-background-clr);
+
 	display: inline-block;
 	min-width: 0;
 	max-height: 100%;
@@ -171,7 +196,7 @@ input {
 	outline: none;
 	border-radius: 4px;
 	border: 1px solid #0085ff;
-	border-color: #0073ea;
+	border-color: var(--primary-clr);
 	text-align: left;
 	vertical-align: top;
 }
@@ -183,7 +208,7 @@ input {
 	font-size: 32px;
 	letter-spacing: -1px;
 	line-height: 52px;
-	color: #323338;
+	color: var(--primary-txt-clr);
 }
 
 .ds-text-component {
@@ -226,13 +251,13 @@ input {
 }
 .space-item {
 	flex: 0 0 30px;
-	background-color: $dark-background-clr;
-	border-bottom: 1px solid #e6e9ef;
+	background-color: var(--dark-background-clr);
+	border-bottom: 1px solid var(--primary-background-clr);
 	height: 100%;
 }
 
 .indicator {
-	background-color: #e6e9ef;
+	background-color: var(--primary-background-clr);
 	position: relative;
 	min-width: 8px;
 	height: 100%;

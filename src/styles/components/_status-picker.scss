@@ -1,6 +1,6 @@
 .status-picker-txt,
 .priority-picker-txt {
-	color: #fff;
+	color: var(--lightest-txt-clr);
 	font-size: 12px;
 	font-weight: 400;
 	// position: relative;
@@ -34,7 +34,7 @@
 	border-style: solid;
 	background: inherit;
 	display: block;
-	border-color: rgba(0, 0, 0, 0.2) #fff;
+	border-color: rgba(0, 0, 0, 0.2) var(--lightest-txt-clr);
 	transition: border-width 0.35s ease-in-out;
 }
 
@@ -44,16 +44,16 @@
 	}
 }
 .picker-component {
-	background-color: $primary-background-clr;
+	background-color: var(--primary-background-clr);
 	.dropdown-modal {
-		background-color: $primary-background-clr;
+		background-color: var(--primary-background-clr);
 		border-radius: 4px;
 		font-size: 13px;
 		// pointer-events: all;
 		// height: 100%;
 		width: 144px;
 		transition: width 0.1s;
-		color: #323338;
+		color: var(--primary-txt-clr);
 		box-shadow: 0 8px 16px 0px rgb(0 0 0 / 32%);
 		&::before {
 			content: ' ';
@@ -80,7 +80,7 @@
 			}
 			.picker-dropdown-footer {
 				border-top: 1px solid rgb(197, 199, 208);
-				color: $primary-clr;
+				color: var(--primary-clr);
 				font-weight: 300;
 				justify-content: center;
 				height: 40px;
@@ -91,8 +91,8 @@
 					font-weight: 300;
 					background-color: transparent;
 					&:hover {
-						background-color: $primary-clr;
-						color: #fff;
+						background-color: var(--primary-clr);
+						color: var(--lightest-txt-clr);
 					}
 				}
 			}
@@ -113,7 +113,7 @@
 				cursor: move;
 				flex: 0 0 12px;
 				padding: 1px 2px 0 0;
-				color: #676879;
+				color: var(--secondary-txt-clr);
 				opacity: 0;
 			}
 			.btn-delete-status {
@@ -139,7 +139,7 @@
 					width: 88px;
 					border-radius: 0 2px 2px 0;
 					transition: background-color 0.1s;
-					background-color: #f5f6f8;
+					background-color: var(--dark-background-clr);
 					outline: none;
 					font-size: 0.75rem;
 					cursor: text;
@@ -172,7 +172,7 @@
 	margin-bottom: 8px;
 	border-radius: 2px;
 
-	color: #fff;
+	color: var(--lightest-txt-clr);
 	font-weight: 400;
 	cursor: pointer;
 	transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
