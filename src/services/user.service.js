@@ -2,12 +2,12 @@
 // signup({ username: 'muki', password: 'muki1', fullname: 'Muki Noya', score: 22 })
 // login({ username: 'muki', password: 'muki1' })
 
-import { storageService } from './async-storage.service'
+// import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
 // import { socketService } from './socket.service'
 // SOCKET_EVENT_USER_UPDATED
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
-var gWatchedUser = null;
+// var gWatchedUser = null;
 
 export const userService = {
     login,
@@ -26,7 +26,7 @@ export const userService = {
 async function getUsers() {
     // return await storageService.query('user')
     try {
-        return httpService.get(`user`)
+        return await httpService.get(`user`)
     } catch (error) {
         console.log('error', error);
     }
@@ -36,7 +36,7 @@ async function getById(userId) {
     // const user = await storageService.get('user', userId)
     try {
         const user = await httpService.get(`user/${userId}`)
-        gWatchedUser = user;
+        // gWatchedUser = user;
         return user;
     } catch (error) {
         console.log('error', error);
@@ -119,25 +119,25 @@ function getLoggedinUser() {
 //     await userService.signup({ fullname: 'Muki G', username: 'muki', password: '123' })
 // })();
 
-// This IIFE functions for Dev purposes 
+// This IIFE functions for Dev purposes
 // It allows testing of real time updates (such as sockets) by listening to storage events
-(async () => {
-    // var user = getLoggedinUser()
-    // Dev Helper: Listens to when localStorage changes in OTHER browser
+// (async () => {
+//     // var user = getLoggedinUser()
+//     // Dev Helper: Listens to when localStorage changes in OTHER browser
 
-    // Here we are listening to changes for the watched user (comming from other browsers)
-    window.addEventListener('storage', async () => {
-        if (!gWatchedUser) return;
-        const freshUsers = await storageService.query('user')
-        const watchedUser = freshUsers.find(u => u._id === gWatchedUser._id)
-        if (!watchedUser) return;
-        // if (gWatchedUser.score !== watchedUser.score) {
-        //     console.log('Watched user score changed - localStorage updated from another browser')
-        //     socketService.emit(SOCKET_EVENT_USER_UPDATED, watchedUser)
-        // }
-        gWatchedUser = watchedUser
-    })
-})();
+//     // Here we are listening to changes for the watched user (comming from other browsers)
+//     window.addEventListener('storage', async () => {
+//         if (!gWatchedUser) return;
+//         const freshUsers = await storageService.query('user')
+//         const watchedUser = freshUsers.find(u => u._id === gWatchedUser._id)
+//         if (!watchedUser) return;
+//         // if (gWatchedUser.score !== watchedUser.score) {
+//         //     console.log('Watched user score changed - localStorage updated from another browser')
+//         //     socketService.emit(SOCKET_EVENT_USER_UPDATED, watchedUser)
+//         // }
+//         gWatchedUser = watchedUser
+//     })
+// })();
 
 // function _getEmptyUser() {
 //     return {

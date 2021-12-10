@@ -18,7 +18,11 @@
     <button class="btn btn-icon" to="/boards" active-class="active-link">
       <font-awesome-icon icon="calendar-check" />
     </button>
-    <div class="surface-control-users" @click="toggleUserMenu">
+    <div
+      class="surface-control-users"
+      :style="{ backgroundColor: randomColor }"
+      @click="toggleUserMenu"
+    >
       {{ letterToShow }}
       <div
         v-if="isUserMenuOpen"
@@ -56,6 +60,7 @@
 </template>
 
 <script>
+import { utilService } from '../services/util.service.js';
 export default {
   name: 'surfaceControl',
   data() {
@@ -78,6 +83,17 @@ export default {
       return this.user
         ? '<ion-icon name="log-out-outline"></ion-icon>'
         : '<ion-icon name="log-in-outline"></ion-icon>';
+    },
+    randomColor() {
+      console.log(
+        'example',
+        this.$store.groupClrs.clrs[
+          utilService.getRandomInt(0, this.$store.groupClrs.clrs.length)
+        ]
+      );
+      return this.$store.groupClrs.clrs[
+        utilService.getRandomInt(0, this.$store.groupClrs.clrs.length)
+      ];
     },
   },
   methods: {
