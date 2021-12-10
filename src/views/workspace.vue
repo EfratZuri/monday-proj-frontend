@@ -45,7 +45,7 @@
         />
         <confirm-modal
           :modal="modal"
-          v-if="modal"
+          v-if="modal.isOpen"
           @closeModal="modal = null"
           @deleteAction="deleteAction"
         />
@@ -94,7 +94,7 @@ export default {
       tasks: [],
       msg: '',
       isTaskSelected: false,
-      modal: null,
+      modal: { txt: '', isOpen: true },
     };
   },
   async created() {
