@@ -54,6 +54,7 @@
 	padding: 0 10px 0 0;
 	text-align: left;
 	background-color: var(--dark-background-clr);
+	border-bottom-color: var(--layout-border-color);
 
 	&.selected {
 		background-color: var(--primary-selected-color);

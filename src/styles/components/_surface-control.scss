@@ -1,19 +1,19 @@
 .surface-control {
 	position: fixed;
-	background-color: $main-nav-background-clr;
-	color: #fff;
+	background-color: var(--main-nav-background-clr);
+	color: var(--primary-background-clr);
 	top: 0;
 	left: 0;
 	@include for-mobile-layout {
-		max-height: $main-nav-width;
+		max-height: var(--main-nav-width);
 		width: 100%;
 	}
 	@include for-normal-layout {
-		min-width: $main-nav-width;
+		min-width: var(--main-nav-width);
 		height: 100%;
 	}
 	// @include for-width-layout {
-	// min-width: $main-nav-width;
+	// min-width: var(--main-nav-width);
 	// height: 100%;
 	// }
 
@@ -41,7 +41,7 @@
 	& .surface-control-users {
 		height: 44px;
 		width: 44px;
-		border: 2px solid #fff;
+		border: 2px solid var(--primary-background-clr);
 		background-color: red;
 		position: relative;
 		display: flex;
@@ -61,8 +61,8 @@
 			display: flex;
 			flex-direction: column;
 			border-radius: 8px;
-			background-color: #fff;
-			color: #323338;
+			background-color: var(--primary-background-clr);
+			color: var(--primary-txt-clr);
 			box-shadow: 0 4px 17px 6px rgb(0 0 0 / 10%);
 			& .surface-control-user-menu-item {
 				line-height: 24px;
@@ -70,7 +70,7 @@
 				align-items: center;
 				padding: 4px 8px;
 				cursor: pointer;
-				color: #323338;
+				color: var(--primary-txt-clr);
 				font-weight: 400;
 				font-size: 14px;
 				letter-spacing: 0px;
@@ -78,7 +78,7 @@
 				border-radius: 8px;
 				text-decoration: none;
 				&:hover {
-					background-color: #e6e9ef;
+					background-color: var(--primary-background-hover-clr);
 				}
 				& .menu-icon-wrapper {
 					margin-inline-end: 8px;

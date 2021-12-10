@@ -4,9 +4,9 @@ header.toy-details-header {
 
 .in-stock-label {
 	display: inline-block;
-	padding: $padding-def;
+	padding: var(--padding-def);
 	&.in-stock {
-		color: #fff;
+		color: var(--primary-background-clr);
 		background-color: green;
 	}
 }

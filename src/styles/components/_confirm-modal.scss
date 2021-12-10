@@ -23,7 +23,7 @@
 		transition: transform 0.1s ease-out, -webkit-transform 0.1s ease-out;
 
 		.modal-content {
-			background-color: $primary-background-clr;
+			background-color: var(--primary-background-clr);
 			border: 1px solid rgba(0, 0, 0, 0.2);
 			border-radius: 6px;
 			outline: none;
@@ -36,7 +36,7 @@
 				overflow-y: auto;
 				position: relative;
 				padding: 20px;
-				color: $primary-txt-clr;
+				color: var(--primary-txt-clr);
 
 				.btn-close-modal {
 					margin-top: -10px;
@@ -51,7 +51,7 @@
 					font-weight: bold;
 					line-height: 1;
 					color: #000;
-					text-shadow: 0 1px 0 #fff;
+					text-shadow: 0 1px 0 var(--primary-background-clr);
 					filter: alpha(opacity=20);
 				}
 
@@ -66,7 +66,7 @@
 			.modal-footer {
 				margin-top: 0;
 				border-top: 1px solid;
-				border-top-color: #e6e9ef;
+				border-top-color: var(--primary-background-hover-clr);
 				padding: 19px 20px 20px;
 				text-align: right;
 
@@ -98,7 +98,7 @@
 					margin-bottom: 0;
 					margin-left: 5px;
 					outline: none;
-					color: $lightest-txt-clr;
+					color: var(--lightest-txt-clr);
 					background-color: #0085ff;
 					border-color: #0085ff;
 					box-shadow: none;

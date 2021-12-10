@@ -1,25 +1,26 @@
 .board-header-container {
-  padding: 16px 0;
+	padding: 16px 0;
+	background-color: var(--primary-background-clr);
 }
 .monday-board-subsets-tabs {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  margin-right: 48px;
-  .monday-board-subset-item {
-    padding-bottom: 4px;
-    position: relative;
-    .btn {
-      max-width: 180px;
-      padding: 7px 16px;
-    }
-  }
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	margin-right: 48px;
+	.monday-board-subset-item {
+		padding-bottom: 4px;
+		position: relative;
+		.btn {
+			max-width: 180px;
+			padding: 7px 16px;
+		}
+	}
 }
 
 .board-subset-item__active-strip {
-  height: 2px;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  background-color: #0073ea;
+	height: 2px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	background-color: var(--primary-clr);
 }
