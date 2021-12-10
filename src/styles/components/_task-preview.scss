@@ -8,8 +8,6 @@
 	display: block;
 	width: 100%;
 	height: 100%;
-	// max-width: 678px;
-	// flex-basis: 678px;
 	position: relative;
 }
 .col-cell {
@@ -19,10 +17,7 @@
 
 	max-width: 100%;
 	height: 100%;
-	// height: 35px;
-	// flex-basis: 140px;
 	overflow: hidden;
-	// text-overflow: ellipsis;
 	white-space: nowrap;
 	text-align: center;
 	font-size: 13px;
@@ -49,15 +44,11 @@
 }
 
 .grid-cells-row-component-wrapper {
-	// max-width: 678px;
-	// flex-basis: 678px;
 	height: 100%;
 }
 
 .name-cell {
 	width: 100%;
-	// flex: 1 0 308px;
-	// flex-basis: 40%;
 	will-change: transform;
 	height: 100%;
 	padding: 0 10px 0 0;
@@ -71,7 +62,7 @@
 		transition: all 0.3;
 		font-size: 13px;
 	}
-	&:hover > * {
+	&:hover:not(.selected) > * {
 		color: $primary-hover-clr;
 	}
 	.btn-edit {

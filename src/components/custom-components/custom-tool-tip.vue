@@ -13,8 +13,6 @@
 export default {
 	name: 'customToolTip',
 	props: ['info'],
-	created() {
-		console.log(this.info);
-	},
+	created() {},
 };
 </script>

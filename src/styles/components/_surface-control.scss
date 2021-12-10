@@ -1,82 +1,84 @@
 .surface-control {
-  position: fixed;
-  min-width: $main-nav-width;
-  height: 100%;
-  background-color: $main-nav-background-clr;
-  color: #fff;
-  // padding: 10px 17px;
-  ion-icon {
-    font-size: 20px;
-  }
-  a,
-  .btn {
-    height: 36px;
-    width: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    position: relative;
-    cursor: pointer;
-    outline: none;
-    &.active-link {
-      background-color: rgba(255, 255, 255, 0.3);
-    }
-    &:not(.active-link):hover {
-      background-color: rgba(0, 0, 0, 0.6);
-    }
-  }
-  & .surface-control-users {
-    height: 44px;
-    width: 44px;
-    border: 2px solid #fff;
-    background-color: red;
-    position: relative;
-    display: flex;
-    border-radius: 50%;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    margin-block-start: auto;
-    margin-block-end: 15px;
-    & .surface-control-user-menu {
-      z-index: 999;
-      position: absolute;
-      left: 120%;
-      bottom: 70%;
-      box-shadow: 0 4px 17px 6px rgb(0 0 0 / 10%);
-      display: flex;
-      flex-direction: column;
-      border-radius: 8px;
-      background-color: #fff;
-      color: #323338;
-      box-shadow: 0 4px 17px 6px rgb(0 0 0 / 10%);
-      & .surface-control-user-menu-item {
-        line-height: 24px;
-        display: flex;
-        align-items: center;
-        padding: 4px 8px;
-        cursor: pointer;
-        color: #323338;
-        font-weight: 400;
-        font-size: 14px;
-        letter-spacing: 0px;
-        white-space: nowrap;
-        border-radius: 8px;
-        text-decoration: none;
-        &:hover {
-          background-color: #e6e9ef;
-        }
-        & .menu-icon-wrapper {
-          margin-inline-end: 8px;
-          display: flex;
-        }
-      }
-    }
-  }
+	position: fixed;
+	min-width: $main-nav-width;
+	height: 100%;
+	background-color: $main-nav-background-clr;
+	color: #fff;
+	// padding: 10px 17px;
+	top: 0;
+	left: 0;
+	ion-icon {
+		font-size: 20px;
+	}
+	a,
+	.btn {
+		height: 36px;
+		width: 36px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 8px;
+		position: relative;
+		cursor: pointer;
+		outline: none;
+		&.active-link {
+			background-color: rgba(255, 255, 255, 0.3);
+		}
+		&:not(.active-link):hover {
+			background-color: rgba(0, 0, 0, 0.6);
+		}
+	}
+	& .surface-control-users {
+		height: 44px;
+		width: 44px;
+		border: 2px solid #fff;
+		background-color: red;
+		position: relative;
+		display: flex;
+		border-radius: 50%;
+		cursor: pointer;
+		align-items: center;
+		justify-content: center;
+		font-size: 18px;
+		margin-block-start: auto;
+		margin-block-end: 15px;
+		& .surface-control-user-menu {
+			z-index: 999;
+			position: absolute;
+			left: 120%;
+			bottom: 70%;
+			box-shadow: 0 4px 17px 6px rgb(0 0 0 / 10%);
+			display: flex;
+			flex-direction: column;
+			border-radius: 8px;
+			background-color: #fff;
+			color: #323338;
+			box-shadow: 0 4px 17px 6px rgb(0 0 0 / 10%);
+			& .surface-control-user-menu-item {
+				line-height: 24px;
+				display: flex;
+				align-items: center;
+				padding: 4px 8px;
+				cursor: pointer;
+				color: #323338;
+				font-weight: 400;
+				font-size: 14px;
+				letter-spacing: 0px;
+				white-space: nowrap;
+				border-radius: 8px;
+				text-decoration: none;
+				&:hover {
+					background-color: #e6e9ef;
+				}
+				& .menu-icon-wrapper {
+					margin-inline-end: 8px;
+					display: flex;
+				}
+			}
+		}
+	}
 }
 .monday-logo-navbar {
-  width: 40px;
-  height: 40px;
+	width: 40px;
+	height: 40px;
 }

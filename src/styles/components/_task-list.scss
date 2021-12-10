@@ -10,17 +10,14 @@
 			height: 35px;
 			width: 100%;
 			background-color: $primary-background-clr;
-			// background-color: #f5f6f8;
-
 			cursor: pointer;
 			&:hover {
-				// background-color: $primary-background-hover-clr;
-				.status-picker {
+				.status-picker-txt {
 					opacity: 0.8;
 				}
 			}
 			&:hover:not(.open) {
-				.name-cell,
+				.name-cell:not(.selected),
 				.grid-cell-component-wrapper > .col-cell {
 					background-color: #eff0f3;
 					background-color: $primary-background-hover-clr;

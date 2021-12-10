@@ -1,5 +1,7 @@
 <template>
 	<div class="workspace" :class="{ 'control-open': showControlContent }">
+		<surface-control />
+
 		<control-content
 			@toggleOpen="toggleOpenControl"
 			@add="addBoard"
@@ -43,35 +45,14 @@
 					@deleteTaskSelected="deleteTaskSelected"
 					@duplicateTaskSelected="duplicateTaskSelected"
 				/>
-				<!-- <task-update
-			<div v-else>
-				<boardHeader
-					:activeBoard="activeBoard"
-					@addTask="saveTask"
-					@saveBoard="saveBoard"
-					@addGroup="addGroup"
-				/>
-				<groupList
-					:board="activeBoard"
-					:boards="boards"
-					@addGroup="addGroup"
-					@removeGroup="removeGroup"
-					@saveTask="saveTask"
-					@deleteTask="deleteTask"
-					@saveGroup="saveGroup"
-					@saveComment="saveComment"
-				/>
-					v-if="showPostPanel"
-					:task="task"
-					@closePanel="togglePostPanel"
-					@saveUpdate="saveUpdate"
-				/> -->
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import surfaceControl from '@/components/surface-control.vue';
+
 import controlContent from '@/components/control-content';
 import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
@@ -224,6 +205,7 @@ export default {
 		controlContent,
 		selectedTask,
 		userMsg,
+		surfaceControl,
 	},
 };
 </script>
