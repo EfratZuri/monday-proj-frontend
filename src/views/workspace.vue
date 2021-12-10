@@ -26,10 +26,10 @@
           :board="activeBoard"
           :boards="boards"
           @addGroup="addGroup"
-          @removeGroup="removeGroup"
+          @removeGroup="openModal"
           @moveToBoard="moveGroupToBoard"
           @saveTask="saveTask"
-          @deleteTask="deleteTask"
+          @deleteTask="openModal"
           @saveGroup="saveGroup"
           @saveComment="saveComment"
           @setSelected="setSelected"
@@ -46,8 +46,8 @@
         />
         <confirm-modal
           :modal="modal"
-          v-if="modal"
-          @closeModal="modal = null"
+          v-if="modal.isOpen"
+          @closeModal="modal.isOpen = false"
           @deleteAction="deleteAction"
         />
         <!-- <task-update
@@ -94,9 +94,12 @@ export default {
     return {
       showControlContent: false,
       tasks: [],
+      task: null,
+      group: null,
+      groupId: null,
       msg: '',
       isTaskSelected: false,
-      modal: { txt: '', isOpen: true },
+      modal: { txt: '', isOpen: false },
     };
   },
   async created() {
@@ -224,11 +227,27 @@ export default {
         await this.saveTask(details);
       }
       this.tasks = [];
-      console.log(tasks);
+    },
+
+    openModal(details, groupId = null) {
+      this.modal.isOpen = true;
+      if (details.tasks) {
+        this.modal.txt = 'Delete this group?';
+        this.group = details;
+      } else {
+        this.modal.txt = 'Delete this task?';
+        this.task = details;
+        this.groupId = groupId;
+      }
     },
 
     deleteAction() {
-      console.log('hey from modal');
+      if (this.group) this.removeGroup(this.group);
+      else this.deleteTask(this.task, this.groupId);
+      this.task = null;
+      this.groupId = null;
+      this.group = null;
+      this.modal.isOpen = false;
     },
   },
 
