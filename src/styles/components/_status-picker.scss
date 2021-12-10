@@ -33,9 +33,8 @@
 	border-width: 0;
 	border-style: solid;
 	background: inherit;
-	filter: brightness(75%);
 	display: block;
-	border-color: transparent white;
+	border-color: rgba(0, 0, 0, 0.2) #fff;
 	transition: border-width 0.35s ease-in-out;
 }
 
