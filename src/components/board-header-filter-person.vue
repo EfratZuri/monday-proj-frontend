@@ -1,6 +1,6 @@
 <template>
-	<section class="person-filter-wrapper flex">
-		<!-- <div class="member-icon flex align-center">
+  <section class="person-filter-wrapper flex">
+    <!-- <div class="member-icon flex align-center">
 			<img
 				src="@/assets/dapulse-person-column.svg"
 				alt=""
@@ -8,15 +8,15 @@
 				class="person-bullet-image person-bullet-component"
 			/>
 		</div> -->
-		<div class="person-icon-wrapper">
-			<ion-icon name="person-circle-outline"></ion-icon>
-		</div>
-		<spasn class="person-span" v-tooltip.top="'Filter by person'">Person</spasn>
-	</section>
+    <div class="person-icon-wrapper">
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </div>
+    <span class="person-span" v-tooltip.top="'Filter by person'">Person</span>
+  </section>
 </template>
 
 <script>
 export default {
-	components: {},
+  components: {},
 };
 </script>

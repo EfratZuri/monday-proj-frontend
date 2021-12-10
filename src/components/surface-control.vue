@@ -20,7 +20,7 @@
     </button>
     <div
       class="surface-control-users"
-      :style="{ backgroundColor: randomColor }"
+      :style="{ backgroundColor: 'red' }"
       @click="toggleUserMenu"
     >
       {{ letterToShow }}
@@ -68,7 +68,14 @@ export default {
       isUserMenuOpen: false,
     };
   },
-  created() {},
+  created() {
+    console.log(
+      'example',
+      this.$store.getters.clrs[
+        utilService.getRandomInt(0, this.$store.getters.clrs.length)
+      ]
+    );
+  },
   computed: {
     user() {
       return this.$store.getters.user;
@@ -85,14 +92,8 @@ export default {
         : '<ion-icon name="log-in-outline"></ion-icon>';
     },
     randomColor() {
-      console.log(
-        'example',
-        this.$store.groupClrs.clrs[
-          utilService.getRandomInt(0, this.$store.groupClrs.clrs.length)
-        ]
-      );
-      return this.$store.groupClrs.clrs[
-        utilService.getRandomInt(0, this.$store.groupClrs.clrs.length)
+      return this.$store.getters.clrs.length[
+        utilService.getRandomInt(0, this.$store.getters.clrs.length)
       ];
     },
   },
