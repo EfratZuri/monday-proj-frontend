@@ -2,29 +2,50 @@
   <section class="board-header-main flex">
     <div class="board-header-main-top flex space-between align-center">
       <div class="board-title flex align-center">
-        <h1 v-if="!isEditName" @click="editName" class="element-type-h1">
-          {{ boardToEdit.title }}
-        </h1>
-        <input
-          v-else
-          type="text"
-          value="boardToEdit.title"
-          ref="titleInput"
-          v-model="boardToEdit.title"
-          @keyup.enter="$event.target.blur()"
-          @blur="editName"
-        />
-        <button
-          class="btn board-header-title-icon"
-          @click="isShowDescription = !isShowDescription"
-          v-html="descriptionTogglBtn"
-        ></button>
-        <button
-          class="btn board-header-title-icon"
-          @click="toggleFavorite"
-          v-html="starToggle"
-          :class="{ 'starred-board': this.boardToEdit.isFavorite }"
-        ></button>
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="Click to edit"
+          placement="bottom"
+        >
+          <h1 v-if="!isEditName" @click="editName" class="element-type-h1">
+            {{ boardToEdit.title }}
+          </h1>
+          <input
+            v-else
+            type="text"
+            value="boardToEdit.title"
+            ref="titleInput"
+            v-model="boardToEdit.title"
+            @keyup.enter="$event.target.blur()"
+            @blur="editName"
+          />
+        </el-tooltip>
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="Hide board description"
+          placement="bottom"
+        >
+          <button
+            class="btn board-header-title-icon"
+            @click="isShowDescription = !isShowDescription"
+            v-html="descriptionTogglBtn"
+          ></button>
+        </el-tooltip>
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="Add to favorites"
+          placement="bottom"
+        >
+          <button
+            class="btn board-header-title-icon"
+            @click="toggleFavorite"
+            v-html="starToggle"
+            :class="{ 'starred-board': this.boardToEdit.isFavorite }"
+          ></button>
+        </el-tooltip>
       </div>
       <div class="flex align-center gap actions-header">
         <!-- <button

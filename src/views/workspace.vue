@@ -43,6 +43,12 @@
           @deleteTaskSelected="deleteTaskSelected"
           @duplicateTaskSelected="duplicateTaskSelected"
         />
+        <confirm-modal
+          :modal="modal"
+          v-if="modal"
+          @closeModal="modal = null"
+          @deleteAction="deleteAction"
+        />
         <!-- <task-update
 			<div v-else>
 				<boardHeader
@@ -79,6 +85,7 @@ import groupList from '@/components/group-list';
 import selectedTask from '@/components/selected-task.vue';
 import userMsg from '@/components/user-msg.vue';
 import socketService from '../services/socket.service.js';
+import confirmModal from '@/components/confirm-modal.vue';
 export default {
   name: 'workspace',
   data() {
@@ -87,6 +94,7 @@ export default {
       tasks: [],
       msg: '',
       isTaskSelected: false,
+      modal: null,
     };
   },
   async created() {
@@ -220,6 +228,10 @@ export default {
       this.tasks = [];
       console.log(tasks);
     },
+
+    deleteAction() {
+      console.log('hey from modal');
+    },
   },
 
   destroyed() {
@@ -232,6 +244,7 @@ export default {
     controlContent,
     selectedTask,
     userMsg,
+    confirmModal,
   },
 };
 </script>
