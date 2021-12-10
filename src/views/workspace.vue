@@ -44,6 +44,7 @@
           @duplicateTaskSelected="duplicateTaskSelected"
         />
         <confirm-modal
+          :modal="modal"
           v-if="modal"
           @closeModal="modal = null"
           @deleteAction="deleteAction"

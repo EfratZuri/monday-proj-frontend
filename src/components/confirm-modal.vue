@@ -5,7 +5,9 @@
         <div class="modal-body">
           <button class="btn btn-close-modal" @click="closeModal">X</button>
           <div class="bootbox-body">
-            <p><strong> Delete these tasks?</strong></p>
+            <p>
+              <strong>{{ modal.txt }}</strong>
+            </p>
           </div>
         </div>
         <div class="modal-footer">
@@ -24,6 +26,12 @@
 <script>
 export default {
   name: 'board-header-filter-search',
+  props: {
+    modal: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {};
   },
