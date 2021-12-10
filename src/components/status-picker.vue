@@ -61,7 +61,6 @@ export default {
 			this.showOptions = !this.showOptions;
 		},
 		async saveLabel(label) {
-			console.log('save label', label);
 			const details = { type: 'statusPicker', label };
 			await this.$store.dispatch({ type: 'saveLabel', details });
 		},

@@ -49,7 +49,7 @@
 	right: 0;
 	background-color: #f7f7f7;
 	z-index: 999;
-	padding: $padding-def;
+	padding: var(--padding-def);
 }
 
 .modal {
@@ -62,7 +62,7 @@
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 	background-color: #f7f7f7;
 	z-index: 999;
-	padding: $padding-def;
+	padding: var(--padding-def);
 }
 
 .dropdown-modal {
@@ -72,7 +72,7 @@
 	transform: translateX(50%);
 	z-index: 999;
 	min-height: 264px;
-	background-color: $primary-background-clr;
+	background-color: var(--primary-background-clr);
 }
 
 .icon-and-input-wrapper {

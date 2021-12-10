@@ -29,22 +29,53 @@
 			height: 100%;
 			z-index: 100;
 			// color: #fff;
-			// background-color: $primary-clr;
+			// background-color: var(--primary-clr);
 			.hero-icon {
 				width: 16px;
 				height: 16px;
-				fill: $primary-clr;
+				fill: var(--primary-clr);
 			}
 		}
 		&:hover {
 			position: relative;
 			padding-left: 24px;
-			background-color: $primary-selected-color;
+			background-color: var(--primary-selected-color);
 		}
 		&:hover .btn-add {
 			opacity: 1;
 			transform: scale(1);
 			visibility: visible;
+		}
+	}
+	.tags-editing-list-container {
+		background-color: var(--primary-background-clr);
+		font-size: 12px;
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		padding: 3px 6px;
+		border: 1px solid;
+		border-color: var(--primary-clr);
+		margin-bottom: 16px;
+		max-height: 500px;
+		overflow-y: auto;
+		.tag-item {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding-right: 8px;
+			max-width: 100%;
+			.tag {
+				margin-right: 4px;
+				white-space: nowrap;
+				overflow: hidden !important;
+				text-overflow: ellipsis;
+				font-weight: 400;
+				font-size: 14px;
+			}
 		}
 	}
 	.dropdown-modal {

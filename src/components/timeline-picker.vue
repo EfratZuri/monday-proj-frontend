@@ -67,9 +67,7 @@ export default {
 	// 	},
 	// },
 	created() {
-		console.log(this.info);
 		this.selected = JSON.parse(JSON.stringify(this.info.selected));
-		console.log(this.selected);
 		const dayCount = this.selected.dayCount;
 		this.isFilled = dayCount ? true : false;
 		this.hoverContent = !dayCount ? 'Set Dates' : `${dayCount}d`;
@@ -98,7 +96,7 @@ export default {
 			this.showOptions = !this.showOptions;
 		},
 		remove() {
-			console.log('remove');
+			this.$emit('update', null);
 		},
 	},
 	computed: {

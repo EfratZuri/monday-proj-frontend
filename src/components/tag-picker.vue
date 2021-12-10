@@ -5,7 +5,7 @@
 		:style="{ width: info.data.style.maxWidth }"
 	>
 		<div class="col-cell" @click="toggleOptions" :style="info.data.style">
-			<div v-if="selectedCopy && selectedCopy.length" class="tags-container">
+			<div v-if="selectedCopy && selectedCopy.length && !showOptions" class="tags-container">
 				<div
 					v-for="(tag, idx) in selectedCopyTrimed"
 					:key="idx"
@@ -36,6 +36,21 @@
 					<!-- + -->
 				</button>
 			</div>
+			<div v-if="showOptions" class="tags-editing-list-container">
+				<div
+					class="tag-item flex align-center"
+					v-for="(tag, idx) in selectedCopy"
+					:key="idx"
+					:style="tag.style"
+				>
+					<span class="tag">
+						{{ tagForDisplay(tag.txt) }}
+					</span>
+					<button class="btn btn-icon btn-delete-tag" :style="tag.style" @click="remove(tag)">
+						<i class="icon el-icon-error"></i>
+					</button>
+				</div>
+			</div>
 		</div>
 		<!-- Edit/add dropdown-modal -->
 		<div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
@@ -45,15 +60,18 @@
 				</div>
 				<div v-if="selectedCopy" class="tag-list">
 					<div
-						v-for="(opt, idx) in opts"
+						v-for="(tag, idx) in selectedCopy"
 						:key="idx"
-						:style="opt.style"
+						:style="tag.style"
 						class="dropdown-inner-container"
 						@click="update(opt)"
 					>
-						<div class="picker-opt-container flex align-center">
+						<span class="tag">
+							{{ tagForDisplay(tag.txt) }}
+						</span>
+						<!-- <div class="picker-opt-container flex align-center">
 							<span>{{ opt.txt }}</span>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="picker-dropdown-footer flex align-center">
@@ -102,9 +120,14 @@ export default {
 	methods: {
 		update() {
 			if (!this.tagToEdit.txt) return;
+			const isTagExists = this.opts.some(({ txt }) => txt === this.tagToEdit.txt);
+			if (isTagExists) return;
 			this.selectedCopy.unshift(this.tagToEdit);
 			this.$emit('update', this.selectedCopy);
 			this.toggleOptions();
+		},
+		remove(tag) {
+			console.log('remove tag:', tag);
 		},
 		saveBoardCol() {
 			this.update();

@@ -1,7 +1,7 @@
 .task-preview {
 	height: 100%;
 	border-bottom: 1px solid;
-	border-bottom-color: $primary-background-clr;
+	border-bottom-color: var(--primary-background-clr);
 }
 
 .col-list {
@@ -13,7 +13,7 @@
 .col-cell {
 	position: relative;
 	display: block;
-	background-color: $dark-background-clr;
+	background-color: var(--dark-background-clr);
 
 	max-width: 100%;
 	height: 100%;
@@ -23,13 +23,14 @@
 	font-size: 13px;
 	font-weight: 400;
 	border-right: 1px solid;
-	border-right-color: #fff;
-	color: #666;
+	border-right-color: var(--primary-background-clr);
+	color: var(--pulse-text-color);
+	position: relative;
 }
 .grid-cell-component-wrapper {
 	& > *:not(.picker-component) {
 		&.selected {
-			background-color: $primary-selected-color;
+			background-color: var(--primary-selected-clr);
 		}
 	}
 	&.dropdown-open {
@@ -53,23 +54,24 @@
 	height: 100%;
 	padding: 0 10px 0 0;
 	text-align: left;
-	background-color: $dark-background-clr;
+	background-color: var(--dark-background-clr);
+	border-bottom-color: var(--layout-border-color);
 
 	&.selected {
-		background-color: $primary-selected-color;
+		background-color: var(--primary-selected-color);
 	}
 	& > * {
 		transition: all 0.3;
 		font-size: 13px;
 	}
 	&:hover:not(.selected) > * {
-		color: $primary-hover-clr;
+		color: var(--primary-hover-clr);
 	}
 	.btn-edit {
 		height: 22px;
 		// flex: initial;
 		margin-left: 8px;
-		color: $secondary-txt-clr;
+		color: var(--secondary-txt-clr);
 		padding-left: 8px;
 		padding-right: 8px;
 		border-radius: 4px;
@@ -79,7 +81,7 @@
 		opacity: 0;
 		transition: background-color 0.3s ease;
 		&:hover {
-			background-color: $dark-background-clr;
+			background-color: var(--dark-background-clr);
 			& ~ .task-title-inner span {
 				border: 1px dashed #c5c7d0;
 			}
@@ -94,7 +96,7 @@
 		width: 100%;
 		border: 1px solid transparent;
 		padding-left: 10px;
-		// background-color: $dark-background-clr;
+		// background-color: var(--dark-background-clr);
 		&:hover .btn-edit {
 			opacity: 1;
 		}
@@ -106,7 +108,7 @@
 		}
 		& input {
 			width: 100%;
-			border: 1px dashed $primary-txt-clr;
+			border: 1px dashed var(--primary-txt-clr);
 			&:focus {
 				outline: none;
 			}
@@ -124,16 +126,16 @@
 			&.recently-updated {
 				.chat-with-update,
 				.update-count {
-					color: $primary-clr;
+					color: var(--primary-clr);
 				}
 				.updates-count {
 					position: absolute;
-					color: $primary-background-clr;
+					color: var(--primary-background-clr);
 					top: 12px;
 					line-height: 9px;
 					font-size: 10px;
 					font-weight: 400;
-					background-color: $primary-clr;
+					background-color: var(--primary-clr);
 
 					border-radius: 10px;
 					text-align: center;
@@ -145,7 +147,7 @@
 				color: #c5c7d0;
 				transition: color 200ms ease;
 				&:hover {
-					color: $primary-clr;
+					color: var(--primary-clr);
 				}
 			}
 		}
@@ -168,7 +170,7 @@
 		justify-content: center;
 		&.selected {
 			.left-indicator-checkbox {
-				background-color: $primary-background-clr;
+				background-color: var(--primary-background-clr);
 			}
 		}
 		&.selected,

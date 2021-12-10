@@ -1,5 +1,11 @@
 <template>
-  <div class="workspace" :class="{ 'control-open': showControlContent }">
+  <div
+    class="workspace"
+    :class="[
+      { 'control-open': showControlContent },
+      { 'dark-app-theme': isDarkMode },
+    ]"
+  >
     <surface-control />
     <control-content
       @toggleOpen="toggleOpenControl"

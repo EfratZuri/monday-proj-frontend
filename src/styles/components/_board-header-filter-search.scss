@@ -1,23 +1,23 @@
 .search-tasks-wrapper {
-  margin-inline-end: 6px;
-  line-height: 33px;
+	margin-inline-end: 6px;
+	line-height: 33px;
 
-  & .search-icon-wrapper {
-    padding-block-end: 3px;
-    margin-inline-start: 7px;
-  }
-  & .search-input {
-    outline: none;
-    padding: 1px 0 1px 5px;
-    font-size: rem(15px);
-    width: 65px;
-    background-color: transparent;
-    &::placeholder {
-      color: #323338;
-    }
-  }
+	& .search-icon-wrapper {
+		padding-block-end: 3px;
+		margin-inline-start: 7px;
+	}
+	& .search-input {
+		outline: none;
+		padding: 1px 0 1px 5px;
+		font-size: rem(15px);
+		width: 65px;
+		background-color: transparent;
+		&::placeholder {
+			color: var(--primary-txt-clr);
+		}
+	}
 }
 
 .open-input {
-  border: 1px solid rgb(0, 115, 234);
+	border: 1px solid var(--primary-clr);
 }
