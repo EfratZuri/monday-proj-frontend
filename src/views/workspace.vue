@@ -25,6 +25,7 @@
         <group-list
           :board="activeBoard"
           :boards="boards"
+          :isSelected="isSelected"
           @addGroup="addGroup"
           @removeGroup="openModal"
           @moveToBoard="moveGroupToBoard"
@@ -36,7 +37,12 @@
           @addColumn="addColumn"
           @saveBoardCol="saveBoardCol"
         />
-        <user-msg v-if="msg" :msg="msg" @closeUserMsg="closeUserMsg" />
+        <user-msg
+          v-if="msg"
+          :msg="msg"
+          @closeUserMsg="closeUserMsg"
+          @undo="undo"
+        />
         <selected-task
           v-if="tasks.length"
           :tasks="tasks"
@@ -106,6 +112,8 @@ export default {
       isTaskSelected: false,
       modal: { txt: '', isOpen: false },
       isDashboard: false,
+      isSelected: false,
+      isUndo: false,
     };
   },
   async created() {
@@ -139,25 +147,28 @@ export default {
   methods: {
     saveBoardCol(details) {
       this.$store.dispatch({ type: 'saveBoardCol', details });
+      // this.sendSocket(this.activeBoard);
     },
     addColumn(columnType) {
       this.$store.dispatch({ type: 'addColumn', columnType });
+      // this.sendSocket(this.activeBoard);
     },
     async saveTask(details = null) {
-      console.log('savetask from workspace');
       await this.$store.dispatch({ type: 'saveTask', details });
       this.sendSocket(this.activeBoard);
     },
     async addGroup(group) {
       await this.$store.dispatch({ type: 'saveGroup', group });
-      this.sendSocket(this.activeBoard);
+      // this.sendSocket(this.activeBoard);
     },
     removeGroup(group) {
-      this.showMsg('We successfully deleted 1 group');
+      this.showMsg('We successfully deleted group');
       this.$store.dispatch({ type: 'removeGroup', group });
+      // this.sendSocket(this.activeBoard);
     },
     saveBoard(board) {
       this.$store.dispatch({ type: 'saveBoard', board });
+      // this.sendSocket(this.activeBoard);
     },
     async deleteTask(task, groupId) {
       this.showMsg('We successfully deleted task');
@@ -165,12 +176,15 @@ export default {
         type: 'deleteTask',
         details: { task, groupId },
       });
+      // this.sendSocket(this.activeBoard);
     },
     saveGroup(group) {
       this.$store.dispatch({ type: 'saveGroup', group });
+      // this.sendSocket(this.activeBoard);
     },
     moveGroupToBoard(moveDetails) {
       this.$store.dispatch({ type: 'moveGroupToBoard', moveDetails });
+      // this.sendSocket(this.activeBoard);
     },
     toggleOpenControl() {
       this.showControlContent = !this.showControlContent;
@@ -180,12 +194,14 @@ export default {
     },
     saveComment(details) {
       this.$store.dispatch({ type: 'saveComment', details });
+      // this.sendSocket(this.activeBoard);
     },
     showBoard(board) {
       this.$store.commit({ type: 'setActiveBoard', activeBoard: board });
     },
     removeBoard(board) {
       this.$store.dispatch({ type: 'removeBoard', board });
+      // this.sendSocket(this.activeBoard);
     },
     setSelected(task, boolean) {
       if (boolean) this.tasks.push(task);
@@ -198,6 +214,7 @@ export default {
     },
     closeTaskSelected() {
       this.tasks = [];
+      this.isTaskSelected = false;
     },
     showMsg(msg) {
       this.msg = msg;
@@ -229,6 +246,7 @@ export default {
         });
         let taskCopy = JSON.parse(JSON.stringify(tasks[i]));
         taskCopy.id = '';
+        taskCopy.title = taskCopy.title + '(copy)';
         const details = { task: taskCopy, groupId: group.id };
         await this.saveTask(details);
       }
@@ -250,10 +268,31 @@ export default {
     deleteAction() {
       if (this.group) this.removeGroup(this.group);
       else this.deleteTask(this.task, this.groupId);
-      this.task = null;
-      this.groupId = null;
-      this.group = null;
       this.modal.isOpen = false;
+      setTimeout(() => {
+        this.task = null;
+        this.groupId = null;
+        this.group = null;
+      }, 8100);
+    },
+
+    undo() {
+      this.isUndo = true;
+      if (this.isUndo && this.group) {
+        this.msg = null;
+        this.saveGroup(this.group);
+        setTimeout(() => {
+          this.showMsg('We successfully restored the group');
+        }, 1500);
+      } else if (this.isUndo && !this.group) {
+        const details = { task: this.task, groupId: this.groupId };
+        this.msg = null;
+        setTimeout(() => {
+          this.showMsg('We successfully restored the task');
+        }, 1500);
+        this.saveTask(details);
+      }
+      this.isUndo = false;
     },
   },
 

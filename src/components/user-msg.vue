@@ -8,7 +8,7 @@
         <span>{{ msg }}</span>
       </div>
       <div class="undo-action">
-        <button class="undo-btn">Undo</button>
+        <button v-if="isUndo" class="undo-btn" @click="undo">Undo</button>
       </div>
       <button class="close-user-msg" @click="closeUserMsg">X</button>
     </div>
@@ -25,14 +25,21 @@ export default {
     },
   },
   data() {
-    return {};
+    return { isUndo: true };
   },
   created() {
-    console.log(this.msg);
+    if (
+      this.msg === 'We successfully restored the group' ||
+      this.msg === 'We successfully restored the task'
+    )
+      this.isUndo = false;
   },
   methods: {
     closeUserMsg() {
       this.$emit('closeUserMsg');
+    },
+    undo() {
+      this.$emit('undo');
     },
   },
   computed: {},

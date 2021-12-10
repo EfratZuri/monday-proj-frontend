@@ -20,6 +20,7 @@
             @addColumn="addColumn"
           />
           <taskList
+            :isSelected="isSelected"
             v-if="!isIncludesGroupIds(group.id)"
             :group="group"
             @saveTask="saveTask"
@@ -50,6 +51,10 @@ export default {
     },
     boards: {
       type: Array,
+    },
+    isSelected: {
+      type: Boolean,
+      required: true,
     },
   },
   data() {

@@ -3,7 +3,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-          <button class="btn btn-close-modal" @click="closeModal">X</button>
+          <button class="btn btn-close-modal" @click="closeModal">×</button>
           <div class="bootbox-body">
             <p>
               <strong>{{ modal.txt }}</strong>

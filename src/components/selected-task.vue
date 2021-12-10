@@ -27,7 +27,7 @@
       </button>
     </div>
     <div class="exit-action flex">
-      <span class="exit-btn" @click="closeTaskSelected">X</span>
+      <span class="exit-btn" @click="close">X</span>
     </div>
   </section>
 </template>
@@ -47,7 +47,7 @@ export default {
     };
   },
   methods: {
-    closeTaskSelected() {
+    close() {
       this.$emit('close');
     },
     deleteTaskSelected() {

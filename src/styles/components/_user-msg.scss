@@ -46,11 +46,22 @@
       margin-left: 16px;
       display: flex;
 
-      &button {
+      .undo-btn {
         width: 50.6875px;
         height: 32px;
+        background-color: transparent;
         color: #fff;
         cursor: pointer;
+        line-height: 22px;
+        margin-left: 8px;
+        border: 1px solid;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 4px 8px;
+        line-height: 24px;
+        border-radius: 4px;
+        outline: none;
+        user-select: none;
       }
     }
     .close-user-msg {
