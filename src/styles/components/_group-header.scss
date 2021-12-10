@@ -5,7 +5,9 @@
 	padding-left: 30px;
 	background-color: var(--primary-background-clr);
 	.grid-cells-row-component {
+		background-color: var(--primary-background-clr);
 		.column-header-inner {
+			background-color: var(--primary-background-clr);
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -109,6 +111,7 @@
 	font-size: 18px;
 	display: flex;
 	position: relative;
+	background-color: var(--primary-background-clr);
 	.group-name {
 		flex: 1 1;
 		// width: 100%;

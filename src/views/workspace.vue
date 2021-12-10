@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="workspace"
-		:class="[{ 'control-open': showControlContent }, { 'dark-mode': isDarkMode }]"
+		:class="[{ 'control-open': showControlContent }, { 'dark-app-theme': isDarkMode }]"
 	>
 		<surface-control />
 		<control-content

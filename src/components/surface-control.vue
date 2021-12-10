@@ -1,72 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <nav class="surface-control flex column gap align-center">
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="Home page"
-      placement="right">
-    <router-link to="/" active-class="active-link" exact
-      ><img
-        src="@/assets/monday_logo_icon.png"
-        alt=""
-        class="monday-logo-navbar"
-    /></router-link>
-    <router-link to="/boards" active-class="active-link">
-      <ion-icon name="grid-outline"></ion-icon
-    ></router-link>
-    <button class="btn btn-icon" to="/boards" active-class="active-link">
-      <font-awesome-icon icon="bell" />
-    </button>
-    <button class="btn btn-icon" to="/boards" active-class="active-link">
-      <font-awesome-icon icon="inbox" />
-    </button>
-    <button class="btn btn-icon" to="/boards" active-class="active-link">
-      <font-awesome-icon icon="calendar-check" />
-    </button>
-    <div
-      class="surface-control-users"
-      :style="{ backgroundColor: red }"
-      @click="toggleUserMenu"
-    >
-      <router-link to="/" active-class="active-link" exact
-        ><img
-          src="@/assets/monday_logo_icon.png"
-          alt=""
-          class="monday-logo-navbar"
-      /></router-link>
-    </el-tooltip>
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="Work space"
-      placement="right"
-    >
-      <router-link to="/boards" active-class="active-link">
-        <ion-icon name="grid-outline"></ion-icon
-      ></router-link>
-    </el-tooltip>
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="Notifications"
-      placement="right"
-    >
-      <button class="btn btn-icon" to="/boards" active-class="active-link">
-        <font-awesome-icon icon="bell" />
-      </button>
-    </el-tooltip>
-    <el-tooltip class="item" effect="dark" content="Inbox" placement="right">
-      <button class="btn btn-icon" to="/boards" active-class="active-link">
-        <font-awesome-icon icon="inbox" />
-      </button>
-    </el-tooltip>
-    <el-tooltip class="item" effect="dark" content="calender" placement="right">
-      <button class="btn btn-icon" to="/boards" active-class="active-link">
-        <font-awesome-icon icon="calendar-check" />
-      </button>
-    </el-tooltip>
-=======
 	<nav class="surface-control flex column gap align-center">
 		<el-tooltip class="item" effect="dark" content="Home page" placement="right">
 			<router-link to="/" active-class="active-link" exact
@@ -108,7 +40,6 @@
 				<font-awesome-icon icon="calendar-check" />
 			</button>
 		</el-tooltip>
->>>>>>> b4e8897d03dcc336e677000776efa3352c47cddd
 
 		<div class="surface-control-users" @click="toggleUserMenu">
 			{{ letterToShow }}

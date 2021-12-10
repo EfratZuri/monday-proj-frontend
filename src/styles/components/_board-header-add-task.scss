@@ -1,6 +1,7 @@
 .add-task-btn-component {
 	margin-right: 3px;
 	.btn-blue {
+		color: #fff;
 		border-radius: 4px 0 0 4px;
 	}
 	& .dropdown-button {
@@ -13,7 +14,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		color: var(--lightest-txt-clr);
+		// color: var(--lightest-txt-clr);
+		color: #fff;
 		font-size: 15px;
 		cursor: pointer;
 		transition: background-color 100ms ease-in;
