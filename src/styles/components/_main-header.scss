@@ -7,14 +7,14 @@ header.main-header {
 	max-height: 44px;
 	padding: 6px 4px;
 	overflow: hidden;
-	color: #fff;
+	// color: var(--primary-background-clr);
 	.btn-create {
 		border-radius: 3px;
 		border: 0;
 		text-decoration: none;
 		align-items: center;
 		box-shadow: none;
-		color: #ffffff;
+		color: var(--primary-background-clr);
 		font-weight: bold;
 		height: 32px;
 		line-height: 32px;

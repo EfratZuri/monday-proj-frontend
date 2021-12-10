@@ -1,39 +1,39 @@
 .board-header-subset-toolbar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  & .monday-board-subset-item {
-    color: #323338;
-    max-width: 180px;
-    padding: 7px 16px;
-    border-bottom: 2px solid white;
-    border-radius: 4px;
-    text-align: center;
-    line-height: 24px;
-    font-size: 16px;
-    cursor: pointer;
-    &:hover {
-      background-color: #e6e9ef;
-    }
-    & ion-icon {
-      font-size: rem(16px);
-    }
-  }
-  & .main-table-icon {
-    font-size: 20px;
-    position: relative;
-    color: #676879;
-    top: 3px;
-    padding-inline-end: 4px;
-  }
-  & .add-new-item-icon {
-    padding-inline-end: 8px;
-  }
-  & span {
-    background-color: transparent;
-    font-size: rem(14px);
-    border: none;
-    outline: none;
-    white-space: nowrap;
-  }
+	width: 100%;
+	display: flex;
+	align-items: center;
+	& .monday-board-subset-item {
+		color: var(--primary-txt-clr);
+		max-width: 180px;
+		padding: 7px 16px;
+		border-bottom: 2px solid var(--primary-background-clr);
+		border-radius: 4px;
+		text-align: center;
+		line-height: 24px;
+		font-size: 16px;
+		cursor: pointer;
+		&:hover {
+			background-color: var(--primary-background-hover-clr);
+		}
+		& ion-icon {
+			font-size: rem(16px);
+		}
+	}
+	& .main-table-icon {
+		font-size: 20px;
+		position: relative;
+		color: #676879;
+		top: 3px;
+		padding-inline-end: 4px;
+	}
+	& .add-new-item-icon {
+		padding-inline-end: 8px;
+	}
+	& span {
+		background-color: transparent;
+		font-size: rem(14px);
+		border: none;
+		outline: none;
+		white-space: nowrap;
+	}
 }

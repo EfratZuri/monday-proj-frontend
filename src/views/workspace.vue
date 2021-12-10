@@ -3,7 +3,7 @@
     class="workspace"
     :class="[
       { 'control-open': showControlContent },
-      { 'dark-mode': isDarkMode },
+      { 'dark-app-theme': isDarkMode },
     ]"
   >
     <surface-control />

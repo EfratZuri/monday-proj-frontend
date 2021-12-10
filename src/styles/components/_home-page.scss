@@ -3,14 +3,14 @@
 .home-page-container {
 	width: 100%;
 	height: 100%;
-	// padding-top: $height-home-page-header;
+	// padding-top: var(--height-home-page-header);
 	.home-page-header {
 		box-shadow: 0px 18px 30px rgb(0 0 0 / 3%);
 		width: 100%;
 		height: 72px;
 		position: fixed;
 		z-index: 556;
-		background-color: #fff;
+		background-color: var(--primary-background-clr);
 		color: #333;
 		display: flex;
 		justify-content: center;
@@ -19,11 +19,11 @@
 			max-width: 1440px;
 			width: 100%;
 			position: fixed;
-			height: $height-home-page-header;
+			height: var(--height-home-page-header);
 			padding-left: 32px;
 			padding-right: 32px;
 			z-index: 555;
-			background-color: #fff;
+			background-color: var(--primary-background-clr);
 			top: 0;
 			display: flex;
 			align-items: center;
@@ -69,7 +69,7 @@
 								align-items: center;
 								padding: 0px 16px;
 								text-decoration: none;
-								color: #323338;
+								color: var(--primary-txt-clr);
 								transition: color 200ms ease;
 
 								&:hover {
@@ -95,7 +95,7 @@
 							align-items: center;
 							padding: 0px 16px;
 							text-decoration: none;
-							color: #323338;
+							color: var(--primary-txt-clr);
 							transition: color 200ms ease;
 
 							&:hover {
@@ -118,7 +118,7 @@
 							font-size: 14px;
 							padding: 8px 16px;
 							background-color: #0f1048;
-							color: #fff;
+							color: var(--primary-background-clr);
 							overflow: hidden;
 							border-radius: 40px;
 							border: none;
@@ -229,7 +229,7 @@
 							margin-left: 8px;
 							font-size: 20px;
 							line-height: 22px;
-							color: #323338;
+							color: var(--primary-txt-clr);
 							font-weight: 300;
 						}
 					}
@@ -250,7 +250,7 @@
 					transition: 0.1s ease background-color;
 					min-width: 130px;
 					background-color: #0f1048;
-					color: #fff;
+					color: var(--primary-background-clr);
 					overflow: hidden;
 					font-size: 18px;
 					border-radius: 40px;

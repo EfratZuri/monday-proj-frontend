@@ -3,7 +3,7 @@
 //   z-index: 1000;
 //   border-radius: 8px;
 //   box-shadow: 0 4px 17px 6px rgb(0 0 0 / 10%);
-//   background-color: $primary-background-clr;
+//   background-color: var(--primary-background-clr);
 //   transition: all 50ms ease-in;
 //   transition-property: opacity, width;
 //   overflow: auto;
@@ -20,7 +20,7 @@
 	width: 264px;
 	border-radius: 8px;
 	box-shadow: 0 4px 17px 6px rgb(0 0 0 / 10%);
-	background-color: $primary-background-clr;
+	background-color: var(--primary-background-clr);
 	transition: all 50ms ease-in;
 	transition-property: opacity, width;
 	overflow: auto;
@@ -38,7 +38,7 @@
 		align-items: center;
 		padding: 4px 8px;
 		cursor: pointer;
-		color: $primary-txt-clr;
+		color: var(--primary-txt-clr);
 		font-weight: 400;
 		font-size: 14px;
 		letter-spacing: 0px;

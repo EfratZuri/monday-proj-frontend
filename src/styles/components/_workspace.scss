@@ -1,20 +1,71 @@
 .workspace {
+	background-color: var(--primary-background-clr);
 	display: grid;
 	margin-left: $main-nav-width;
 	// + $control-content-width;
 	height: 100%;
 	width: 100%;
 	grid-template-columns: 33px auto;
-	&.dark-mode {
-		--dark-background-clr: #292f4c;
-		--primary-background-clr: #181b34;
+	&.dark-app-theme {
+		// DARK
+		--primary-clr: var(--clr-basic_blue);
+		--primary-on-secondary-clr: var(--clr-basic_blue);
+		--primary-hover-clr: #0060b9;
+		--primary-hover-on-secondary-clr: #0060b9;
+		--primary-selected-clr: #133774;
+		--primary-selected-clr-rgb: 19, 55, 116;
+		--primary-selected-on-secondary-clr: #133774;
 		--primary-txt-clr: #d5d8df;
+		--primary-txt-on-secondary-clr: #d5d8df;
+		--primary-background-clr: #181b34;
+		--primary-background-clr-rgb: 24, 27, 52;
+		--primary-background-hover-clr: #4b4e69;
+		--primary-background-hover-on-secondary-clr: #4b4e69;
+		--grey-background-clr: #181b34;
+		--txt-clr-on-inverted: var(--clr-mud_black);
+		--modal-background-clr: #181b34;
+		--ui-border-clr: #797e93;
+		--ui-border-on-secondary-clr: #797e93;
+		--layout-border-clr: #4b4e69;
+		--layout-border-on-secondary-clr: #4b4e69;
+		--placeholder-clr: var(--clr-wolf_gray);
+		--placeholder-clr-with-opacity: var(--clr-wolf_gray-with-opacity);
+		--placeholder-on-secondary-clr: var(--clr-wolf_gray);
+		--icon-clr: var(--clr-wolf_gray);
+		--icon-on-secondary-clr: var(--clr-wolf_gray);
+		--disabled-background-clr: #4b4e69;
+		--disabled-background-on-secondary-clr: #4b4e69;
+		--disabled-txt-clr: rgba(197, 199, 208, 0.75);
+		--disabled-txt-on-secondary-clr: rgba(197, 199, 208, 0.75);
+		--dark-background-clr: #393b53;
+		--dark-background-on-secondary-clr: #4b4e69;
+		--secondary-background-clr: #30324e;
+		--secondary-background-clr-rgb: 48, 50, 78;
+		--dialog-background-clr: #30324e;
+		--secondary-txt-clr: var(--clr-jaco_gray);
+		--secondary-txt-on-secondary-clr: var(--clr-jaco_gray);
+		--clr-grass_green: #359970;
+		--clr-grass_green-hover: #116846;
+		--clr-grass_green-selected: #0f4f43;
+		--clr-done-green: #33d391;
+		--clr-done-green-hover: #0f9b63;
+		--clr-done-green-selected: #0e7358;
+		--clr-bright-green: #b0dc51;
+		--clr-bright-green-hover: #7ca32b;
+		--clr-bright-green-selected: #5c7930;
+		--clr-saladish: #d5c567;
+		--clr-saladish-hover: #9d8f3e;
+		--clr-saladish-selected: #736a3e;
+		--clr-egg_yolk: #ffd533;
+		--clr-egg_yolk-hover: #c29e11;
 	}
 	&.control-open {
 		grid-template-columns: 255px auto;
 	}
 	.workspace-content {
 		padding: 0px 30px 0px 30px;
+
+		background-color: var(--primary-background-clr);
 		&.selected {
 			.left-indicator-inner {
 				width: 32px;
