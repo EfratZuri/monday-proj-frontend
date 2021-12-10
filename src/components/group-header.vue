@@ -112,9 +112,9 @@
 				<!-- </div> -->
 			</div>
 		</div>
-		<div class="add-column-container">
+		<div class="add-column-container flex align-center">
 			<button class="btn btn-icon" @click="toggle('showColumnMenu')">
-				<font-awesome-icon icon="plus-circle" />
+				<i class="icon el-icon-circle-plus-outline"></i>
 			</button>
 			<column-menu v-if="showColumnMenu" @addColumn="addColumn" />
 		</div>
