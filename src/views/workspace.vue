@@ -51,7 +51,7 @@
           @deleteAction="deleteAction"
         />
 
-        <dashboard />
+        <dashboard v-if="isDashboard" />
         <!-- <task-update
 			<div v-else>
 				<boardHeader
@@ -90,7 +90,9 @@ import selectedTask from '@/components/selected-task.vue';
 import userMsg from '@/components/user-msg.vue';
 import socketService from '../services/socket.service.js';
 import confirmModal from '@/components/confirm-modal.vue';
-import dashboard from './dashboard.vue';
+
+import dashboard from '@/components/dashboard';
+
 export default {
   name: 'workspace',
   data() {
@@ -103,6 +105,7 @@ export default {
       msg: '',
       isTaskSelected: false,
       modal: { txt: '', isOpen: false },
+      isDashboard: false,
     };
   },
   async created() {
