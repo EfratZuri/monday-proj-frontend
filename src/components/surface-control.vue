@@ -25,7 +25,7 @@
     </button>
     <div
       class="surface-control-users"
-      :style="{ backgroundColor: 'red' }"
+      :style="{ backgroundColor: red }"
       @click="toggleUserMenu"
     >
       <router-link to="/" active-class="active-link" exact
