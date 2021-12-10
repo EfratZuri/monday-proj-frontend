@@ -81,7 +81,7 @@
 <script>
 import surfaceControl from '@/components/surface-control';
 import controlContent from '@/components/control-content';
-import utilService from '../services/util.service.js';
+// import { utilService } from '../services/util.service.js';
 import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
 import selectedTask from '@/components/selected-task.vue';
@@ -108,10 +108,10 @@ export default {
 			this.saveBoard(board);
 		});
 		await this.$store.dispatch({ type: 'loadUsers' });
-		console.log(
-			'example',
-			this.$store.groupClrs.clrs[utilService.getRandomInt(0, this.$store.groupClrs.clrs.length)]
-		);
+		// console.log(
+		// 	'example',
+		// 	this.$store.groupClrs.clrs[utilService.getRandomInt(0, this.$store.groupClrs.clrs.length)]
+		// );
 	},
 	computed: {
 		isLoading() {

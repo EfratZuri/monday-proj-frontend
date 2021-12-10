@@ -9,7 +9,7 @@
       <div class="person-icon-wrapper">
         <ion-icon name="person-circle-outline"></ion-icon>
       </div>
-      <spasn class="person-span">Person</spasn>
+      <span class="person-span">Person</span>
     </section>
   </el-tooltip>
 </template>
