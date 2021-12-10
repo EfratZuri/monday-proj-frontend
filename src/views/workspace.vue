@@ -1,5 +1,6 @@
 <template>
   <div class="workspace" :class="{ 'control-open': showControlContent }">
+    <surface-control />
     <control-content
       @toggleOpen="toggleOpenControl"
       @add="addBoard"
@@ -45,7 +46,7 @@
         />
         <confirm-modal
           :modal="modal"
-          v-if="modal.isOpen"
+          v-if="modal"
           @closeModal="modal = null"
           @deleteAction="deleteAction"
         />
@@ -78,8 +79,9 @@
 </template>
 
 <script>
+import surfaceControl from '@/components/surface-control';
 import controlContent from '@/components/control-content';
-import utilService from '../services/util.service.js';
+// import { utilService } from '../services/util.service.js';
 import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
 import selectedTask from '@/components/selected-task.vue';
@@ -106,12 +108,10 @@ export default {
       this.saveBoard(board);
     });
     await this.$store.dispatch({ type: 'loadUsers' });
-    console.log(
-      'example',
-      this.$store.groupClrs.clrs[
-        utilService.getRandomInt(0, this.$store.groupClrs.clrs.length)
-      ]
-    );
+    // console.log(
+    // 	'example',
+    // 	this.$store.groupClrs.clrs[utilService.getRandomInt(0, this.$store.groupClrs.clrs.length)]
+    // );
   },
   computed: {
     isLoading() {
@@ -216,13 +216,11 @@ export default {
     async duplicateTaskSelected(tasks) {
       for (let i = 0; i < tasks.length; i++) {
         const group = this.activeBoard.groups.find((group) => {
-          return group.tasks.find((task) => task.id === tasks[i].id);
+          return group.tasks.find(({ id }) => id === tasks[i].id);
         });
         let taskCopy = JSON.parse(JSON.stringify(tasks[i]));
-        // console.log(taskCopy);
         taskCopy.id = '';
         const details = { task: taskCopy, groupId: group.id };
-        // console.log(details);
         await this.saveTask(details);
       }
       this.tasks = [];
@@ -245,6 +243,7 @@ export default {
     selectedTask,
     userMsg,
     confirmModal,
+    surfaceControl,
   },
 };
 </script>
