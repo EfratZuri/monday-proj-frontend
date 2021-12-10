@@ -3,7 +3,7 @@
 		class="grid-cell-component-wrapper status-summary-container"
 		:style="{ width: info.data.style.maxWidth }"
 	>
-		<div class="col-cell flex summary-container">
+		<div class="col-cell flex summary-container align-center">
 			<div class="battery-container flex align-center">
 				<div
 					class="summary-cell"
@@ -76,7 +76,6 @@ export default {
 			return { width, backgroundColor };
 		},
 		getContentToolTip(key, value) {
-			console.log(key, value);
 			const percentage = (key * 100) / this.taskLen;
 			return `${value} ${key}/${this.taskLen} ${percentage}%`;
 		},

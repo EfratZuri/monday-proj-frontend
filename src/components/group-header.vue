@@ -1,71 +1,74 @@
 <template>
 	<section class="grid-row-component group-header" ref="header" :class="stickyStyle">
-		<div class="group-name-component grid-cell-row-component-header">
-			<div
-				class="menu-btn-container"
-				@click="toggleGroupMenu"
-				:class="{ 'dropdown-open': showGroupMenu }"
-			>
-				<button
-					class="btn btn-menu-group-header fa flex align-center"
-					:style="{ color, backgroundColor: color, borderColor: color }"
+		<div class="sticky-feature">
+			<div class="group-name-component grid-cell-row-component-header floating-cell">
+				<div
+					class="menu-btn-container"
+					@click="toggleGroupMenu"
+					:class="{ 'dropdown-open': showGroupMenu }"
 				>
-					<font-awesome-icon icon="caret-down" />
-				</button>
-				<group-menu
-					v-click-outside="toggleGroupMenu"
-					v-if="showGroupMenu"
-					:boards="boards"
-					:board="board"
-					:groupColor="group.style.clr"
-					@addGroup="addGroup"
-					@toggleTasks="toggleTasks"
-					@toggleAllTasks="toggleAllTasks"
-					@removeGroup="remove"
-					@moveToBoard="moveToBoard"
-					@duplicateGroup="duplicateGroup"
-					@changeColor="toggle('showColorPalette')"
-				/>
-			</div>
-
-			<div class="group-name">
-				<span
-					v-if="!showEdit"
-					:style="{ color }"
-					@click="editTitle"
-					@mouseover="showTaskToggleBtn = true"
-					@mouseleave="showTaskToggleBtn = false"
-				>
-					{{ groupToEdit.title }}</span
-				>
-				<div v-else class="edit-group-container flex align-center">
-					<div
-						class="color-picker-btn-container flex align-center"
-						:class="{ 'dropdown-open': showColorPalette }"
+					<button
+						class="btn btn-menu-group-header fa flex align-center"
+						:style="{ color, backgroundColor: color, borderColor: color }"
 					>
-						<button
-							class="btn btn-round btn-change-color"
-							:style="{ backgroundColor: color }"
-							@click="toggleColorPalette"
-						></button>
-						<group-color-palette
-							v-if="showColorPalette"
-							:colors="clrs"
-							@selected="toggleColorPlatte"
+						<font-awesome-icon icon="caret-down" />
+					</button>
+					<group-menu
+						v-click-outside="toggleGroupMenu"
+						v-if="showGroupMenu"
+						:boards="boards"
+						:board="board"
+						:groupColor="group.style.clr"
+						@addGroup="addGroup"
+						@toggleTasks="toggleTasks"
+						@toggleAllTasks="toggleAllTasks"
+						@removeGroup="remove"
+						@moveToBoard="moveToBoard"
+						@duplicateGroup="duplicateGroup"
+						@changeColor="toggle('showColorPalette')"
+					/>
+				</div>
+
+				<div class="group-name">
+					<span
+						v-if="!showEdit"
+						:style="{ color }"
+						@click="editTitle"
+						@mouseover="showTaskToggleBtn = true"
+						@mouseleave="showTaskToggleBtn = false"
+					>
+						{{ groupToEdit.title }}</span
+					>
+					<div v-else class="edit-group-container flex align-center">
+						<div
+							class="color-picker-btn-container flex align-center"
+							:class="{ 'dropdown-open': showColorPalette }"
+						>
+							<button
+								class="btn btn-round btn-change-color"
+								:style="{ backgroundColor: color }"
+								@click="toggleColorPalette"
+							></button>
+							<group-color-palette
+								v-if="showColorPalette"
+								:colors="clrs"
+								@selected="toggleColorPlatte"
+							/>
+						</div>
+
+						<input
+							:style="{ color: color }"
+							type="text"
+							ref="titleInput"
+							v-model="groupToEdit.title"
+							@blur="editTitle"
+							@keyup.enter="$event.target.blur()"
 						/>
 					</div>
-
-					<input
-						:style="{ color: color }"
-						type="text"
-						ref="titleInput"
-						v-model="groupToEdit.title"
-						@blur="editTitle"
-						@keyup.enter="$event.target.blur()"
-					/>
 				</div>
 			</div>
 		</div>
+
 		<div class="grid-cells-row-component">
 			<div
 				v-for="(col, idx) in cols"
@@ -112,9 +115,9 @@
 				<!-- </div> -->
 			</div>
 		</div>
-		<div class="add-column-container">
+		<div class="add-column-container flex align-center">
 			<button class="btn btn-icon" @click="toggle('showColumnMenu')">
-				<font-awesome-icon icon="plus-circle" />
+				<i class="icon el-icon-circle-plus-outline"></i>
 			</button>
 			<column-menu v-if="showColumnMenu" @addColumn="addColumn" />
 		</div>

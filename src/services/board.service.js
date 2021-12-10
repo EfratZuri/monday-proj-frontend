@@ -23,6 +23,7 @@ export const boardService = {
 	removeGroup,
 	moveGroupToBoard,
 	saveBoardCol,
+	saveLabel,
 };
 
 async function query(filterBy = {}) {
@@ -174,6 +175,20 @@ async function saveBoardCol(boardId, details) {
 	col.data.opts.push(itemCopy);
 	saveBoard(board);
 	return board;
+}
+async function saveLabel(boardId, details) {
+	const board = await getById(boardId);
+	const col = board.cols.find(({ type }) => type === details.type);
+	if (!details.label.id) {
+		details.label.id = utilService.makeId();
+		col.data.opts.push(details.label);
+	} else {
+		const idx = col.data.opts.findIndex(({ id }) => id === details.label.id);
+		col.data.opts.splice(idx, 1, details.label);
+	}
+
+	await saveBoard(board);
+	return details;
 }
 // async function saveColumns(boardId, columnType) {
 // 	const board = await getById(boardId);

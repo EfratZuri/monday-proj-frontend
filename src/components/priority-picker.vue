@@ -17,28 +17,7 @@
 				<span>{{ infoForDisplay }} </span>
 			</div>
 		</div>
-		<labels-popup v-if="showOptions" @apply="saveLabel" @update="update" :opts="opts" />
-
-		<!-- <div v-if="showOptions" class="dropdown-modal picker-dropdown-component">
-			<div class="picker-dropdown-inner-container flex space-between column">
-				<div class="priority-list">
-					<div
-						v-for="(opt, idx) in opts"
-						:key="idx"
-						:style="getOptStyle(opt)"
-						class="dropdown-inner-container"
-						@click="update(opt)"
-					>
-						<div class="picker-opt-container flex align-center">
-							<span>{{ opt.display }}</span>
-						</div>
-					</div>
-				</div>
-				<div class="picker-dropdown-footer flex align-center">
-					<button class="btn">Add/Edit Labels</button>
-				</div>
-			</div>
-		</div> -->
+		<labels-popup v-if="showOptions" :opts="opts" @update="update" @saveLabel="saveLabel" />
 	</div>
 </template>
 
@@ -64,6 +43,7 @@ export default {
 				this.selected = this.info.selected;
 				this.styleObj = this.selected.style;
 				this.opts = this.info.data.opts;
+				// this.optsCopy = JSON.parse(JSON.stringify(this.info.data.opts));
 			},
 			deep: true,
 			immediate: true,
@@ -78,11 +58,11 @@ export default {
 		togglePriorityPicker() {
 			this.showOptions = !this.showOptions;
 		},
-		getOptStyle(opt) {
-			return opt.style;
-		},
-		saveLabel() {
-			console.log('applu');
+
+		async saveLabel(label) {
+			console.log('save label', label);
+			const details = { type: 'statusPicker', label };
+			await this.$store.dispatch({ type: 'saveLabel', details });
 		},
 	},
 	computed: {

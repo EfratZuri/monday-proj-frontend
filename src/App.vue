@@ -1,6 +1,5 @@
 <template>
 	<div id="app">
-		<!-- <surface-control /> -->
 		<router-view />
 	</div>
 </template>

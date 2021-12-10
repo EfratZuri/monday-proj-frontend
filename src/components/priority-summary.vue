@@ -3,7 +3,7 @@
 		class="grid-cell-component-wrapper priority-summary-container"
 		:style="{ width: info.data.style.maxWidth }"
 	>
-		<div class="col-cell flex summary-container" :style="info.data.style">
+		<div class="col-cell flex summary-container align-center" :style="info.data.style">
 			<div class="battery-container">
 				<div
 					class="summary-cell"

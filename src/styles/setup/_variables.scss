@@ -5,6 +5,7 @@ $clr3: #ffb5b5;
 $clr2: #504658;
 $clr4: #f0decb;
 $clr5: #fff;
+$lightest-txt-clr: #fff;
 $secondary-txt-clr: #676879;
 $primary-txt-clr: #323338;
 $primary-hover-clr: #0060b9;
@@ -15,7 +16,13 @@ $primary-selected-color: #cce5ff;
 $dark-background-clr: #f5f6f8;
 $main-nav-background-clr: #292f4c;
 $primary-background-clr: #fff;
+// DARK MODE
+$primary-background-dark-mode-clr: #292f4c;
+$primary-background-light-dark-mode-clr: #181b34;
+$primary-txt-clr-dark-mode: #d5d8df;
+////////////////////////////////////////////////////////////////
 $primary-background-hover-clr: #e6e9ef;
+$floating-background-clr: rgba(253, 253, 250, 0.95);
 // Border color
 $primary-border-clr-light: #e6e9ef;
 // $space-ind-clr: #f5f6f8;
@@ -42,7 +49,7 @@ $control-content-width: 30px;
 $edit-btn-container-width: 30px;
 
 // HEIGHT
-$height-home-page-header: 72px;
+$height-home-page-header: 30px;
 
 // BORDER
 $primary-blue-border: 1px solid $primary-clr;

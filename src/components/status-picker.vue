@@ -16,12 +16,11 @@
 				:style="styleObj"
 				@click="toggleStatusPicker"
 			>
-				<!-- :class="{ 'fold-triangle': fold }" -->
 				<span class="fold-triangle"></span>
 				<span>{{ infoForDisplay }} </span>
 			</div>
 		</div>
-		<labels-popup v-if="showOptions" @update="update" @apply="saveLabel" :opts="opts" />
+		<labels-popup v-if="showOptions" :opts="opts" @update="update" @saveLabel="saveLabel" />
 	</div>
 </template>
 
@@ -38,7 +37,6 @@ export default {
 			selected: {},
 			opts: null,
 			fold: false,
-			showEditModal: false,
 		};
 	},
 	watch: {
@@ -47,7 +45,7 @@ export default {
 				this.selected = this.info.selected;
 				this.styleObj = this.selected.style;
 				this.opts = this.info.data.opts;
-				this.optsCopy = this.info.data.opts;
+				// this.optsCopy = JSON.parse(JSON.stringify(this.info.data.opts));
 			},
 			deep: true,
 			immediate: true,
@@ -55,9 +53,6 @@ export default {
 	},
 
 	methods: {
-		toggleEditModal() {
-			this.showEditModal = !this.showEditModal;
-		},
 		update(opt) {
 			this.$emit('update', opt);
 			this.toggleStatusPicker();
@@ -65,11 +60,9 @@ export default {
 		toggleStatusPicker() {
 			this.showOptions = !this.showOptions;
 		},
-		apply() {
-			console.log('hey');
-		},
-		saveLabel(label) {
-			console.log('save label', label);
+		async saveLabel(label) {
+			const details = { type: 'statusPicker', label };
+			await this.$store.dispatch({ type: 'saveLabel', details });
 		},
 	},
 	computed: {

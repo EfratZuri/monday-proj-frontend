@@ -115,7 +115,7 @@
 			// font-family: 'Roboto', helvetica, arial, sans-serif;
 			font-weight: 300;
 			color: #323338;
-			border: 1px solid #e6e9ef;
+			border: 1px solid var(--primary-background-hover-clr);
 			border-radius: 8px;
 			cursor: auto;
 
@@ -129,7 +129,7 @@
 
 		.post-actions-container {
 			height: 42px;
-			border-top: 1px solid #e6e9ef;
+			border-top: 1px solid var(--primary-background-hover-clr);
 			justify-content: space-around;
 			align-items: center;
 			.btn {
@@ -201,7 +201,7 @@
 			border-color: transparent;
 			&:hover {
 				cursor: text;
-				border: 1px solid #e6e9ef;
+				border: 1px solid var(--primary-background-hover-clr);
 			}
 		}
 		& input {

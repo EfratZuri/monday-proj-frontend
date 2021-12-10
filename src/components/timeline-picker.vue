@@ -4,13 +4,31 @@
 		:style="{ width: info.data.style.maxWidth }"
 	>
 		<div class="col-cell" :style="info.data.style">
-			<div class="date-box timeline-bar-component" :class="{ filled: isFilled }">
+			<div
+				class="date-box timeline-bar-component"
+				:class="{ filled: isFilled }"
+				:style="timelineStyle"
+			>
 				<div class="date-txt-box">
 					<span class="timeline-value" :hovercontents="hoverContent" :contents="dateForDisplay">
 					</span>
 				</div>
 				<date-picker-table :info="infoToSend" @change="update" />
 			</div>
+			<button v-if="isFilled" class="btn btn-icon btn-delete" @click="remove">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="h-5 w-5"
+					viewBox="0 0 20 20"
+					fill="currentColor"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</button>
 		</div>
 	</div>
 </template>
@@ -31,6 +49,7 @@ export default {
 				},
 				notFillCell: { background: 'rgb(171, 171, 171)' },
 			},
+			timelineStyle: null,
 			isFilled: false,
 			hoverContent: 'Set Dates',
 		};
@@ -52,6 +71,20 @@ export default {
 		const dayCount = this.selected.dayCount;
 		this.isFilled = dayCount ? true : false;
 		this.hoverContent = !dayCount ? 'Set Dates' : `${dayCount}d`;
+		if (dayCount) {
+			const now = Date.now();
+			const earliestDate = Math.min(...this.selected.dates);
+			const diff = earliestDate - now;
+			if (diff < 0) {
+				const daysPassed = Math.floor(Math.abs(diff / (1000 * 60 * 60 * 24)));
+				const pers = (daysPassed * 100) / dayCount;
+				const groupColor = this.info.groupStyle.clr;
+				this.timelineStyle = {
+					background: `linear-gradient(to right, ${groupColor} ${pers}%, rgb(28, 31, 59) ${pers}%)`,
+				};
+			}
+		}
+		// this.timelineStyle=
 	},
 	methods: {
 		update(dueDates) {
@@ -61,6 +94,9 @@ export default {
 		},
 		toggleOptions() {
 			this.showOptions = !this.showOptions;
+		},
+		remove() {
+			this.$emit('update', null);
 		},
 	},
 	computed: {
