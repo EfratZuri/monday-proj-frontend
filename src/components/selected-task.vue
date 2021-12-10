@@ -33,8 +33,6 @@
 </template>
 
 <script>
-// import { socketService } from '../services/socket.service.js';
-// import moveToOpts from '../components/move-to-opts.vue';
 export default {
   name: 'selectedTask',
   props: {

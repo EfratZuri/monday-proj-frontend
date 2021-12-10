@@ -4,21 +4,33 @@ import { userService } from '../services/user.service.js';
 export const userStore = {
 	state: {
 		user: userService.getLoggedinUser(),
+		users: null
 	},
 	getters: {
 		user: (state) => state.user,
+		users: (state) => state.users,
 	},
 	mutations: {
+		setUsers(state, { users }) {
+			state.users = users;
+		},
 		logout(state) {
 			state.user = null;
-			console.log('state.user', state.user);
 		},
 		login(state, { user }) {
 			state.user = user;
-			console.log('state.user', state.user);
 		},
 	},
 	actions: {
+		async loadUsers(context) {
+			try {
+				const users = await userService.getUsers();
+				context.commit({ type: 'setUsers', users });
+				return users;
+			} catch (err) {
+				return err;
+			}
+		},
 		async logout(context) {
 			try {
 				const loggedOut = await userService.logout();

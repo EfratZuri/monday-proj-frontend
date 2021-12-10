@@ -1,7 +1,6 @@
 <template>
 	<div class="workspace" :class="{ 'control-open': showControlContent }">
 		<surface-control />
-
 		<control-content
 			@toggleOpen="toggleOpenControl"
 			@add="addBoard"
@@ -45,6 +44,7 @@
 					@deleteTaskSelected="deleteTaskSelected"
 					@duplicateTaskSelected="duplicateTaskSelected"
 				/>
+				<confirm-modal v-if="modal" @closeModal="modal = null" @deleteAction="deleteAction" />
 			</div>
 		</div>
 	</div>
@@ -54,11 +54,13 @@
 import surfaceControl from '@/components/surface-control.vue';
 
 import controlContent from '@/components/control-content';
+import utilService from '../services/util.service.js';
 import boardHeader from '@/components/board-header';
 import groupList from '@/components/group-list';
 import selectedTask from '@/components/selected-task.vue';
 import userMsg from '@/components/user-msg.vue';
 import socketService from '../services/socket.service.js';
+import confirmModal from '@/components/confirm-modal.vue';
 export default {
 	name: 'workspace',
 	data() {
@@ -67,6 +69,7 @@ export default {
 			tasks: [],
 			msg: '',
 			isTaskSelected: false,
+			modal: null,
 		};
 	},
 	async created() {
@@ -77,6 +80,11 @@ export default {
 			console.log('hey from socket');
 			this.saveBoard(board);
 		});
+		await this.$store.dispatch({ type: 'loadUsers' });
+		console.log(
+			'example',
+			this.$store.groupClrs.clrs[utilService.getRandomInt(0, this.$store.groupClrs.clrs.length)]
+		);
 	},
 	computed: {
 		isLoading() {
@@ -193,6 +201,10 @@ export default {
 			this.tasks = [];
 			console.log(tasks);
 		},
+
+		deleteAction() {
+			console.log('hey from modal');
+		},
 	},
 
 	destroyed() {
@@ -206,6 +218,7 @@ export default {
 		selectedTask,
 		userMsg,
 		surfaceControl,
+		confirmModal,
 	},
 };
 </script>

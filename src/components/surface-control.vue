@@ -1,23 +1,49 @@
 <template>
   <nav class="surface-control flex column gap align-center">
-    <router-link to="/" active-class="active-link" exact
-      ><img
-        src="@/assets/monday_logo_icon.png"
-        alt=""
-        class="monday-logo-navbar"
-    /></router-link>
-    <router-link to="/boards" active-class="active-link">
-      <ion-icon name="grid-outline"></ion-icon
-    ></router-link>
-    <button class="btn btn-icon" to="/boards" active-class="active-link">
-      <font-awesome-icon icon="bell" />
-    </button>
-    <button class="btn btn-icon" to="/boards" active-class="active-link">
-      <font-awesome-icon icon="inbox" />
-    </button>
-    <button class="btn btn-icon" to="/boards" active-class="active-link">
-      <font-awesome-icon icon="calendar-check" />
-    </button>
+    <el-tooltip
+      class="item"
+      effect="dark"
+      content="Home page"
+      placement="right"
+    >
+      <router-link to="/" active-class="active-link" exact
+        ><img
+          src="@/assets/monday_logo_icon.png"
+          alt=""
+          class="monday-logo-navbar"
+      /></router-link>
+    </el-tooltip>
+    <el-tooltip
+      class="item"
+      effect="dark"
+      content="Work space"
+      placement="right"
+    >
+      <router-link to="/boards" active-class="active-link">
+        <ion-icon name="grid-outline"></ion-icon
+      ></router-link>
+    </el-tooltip>
+    <el-tooltip
+      class="item"
+      effect="dark"
+      content="Notifications"
+      placement="right"
+    >
+      <button class="btn btn-icon" to="/boards" active-class="active-link">
+        <font-awesome-icon icon="bell" />
+      </button>
+    </el-tooltip>
+    <el-tooltip class="item" effect="dark" content="Inbox" placement="right">
+      <button class="btn btn-icon" to="/boards" active-class="active-link">
+        <font-awesome-icon icon="inbox" />
+      </button>
+    </el-tooltip>
+    <el-tooltip class="item" effect="dark" content="calender" placement="right">
+      <button class="btn btn-icon" to="/boards" active-class="active-link">
+        <font-awesome-icon icon="calendar-check" />
+      </button>
+    </el-tooltip>
+
     <div class="surface-control-users" @click="toggleUserMenu">
       {{ letterToShow }}
       <div
@@ -56,6 +82,7 @@
 </template>
 
 <script>
+import { utilService } from '../services/util.service.js';
 export default {
   name: 'surfaceControl',
   data() {
@@ -78,6 +105,17 @@ export default {
       return this.user
         ? '<ion-icon name="log-out-outline"></ion-icon>'
         : '<ion-icon name="log-in-outline"></ion-icon>';
+    },
+    randomColor() {
+      console.log(
+        'example',
+        this.$store.groupClrs.clrs[
+          utilService.getRandomInt(0, this.$store.groupClrs.clrs.length)
+        ]
+      );
+      return this.$store.groupClrs.clrs[
+        utilService.getRandomInt(0, this.$store.groupClrs.clrs.length)
+      ];
     },
   },
   methods: {

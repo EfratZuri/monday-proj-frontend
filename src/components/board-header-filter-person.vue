@@ -1,22 +1,21 @@
 <template>
-	<section class="person-filter-wrapper flex">
-		<!-- <div class="member-icon flex align-center">
-			<img
-				src="@/assets/dapulse-person-column.svg"
-				alt=""
-				aria-hidden="true"
-				class="person-bullet-image person-bullet-component"
-			/>
-		</div> -->
-		<div class="person-icon-wrapper">
-			<ion-icon name="person-circle-outline"></ion-icon>
-		</div>
-		<spasn class="person-span" v-tooltip.top="'Filter by person'">Person</spasn>
-	</section>
+  <el-tooltip
+    class="item"
+    effect="dark"
+    content="Filter by person"
+    placement="top"
+  >
+    <section class="person-filter-wrapper flex">
+      <div class="person-icon-wrapper">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
+      <spasn class="person-span">Person</spasn>
+    </section>
+  </el-tooltip>
 </template>
 
 <script>
 export default {
-	components: {},
+  components: {},
 };
 </script>
