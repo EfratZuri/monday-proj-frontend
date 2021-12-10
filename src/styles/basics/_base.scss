@@ -374,6 +374,19 @@
 		--monday-loader-gif-path: url(/images/loader/dark_loader.gif);
 		--hint-background-clr: #258750;
 		--transparent-overlay: rgba(41, 47, 76, 0.5) !important;
+		--inverted-clr-background: #fff;
+		--positive-clr: var(--clr-success);
+		--positive-clr-hover: var(--clr-success-hover);
+		--positive-clr-selected: #26503e;
+		--negative-clr: var(--clr-error);
+		--negative-clr-hover: var(--clr-error-hover);
+		--negative-clr-selected: #642830;
+		--private-clr: var(--clr-private);
+		--shareable-clr: #a358df;
+		--label-background-clr: #404b69;
+		--label-background-on-secondary-clr: #404b69;
+		--link-clr: #69a7ef;
+		--link-on-secondary-clr: #69a7ef;
 	}
 }
 
