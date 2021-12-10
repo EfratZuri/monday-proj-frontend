@@ -4,7 +4,11 @@
 		:style="{ width: info.data.style.maxWidth }"
 	>
 		<div class="col-cell" :style="info.data.style">
-			<div class="date-box timeline-bar-component" :class="{ filled: isFilled }">
+			<div
+				class="date-box timeline-bar-component"
+				:class="{ filled: isFilled }"
+				:style="timelineStyle"
+			>
 				<div class="date-txt-box">
 					<span class="timeline-value" :hovercontents="hoverContent" :contents="dateForDisplay">
 					</span>
@@ -31,6 +35,7 @@ export default {
 				},
 				notFillCell: { background: 'rgb(171, 171, 171)' },
 			},
+			timelineStyle: null,
 			isFilled: false,
 			hoverContent: 'Set Dates',
 		};
@@ -52,6 +57,9 @@ export default {
 		const dayCount = this.selected.dayCount;
 		this.isFilled = dayCount ? true : false;
 		this.hoverContent = !dayCount ? 'Set Dates' : `${dayCount}d`;
+		const now = Date.now();
+		console.log(now);
+		// this.timelineStyle=
 	},
 	methods: {
 		update(dueDates) {

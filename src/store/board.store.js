@@ -34,6 +34,7 @@ export const boardStore = {
 		groupToEdit: boardService.getEmptyGroup(),
 		taskToEdit: boardService.getEmptyTask(),
 		commentToEdit: boardService.getEmptyComment(),
+		labelToEdit: { name: '', id: '', display: '', style: { backgroundColor: '' } },
 	},
 	getters: {
 		boards: (state) => state.boards,
@@ -46,6 +47,7 @@ export const boardStore = {
 		commentToEdit: (state) => state.commentToEdit,
 		taskToEdit: (state) => state.taskToEdit,
 		clrs: (state) => state.groupClrs.clrs,
+		labelToEdit: (state) => state.labelToEdit,
 	},
 	mutations: {
 		//----------BOARD----------//
@@ -113,6 +115,12 @@ export const boardStore = {
 			task.comments.unshift(details.comment);
 			console.log('state.activeBoard', state.activeBoard);
 			state.commentToEdit = boardService.getEmptyComment();
+		},
+		saveLabel(state, { details }) {
+			const col = state.activeBoard.cols.find(({ type }) => type === details.type);
+			const idx = col.data.opts.findIndex(({ id }) => id === details.label.id);
+			if (idx === -1) col.data.opts.push(details.label);
+			else col.data.opts.splice(idx, 1, details.label);
 		},
 	},
 	actions: {
@@ -264,6 +272,15 @@ export const boardStore = {
 				const newBoard = await boardService.saveBoardCol(context.state.activeBoard._id, details);
 				console.log('new board from STORE!!!', newBoard);
 				context.commit({ type: 'saveBoard', details: newBoard });
+			} catch (err) {
+				return err;
+			}
+		},
+		async saveLabel(context, { details }) {
+			try {
+				const savedDetails = await boardService.saveLabel(context.state.activeBoard._id, details);
+				context.commit({ type: 'saveLabel', details: savedDetails });
+				return savedDetails;
 			} catch (err) {
 				return err;
 			}

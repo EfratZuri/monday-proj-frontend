@@ -69,26 +69,12 @@
 			transform: translateX(50%);
 			border-width: 10px;
 		}
-		.dropdown-inner-container {
-			&:hover {
-				opacity: 0.85;
-			}
-			&.labels-list {
-				.label-row {
-					.btn-delete-status {
-						visibility: hidden;
-					}
-					&:hover .btn-delete-status {
-						visibility: visible;
-					}
-				}
-			}
-		}
+
 		.picker-dropdown-inner-container {
 			min-width: 0;
 			width: 100%;
-			height: 100%;
-			padding: 16px 8px 0 2px;
+			// height: 100%;
+			// padding: 16px 8px 0 2px;
 			.priority-list,
 			.status-list {
 				padding: 16px 16px 0 16px;
@@ -104,6 +90,7 @@
 					height: 100%;
 					font-size: 13px;
 					font-weight: 300;
+					background-color: transparent;
 					&:hover {
 						background-color: $primary-clr;
 						color: #fff;
