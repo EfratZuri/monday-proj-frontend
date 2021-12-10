@@ -76,7 +76,6 @@ export default {
 			return { width, backgroundColor };
 		},
 		getContentToolTip(key, value) {
-			console.log(key, value);
 			const percentage = (key * 100) / this.taskLen;
 			return `${value} ${key}/${this.taskLen} ${percentage}%`;
 		},
